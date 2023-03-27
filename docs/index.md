@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Helmer den Dekker"
   text: "Documentation and Resources"
-  tagline: My great project tagline
+  tagline: This project contains documentation and resources by Helmer den Dekker
   actions:
     - theme: brand
       text: Markdown Examples
