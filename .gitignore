@@ -1,3 +1,6 @@
+# GitIgnore by Helmer den Dekker
+# 27-03-2023
+
 .DS_Store
 node_modules
 /dist
