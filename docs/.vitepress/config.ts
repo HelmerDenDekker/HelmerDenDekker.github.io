@@ -8,15 +8,25 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Frontend', link: '/frontend/frontend' },
+      { text: 'Backend', link: '/backend/backend' },
+      { text: 'Internet', link: '/internet/internet' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Internet',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Internet', link: '/internet/internet' },
+        ]
+      },
+      {
+        text: 'Frontend',
+        items: [
+          { text: 'Frontend', link: '/frontend/frontend' },
+          { text: 'Markdown Examples', link: '/frontend/markdown-examples' },
+          { text: 'Runtime API Examples', link: '/frontend/api-examples' },
+          { text: 'VitePress and GitHub Pages', link: '/frontend/vitepress-githubpages' }
         ]
       }
     ],

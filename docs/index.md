@@ -6,6 +6,9 @@ hero:
   name: "Helmer den Dekker"
   text: "Documentation and Resources"
   tagline: This project contains documentation and resources by Helmer den Dekker
+  image:
+    src: assets/images/logo.png
+    alt: HelmerDenDekkerOwl
   actions:
     - theme: brand
       text: Markdown Examples
@@ -15,11 +18,11 @@ hero:
       link: /api-examples
 
 features:
-  - title: Feature A
+  - title: A Test
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
+  - title: Test B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
+  - title: Test C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 

@@ -1,0 +1,37 @@
+@startuml InputValidation
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+LAYOUT_WITH_LEGEND()
+
+title 3. Component diagram for Input Validation and Output normalization
+
+Person(user, "User")
+
+Container_Boundary(spa, "FrontEnd"){
+    Component(spaf, "Front end App", "SPA", "Some form")
+    Component(spav, "Input Validation", "SPA", "Validation component")
+    Component(spas, "ApiClient", "SPA", "Validation component")
+    Component(span, "Output Normalization", "SPA", "Normalization component")
+
+    }
+
+Container_Boundary(api, "API"){
+    Component(apic, "Controller", "API", "Endpoints listening to calls")
+    Component(apiv, "Input Validation", "API", "Validation component")
+    Component(apif, "Infra", "API", "Sending to database")
+    Component(apin, "Output Normalization", "API", "Normalization component")
+    }
+
+
+ContainerDb(db, "Database")
+
+Rel(user, spaf, "uses")
+Rel(spaf, spav, "validate")
+Rel(spav, spas, "send")
+Rel(spas, span, "normalize output")
+Rel(span, apic, "send")
+Rel(apic, apiv, "validate")
+Rel(apiv, apif, "store/retrieve")
+Rel(apif, apin, "normalize output")
+Rel(apin, db, "store/retrieve" )
+
+@enduml

@@ -1,27 +1,50 @@
----
-outline: deep
----
  # Vitepress and GitHub Pages
-*27-03-2023*
+*27-3-2023 - updated 5-5-2023*
 
  I wanted to try out GitHub Pages and VitePress so I just gave it a shot this afternoon. I have to say, starting it is very easy. This is my first page.
 
 ## GitHub Pages
 
- So I started uot with the [quickstart for GitHub Pages](https://docs.github.com/en/pages/quickstart).
+ So I started out with the [Quickstart for GitHub Pages](https://docs.github.com/en/pages/quickstart).
 
-It was really easy to setup the repo. I have done that many times before. However I spent a full ten seconds looking for the Under "Build and deployment", under "Source", select Deploy from a branch.
+It was really easy to setup the repo. I have done that many times before. However I spent a full ten seconds looking for the links *Under "Build and deployment", under "Source", select Deploy from a branch*.
 That annoyed me, so for future reference:
 
-![Under "Build and deployment", under "Source", select Deploy from a branch.](assets/vitepress/vitepressgithubpages01.png "It is here!")
+![Under "Build and deployment", under "Source", select Deploy from a branch.](/assets/images/vitepress/vitepressgithubpages01.png "It is here!")
 
 I won't forget that!
 
 ## Vitepress
 
-Next: [quickstart for GitHub Pages](https://docs.github.com/en/pages/quickstart).
+Next: [Quickstart for GitHub Pages](https://docs.github.com/en/pages/quickstart).
 
 Which was really really easy, since I work with vite on a daily basis, and I have everything installed on my laptop already. The documentation of VitePress is perfect for me, since it looks like the Vue documentation.
+
+
+::: details Action plan (short version)
+1. Install Node.js version 16 or higher
+2. Open VS Code, terminal.
+3. Install VitePress
+
+```js{4}
+$ npm install -D vitepress
+```
+
+4. Setup VitePress
+
+```js{4}
+$ npx vitepress init
+```
+
+And answer the questions, for help go to the quickstart mentioned above.
+
+5. Run
+
+```js{4}
+$ npm run docs:dev
+```
+:::
+
 
 All settled, right? No!
 
