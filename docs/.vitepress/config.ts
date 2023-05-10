@@ -28,6 +28,13 @@ export default defineConfig({
           { text: 'Runtime API Examples', link: '/frontend/api-examples' },
           { text: 'VitePress and GitHub Pages', link: '/frontend/vitepress-githubpages' }
         ]
+      },
+      {
+        text: 'Backend',
+        items: [
+          { text: 'Backend', link: '/backend/backend' },
+          { text: 'API', link: '/backend/api' }
+        ]
       }
     ],
 
