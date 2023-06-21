@@ -85,19 +85,17 @@ A Web Service has strict requirements.
 - Discoverability document
 
 
-
 ### SOAP protocol
 
 SOAP stands for Simple Object Access Protocol.
 The SOAP protocols are standardized by the W3C and mandate the use of XML as the payload format, typically over HTTP.
 SOAP-based Web APIs use XML validation to ensure structural message integrity, by leveraging the XML schemas provisioned with WSDL documents. A WSDL document accurately defines the XML messages and transport bindings of a Web service.
 
+[XML Soap - W3Schools](https://www.w3schools.com/XML/xml_soap.asp)
 [SOAP- Wikipedia](https://en.wikipedia.org/wiki/SOAP)
 
 
-
-
-SignalR
+### SignalR
 
 SignalR is a free and open-source software library for Microsoft ASP.NET that allows server code to send asynchronous notifications to client-side web applications.
 In other words, you can communicate with the user from the server in real-time, without the server blocking for a response by the user.
