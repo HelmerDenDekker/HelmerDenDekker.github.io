@@ -8,38 +8,35 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Frontend', link: '/frontend/frontend' },
-      { text: 'Backend', link: '/backend/backend' },
-      { text: 'Internet', link: '/internet/internet' }
+      { text: 'Resources', link: '/resources/resources' },
+      { text: 'Blog', link: '/blog/blog' },
     ],
 
     sidebar: [
       {
-        text: 'Internet',
+        text: 'Blog',
         items: [
-          { text: 'Internet', link: '/internet/internet' },
+          { text: 'DDD - 1 Webshop Design', link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop' },
+          { text: 'VitePress and GitHub Pages', link: '/blog/vitepress-githubpages' },
         ]
       },
       {
-        text: 'Frontend',
+        text: 'Resources',
         items: [
-          { text: 'Frontend', link: '/frontend/frontend' },
-          { text: 'Markdown Examples', link: '/frontend/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/frontend/api-examples' },
-          { text: 'VitePress and GitHub Pages', link: '/frontend/vitepress-githubpages' }
+          { text: 'Frontend', link: '/resources/frontend/frontend' },
+          { text: 'Markdown Examples', link: '/resources/frontend/markdown-examples' },
+          { text: 'Runtime API Examples', link: '/resources/frontend/api-examples' },
+          // { text: 'Input Validation', link: '/resources/input-validation' },
+          { text: 'Backend', link: '/resources/backend/backend' },
+          { text: 'API', link: '/resources/backend/api' },
+          // { text: 'Internet', link: '/resources/internet/internet' },
         ]
       },
-      {
-        text: 'Backend',
-        items: [
-          { text: 'Backend', link: '/backend/backend' },
-          { text: 'API', link: '/backend/api' }
-        ]
-      }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/HelmerDenDekker' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/helmerdendekker' },
     ]
   }
 })
