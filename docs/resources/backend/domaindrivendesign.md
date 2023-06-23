@@ -38,3 +38,7 @@ About that last one: I have experienced people driving for DDD without a (comple
 
 ## Conclusion
 It is usefull only for complex domains. If you have an easy domain, or simple procedural program, there is simply no need for DDD.
+
+## Resources
+
+[Domain Driven Design blog by Felipe de Freitas Batista](https://thedomaindrivendesign.io/)

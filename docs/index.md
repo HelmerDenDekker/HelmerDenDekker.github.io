@@ -11,18 +11,15 @@ hero:
     alt: HelmerDenDekkerOwl
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Blog
+      link: /blog/blog
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: My Resources
+      link: /resources/resources
 
 features:
-  - title: A Test
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Test B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Test C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: DDD Webshop Demo
+    details: Read my new blog. I am working on a domain driven design webshop design.
+    link: /blog/domaindrivendesignwebshop/domaindrivendesignwebshop
 ---
 

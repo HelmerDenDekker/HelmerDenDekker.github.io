@@ -1,4 +1,4 @@
-# API
+# API - Resource
 *10-5-2023*
 
 API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.
@@ -95,7 +95,7 @@ SOAP-based Web APIs use XML validation to ensure structural message integrity, b
 [SOAP- Wikipedia](https://en.wikipedia.org/wiki/SOAP)
 
 
-### SignalR
+## SignalR
 
 SignalR is a free and open-source software library for Microsoft ASP.NET that allows server code to send asynchronous notifications to client-side web applications.
 In other words, you can communicate with the user from the server in real-time, without the server blocking for a response by the user.
