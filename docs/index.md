@@ -6,20 +6,20 @@ hero:
   name: "Helmer den Dekker"
   text: "Documentation and Resources"
   tagline: This project contains documentation and resources by Helmer den Dekker
+  image:
+    src: assets/images/logo.png
+    alt: HelmerDenDekkerOwl
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Blog
+      link: /blog/blog
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: My Resources
+      link: /resources/resources
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: DDD Webshop Demo
+    details: Read my new blog. I am working on a domain driven design webshop design.
+    link: /blog/domaindrivendesignwebshop/domaindrivendesignwebshop
 ---
 

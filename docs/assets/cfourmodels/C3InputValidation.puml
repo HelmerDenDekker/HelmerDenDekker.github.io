@@ -1,0 +1,41 @@
+@startuml InputValidation
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+LAYOUT_WITH_LEGEND()
+
+title 3. Component diagram for Input Validation and Output normalization
+
+Person(user, "User")
+
+Container_Boundary(spa, "FrontEnd"){
+    Component(spaf, "Front end App", "VueJS", "A form in the front end App")
+    Component(spav, "Input Validation", "SPA", "Validation component")
+    Component(spas, "Axios or XHR/AJAX", "SPA", "The component sending data to the API")
+    'Component(span, "Output Normalization", "SPA", "Normalization component")
+
+    }
+
+Container_Boundary(api, "WebAPI"){
+    Component(apic, "Controller", "WebAPI", "Endpoints listening to calls")
+    Component(apiv, "Input Validation", "API Logic", "Validation component")
+    Component(apif, "Infra", "API Infra", "Sending to database")
+    Component(apin, "Output Normalization", "API Logic", "Normalization component")
+    }
+
+
+ContainerDb(db, "Database")
+
+Rel(user, spaf, "enters data in form")
+Rel(spaf, spav, "validate data")
+Rel(spav, spaf, "feedback")
+Rel(spaf, spas, "data [validated]")
+'Rel(spas, span, "normalize output")
+'Rel(span, apic, "send")
+Rel(spas, apic, "sends data [json]")
+Rel(apic, apiv, "1. validate data")
+Rel(apiv, apic, "validation result")
+Rel(apic, apin, "2. normalize data")
+Rel(apin, apic, "data [normalized]")
+Rel_R(apic, apif, "3. store data")
+Rel(apif, db, "store data" )
+
+@enduml
