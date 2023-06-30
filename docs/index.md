@@ -7,7 +7,7 @@ hero:
   text: "Documentation and Resources"
   tagline: This project contains documentation and resources by Helmer den Dekker
   image:
-    src: assets/images/logo.png
+    src: /assets/images/logo.png
     alt: HelmerDenDekkerOwl
   actions:
     - theme: brand
