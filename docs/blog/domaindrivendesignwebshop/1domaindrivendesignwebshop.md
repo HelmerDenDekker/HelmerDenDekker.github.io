@@ -1,7 +1,7 @@
 # 1 Domain-driven design: Designing a webshop
-*19-6-2023 - updated 23-6-2023*
+*19-6-2023 - updated 17-7-2023*
 
-Taking inspiration from the Software architecture course, I will be discussing the e-shop, or webshop for the demo. This is the first blog in a series.
+Taking inspiration from the Software architecture course, I will be discussing the e-shop, or webshop. I will use this as a demo for approaching and learning about domain-driven design. This is the first blog in a series.
 
 ## Starting point for the design
 
@@ -136,13 +136,18 @@ So the design below is just a snapshot, a frozen moment in time (23-06-2023 12:4
 
 ## Github
 
-This is work in progress:
+This is work in progress, and the demo code can be found here:
 [Demo webshop code on GitHub](https://github.com/HelmerDenDekker/HelmerDemo.WebShop)
 
 ## Resources
 
+[Course Software Architecture by Vijfhart](https://www.vijfhart.nl/opleidingen/software-architectuur/)
+
 [Domain Driven Design blog by Felipe de Freitas Batista](https://thedomaindrivendesign.io/)
+
+[Code Opinion](https://codeopinion.com/)
 
 Julie Lerman - The intersection of Microservices, domain-driven design and entity framework core
 
 Milan Jovanovic
+

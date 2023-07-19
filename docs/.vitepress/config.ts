@@ -16,6 +16,7 @@ export default defineConfig({
       {
         text: 'Blog',
         items: [
+          { text: 'DDD - 0 Introduction', link: '/blog/domaindrivendesignwebshop/0domaindrivendesignintro' },
           { text: 'DDD - 1 Webshop Design', link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop' },
           { text: 'VitePress and GitHub Pages', link: '/blog/vitepress-githubpages' },
         ]
@@ -29,6 +30,7 @@ export default defineConfig({
           // { text: 'Input Validation', link: '/resources/input-validation' },
           { text: 'Backend', link: '/resources/backend/backend' },
           { text: 'API', link: '/resources/backend/api' },
+          { text: 'Domain driven design', link: '/resources/backend/domaindrivendesign' },
           // { text: 'Internet', link: '/resources/internet/internet' },
         ]
       },
