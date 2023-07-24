@@ -1,7 +1,7 @@
 # Domain-driven design (DDD)
-*19-6-2023*
+*19-6-2023 - updated 17-7-2023*
 
-Domain-driven design is a term introduced by Eric Evans in his book "Domain-driven design" fromn 2003.
+Domain-driven design is a term introduced by Eric Evans in his book "Domain-driven design" from 2003.
 
 But wait, that was 20 years ago! I hear you say. Yes, it was!
 
@@ -20,6 +20,8 @@ Tactical patterns:
 - Domain service
 - Application service
 - Infrastructure service
+
+![Domain-driven design](/assets/images/domaindrivendesign/domaindrivendesign.svg "Domain-driven design; strategic and tactical design patterns")
 
 ## Trade-off
 
@@ -42,3 +44,11 @@ It is usefull only for complex domains. If you have an easy domain, or simple pr
 ## Resources
 
 [Domain Driven Design blog by Felipe de Freitas Batista](https://thedomaindrivendesign.io/)
+
+[Code Opinion](https://codeopinion.com/)
+
+Julie Lerman - The intersection of Microservices, domain-driven design and entity framework core
+
+Milan Jovanovic
+
+Amichai Mantinband

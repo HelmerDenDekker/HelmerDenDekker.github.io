@@ -18,8 +18,12 @@ hero:
       link: /resources/resources
 
 features:
-  - title: DDD Webshop Demo
-    details: Read my new blog. I am working on a domain driven design webshop design.
-    link: /blog/domaindrivendesignwebshop/domaindrivendesignwebshop
+- title: Domain-driven design
+  details: My newest blog, some thoughts about Domain-driven design and how I got there.
+  link: /blog/domaindrivendesignwebshop/0domaindrivendesignintro
+
+- title: DDD Webshop Demo
+  details: The first blog in a series about the domain-driven design webshop demo. This blog describes the thoughts behind the first domain model and is mainly influenced by the software architecture course I followed in May 2023.
+  link: /blog/domaindrivendesignwebshop/1domaindrivendesignwebshop
 ---
 
