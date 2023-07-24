@@ -31,6 +31,7 @@ export default defineConfig({
           { text: 'Backend', link: '/resources/backend/backend' },
           { text: 'API', link: '/resources/backend/api' },
           { text: 'Domain driven design', link: '/resources/backend/domaindrivendesign' },
+          { text: 'Persistance strategy', link: '/resources/backend/persistancestrategy' },
           // { text: 'Internet', link: '/resources/internet/internet' },
         ]
       },
