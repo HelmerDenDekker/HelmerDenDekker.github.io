@@ -5,8 +5,7 @@ Everything starts at zero, right? In the aftermath of designing the webshop, I b
 
 ## Context of Domain-driven design
 
-I mean, why do this? I started my journey in web design in 2001, creating some webpage in Microsoft FrontPage (which was mandatory for that course...). I screamed in agony. So instead I wrote my own stuff in notepad, using HTML and CSS. Later I escaped to dreamweaver, which was a bit better. 
-Why telling you these stories? Because I know I wanted to tell other people about all of the crazy stuff I was doing with MATLAB. So I knew what I wanted it to look like.
+I mean, why do domain-driven design? I started my journey in web design in 2001, creating some webpage in Microsoft FrontPage (which was mandatory for that course...). I screamed in agony. So instead I wrote my own stuff in notepad, using HTML and CSS. Later I escaped to dreamweaver, which was a bit better. And before I knew it, I was into web design.
 
 ### Pull design: start at Frontend
 
@@ -20,10 +19,9 @@ Frontend -> controllers -> logic -> infra -> database
 
 The controllers are MVC-controllers. Frontend were HTML-templates (the view of MVC).
 
-At first the guys from Xerbutri and some other smaller pages were happy. Because you can deliver very fast, having to dive into the piping later. So at first they were happy, later a bit less happy since resolving bugs could take a long time.
+At first the guys from Xerbutri and some other smaller pages were happy. Because you can deliver very fast, having to dive into the piping later. So at first they were happy, later a bit less happy since resolving bugs could take a long time. Having design-on-the-go does not lead to the most maintainable or efficient logic and database design.
 
-This is called pull design, because you pull the code from business requirements on demand. Aka Lean programming, building features, vertical development.
-
+This is called pull design, because you pull the code from business requirements on demand. Also known as Lean programming, building features or vertical development.
 
 ### Push design: Start the design from the database
 
@@ -31,13 +29,13 @@ As I found my first job, the way of working in the company was to start with the
 
 Other names are datacentric approach or push design, 
 
-Starting with the database meant a long time-to-market, because my normal way of designing was inverted:
+The way of designing is inverted:
 
 ::: info Database-first
 Database -> infra -> logic -> controllers -> frontend.
 :::
 
-The first months were spent with determining database design, normalization, datatypes, models and lots of discussions about optimization.
+Starting with the database meant a long time-to-market. The first months were spent with determining database design, normalization, datatypes, models and lots of discussions about optimization.
 
 This is called push design, or horizontal development. In push design you think about all of the functionality there should be somewhere in the future, and push that into a horizontal layer.
 
@@ -59,7 +57,8 @@ How to show this in the front end? That is quite easy, right?
 ::: info Show in the frontend
 Frontend -> Controllers -> Service
 :::
-Now Helmer, how should we save the stuff calculated? Because your calculation is quite slow (HTTP-call!) and we want some caching of some sort. 'Let's use the database for that!', they shouted thrilled. And so the guys started building models and the database (with Entity Framework this time, which made me quite happy).
+
+Now Helmer, how should we save the stuff calculated? Because your calculation is quite slow (HTTP-call!) and we want some caching of some sort. 'Let's use the database for that!' And so we started building models and the database (with Entity Framework this time, which made me quite happy).
 
 ::: info Conclusion
 Frontend -> Controllers -> Infra -> Database
@@ -80,7 +79,7 @@ Wait! I know that from my calculation services! However, there is a bit more.
 ### Ubiquitous language
 
 We have all heard that difficult word, right? I always have to look up how to write it. Do not ask me how to pronounce it! The meaning of the word: being clear, existing, or being everywhere. A bit like God. Right? Or not?
-I know this! The language in the code uses the language as used in the domain. As I was well aware of in my calculation modules. I mentioned the equation numbers in my methods.
+I know this! The language in the code uses the language as used in the domain. As I was well aware of in my calculation modules.
 
 And we used to do this all of the time. Because otherwise the domain experts did not know what we talked about. 
 However, because of the universal containing-all-and-true-everywhere data model, fights used to break out. Because one domain expert was talking about User, the other one was talking about Customer, etc. The experts were demanding changes to model not agreed by others, it quickly became one big ball of spaghetti-mud. 
@@ -119,7 +118,8 @@ These layers live in isolation, and have interfaces to talk to each other.
 
 ## Conclusion
 
-I have to let go of some old manners about application design. 
+I have to adopt some new manners about application design. 
+
 Most importantly:
 - look for the minimum amount of relations (keep it simple)
 - go for eventual consistency in persistance, instead of a single source of truth (loose coupling)
