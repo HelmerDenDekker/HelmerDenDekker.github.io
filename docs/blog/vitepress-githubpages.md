@@ -26,22 +26,22 @@ Which was really really easy, since I work with vite on a daily basis, and I hav
 2. Open VS Code, terminal.
 3. Install VitePress
 
-```js{4}
-$ npm install -D vitepress
+```bat
+ npm install -D vitepress
 ```
 
 4. Setup VitePress
 
-```js{4}
-$ npx vitepress init
+```bat
+ npx vitepress init
 ```
 
 And answer the questions, for help go to the quickstart mentioned above.
 
 5. Run
 
-```js{4}
-$ npm run docs:dev
+```bat
+ npm run docs:dev
 ```
 :::
 
