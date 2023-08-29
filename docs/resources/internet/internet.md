@@ -259,4 +259,5 @@ I changed the IP-addresses in the example above, but clearly it hops from my com
 ### OSI
 
 [What is the OSI model - ByteByteGo](https://youtu.be/0y6FtKsg6J4)
+
 [OSI model](https://en.wikipedia.org/wiki/OSI_model)
