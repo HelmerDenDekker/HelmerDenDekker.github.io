@@ -18,7 +18,7 @@ export default defineConfig({
         items: [
           { text: 'DDD - 0 Introduction', link: '/blog/domaindrivendesignwebshop/0domaindrivendesignintro' },
           { text: 'DDD - 1 Webshop Design', link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop' },
-          { text: 'DDD - 2 Webshop Layers', link: '/blog/domaindrivendesignwebshop/2domaindrivendesignwebshoplayers' },
+          //{ text: 'DDD - 2 Webshop Layers', link: '/blog/domaindrivendesignwebshop/2domaindrivendesignwebshoplayers' },
           { text: 'VitePress and GitHub Pages', link: '/blog/vitepress-githubpages' },
         ]
       },
