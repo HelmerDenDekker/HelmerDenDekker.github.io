@@ -179,7 +179,7 @@ You can find more details in the [HTTP - MDN Web Docs](https://developer.mozilla
 
 If you open the inspector in your web browser, you can inspect all the HTTP calls made by the browser in the Network tab:
 
-![HTTP calls](/assets/images/internet/httpcalls.PNG "HTTP calls for helmerdendekker.github.io")
+![HTTP calls](/assets/images/internet/httpcalls.png "HTTP calls for helmerdendekker.github.io")
 
 These are the HTTP calls the web browser makes to the web server.
 The HTTP protocol has (request) methods and (response) status codes.
@@ -187,7 +187,7 @@ The method or "request method token" as it is named officially, indicates the pu
 In the example above, the top request shows a GET method for requesting the website, transferring the HTML of the website.
 
 The status code is 200, which means OK. You can click on the HTTP call to see the details:
-![HTTP call header details](/assets/images/internet/httpcalldetails.PNG "HTTP call details for helmerdendekker.github.io")
+![HTTP call header details](/assets/images/internet/httpcalldetails.png "HTTP call details for helmerdendekker.github.io")
 
 There are several tabs with details. We are looking at the header details now.
 The HTTP protocol adds a header to the request. In the first section you see the information about the HTTP request, like status code, version, etc. For me the status code and version are the most interesting parts here.
