@@ -1,6 +1,8 @@
 # Code reuse
 *30-8-2023*
 
+Status: Work in progress
+
 ## When to reuse code
 
 DRY principle, once you have written code >2 times, see if you can reuse it.

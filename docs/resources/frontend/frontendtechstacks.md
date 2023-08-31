@@ -1,6 +1,8 @@
 # Front end architectures
 *30-8-2023*
 
+Status: Work in progress
+
 In this page some Front End frameworks are discussed, in a philosophical way.
 
 // ToDo Rewrite!!

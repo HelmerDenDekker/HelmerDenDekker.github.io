@@ -1,5 +1,5 @@
 # Internet
-*5-5-2023 - updated 29-8-2023*
+*5-5-2023 - updated 31-8-2023*
 
 For me it all started with the internet.
 I was fiddling with computers since I was young, but sorta lost interest since Windows 95. I was totally into MS-DOS at the time. The windows interface was like an unclear filter to me.
@@ -243,7 +243,7 @@ over a maximum of 30 hops:
 Trace complete.
 ```
 
-I changed the IP-addresses in the example above, but clearly it hops from my computer to my router, to my provider, and next to "I do not know where", but it ends up at github. I did read the ones with the characters are internet routers. Pretty cool!
+I changed the IP-addresses in the example above, but clearly it hops from my computer to my router, to my provider, and next to "I do not know where", but it ends up at github. The ip-adresses with the characters in them are internet routers. Pretty cool!
 
 :::
 
