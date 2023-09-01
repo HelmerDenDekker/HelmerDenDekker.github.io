@@ -24,28 +24,22 @@ class Customized extends HTMLElement {...}
 window.customelements.define('customized', Customized);
 ```
 
-LifeCycle methods
+### LifeCycle methods
 
 constructor(): initialize, event listeners, state
-
 connectedCallback(): element inserted to the DOM
 disconnectedCallback(): element removed from the DOM
 attributeChangedCallback(attributeName, oldValue, newValue): When attribute is added, removed, updated or replaced.
-
-
 
 ## Shadow DOM
 
 Used for self-contained components
 Scoped styles (style and markup encapsulated)
 
-
-
-## HTML templates.
+## HTML templates
 
 HTML and CSS 
 Use slots to make it dynamic
-
 
 
 
