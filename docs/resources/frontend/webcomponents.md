@@ -45,8 +45,6 @@ Use slots to make it dynamic
 
 ## Resources
 
-[HelmerDemo webcomponents GitHub repo](https://github.com/HelmerDenDekker/HelmerDemo.WebComponents)
-
-[WebComponents.org](https://webcomponents.github.io/)
-
-[Web components crash course](https://www.youtube.com/watch?v=PCWaFLy3VUo)
+[HelmerDemo webcomponents GitHub repo](https://github.com/HelmerDenDekker/HelmerDemo.WebComponents)  
+[WebComponents.org](https://webcomponents.github.io/)  
+[Web components crash course](https://www.youtube.com/watch?v=PCWaFLy3VUo)  

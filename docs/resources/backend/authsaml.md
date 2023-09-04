@@ -58,6 +58,5 @@ I have created an implementation in a dotNET project using the packages provided
 
 ## Resources
 
-[How SAML works - AUTH0](https://auth0.com/blog/how-saml-authentication-works/)
-
+[How SAML works - AUTH0](https://auth0.com/blog/how-saml-authentication-works/)  
 [SAML - Wikipedia](https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language)

@@ -151,8 +151,6 @@ Security in your front end code, since it runs on the clients machine (you are n
 
 Sources:
 
-[Architecture of modern web apps in dotnet core and azure](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/)
-
-[Architecture for cloud native apps](https://docs.microsoft.com/en-us/dotnet/architecture/cloud-native/)
-
-[Architecture for Serverless apps](https://docs.microsoft.com/en-us/dotnet/architecture/serverless/)
+[Architecture of modern web apps in dotnet core and azure](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/)  
+[Architecture for cloud native apps](https://docs.microsoft.com/en-us/dotnet/architecture/cloud-native/)  
+[Architecture for Serverless apps](https://docs.microsoft.com/en-us/dotnet/architecture/serverless/)  

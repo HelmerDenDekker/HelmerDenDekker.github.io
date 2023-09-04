@@ -250,14 +250,12 @@ I changed the IP-addresses in the example above, but clearly it hops from my com
 ## Resources
 
 ### Internet
-[Rus Shuler 2002 - How does the internet work?](https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm)
 
-[CS FYI - How does the Internet Work?](https://cs.fyi/guide/how-does-internet-work)
-
+[Rus Shuler 2002 - How does the internet work?](https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm)  
+[CS FYI - How does the Internet Work?](https://cs.fyi/guide/how-does-internet-work)  
 [Roadmap.sh - What is internet](https://roadmap.sh/guides/what-is-internet)
 
 ### OSI
 
-[What is the OSI model - ByteByteGo](https://youtu.be/0y6FtKsg6J4)
-
+[What is the OSI model - ByteByteGo](https://youtu.be/0y6FtKsg6J4)  
 [OSI model](https://en.wikipedia.org/wiki/OSI_model)

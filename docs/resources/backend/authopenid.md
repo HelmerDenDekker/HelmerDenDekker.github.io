@@ -47,5 +47,5 @@ Earlier I implemented this in .NET framework as well, which takes a little more 
 
 ## Resources
 
-[Darut K explains all the flows (although the flow names are missing)](https://darutk.medium.com/diagrams-of-all-the-openid-connect-flows-6968e3990660)
+[Darut K explains all the flows (although the flow names are missing)](https://darutk.medium.com/diagrams-of-all-the-openid-connect-flows-6968e3990660)  
 [How OpenID Connect Works - OpenID Foundation](https://openid.net/connect/)

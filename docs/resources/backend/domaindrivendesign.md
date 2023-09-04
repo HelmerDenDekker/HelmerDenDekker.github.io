@@ -43,12 +43,8 @@ It is usefull only for complex domains. If you have an easy domain, or simple pr
 
 ## Resources
 
-[Domain Driven Design blog by Felipe de Freitas Batista](https://thedomaindrivendesign.io/)
-
-[Code Opinion](https://codeopinion.com/)
-
-Julie Lerman - The intersection of Microservices, domain-driven design and entity framework core
-
-Milan Jovanovic
-
+[Domain Driven Design blog by Felipe de Freitas Batista](https://thedomaindrivendesign.io/)  
+[Code Opinion](https://codeopinion.com/)  
+Julie Lerman - The intersection of Microservices, domain-driven design and entity framework core  
+Milan Jovanovic  
 Amichai Mantinband

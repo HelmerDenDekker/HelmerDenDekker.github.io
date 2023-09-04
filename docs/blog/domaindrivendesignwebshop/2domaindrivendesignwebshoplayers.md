@@ -95,12 +95,9 @@ Plumbing, like logging, messaging, SOAP, REST, File Access
 
 ## Resources
 
-[Software alchemy - A Template for Clean Domain-Driven Design Architecture](https://blog.jacobsdata.com/2020/03/02/a-clean-domain-driven-design-architectural-template)
-
-[Code Opinion](https://codeopinion.com/)
-
-Julie Lerman - The intersection of Microservices, domain-driven design and entity framework core
-
+[Software alchemy - A Template for Clean Domain-Driven Design Architecture](https://blog.jacobsdata.com/2020/03/02/a-clean-domain-driven-design-architectural-template)  
+[Code Opinion](https://codeopinion.com/)  
+Julie Lerman - The intersection of Microservices, domain-driven design and entity framework core  
 Milan Jovanovic
 
 
