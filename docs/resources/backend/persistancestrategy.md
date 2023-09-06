@@ -12,7 +12,7 @@ The object wraps a row in a database table or view.
 It encapsulates database access
 It adds business logic on that data.
 
-In DDD terms, the active record puts the persistance methods directly on the Entity object.
+In domain driven design (DDD) terms, the active record puts the persistance methods directly on the Entity object.
 
 This is the Entity Framework way of working, the entities are wrapped and mapped to the tables in the database.
 Mapping is the responsibility of the Entity.

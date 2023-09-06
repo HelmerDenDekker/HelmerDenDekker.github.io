@@ -54,7 +54,7 @@ In my (limited 2-year) experience, I found implementing SAML correctly in dotNET
 
 ## SAML in dotNET
 
-I have created an implementation in a dotNET project using the packages provided by [Anders Revgaards](https://github.com/Revsgaard) ITfoxTec company. I compared some dotNET implementations, and in my opinion, this company provided the best implementation back in 2021. Let me know if things have changed by now by [creating an issue for this article in my GitHub](https://github.com/HelmerDenDekker/HelmerDenDekker.github.io/issues)
+I have created an implementation in a dotNET project using the packages provided by [Anders Revgaards](https://github.com/Revsgaard) ITfoxTec company. I compared some dotNET implementations, and in my opinion, this company provided the best implementation back in 2021. Let me know if things have changed by now by [creating an issue for this article in my GitHub](https://github.com/HelmerDenDekker/HelmerDenDekker.github.io/issues)  
 
 ## Resources
 

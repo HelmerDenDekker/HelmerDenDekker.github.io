@@ -23,3 +23,7 @@ Status: Work in progress - Not mine!
 [Ping first approach - Bas van Laarhoven](https://medium.com/@bas_57051/software-testing-when-there-is-coffee-but-no-cup-ab8a9f9ae6c6)  
 
 [Heuristic Test Strategy Model](https://www.satisfice.com/download/heuristic-test-strategy-model)
+
+
+## About software testing by Bas
+
