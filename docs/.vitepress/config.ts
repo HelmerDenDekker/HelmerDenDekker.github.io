@@ -43,6 +43,7 @@ export default defineConfig({
           // Languages
           { text: 'Markdown', link: '/resources/languages/markdown' },
           //Testing
+          { text: 'Advanced unit testing', link: '/resources/testing/advancedunittesting' },
         ]
       },
     ],
