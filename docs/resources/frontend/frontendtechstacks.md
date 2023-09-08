@@ -111,7 +111,7 @@ Client-side Blazor was launched in 2020, as microsofts answer to Javascript, so 
 
 All of the code runs in front end.
 
-The Pink.Thor.Portal project is an example.
+
 Benefits
 
 All code in one language (c#, is this a benefit?)

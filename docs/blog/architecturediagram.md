@@ -20,7 +20,7 @@ Benefits:
 - Collaboration is possible
 
 Disadvantages:
-- Commercially licensed as part of Microsoft 365, not installed by default for PinkRoccade.
+- Commercially licensed as part of Microsoft 365, not installed by default for my company.
 - Creating your architecture diagram takes a long time (in my experience, compared to C4)
 - Agility, you need the application on your account, on your laptop.  
 

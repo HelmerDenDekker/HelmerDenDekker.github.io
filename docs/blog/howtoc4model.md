@@ -28,7 +28,7 @@ The first three models are clearly related, and I always see this as a zoom leve
 
 So, from the Context-level on C1, where you see the system and the world in lives in, you zoom into the system going to the C2 container level. Suppose you want to kno more about a certain application, you zoom into level 3, the components level.
 
-## How to generate a C4 model-style diagram
+## How to generate a C4-model-style diagram
 
 I will take you through how to generate the C4 models, context level, container level and component level, step by step.
 
@@ -100,10 +100,10 @@ Rel(variablenameperson, variablenamesystem, "Description relation")
 
 @enduml
 ```
+
 #### Example and generation
 
-
-You clone this repo, and open the C1Context.puml. If you click on in with the right mouse button -the one at the right if you did not switch them around-, you will get the menu:
+You clone [the webshop demo repository](https://github.com/HelmerDenDekker/HelmerDemo.WebShop), and open the C1Context.puml in the .documentation folder. If you click on in with the right mouse button -the one at the right if you did not switch them around-, you will get the menu:
 ![Menu in Visual Studio Code](/assets/images/c4model/pumlmenu.png "PlantUML menu in Visual Studio Code")
 
 ##### Preview
@@ -129,10 +129,30 @@ Here is an example of a generated diagram:
 ![Example context diagram](/assets/images/c4model/webshopcontext.svg "Example context diagram")
 
 
+## How to generate a C4 model from Visual Studio
+
+Mind this: Simon says: Do not use the C4 model (code = documentation on this level).
+
+How do you generate a 
+
+
+1. Open the folder of your solution in Visual Studio or Visual Studio Code
+2. Create a folder named .classdiagrams inside this folder.
+3. Open the Terminal (VS upper menu, Terminal --> New Terminal) or Package Manager (VSC: upper menu Tools --> Nuget Package Manager --> Package Manager Console)
+4. In the terminal window execute.
+
+```bash
+puml-gen [local-path-to-repo]\[project] [local-path-to-repo]\[project]\.classdiagramms -dir -excludePaths bin,obj,Properties
+```
+
+You can add any folders you want to exclude in the end.  
+     
+Inside the .classdiagrams folder you will find all the separate class diagrams and a combined class diagram.
+
 ## Conclusion
 
 It is that easy. Feel free to look around in my diagrams to see how I created the Containers and Components diagrams: [WebShopDemo GitHub documentation](https://github.com/HelmerDenDekker/HelmerDemo.WebShop/tree/develop/.documentation).
- 
+
 
 ## Resources
 

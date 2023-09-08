@@ -1,5 +1,5 @@
 # API - Resource
-*10-5-2023*
+*10-5-2023 - updated 8-9-2023*
 
 API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.
 
@@ -99,8 +99,10 @@ SOAP-based Web APIs use XML validation to ensure structural message integrity, b
 
 SignalR is a free and open-source software library for Microsoft ASP.NET that allows server code to send asynchronous notifications to client-side web applications.
 In other words, you can communicate with the user from the server in real-time, without the server blocking for a response by the user.
-SignalR is a solution that provides an abstraction layer on top of WebSockets, making it easier and faster to add realtime web functionality to apps
+SignalR is a solution that provides an abstraction layer on top of WebSockets, making it easier and faster to add realtime web functionality to apps.  
 
+SignalR provides an API for creating server-to-client remote procedure calls (RPC). The RPCs invoke functions on clients from server-side .NET Core code.
+SignalR uses hubs to communicate between clients and servers. A hub is a high-level pipeline that allows a client and server to call methods on each other. 
 
 ## Remote Procedure call
 
