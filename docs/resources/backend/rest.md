@@ -3,7 +3,7 @@
 
 Status: Work in progress
 
-This article contains the 
+This article contains the ...
 
 ## The REST application architecture
 
