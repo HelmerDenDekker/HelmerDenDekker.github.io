@@ -36,6 +36,7 @@ export default defineConfig({
           { text: 'Authentication: OpenID Connect', link: '/resources/backend/authopenid' },
           { text: 'Authentication: SAML', link: '/resources/backend/authsaml' },
           { text: 'Domain driven design', link: '/resources/backend/domaindrivendesign' },
+          { text: 'Kafka', link: '/resources/backend/kafka' },
           { text: 'Persistance strategy', link: '/resources/backend/persistancestrategy' },
           { text: 'REST: HATEOS', link: '/resources/backend/hateos' },
           //Other
