@@ -1,5 +1,5 @@
  # Vitepress and GitHub Pages
-*27-3-2023 - updated 5-5-2023*
+*27-3-2023 - updated 31-8-2023*
 
  I wanted to try out GitHub Pages and VitePress so I just gave it a shot this afternoon. I have to say, starting it is very easy. This is my first page.
 
@@ -61,7 +61,13 @@ Thats it, right? Wrong!
 
 ## Publishing VitePress to GitHub pages
 
-Because it is not your everyday static website, of course it will not be automatically published and showing up. You need a pipeline. As a senior web dev I know all about pipelines, in Azure DevOps, publishing to Azure. This is a tiny bit different, with the help of the [VitePress deploy documentation](https://vitepress.dev/guide/deploy) I had the pipeline ready in no time.
+Because it is not your everyday static website, of course it will not be automatically published and showing up. You need a pipeline. As a senior web developer I know all about pipelines, in Azure DevOps, publishing to Azure. This is a tiny bit different, with the help of the [VitePress deploy documentation](https://vitepress.dev/guide/deploy) I had the pipeline ready in no time.
+
+Next go to your repository settings. You have to change the build and deployment setting here to "GitHub Actions":
+
+![Under "Build and deployment", under "Source", select GitHub Actions.](/assets/images/vitepress/vitepressgithubpages02.png "Change to GitHub Actions")
+
+If you forget about this, there will be double deployments, one with the "Deploy from branch", just showing your readme, and one with "Vitepress" with your website. Whichever one comes last is deployed on the server.
 
 ## Access Control
 

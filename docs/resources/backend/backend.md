@@ -29,6 +29,5 @@ About Databases, ORMs etc
 
 ## Other resources
 
-[Code Opinion](https://codeopinion.com/)
-
+[Code Opinion](https://codeopinion.com/)  
 [Backend developer Roadmap](https://roadmap.sh/backend)

@@ -141,13 +141,9 @@ This is work in progress, and the demo code can be found here:
 
 ## Resources
 
-[Course Software Architecture by Vijfhart](https://www.vijfhart.nl/opleidingen/software-architectuur/)
-
-[Domain Driven Design blog by Felipe de Freitas Batista](https://thedomaindrivendesign.io/)
-
-[Code Opinion](https://codeopinion.com/)
-
-Julie Lerman - The intersection of Microservices, domain-driven design and entity framework core
-
+[Course Software Architecture by Vijfhart](https://www.vijfhart.nl/opleidingen/software-architectuur/)  
+[Domain Driven Design blog by Felipe de Freitas Batista](https://thedomaindrivendesign.io/)  
+[Code Opinion](https://codeopinion.com/)  
+Julie Lerman - The intersection of Microservices, domain-driven design and entity framework core  
 Milan Jovanovic
 

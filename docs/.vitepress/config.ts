@@ -25,15 +25,26 @@ export default defineConfig({
       {
         text: 'Resources',
         items: [
+          //FrontEnd
           { text: 'Frontend', link: '/resources/frontend/frontend' },
           { text: 'Markdown Examples', link: '/resources/frontend/markdown-examples' },
           { text: 'Runtime API Examples', link: '/resources/frontend/api-examples' },
           // { text: 'Input Validation', link: '/resources/input-validation' },
+          // Backend
           { text: 'Backend', link: '/resources/backend/backend' },
           { text: 'API', link: '/resources/backend/api' },
+          { text: 'Authentication: OpenID Connect', link: '/resources/backend/authopenid' },
+          { text: 'Authentication: SAML', link: '/resources/backend/authsaml' },
           { text: 'Domain driven design', link: '/resources/backend/domaindrivendesign' },
+          { text: 'Kafka', link: '/resources/backend/kafka' },
           { text: 'Persistance strategy', link: '/resources/backend/persistancestrategy' },
-          { text: 'Internet', link: '/resources/internet/internet' },
+          { text: 'REST: HATEOS', link: '/resources/backend/hateos' },
+          //Other
+          { text: 'Internet', link: '/resources/other/internet' },
+          // Languages
+          { text: 'Markdown', link: '/resources/languages/markdown' },
+          //Testing
+          { text: 'Advanced unit testing', link: '/resources/testing/advancedunittesting' },
         ]
       },
     ],

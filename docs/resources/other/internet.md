@@ -1,5 +1,5 @@
 # Internet
-*5-5-2023 - updated 29-8-2023*
+*5-5-2023 - updated 31-8-2023*
 
 For me it all started with the internet.
 I was fiddling with computers since I was young, but sorta lost interest since Windows 95. I was totally into MS-DOS at the time. The windows interface was like an unclear filter to me.
@@ -243,21 +243,19 @@ over a maximum of 30 hops:
 Trace complete.
 ```
 
-I changed the IP-addresses in the example above, but clearly it hops from my computer to my router, to my provider, and next to "I do not know where", but it ends up at github. I did read the ones with the characters are internet routers. Pretty cool!
+I changed the IP-addresses in the example above, but clearly it hops from my computer to my router, to my provider, and next to "I do not know where", but it ends up at github. The ip-adresses with the characters in them are internet routers. Pretty cool!
 
 :::
 
 ## Resources
 
 ### Internet
-[Rus Shuler 2002 - How does the internet work?](https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm)
 
-[CS FYI - How does the Internet Work?](https://cs.fyi/guide/how-does-internet-work)
-
+[Rus Shuler 2002 - How does the internet work?](https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm)  
+[CS FYI - How does the Internet Work?](https://cs.fyi/guide/how-does-internet-work)  
 [Roadmap.sh - What is internet](https://roadmap.sh/guides/what-is-internet)
 
 ### OSI
 
-[What is the OSI model - ByteByteGo](https://youtu.be/0y6FtKsg6J4)
-
+[What is the OSI model - ByteByteGo](https://youtu.be/0y6FtKsg6J4)  
 [OSI model](https://en.wikipedia.org/wiki/OSI_model)
