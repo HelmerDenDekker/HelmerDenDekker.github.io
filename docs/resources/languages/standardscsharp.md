@@ -1,9 +1,8 @@
-# Standards C#
+# Standards C-sharp
 *8-9-2023*
 
 Status: Work in progress
 
-------------------------------------
 
 //ToDo: Rewrite!
 
@@ -40,29 +39,33 @@ From the CUPID-idea:
 Never use abbrevations.
 
 //Do not
+```cs
 var cnt = 1;
-
+```
 //Do
+```cs
 var counter = 1;
-
+```
 Because cnt could be anything from counter, consultant or a curseword. Stick to CUPID: use the domain based language so code is recognizable.
 
 
 Try to use implicit typing (var instead of explicit type), but keep CUPID in mind. So whenever using an explicit type is more clear, use the type:
-
+```cs
 var counter = 1;
 bool hasName;
-
+```
 Do not prefix variables with the type:
 
 //Do Not:
+```cs
 var intCounter = 1;
 var stringName = "name";
-
+```
 //Do
+```cs
 var counter = 1;
 var name = "name";
-
+```
 Because when refactoring you may decide to change the type, from integer to double.
 
 For booleans use a verb, to make clear what it does, so isValid, instead of valid, and a better example: hasName instead of Name.
@@ -72,7 +75,7 @@ For booleans use a verb, to make clear what it does, so isValid, instead of vali
 Use interfaces to define behavior.
 
 Important security notice: Only expose methods or functions through an interface that ARE shared with other code.
-
+```cs
 public class HelmerLogic : IHelmerLogic
 {
 	/// <inheritdoc />
@@ -81,12 +84,12 @@ public class HelmerLogic : IHelmerLogic
  		...
 	}
 }
-
+```
 The class implementing the interface always inherits the documentation from the interface (as part of standardization and maintenance)
 
 
 An interface uses the same name as the class, prefixed with an I.
-
+```cs
 public interface IHelmerLogic
 {
 	/// <summary>
@@ -95,7 +98,7 @@ public interface IHelmerLogic
     /// <param name="colors">List of primary colors</param>
 	public void AddColor(List<PrimaryColor> colors) {get; set;}
 }
-
+```
 The interface always contains documentation in the summary about the method.
 
 ## Classes
@@ -111,7 +114,7 @@ Background:
 This has to do with conflicting types. Suppose you have created a type named DatabaseContext, but there is also a type with the same name in some NuGet package you are using. This will result in a compilation error, or the wrong type used, or ambiguous behavior in Visual Studio, where it sometimes gives errors in the code, and sometimes not. In case the using statements are outside the namespace, it will search for the type inside-out through the namespace, and next going through the usings top to bottom. So if the type is defined in a lower namespace, it will use the type in that namespace, instead of the type in the NuGet. When you move the usings inside the namespace, the search order will be different, first it will try and find the type in the current namespace. Next it will go through the usings top to bottom. So now it will take the DatabaseContext which is in the NuGet instead of the one in the namespace.
 
 We have to try and not use conflicting types. Define which type you want:
-
+```cs
 using DatabaseContext = Helmer.DataAccessLayer;
 
 namespace Helmer.Demo.Web;
@@ -120,9 +123,9 @@ public class HelmerLogic
 {
 	....
 }
-
+```
 Model Class:
-
+```cs
 public class Car
 {
 	/// <summary>
@@ -138,10 +141,11 @@ public class Car
 		//sometimes models can have a constructor, for example for validation, or autofill certain properties like a default Color
 	}
 }
-
+```
 
 Use correct order:
 
+```cs
 public class HelmerLogic : IHelmerLogic
 {
 	//Start with public member variables
@@ -191,7 +195,7 @@ public class HelmerLogic : IHelmerLogic
 	{
 	}	
 }
-
+```
 ## Documentation Conventions
 
 [Documentation comments](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments)
@@ -268,7 +272,7 @@ Say I would have to determine an apple, in a collection of fruit. The apple has 
 The figure above gives the idea of how to tackle this. If I would do this all in one method, the bifurcations would be like:  color (7), Flavor (21), Texture (7). I have seen programmers try to catch this in one if:
 
 An example of deep nesting:
-
+```cs
 if (fruit.Type == "apple")
 {
 	if(fruit.Color.Count <1)
@@ -312,9 +316,10 @@ if (fruit.Type == "apple")
 		else...
 	else...
 //You will get the idea, right?
-
+```
 Suppose I would have to test this code. That would result in 1029 unit tests, because that will reflect all possible test cases, in order to be able to determine like 20 apples. How about them apples, right?? So, consider this, we call it the exit strategy.
 
+```cs
 if (fruit.Type == "apple")
 {
 	return DetermineApples(fruit);
@@ -345,7 +350,7 @@ private string DetermineApples(Fruit fruit)
 	}
 //etcetera
 }
-
+```
 So think of a specific scenario, and exit on that scenario. In this case we will have only twenty testcases to find the twenty apples within their 1029 possible combinations.
 
 For a nice video about this including some pointers on what to focus on when refactoring: Watch ["Why you shouldn't nest your code" by Code Aestetics (08:30 min)](https://www.youtube.com/watch?v=CFRhGnuXG-4)
@@ -359,6 +364,7 @@ Naming Conventions
 Initial Capitals (PascalCase)
 
 Use PascalCase (InitCaps or what they call Upper CamelCase or CamelHill) when naming a class, a record, or a struct
+```cs
 public class HelmerService
 {
 }
@@ -372,13 +378,17 @@ public record PostAddress
 public struct HelmerCoordinate
 {
 }
-
+```
 When naming an interface, prefix an I.
+```cs
 public interface IHelmerService
 {
 }
+```
 
 When naming public members of types, such as fields, properties, events, methods, local functions:
+
+```cs
 public class HelmerService : IHelmerService
 {
     /// <summary>
@@ -405,9 +415,12 @@ public class HelmerService : IHelmerService
     {
     }
 }
+```
 Medial capitals
 
 Use medial capitals (lower camelCase, I will call it medCaps) for naming private or internal fields, parameters going into methods.
+
+```cs
 public class HelmerService
 {
     /// <summary>
@@ -436,7 +449,7 @@ public class HelmerService
     {
     }
 }
-
+```
 
 Other naming conventions
 Namespaces
@@ -507,6 +520,7 @@ Tests
 There are two types of tests in the code. Unit tests will test a small piece of code (so one method). Integration tests will test the integration of classes, or bigger chunks, please think before creating integration tests, because most of the time these will be expensive. Helmer den Dekker will create a confluence entry on C# testing later. This is about the naming conventions
 
 In case of Tests the method should have names indicating the test goal:
+```cs
 [TestClass]
 public UsersLogicQueryTest
     {
@@ -527,11 +541,12 @@ public UsersLogicQueryTest
             Assert.AreEqual("Helmer", result.UserName);
         }
     }
-
+```
 
 Start with the method that is being tested, followed by an underscore, next the condition (UserRetrieved), underscore, should, underscore, followed by the expected result. Because when you design a test, you know what it should do.
 
 For Example:
+```cs
 [TestClass]
 public UsersLogicQueryTest
     {
@@ -552,6 +567,7 @@ public UsersLogicQueryTest
             Assert.AreEqual(2, result.Count);
         }
     }
+```
 
 This name is clear in its goal. So whenever someone changes the 2 in the Assert to 1, because they made a mistake in the code and change the test instead of the code (These things happen a lot!!), you will notice it when doing code review (Weird, it should return 2, but returns one) OR you will notice it because they changed the testmethod name, which should make alarmbells go ringing for you as code reviewer.
 Layout conventions
