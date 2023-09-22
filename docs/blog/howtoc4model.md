@@ -141,7 +141,7 @@ How do you generate a
 3. Open the Terminal (VS upper menu, Terminal --> New Terminal) or Package Manager (VSC: upper menu Tools --> Nuget Package Manager --> Package Manager Console)
 4. In the terminal window execute.
 
-```bash
+```bat
 puml-gen [local-path-to-repo]\[project] [local-path-to-repo]\[project]\.classdiagramms -dir -excludePaths bin,obj,Properties
 ```
 
