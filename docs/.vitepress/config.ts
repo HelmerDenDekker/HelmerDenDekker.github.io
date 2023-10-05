@@ -46,6 +46,7 @@ export default defineConfig({
           { text: 'Markdown', link: '/resources/languages/markdown' },
           //Testing
           { text: 'Advanced unit testing', link: '/resources/testing/advancedunittesting' },
+          { text: 'Integration testing', link: '/resources/testing/integrationtestingdotnet' },
         ]
       },
     ],

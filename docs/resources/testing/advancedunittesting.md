@@ -240,5 +240,5 @@ public void Multiply_withCorrectNumbers_VerifyLog()
 
 ## Resources
 
-[AdvancedUnitTesting branch](https://github.com/HelmerDenDekker/TestDemoProject/tree/AdvancedUnitTesting) 
+[AdvancedUnitTesting branch](https://github.com/HelmerDenDekker/TestDemoProject/tree/AdvancedUnitTesting)  
 [Mocking ILogger with Moq](https://adamstorr.azurewebsites.net/blog/mocking-ilogger-with-moq)
