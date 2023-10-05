@@ -38,6 +38,11 @@ public async Task Get_Request_ShouldReturnVersionString()
 <code>Program</code> in <code>WebApplicationFactory</code> is pointing to the <code>Program.cs</code> of the API project you want to test.
 It tests a simple api endpoint returning only an OK result.
 
+Let's run dotCover to see the results: What is happening?  
+![Code coverage results](/assets/images/integrationtest/codecoverage.png "Coverage Results")
+
+As you can see, it actually tests (part of) the <code>Program.cs</code> for you! How nice! That is the effect of it being an integration test. And it is slow, certainly the way I have been setting things up now, which can be improved in the future.
+
 ## Resources
 
 [Example code in HelmerDemo.WebshopDemo Catalog Service](https://github.com/HelmerDenDekker/HelmerDemo.WebShopDemo)  

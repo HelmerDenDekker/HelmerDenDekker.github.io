@@ -4,7 +4,7 @@
 In this article I will explain how to generate an architectural diagram.  
 
 The [UML language](https://plantuml.com) is used to code the diagrams.
-The C4 model is used to structurize the architectural diagrams.
+The C4 model is used to structure the architectural diagrams.
 
 ## What is the C4 model?
 
@@ -16,7 +16,7 @@ Aside from being a car manufactured by Citroën, it is a graphical notation tech
 - C4 level: Code diagrams;
 
 The C2 level has nothing to do with Docker containers. It is just a term coined by simon Brown to describe something holding components, but not being the system. With a C, because otherwise it won't
-The C4 level is highly debated, for its usefullness and for its zoom-level. You can generate code diagrams from your IDE. Simon says: I do not recommend level 4. 
+The C4 level is highly debated, for its usefulness and for its zoom-level. You can generate code diagrams from your IDE. Simon says: I do not recommend level 4. 
 
 Simon also says: Don't do Simon says, so do not see this as a dogma. These are guidelines for architecture diagrams.
 
