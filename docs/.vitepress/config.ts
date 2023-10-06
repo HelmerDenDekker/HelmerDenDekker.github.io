@@ -19,6 +19,7 @@ export default defineConfig({
           { text: 'DDD - 0 Introduction', link: '/blog/domaindrivendesignwebshop/0domaindrivendesignintro' },
           { text: 'DDD - 1 Webshop Design', link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop' },
           //{ text: 'DDD - 2 Webshop Layers', link: '/blog/domaindrivendesignwebshop/2domaindrivendesignwebshoplayers' },
+          { text: 'How to: C4 Model', link: '/blog/howtoc4model' },
           { text: 'VitePress and GitHub Pages', link: '/blog/vitepress-githubpages' },
         ]
       },

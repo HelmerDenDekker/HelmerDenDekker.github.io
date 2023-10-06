@@ -133,7 +133,7 @@ Here is an example of a generated diagram:
 
 Mind this: Simon says: Do not use the C4 model (code = documentation on this level).
 
-How do you generate a 
+How do you generate a C4-diagram?
 
 
 1. Open the folder of your solution in Visual Studio or Visual Studio Code
