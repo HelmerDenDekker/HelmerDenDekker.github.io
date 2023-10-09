@@ -7,9 +7,9 @@ Status: Work in progress
 
 I was used to creating web components in a framework. For example in the Xerbutri website using PHP, in the GPR websites using dotNET MVC partial views, or in VueJS using web components.
 
-Web components are (a set of) web platform API's that allow us to create custom reusable and encapsulated html tags to use in web pages.
+Web components are (a set of) web platform APIs that allow us to create custom reusable and encapsulated html tags to use in web pages.
 
-For example, in PHP I had a piece of code named header.html, which PHP would grab and insert into any html template page. In the fourth version I wrote my own framework, for the fifth version I used Fat Free Framwork to do the templating implementation for me.
+For example, in PHP I had a piece of code named header.html, which PHP would grab and insert into any html template page. In the fourth version I wrote my own framework, for the fifth version I used Fat Free Framework to do the templating implementation for me.
 
 However, we do not need 3rd party libraries or framework to use Web components.
 

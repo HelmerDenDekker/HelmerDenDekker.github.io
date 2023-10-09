@@ -15,7 +15,7 @@ Janne Timmers found me this explanation, which is great:
 [Youtube - Stop using the HttpClient the wrong way in .NET](https://www.youtube.com/watch?v=Z6Y2adsMnAA)
 
 In short:
-- Generating a new HttpClient can quickly lead to socket exhaustion because each time it is called it is placed in memory seperately tying up a socket.
+- Generating a new HttpClient can quickly lead to socket exhaustion because each time it is called it is placed in memory separately tying up a socket.
 - Also, working with a HttpClient you need to keep in mind DNS issues because if the DN changes, the client won’t know because connections are pooled.
 
 

@@ -7,7 +7,7 @@ This article contains the ...
 
 ## The REST application architecture
 
-REST is an acronym for REpresentational State Transfer and an architectural style for distributed hypermedia systems.
+REST is an acronym for Representational State Transfer and an architectural style for distributed hypermedia systems.
 
 ## Constraints of REST architecture
 

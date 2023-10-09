@@ -31,7 +31,7 @@ Your device will need to know where to send the request, and the server will nee
 
 
 Your device has an internet address. Just like a street address, this is how your device can be found.
-This internet adress is called the IP address. IP means Internet Protocol, more about that later.
+This internet address is called the IP address. IP means Internet Protocol, more about that later.
 
 The IP address has the form xxx.xxx.xxx.xxx, where xxx must be a number from 0 - 255.
 
@@ -42,7 +42,7 @@ The picture illustrates a device, with address 1.0.0.1 connected to a server wit
 When visiting my website, your device with address 1.0.0.1 sends a request to the server at 2.0.0.2. The server sends the website as a response back to your address at 1.0.0.1. 
 
 ::: info Your IP-address
-You can find your IP-addres with websites such as What is my IP? Or [DuckDuckGo](https://duckduckgo.com/?q=what+is+my+IP).
+You can find your IP-address with websites such as What is my IP? Or [DuckDuckGo](https://duckduckgo.com/?q=what+is+my+IP).
 :::
 
 
@@ -243,7 +243,7 @@ over a maximum of 30 hops:
 Trace complete.
 ```
 
-I changed the IP-addresses in the example above, but clearly it hops from my computer to my router, to my provider, and next to "I do not know where", but it ends up at github. The ip-adresses with the characters in them are internet routers. Pretty cool!
+I changed the IP-addresses in the example above, but clearly it hops from my computer to my router, to my provider, and next to "I do not know where", but it ends up at github. The ip-addresses with the characters in them are internet routers. Pretty cool!
 
 :::
 

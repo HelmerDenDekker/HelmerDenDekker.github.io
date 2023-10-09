@@ -106,7 +106,7 @@ SignalR uses hubs to communicate between clients and servers. A hub is a high-le
 
 ## Remote Procedure call
 
-A remote procedure call has a long history and is still in use today for client-server interaction. But most of the time RPC is regarded as an IPC (inter-prces-call) instead of an API.
+A remote procedure call has a long history and is still in use today for client-server interaction. But most of the time RPC is regarded as an IPC (inter-process-call) instead of an API.
 [Remote procedure call - Wikipedia](https://en.wikipedia.org/wiki/Remote_procedure_call)
 
 ### gRPC

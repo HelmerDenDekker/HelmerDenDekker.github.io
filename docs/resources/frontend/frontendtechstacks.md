@@ -18,14 +18,14 @@ MVC is a design pattern used to decouple user-interface (view), data (model), an
 
 Using the MVC pattern for websites, requests are routed to a Controller that is responsible for working with the Model to perform actions and/or retrieve data. The Controller chooses the View to display and provides it with the Model. The View renders the final page, based on the data in the Model.
 
-Most websites have a layered MVC-design (Models, Views, Controllers seperately in layers, so this is not CUPID design)
+Most websites have a layered MVC-design (Models, Views, Controllers separately in layers, so this is not CUPID design)
 
 Helmer den Dekker has built many MVC apps before, and the MyCustomers Vertical slice (old) is an example.
 
 MVC is hosted in the back end, these are mostly static pages, with some javascript functionality.
 Benefits
 
-Fast development (templating, scaffolding, lotss of code is shared and can be auto-generated)
+Fast development (templating, scaffolding, lots of code is shared and can be auto-generated)
 
 Proven technology
 

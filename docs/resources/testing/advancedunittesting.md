@@ -63,7 +63,7 @@ private ExposedSomeProtectedLogicHelper CreateSomeProtectedLogicHelper()
     return new ExposedSomeProtectedLogicHelper();
 }
 ```
-I like to use the TestInitialize atribute to initialize a new helper for each test. In some cases the CreateSomeProtectedLogicHelper can become complex, so I am used to put the creation process in a separate method, but it is not if much use here.
+I like to use the TestInitialize attribute to initialize a new helper for each test. In some cases the CreateSomeProtectedLogicHelper can become complex, so I am used to put the creation process in a separate method, but it is not if much use here.
 
 
 ```cs
@@ -82,7 +82,6 @@ public void IsDenumenatorNonZero_WithZeroInput_ReturnsFalse()
 ```
 
 An there you are a clean and clear test. 
-
 
 ## Testing private methods
 
@@ -146,7 +145,7 @@ private PrivateObject CreateSomePrivateLogicHelper()
 
 The private method is tested by calling the Invoke method on the PrivateObject. As you can see in the PrivateObject class, it accepts a methodName as string, and the parameters to be entered into the method as an object[], and it returns an object.  
 
-So, in the test below you find an example of how to test the private method. The methodname to invoke and the parameters are entered into the Invoke method. The result is asserted with AreEqual.
+So, in the test below you find an example of how to test the private method. The method-name to invoke and the parameters are entered into the Invoke method. The result is asserted with AreEqual.
 
 ```cs
 [TestMethod]
@@ -167,7 +166,7 @@ public void IsDenumenatorNonZero_WithZeroInput_ReturnsFalse()
 ## Testing the logger
 
 In a company I worked for it was requested to test if logging was in place. Fine, this is perfectly possible, and therefore I added it to this advanced unit testing resource.
-But right now, in hindsight, it is overoptimised, or overtested if you like. That is my opinion.  
+But right now, in hindsight, it is over-optimised, or over-tested if you like. That is my opinion.  
 
 I created a piece of logic weirdly called [DependencyInjectedLogic](https://github.com/HelmerDenDekker/TestDemoProject/blob/AdvancedUnitTesting/Logic/DependencyInjectedLogic.cs) where the log action takes place. I used Microsoft.Extensions.Logging, but you can do this for SeriLog the same way.  
 

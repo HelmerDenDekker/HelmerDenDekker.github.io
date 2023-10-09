@@ -137,7 +137,7 @@ How do you generate a C4-diagram?
 
 
 1. Open the folder of your solution in Visual Studio or Visual Studio Code
-2. Create a folder named .classdiagrams inside this folder.
+2. Create a folder named <code>.classdiagrams</code> inside this folder.
 3. Open the Terminal (VS upper menu, Terminal --> New Terminal) or Package Manager (VSC: upper menu Tools --> Nuget Package Manager --> Package Manager Console)
 4. In the terminal window execute.
 
@@ -147,7 +147,7 @@ puml-gen [local-path-to-repo]\[project] [local-path-to-repo]\[project]\.classdia
 
 You can add any folders you want to exclude in the end.  
      
-Inside the .classdiagrams folder you will find all the separate class diagrams and a combined class diagram.
+Inside the <code>.classdiagrams</code> folder you will find all the separate class diagrams and a combined class diagram.
 
 ## Conclusion
 

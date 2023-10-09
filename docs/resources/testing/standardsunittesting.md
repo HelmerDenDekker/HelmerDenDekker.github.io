@@ -1,5 +1,5 @@
 # Standards: Unit testing
-*19-11-2020 - updated 6-9-2023*
+*19-11-2020 - updated 5-10-2023*
 
 Status: Work in progress
 
@@ -13,20 +13,39 @@ Definition:
 
 The “Unit” is a single method or function. This method or function does one thing in a predictable manner.  
 
-### Properties
+### Properties of a unit test
 
-- Fast
-    - A unit test should take milliseconds to run. Mature projects can contain thousands of unit tests, and you should be able to check quickly if your changes broke the application code.
-- Isolated
-    - Unit tests are standalone, can be run in isolation and have no dependencies on any outside factors
-- Repeatable
-    - Running a unit test should be consistent with its results, that is, it always returns the same result if you don’t change anything in between runs
-- Self-checking
-    - The test should be able to automatically detect if the test passed or failed without human interaction
-- Timely
-    - Writing an unit test shouldn’t take a long time to write compared to the code being tested. If you find testing the code taking a large amount of time compared to writing the code, consider a design that is more testable.
+Unit tests should have the following properties:
 
-## Naming Conventions
+##### Fast
+
+A unit test should take milliseconds to run. Mature projects can contain thousands of unit tests, and you should be able to check quickly if your changes broke the application code.
+
+##### Isolated
+
+Unit tests are standalone, can be run in isolation and have no dependencies on any outside factors. You should be able to run the tests in any order and independent of one another.
+
+##### Repeatable
+
+Running a unit test should be consistent with its results, that is, it always returns the same result if you don’t change anything in between runs.
+
+##### Trustworthy
+
+The test outcome should be trustworthy. The test should indicate the software is correct. If you doubt about the outcome of a test (for example 1+1=3), it has no added value.
+ 
+##### Self-checking
+
+The test should be able to automatically detect if the test passed or failed without human interaction. This is an open door, since this article is about automated testing 
+
+##### Valuable
+
+Tests should be valuable. They should add value, you should not write tests for the sake of code coverage.   
+
+##### Timely
+
+Write testable code. Writing an unit test shouldn’t take a long time to write compared to the code being tested. If you find testing the code taking a large amount of time compared to writing the code, consider a design that is more testable.
+
+### Naming Convention for the unit test
 
 The name of your test should consist of three parts:
 - Method name: The name of the method being tested.
@@ -37,49 +56,56 @@ The name of your test should consist of three parts:
 MethodName_StateUnderTest_ExpectedBehavior
 ```
 
-### For Example
+#### For Example
 
-Bad example:
+Do not:
 
 ```cs
 [Fact]
 public void Test_Single()
 {
-    var stringCalculator = new StringCalculator();
-    var actual = stringCalculator.Add("0");
-    Assert.Equal(0, actual);
+    var stringCalculator = new StringCalculator();
+    var actual = stringCalculator.Add("0");
+    Assert.Equal(0, actual);
 }
 ```
 The naming conventions for the test name are not implemented, when Test_Single fails as a developer you have no idea what fails.
 
-Better example:
+Do:
 
 ```cs
 [Fact]
 public void Add_ZeroToZero_ReturnsZero()
 {
-    var stringCalculator = new StringCalculator();
-    var actual = stringCalculator.Add("0");
-    Assert.Equal(0, actual);
+    var stringCalculator = new StringCalculator();
+    var actual = stringCalculator.Add("0");
+    Assert.Equal(0, actual);
 }
 ```
 
-If this test fails, as a developer you can directly see what functionality fails: Adding the number zero to the number zero does not return zero.
+On test failure, you see immediately what goes wrong: Adding the number zero to the number zero does not return zero.
 
-## Test structure
+### Test structure
 
-Follow the “Arrange, Act, Assert”-pattern. By applying this we ensure that the different steps are separated. 
+Follow the “Arrange, Act, Assert”-pattern. This makes your tests much better readable for other developers 
 
-- Arrange
-    - Arrange your objects, create and set them up as necessary
-- Act
-    - Act on an object
-- Assert
-    - Assert that something is as expected.
+##### Arrange
 
-The testdata is in the Arrange part of the test.
+Set up the "System under test", create the test objects, initialize test data.  
 
-In this case you can immediately find what data is tested in this test. In some examples on the internet you will find centralized test data. We will not centralize testdata, because when someone changes this testdata, you have no idea which tests it will affect, and in the test you have to look up what the testcase is.
+Initialize the test data in your arrange section, so you see immediately what data is tested in this test. In some examples on the internet you will find centralized test data. I never centralize test data, because when someone changes this test data, you have no idea which tests it will affect, and in the test you have to look up what the testcase is.
+
+##### Act
+
+Cause an effect in the "System under test", call a method or set a property
+
+##### Assert
+
+Assert that the returned value or end state is as expected.
+
+#### Example:
+
+In this example the test is split up into the proper sections, making it easier to read.
 
 ```cs
 [Fact]
@@ -101,13 +127,33 @@ public void AddValuesToList_AddFourValuesToList_ReturnsListWithFourItems()
 }
 ```
 
-## Code coverage
+### Code coverage
 
 A high code coverage isn’t an indicator of success, nor does it imply high code quality. It represents the amount of code that is covered by unit tests. That’s why we don’t set a minimum percentage for the code coverage. It’s important to cover the logic code.
 
+
+
+
 ## Code for unit testing: Create code with small units
 
-There are two types of main functionality in functions: Either you give a command for something to execute, or you do a query to retrieve results.
+### Testing scenarios
+
+What code to test?  
+
+- Business logic
+- Code branches (for example if-statement)
+- Bad data or input
+
+My insider tips: 
+- Business logic is critical to your business, so it functioning correctly is important. Focus on good code coverage.
+- Testing of all code branches as a dogma is a bad idea. Focus on the most important first, these with highest impact.
+- Testing of bad data or input is best left to testers, these guys have the right (destructive) mindset to find scenario's you have never dreamt of. So leave the bad input/data up to the testers and users and whenever you find a bug, write a unit test for it. 
+- Only test things that were tested >2 times in a regression test. Regression or empirical testing has a high "return on investment" , you will find get a lot of results by just hitting the run-button in your IDE, much more than spending hours writing unit tests.
+ 
+### Writing testable code
+
+Write testable code. 
+There are two types of main functionality in methods: Either you give a command for something to execute, or you do a query to retrieve results.
 
 The UserLogic in the TestDemo project has a good example:
 
@@ -129,9 +175,9 @@ It has a command-style method called AddNewUser, which adds a new user.
 
 And for the sake of explaining why it is wrong, a mixed-style UpdateUserInfo is also added, which has a misleading name, since it updates and returns, so it should be named UpdateAndGetUserInfo instead, since it does these two things. (remember CUPID, code should do only one thing)
 
-Developers write this type of code, because (they say) it is faster. It will return you a user immediately, instead of having to do another call to the backend. 
+Developers write this type of code, because (they say) it is faster. It will return you a user immediately, instead of having to do another call to the backend.  
 
-However these compound methods introduce complexity. Because in the front end also simplicity is the best. If the user updated a single record, a front end developer can just make the overview table data refetch, so all new info is shown. If the back-end developer returns the updated info, because it is faster, the user might miss out on other info changed while the user was updating the info, and more similar problems. So most of the time, making things complex to make them faster does not work. Like I now need to type a lot of lines to convince you why this is wrong, it would have saved me a lot of time just keeping things simple. Right? Please keep this in mind.
+However these compound methods introduce complexity. The orchestration of what needs to happen should be seperated from the concern of storing and fetching data. 
 
 ### Use Stubs for unit testing query-style methods  
 
@@ -145,7 +191,7 @@ public class UsersLogicQueryTest
     /// For a query always use a stub. A stub is lightweight and very fast
     /// </summary>
     [TestMethod]
-    public void GetUserInfo_UserExistsInPersistance_ReturnsUser()
+    public void GetUserInfo_UserExistsInPersistence_ReturnsUser()
     {
         //Arrange
         var userRepository = new UserRepositoryStub();
@@ -161,14 +207,15 @@ public class UsersLogicQueryTest
     }
 }
 ```
+By the way: This is a very old example as you can see, stemming from the time, long ago, when my logic was dependent on the repository pattern.
 
-You can also use Mocks, but they are much heavier, and 60-80 times slower. (for Mocking, see Advanced unit Testing)
+You can also use Mocks, but they are much heavier, and 60-80 times slower.
 
 #### The stub explained:
 
 The UserLogic injects an IUserRepository.
 
-The repository pattern decouples the dataprovider from your code. Logic points to the repository, the repository points to data. This data can be stored in a database, a file, a class, a stub, wherever. This is decoupling at work.
+The repository pattern decouples the data provider from your code. Logic points to the repository, the repository points to data. This data can be stored in a database, a file, a class, a stub, wherever. This is decoupling at work.
 
 ```cs
 public class UserLogic : IUserLogic
@@ -204,15 +251,23 @@ internal class UserRepositoryStub : IUserRepository
 ...
 }
 ```
-So what I have done, is introduce a Happy scenario, where the repositories' FindById method will return a user, and an unhappy scenario, where it will return null.
+So what I have done, is introduce a happy scenario, where the repositories' FindById method will return a user, and an unhappy scenario, where it will return null.
 
 ### Use Mocks for unit testing command-style methods
 
 For command style methods, use mocks for testing.
 
-To use mocking install the [NuGet Package “Moq”](https://www.nuget.org/packages/Moq)
+Install the [NuGet Package “Moq”](https://www.nuget.org/packages/Moq)
 
- Install the Moq nuget package.
+
+In the arrange section:
+- The user repository mock is initialized. Since mocking is only used for commands, you can use the interface. You only need to know what the method can do.
+- The logic is created with the mocked object.
+- The new user with the name Vincent is created, because I want to try to add a new user 
+
+In the act section, the <code>AddNewUser</code> method is called.
+
+In the Assert section it is verified that the user was added. This is a happy scenario.
 
 ```cs
 [TestClass]
@@ -235,12 +290,12 @@ public class UserLogicCommandTest
 }
 ```
 
-In the arrange section, arrange the mock setup. In this case we try to add a new user Theo, in the Assert section it is verified that the user was added. This is a happy scenario.
+
 
 //ToDo: Denk aan wat je wilt vertellen en wijk daar niet van af! Onderstaande is niet passend, en ik verwacht hier een soort conclusie, Dus: Kleine units code testen. Naamgeving. Test opzet. Command Query seperatie, zodat je goed kan testen. 
 
-### Mocking
-
+### Mocking Misuse
+//ToDo Dit is dus een slecht voorbeeld, omdat het langzamer is. Laat dat ook zien in een test!
 Sometimes you have to use mocking to isolate and focus on the code being tested and not on the behavior or state of external dependencies. With this technique the dependencies are replaced by closely controlled replacements objects that simulate the behavior of the real ones. 
 
 Example:

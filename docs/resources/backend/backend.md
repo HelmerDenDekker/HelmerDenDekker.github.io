@@ -5,7 +5,7 @@ About the server side of Web development
 
 ## Architecture patterns
 
-[Software architecture pattrns and when to use them](https://www.crowdbotics.com/blog/5-common-software-architecture-patterns-and-when-to-use-them)
+[Software architecture patterns and when to use them](https://www.crowdbotics.com/blog/5-common-software-architecture-patterns-and-when-to-use-them)
 
 [Refactoring Guru, Design patterns and refactoring explained](https://refactoring.guru/)
 

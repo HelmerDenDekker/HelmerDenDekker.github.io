@@ -10,6 +10,7 @@ Status: Work in progress
 //ToDo: XUnit versus MsTests
 I like the fact that XUnit has theory and facts
 
+AND it has isolation-by-default because it creates an instance of the test class for each test
 //ToDo: Rewrite!!
   
 ## Fact attribute

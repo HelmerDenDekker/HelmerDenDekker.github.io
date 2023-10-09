@@ -36,7 +36,7 @@ From the CUPID-idea:
 
 ## Variables
 
-Never use abbrevations.
+Never use abbreviations.
 
 //Do not
 ```cs
@@ -46,7 +46,7 @@ var cnt = 1;
 ```cs
 var counter = 1;
 ```
-Because cnt could be anything from counter, consultant or a curseword. Stick to CUPID: use the domain based language so code is recognizable.
+Because cnt could be anything from counter, consultant or a curse word. Stick to CUPID: use the domain based language so code is recognizable.
 
 
 Try to use implicit typing (var instead of explicit type), but keep CUPID in mind. So whenever using an explicit type is more clear, use the type:
@@ -262,10 +262,10 @@ string displayName = $"{nameList[n].LastName}, {nameList[n].FirstName}";
 ## Nesting code
 Coding if-statements
 
-Use the exit-strategy, so nest you code as undeep as possible (KISS and CUPID, so keep it simple, because deep nesting explodes test cases!!)
+Use the exit-strategy, so nest you code as flat as possible (KISS and CUPID, so keep it simple, because deep nesting explodes test cases!!)
 
 Comparing apples to apples:
-[Samenlevingszaken > Code Standardization > DeterrmineApples.png]
+
 
 Say I would have to determine an apple, in a collection of fruit. The apple has a color (Green, Yellow, Red, or a combination), a Flavor (Tart, sweet, mild, rich, tangy, spicy, or combination of 2), and a Texture (Crisp, Juicy, Firm, or a combination of 3)
 
@@ -454,13 +454,13 @@ public class HelmerService
 Other naming conventions
 Namespaces
 
-Namespaces should use PascalCase for a single word, and a dot as a word seperator. Because this is a bit cryptic, let me give an example:
+Namespaces should use PascalCase for a single word, and a dot as a word separator. Because this is a bit cryptic, let me give an example:
 
 Helmer.Common.Tools
 
 
 
-All the Helmer solutions start with the Helmer name, followed by a dot, next is the solution name (For example Common, or SamlServiceProvider). So this is one name, without any dots seperating it.
+All the Helmer solutions start with the Helmer name, followed by a dot, next is the solution name (For example Common, or SamlServiceProvider). So this is one name, without any dots separating it.
 
 The third name is the project name.
 
@@ -569,7 +569,7 @@ public UsersLogicQueryTest
     }
 ```
 
-This name is clear in its goal. So whenever someone changes the 2 in the Assert to 1, because they made a mistake in the code and change the test instead of the code (These things happen a lot!!), you will notice it when doing code review (Weird, it should return 2, but returns one) OR you will notice it because they changed the testmethod name, which should make alarmbells go ringing for you as code reviewer.
+This name is clear in its goal. So whenever someone changes the 2 in the Assert to 1, because they made a mistake in the code and change the test instead of the code (These things happen a lot!!), you will notice it when doing code review (Weird, it should return 2, but returns one) OR you will notice it because they changed the testmethod name, which should make alarm bells go ringing for you as code reviewer.
 Layout conventions
 
 Here are some general layout conventions, more about layout in Code Standardization

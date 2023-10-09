@@ -27,7 +27,7 @@ This is called pull design, because you pull the code from business requirements
 
 As I found my first job, the way of working in the company was to start with the database design, because storing and retrieving data was slowest. Having this piece optimized was giving large gains in performance. Remember, this was the webforms/MVC era. So performance-wise backend-to-frontend was a non-issue.
 
-Other names are datacentric approach or push design, 
+Other names are data-centric approach or push design, 
 
 The way of designing is inverted:
 
@@ -35,13 +35,13 @@ The way of designing is inverted:
 Database -> infra -> logic -> controllers -> frontend.
 :::
 
-Starting with the database meant a long time-to-market. The first months were spent with determining database design, normalization, datatypes, models and lots of discussions about optimization.
+Starting with the database meant a long time-to-market. The first months were spent with determining database design, normalization, data-types, models and lots of discussions about optimization.
 
 This is called push design, or horizontal development. In push design you think about all of the functionality there should be somewhere in the future, and push that into a horizontal layer.
 
 ### Calculation services
 
-As I started with my first design of a calulation module, I just couldn't handle the data-driven way off working, so I went back to the way of working as I learned at the University. First define your problem-domain.
+As I started with my first design of a calculation module, I just couldn't handle the data-driven way off working, so I went back to the way of working as I learned at the University. First define your problem-domain.
 
 ::: info Start with the logic
 Logic
@@ -88,10 +88,10 @@ Which brings us to the next topic I think is most important:
 
 ### Bounded Context
 
-In the past, I was used to look at relations between data, and modeling these relations like I was thought in University. There are boundary conditions and there is a set of complicated equations that relate to eachother. Having both solves all problems. Being object oriented means we have to inherit all these objects in order to find the single source of truth. 
+In the past, I was used to look at relations between data, and modeling these relations like I was thought in University. There are boundary conditions and there is a set of complicated equations that relate to each other. Having both solves all problems. Being object oriented means we have to inherit all these objects in order to find the single source of truth. 
 Aside from that we used to build models containing only properties. These are called "Anemic models". The business logic was contained in the business logic layer (BLL).
 
-Not only were our models anemic, they were also abstracted to the maximum for the best reuseability, because that is the ultimate goal. Write one application to rule them all!!
+Not only were our models anemic, they were also abstracted to the maximum for the best reuse-ability, because that is the ultimate goal. Write one application to rule them all!!
 
 Sounds good right, having one application for a thousand things? Soon we discovered that first of all it was really hard to maintain. One change leads to multiple questions because it effects everything, since everything is related. Second of all it did not satisfy the domain experts, nor the users.
 
@@ -107,9 +107,9 @@ In my opinion the last important property of domain-driven design is isolation.
 
 The Domain layer is for the domain experts, business logic, entities, value objects and aggregates. 
 The Presentation layer is for the users.
-The Infrastructure layer is for persistance of data and integration to other services.
+The Infrastructure layer is for persistence of data and integration to other services.
 
-The Application layer connects the different layers with eachother.
+The Application layer connects the different layers with each-other.
 
 
 ![Domain-driven design: Architectural layers](/assets/images/domaindrivendesign/domaindrivendesignlayers.svg "Domain-driven design; Architectural layers")
@@ -122,8 +122,8 @@ I have to adopt some new manners about application design.
 
 Most importantly:
 - look for the minimum amount of relations (keep it simple)
-- go for eventual consistency in persistance, instead of a single source of truth (loose coupling)
-- use of isolation between the layers, instead of reusability (loose coupling)
+- go for eventual consistency in persistence, instead of a single source of truth (loose coupling)
+- use of isolation between the layers, instead of reuse-ability (loose coupling)
 
 
 

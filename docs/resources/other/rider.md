@@ -7,7 +7,7 @@ Status: Work in progress
 
 Keyboard shortcuts for Rider:
 
-| Command         | Quick key          |
+| Action          | Shortcut           |
 |-----------------|--------------------|
 | Format Document | CTRL + ALT + ENTER |
 | Quick action    | ALT + ENTER        |

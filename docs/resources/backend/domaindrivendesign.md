@@ -11,7 +11,7 @@ These abstract ideas are still relevant today:
 
 Strategic patterns
 - Ubiquitous language: The structure and language used in the code matches the business domain
-- Bounded context: the discription of the boundary in ehich a model is defined or applicable
+- Bounded context: the description of the boundary in which a model is defined or applicable
 
 Tactical patterns:
 - Entity object
@@ -27,7 +27,7 @@ Tactical patterns:
 
 ### Why use it?
 
-- Communication with the bussiness is easier
+- Communication with the business is easier
 - Improves flexibility: The domain is decoupled from application services and infrastructure services
 - Domain over (user) interface: The application is build around the domain, and will be likely to produce an application better representing the domain at hand compared to a UI/UX-first approach.
 
@@ -39,7 +39,7 @@ Tactical patterns:
 About that last one: I have experienced people driving for DDD without a (complex) domain. There is no use solving a technical complex sequential protocol with DDD.
 
 ## Conclusion
-It is usefull only for complex domains. If you have an easy domain, or simple procedural program, there is simply no need for DDD.
+It is useful only for complex domains. If you have an easy domain, or simple procedural program, there is simply no need for DDD.
 
 ## Resources
 
