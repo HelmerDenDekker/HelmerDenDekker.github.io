@@ -33,10 +33,10 @@ In connection details:
 | Connection type           | Microsoft SQL Server   |
 | Input Type                | Parameters             |
 | Authentication type       | Windows Authentication |
-| Database                  | <Default>              |
-| Encrypt                   | Mandatory (True) |
-|  Trust server certificate | False |
-| Server group | <Default>|
+| Database                  | < Default >            |
+| Encrypt                   | Mandatory (True)       |
+|  Trust server certificate | False                  |
+| Server group | < Default >            |
 
 Or use the connection string as input type.
 
