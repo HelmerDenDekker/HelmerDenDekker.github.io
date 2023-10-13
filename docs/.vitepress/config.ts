@@ -8,8 +8,9 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Resources', link: '/resources/resources' },
       { text: 'Blog', link: '/blog/blog' },
+      { text: 'How to...', link: '/howto/howto' },
+      { text: 'Resources', link: '/resources/resources' },
     ],
 
     sidebar: [
@@ -19,8 +20,15 @@ export default defineConfig({
           { text: 'DDD - 0 Introduction', link: '/blog/domaindrivendesignwebshop/0domaindrivendesignintro' },
           { text: 'DDD - 1 Webshop Design', link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop' },
           //{ text: 'DDD - 2 Webshop Layers', link: '/blog/domaindrivendesignwebshop/2domaindrivendesignwebshoplayers' },
-          { text: 'How to: C4 Model', link: '/blog/howtoc4model' },
-          { text: 'VitePress and GitHub Pages', link: '/blog/vitepress-githubpages' },
+        ]
+      },
+      {
+        text: 'How to',
+        items: [
+          { text: 'How to: C4 Model', link: '/howto/c4model' },
+          { text: 'How to: VitePress and GitHub Pages', link: '/howto/vitepress-githubpages' },
+          { text: 'How to: Advanced unit tests', link: '/howto/advancedunittesting' },
+          { text: 'How to: Integration test', link: '/howto/integrationtestingdotnet' },
         ]
       },
       {
@@ -45,12 +53,9 @@ export default defineConfig({
           // Languages
           { text: 'Markdown', link: '/resources/languages/markdown' },
           //Testing
-          { text: 'Advanced unit testing', link: '/resources/testing/advancedunittesting' },
-          { text: 'Integration testing', link: '/resources/testing/integrationtestingdotnet' },
         ]
       },
     ],
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/HelmerDenDekker' },
       { icon: 'linkedin', link: 'https://www.linkedin.com/in/helmerdendekker' },

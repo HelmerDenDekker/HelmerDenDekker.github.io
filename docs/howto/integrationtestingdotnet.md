@@ -1,11 +1,11 @@
-# Integration testing in .NET
+# How to quickly integration test in .NET
 *5-10-2023*
 
-## API endpoint check
+I just saw this easy integration testing in .NET 6 on youtube and was like: 'WOW! I want to try this out!' So I created a quick example and played around with it.
 
-I just saw this easy integration testing in .NET 6 on youtube and was like: 'WOW! I want to try this out!' So I created a quick example and played around with it.  
+## Testing an API endpoint
 
-It revolves around this example by microsoft.
+It revolves around an example by microsoft, simply testing an API endpoint. The pattern itself is much more powerful, but I am presenting an easy case here.
 
 First add the next line to your <code>Program.cs</code>:
 
