@@ -4,7 +4,7 @@
 In this article I will explain how to generate an architectural diagram.  
 
 The [UML language](https://plantuml.com) is used to code the diagrams.
-The C4 model is used to structurize the architectural diagrams.
+The C4 model is used to structure the architectural diagrams.
 
 ## What is the C4 model?
 
@@ -16,7 +16,7 @@ Aside from being a car manufactured by Citroën, it is a graphical notation tech
 - C4 level: Code diagrams;
 
 The C2 level has nothing to do with Docker containers. It is just a term coined by simon Brown to describe something holding components, but not being the system. With a C, because otherwise it won't
-The C4 level is highly debated, for its usefullness and for its zoom-level. You can generate code diagrams from your IDE. Simon says: I do not recommend level 4. 
+The C4 level is highly debated, for its usefulness and for its zoom-level. You can generate code diagrams from your IDE. Simon says: I do not recommend level 4. 
 
 Simon also says: Don't do Simon says, so do not see this as a dogma. These are guidelines for architecture diagrams.
 
@@ -137,7 +137,7 @@ How do you generate a C4-diagram?
 
 
 1. Open the folder of your solution in Visual Studio or Visual Studio Code
-2. Create a folder named .classdiagrams inside this folder.
+2. Create a folder named <code>.classdiagrams</code> inside this folder.
 3. Open the Terminal (VS upper menu, Terminal --> New Terminal) or Package Manager (VSC: upper menu Tools --> Nuget Package Manager --> Package Manager Console)
 4. In the terminal window execute.
 
@@ -147,7 +147,7 @@ puml-gen [local-path-to-repo]\[project] [local-path-to-repo]\[project]\.classdia
 
 You can add any folders you want to exclude in the end.  
      
-Inside the .classdiagrams folder you will find all the separate class diagrams and a combined class diagram.
+Inside the <code>.classdiagrams</code> folder you will find all the separate class diagrams and a combined class diagram.
 
 ## Conclusion
 

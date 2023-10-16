@@ -86,11 +86,11 @@ Go to the [Kafka quickstart page](https://kafka.apache.org/quickstart)
 
 Download the kafka version from the [download page](https://www.apache.org/dyn/closer.cgi?path=/kafka/3.5.0/kafka_2.13-3.5.0.tgz) suggested by Apache.
 
-Verify the downloaded file (take a look at my sidenote) and when you verified it, unpack the file to a location of your choice.
+Verify the downloaded file (take a look at my side-note) and when you verified it, unpack the file to a location of your choice.
 
 #### SideNote: Verifying the downloaded file
 
-Verifying the file (for me) is not that straighforward as they say.
+Verifying the file (for me) is not that straightforward as they say.
 
 You can find the hash you need on the [Kafka download page](https://downloads.apache.org/kafka/).
 1. Choose the version folder you downloaded. For me it was 3.5.0
@@ -108,7 +108,7 @@ This will get you the hash of the file. This hash needs to be the same as the ha
 
 NOTE: Your local environment must have Java 8+ installed. Install Java (if you do not have it installed already): [Java download link](https://www.java.com/en/download/). Please check the license terms.
 
-Inside the kafka-version folder you will find a folder named "config". This folder containss the configuration (as you might have guessed).
+Inside the kafka-version folder you will find a folder named "config". This folder contains the configuration (as you might have guessed).
 
 #### Zookeeper setup
 
@@ -135,7 +135,7 @@ Uncomment and change it to 9093.
 listeners=PLAINTEXT://:9093
 ```
 
-The last property is logdirs, where kafka writes its logs to. chasnge that to log.dirs=/tmp/kafka-logs-1
+The last property is logdirs, where kafka writes its logs to. change that to log.dirs=/tmp/kafka-logs-1
 
 ```bat
 log.dirs=/tmp/kafka-logs-1

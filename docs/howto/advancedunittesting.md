@@ -1,11 +1,10 @@
-# Standards for advanced uit testing
-*19-11-2020 - updated 6-9-2023*
+# How to: Advanced unit testing
+*19-11-2020 - updated 13-10-2023*
 
 This article discusses standards for advanced use cases.
 I have not worked with these use cases for the past two years, so they might be rare.
 
-
-## Enforcing encapsulation
+## Context: Enforcing encapsulation
 
 I used to work for this company that had a monolith with very complex business logic.
 
@@ -23,9 +22,9 @@ The public available methods were exposed through an interface. The Logic only c
 
 I recreated the architecture in the [AdvancedUnitTesting branch](https://github.com/HelmerDenDekker/TestDemoProject/tree/AdvancedUnitTesting) of Helmer GitHub TestDemoProject repo.
 
-## Testing protected methods
+## How to test protected methods
 
-First of all I created a new class in the Unit test project to create an Exposed class for the SomeProtectedLogicHelper.
+First of all I created a new class in the Unit test project to create an <code>Exposed...</code> class for the <code>SomeProtectedLogicHelper</code>.
 
 ```cs
 internal class ExposedSomeProtectedLogicHelper : SomeProtectedLogicHelper
@@ -44,9 +43,9 @@ internal class ExposedSomeProtectedLogicHelper : SomeProtectedLogicHelper
 [Link to code snippet on GitHub](https://github.com/HelmerDenDekker/TestDemoProject/blob/ab9ae4d8a4f3c7de28895603422ff9b8f97d7f48/UnitTestProject/Helpers/ExposedSomeProtectedLogicHelper.cs)
 
 
-In this class I expose the method I want to test (IsDenumenatorNonZero). In this exposed method I inherit from the base method. For the test the derived method in the exposed class should hide the protected method from the base class, so (for no reason whatsoever aside from abiding the coding standards) I added the new modifier: [When to use override or new keywords - Microsoft](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/knowing-when-to-use-override-and-new-keywords)
+In this class I expose the method I want to test: <code>IsDenumenatorNonZero</code>. In this exposed method I inherit from the base method. For the test the derived method in the exposed class should hide the protected method from the base class, so (for no reason whatsoever aside from abiding the coding standards) I added the new modifier: [When to use override or new keywords - Microsoft](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/knowing-when-to-use-override-and-new-keywords)
 
-Next I add a [Test class](https://github.com/HelmerDenDekker/TestDemoProject/blob/ab9ae4d8a4f3c7de28895603422ff9b8f97d7f48/UnitTestProject/SomeProtectedLogicHelperUnitTest.cs#L1). In this class I initialize the ExposedSomeProtectedLogicHelper:
+Next I add a [Test class](https://github.com/HelmerDenDekker/TestDemoProject/blob/ab9ae4d8a4f3c7de28895603422ff9b8f97d7f48/UnitTestProject/SomeProtectedLogicHelperUnitTest.cs#L1). In this class I initialize the <code>ExposedSomeProtectedLogicHelper</code>:
 
 
 ```cs
@@ -63,7 +62,7 @@ private ExposedSomeProtectedLogicHelper CreateSomeProtectedLogicHelper()
     return new ExposedSomeProtectedLogicHelper();
 }
 ```
-I like to use the TestInitialize atribute to initialize a new helper for each test. In some cases the CreateSomeProtectedLogicHelper can become complex, so I am used to put the creation process in a separate method, but it is not if much use here.
+I like to use the <code>TestInitialize</code> attribute to initialize a new helper for each test. In some cases the CreateSomeProtectedLogicHelper can become complex, so I am used to put the creation process in a separate method, but it is not of much use here.
 
 
 ```cs
@@ -81,17 +80,16 @@ public void IsDenumenatorNonZero_WithZeroInput_ReturnsFalse()
 }
 ```
 
-An there you are a clean and clear test. 
+And there you are a clean and clear test. 
 
+## How to Test private methods
 
-## Testing private methods
-
-Testing private methods is considered an anti-pattern. You should consider your access modifiers. For old-time's sake I will discuss how I did test private methods in the past.
+Testing <code>private</code> methods is considered an anti-pattern. You should consider your access modifiers. For old-time's sake I will discuss how I did test <code>private</code> methods in the past.
 
 ### Setup for testing private methods
 
-For reasons mentioned in the line above, it is no longer possible to test private methods using MSTest. However, [someone placed a "fix"](https://github.com/microsoft/testfx/tree/664ac7c2ac9dbfbee9d2a0ef560cfd72449dfe34/src/TestFramework/Extension.Desktop) from which I took the PrivateObject class.  
-Using this class I can test my private methods.
+Since it being a code- or test-smell, it is no longer possible to test <code>private</code> methods using MSTest. However, [someone placed a "fix"](https://github.com/microsoft/testfx/tree/664ac7c2ac9dbfbee9d2a0ef560cfd72449dfe34/src/TestFramework/Extension.Desktop) from which I took the <code>PrivateObject</code> class.  
+Using this class I can test my <code>private</code> methods.
 
 ```cs
 internal class PrivateObject
@@ -116,7 +114,7 @@ internal class PrivateObject
 ```
 [Link to code snippet on GitHub](https://github.com/HelmerDenDekker/TestDemoProject/blob/573e64429b86284230fd00c1198fd62081db4f1a/UnitTestProject/Helpers/PrivateObject.cs#L6C1-L24C6)
 
-In the unit test class, I create the "somePrivateLogicHelper" class as a PrivateObject so I can access the private methods in the tests:
+In the unit test class, I create the "somePrivateLogicHelper" class as a <code>PrivateObject</code> so I can access the <code>private</code> methods in the tests:
 
 ```cs
  private PrivateObject _somePrivateLogicHelper;
@@ -144,9 +142,9 @@ private PrivateObject CreateSomePrivateLogicHelper()
 
 ### Testing the private method
 
-The private method is tested by calling the Invoke method on the PrivateObject. As you can see in the PrivateObject class, it accepts a methodName as string, and the parameters to be entered into the method as an object[], and it returns an object.  
+The private method is tested by calling the <code>Invoke</code> method on the <code>PrivateObject</code>. As you can see in the <code>PrivateObject</code> class, it accepts a <var>methodName</var> as <code>string</code>, and the parameters to be entered into the method as an <code>object[]</code>, and it returns an object.  
 
-So, in the test below you find an example of how to test the private method. The methodname to invoke and the parameters are entered into the Invoke method. The result is asserted with AreEqual.
+So, in the test below you find an example of how to test the <code>private</code> method. The method-name to invoke and the parameters are entered into the <code>Invoke</code> method. The result is asserted with AreEqual.
 
 ```cs
 [TestMethod]
@@ -164,10 +162,10 @@ public void IsDenumenatorNonZero_WithZeroInput_ReturnsFalse()
 }
 ```
 
-## Testing the logger
+## How to test the logging framework
 
 In a company I worked for it was requested to test if logging was in place. Fine, this is perfectly possible, and therefore I added it to this advanced unit testing resource.
-But right now, in hindsight, it is overoptimised, or overtested if you like. That is my opinion.  
+But right now, in hindsight, it is over-optimised, or over-tested if you like. That is my opinion.  
 
 I created a piece of logic weirdly called [DependencyInjectedLogic](https://github.com/HelmerDenDekker/TestDemoProject/blob/AdvancedUnitTesting/Logic/DependencyInjectedLogic.cs) where the log action takes place. I used Microsoft.Extensions.Logging, but you can do this for SeriLog the same way.  
 
@@ -201,7 +199,7 @@ public void TestCleanup()
 }
 ```
 
-For each test it creates a new DependencyInjectedLogic. This logic is dependent on the logger, which is fed with the _logger.Object.
+For each test it creates a new <code>DependencyInjectedLogic</code>. This logic is dependent on the logger, which is fed with the <code>_logger.Object</code>.
 
 ```cs
 private DependencyInjectedLogic CreateDependencyInjectedLogic()
@@ -210,9 +208,9 @@ private DependencyInjectedLogic CreateDependencyInjectedLogic()
 }
 ```
 
-### Testing the log
+### Testing the log creation
 
-The actual writing of the log is tested by calling the method, and use Verify to check the log.
+The actual writing of the log is tested by calling the method, and use <code>Verify</code> to check the log.
 
 ```cs
 [TestMethod]
@@ -240,5 +238,5 @@ public void Multiply_withCorrectNumbers_VerifyLog()
 
 ## Resources
 
-[AdvancedUnitTesting branch](https://github.com/HelmerDenDekker/TestDemoProject/tree/AdvancedUnitTesting) 
+[AdvancedUnitTesting branch](https://github.com/HelmerDenDekker/TestDemoProject/tree/AdvancedUnitTesting)  
 [Mocking ILogger with Moq](https://adamstorr.azurewebsites.net/blog/mocking-ilogger-with-moq)

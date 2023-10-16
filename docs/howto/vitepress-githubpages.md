@@ -57,7 +57,7 @@ Nice!
 Wait up! There was no gitignore! I forgot to tell you I added it.
 So I ~~stole~~ copied one from [erresen](https://erresen.github.io/vue/js/git/2020/07/08/vue-js-gitigore.html). Thanks! And I added some extra lines because I need to ignore some more.
 
-Thats it, right? Wrong!
+That's it, right? Wrong!
 
 ## Publishing VitePress to GitHub pages
 

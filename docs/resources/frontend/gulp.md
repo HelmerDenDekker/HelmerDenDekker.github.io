@@ -46,7 +46,7 @@ Npm will then prompt you to enter in information about the project.
 First remove any globally installed versions of Gulp.
 I have other projects running Gulp, and they might operate with another Gulp version, so I want Gulp installed locally.
 
-I want the CLI to be installed globaly (for all of my projects):
+I want the CLI to be installed globally (for all of my projects):
 
 In the command line, type:
 

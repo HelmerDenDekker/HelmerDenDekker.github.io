@@ -6,6 +6,6 @@ Status: Idea
 // Van Stefan!!
 
 // Outdated?
-Not recoomended here: [Not recommended](https://github.com/slikts/tooling/blob/master/not-recommended.md)
+Not recommended here: [Not recommended](https://github.com/slikts/tooling/blob/master/not-recommended.md)
 
 [Modernizr GitHub](https://github.com/Modernizr/Modernizr)

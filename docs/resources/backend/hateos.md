@@ -17,7 +17,7 @@ Boils down to:
 
 Idea: Hypermedia links drive the state of the application, and not the other way around.
 
-So, I used to work with RPC-like API's with separate endpoints that fetch info from the backend. For a table: create, read, update, delete. And have the front-end figure out what state the application should be in. For example, the front-end logic decides when an admin is logged in this user can create-read-update-delete, otherwise it can just read. 
+So, I used to work with RPC-like APIs with separate endpoints that fetch info from the backend. For a table: create, read, update, delete. And have the front-end figure out what state the application should be in. For example, the front-end logic decides when an admin is logged in this user can create-read-update-delete, otherwise it can just read. 
 
 With HATEOS I let the API decide what to send back, so when the API detects a logged-in admin, it returns the table + links for create-update-delete. For other users, it returns nothing more than just the table. The frontend then decides how to build up it's frontend based on the API data.  
 

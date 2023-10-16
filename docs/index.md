@@ -14,8 +14,8 @@ hero:
       text: Blog
       link: /blog/blog
     - theme: alt
-      text: My Resources
-      link: /resources/resources
+      text: How to....
+      link: /howto/howto
 
 features:
 - title: Domain-driven design

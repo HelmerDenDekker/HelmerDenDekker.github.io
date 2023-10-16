@@ -65,7 +65,7 @@ It is a transactional boundary.
 
 Rules:
 - Reference other aggregates by id
-- Changes are commited and rolled back as a whole (going to the DB)
+- Changes are committed and rolled back as a whole (going to the DB)
 - Changes to an aggregate are done via the (aggregate)root
 
 The last rule is a soft rule, however value objects are immutable, so it is best to do any changes to your 
@@ -75,7 +75,7 @@ Aggregate modeling steps:
 - Merge aggregates to enforce invariants
 - Merge aggregates that cannot tolerate eventual consistency
 
-It is better to have small aggregates, because of rule 2 (committing al changes to dtabase at once).
+It is better to have small aggregates, because of rule 2 (committing al changes to database at once).
 Invariants are business rules that must always be consistent.
 
 Questions
