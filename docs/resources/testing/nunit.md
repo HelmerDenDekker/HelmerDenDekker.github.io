@@ -83,14 +83,14 @@ I used to compare on Count items, and some or every item to Assert.
 In NUnit you can:  
 <code>Assert.That(result, Has.Exactly(3).Items);</code>  
 Instead of classic count.  
-<code>Assert.AreEqual(result.Count(), 3);</code>  
+<code> Assert.AreEqual(result.Count(), 3); </code>  
 But I think I like the latter better.
 
 No duplicate items in List:  
 <code>Assert.That(result, Is.Unique)</code>
 
-List contains the expected item, with exact values
-<code>Assert.That(result, Does.Contain(expectedItem));</code>
+List contains the expected item, with exact values.  
+<code> Assert.That(result, Does.Contain(expectedItem)); </code>
 
 You can chain to inspect values inside the list.  
 Suppose there is a list which contains an object with <var>Name</var> = "name" and <var>Number</var> = 1.
