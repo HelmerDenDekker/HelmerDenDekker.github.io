@@ -29,7 +29,7 @@ Security headers are directives used by web applications to configure security d
 
 Example: 
 ```js
-"default-src 'self'; object-src 'none'; frame-ancestors 'none'; sandbox allow-forms allow-same-origin allow-scripts; base-uri 'self'; upgrade-insecure-requests;"
+"default-src 'self'; object-src 'none'; frame-ancestors 'none'; sandbox allow-forms allow-same-origin allow-scripts; base-uri 'self'; upgrade-insecure-requests;"
 ```
 
 
@@ -37,7 +37,7 @@ Example:
 
 [X-Frame-Options](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)
 
-Example: mvcHeaders.Add(XFrameOptions, "SAMEORIGIN")
+Example: mvcHeaders.Add(XFrameOptions, "SAMEORIGIN")
 
 
 

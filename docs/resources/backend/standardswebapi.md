@@ -66,7 +66,7 @@ The table shows which action to return, but please stick to the logic that is de
 ## Versioning
 
 //ToDo: check the restfulapi guidelines [Versioning - restfulapi.net](https://restfulapi.net/versioning/)
-
+[SO - on versioning](https://stackoverflow.com/questions/42371582/asp-net-api-versioning)
 ### Example
 In the Helmer.DemoWebshop it is implemented like this:
 [Versioning in the base-controller](https://github.com/HelmerDenDekker/HelmerDemo.WebShop/blob/8398257caab7d848f3f679dc5e7ffca517621fed/HelmerDemo.WebShop.Presentation/Helpers/BaseApiController.cs#L9)
