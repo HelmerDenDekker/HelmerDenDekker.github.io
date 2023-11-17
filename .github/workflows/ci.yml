@@ -1,4 +1,4 @@
-# Sample workflow for deploying a VitePress site to GitHub Pages
+# Sample workflow for continuous integration for a VitePress site
 
 name: CI
 
