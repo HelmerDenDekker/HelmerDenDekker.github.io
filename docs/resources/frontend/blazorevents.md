@@ -156,6 +156,8 @@ I was inspired by an [old blogpost by Mark Heath](https://markheath.net/post/rea
 [Github demo](https://github.com/HelmerDenDekker/HelmerDemo.BlazorServer)  
 [ReactiveX](https://reactivex.io/)  
 [Reactice extensions for dotnet developers](https://learn.microsoft.com/en-us/shows/on-net/reactive-extensions-for-net-developers)  
-[Reactive extensions for dotnet](https://github.com/dotnet/reactive)
+[Reactive extensions for dotnet](https://github.com/dotnet/reactive)  
 
 [Reactive Extensions Observables Versus Regular .NET Events](https://markheath.net/post/reactive-extensions-observables-versus)  
+
+[Async call httpclient](https://www.youtube.com/results?search_query=dotnet%20reactivex)  
