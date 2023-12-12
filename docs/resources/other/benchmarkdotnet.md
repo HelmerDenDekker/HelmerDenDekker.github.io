@@ -7,8 +7,10 @@ Status: Work in progress
 
 [Follow the getting started guide from Benchmark dotnet](https://benchmarkdotnet.org/articles/guides/getting-started.html). I like my code a bit more separated, so in the example code of HelmerAlgorithms I kept the Program apart from the Benchmark class. 
 
-## *Outline*
+## When to use
 
+For measuring single process only.
+Measure improvements on methods.
 
 ## Resources
 
