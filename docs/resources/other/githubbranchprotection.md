@@ -1,13 +1,18 @@
 # How to set up new repo
-*16-11-2023*
+*18-12-2023*
 
-Status: Work in progress  
+Status: Work in progress 
+
+ToDo: Create some kind of template
 
 ## Step 1: Set up branch protection
 
-Go to the Settings tab -> Code and automation -> Branches.
+Go to the Settings tab
+In the section Code and automation -> Branches.
 
 ### Branch name pattern
+
+-> Add Branch protection rule
 
 Type the name of the branch, type enter.
 
