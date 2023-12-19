@@ -62,8 +62,9 @@ In a previous company it was allowed to have only one assert per test. I am not 
 
 ### Assert on equality
 
-True if two variables have the same value.
-`Is.EqualTo`  in NUnit
+For [asserting equality](https://docs.nunit.org/articles/nunit/writing-tests/constraints/EqualConstraint.html), returns true if two variables have the same value.
+`Assert.That(actual, Is.EqualTo(expected))`
+
 
 ### Assert on Reference equality
 
