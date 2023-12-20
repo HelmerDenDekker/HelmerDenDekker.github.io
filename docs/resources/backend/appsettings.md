@@ -20,5 +20,6 @@ When to use IOptions, IOptionsMonitor, and IOptionsSnapshot?
 
 ## Resources
 
-[Options Pattern in ASP.NET Core – Bind & Validate Configurations from appsettings.json](https://codewithmukesh.com/blog/options-pattern-in-aspnet-core/)
-[](https://andrewlock.net/adding-validation-to-strongly-typed-configuration-objects-in-dotnet-6/)
+MS docs: [Options pattern in .NET](https://learn.microsoft.com/en-us/dotnet/core/extensions/options)  
+[Options Pattern in ASP.NET Core – Bind & Validate Configurations from appsettings.json](https://codewithmukesh.com/blog/options-pattern-in-aspnet-core/)  
+[Adding validation to strongly typed configuration objects in .NET 6](https://andrewlock.net/adding-validation-to-strongly-typed-configuration-objects-in-dotnet-6/)  
