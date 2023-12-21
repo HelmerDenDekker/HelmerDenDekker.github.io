@@ -1,8 +1,20 @@
-# Image resize in dotNet
-*19-12-2023*
+# Image resize in dotNet: from JPG to JPG
+*21-12-2023*
 
 Status: Work in progress  
-Type of post: Opinion piece
+
+## Intro
+
+For the new [Team Xerbutri](https://github.com/TeamXerbutri) website, the guys asked me to improve the imagery.
+
+That is a bit of a broad question.
+
+So, I set of with resizing, what sizes are used on web these days? Also the resizing process takes a lot of time, and was done in old programs, batch processing the stuff in Jasc and saving the images multiple times as jpg, degrading the picture quality. Time for some modernization and automization of this process.
+
+My Question:  
+Can I resize images with a dotNet package? If so, what is the best package to use?
+
+
 
 ## *Rapid fire thoughts*
 
@@ -206,7 +218,17 @@ You would more likely save it as a PNG, or as a Webp image file. More about that
 You could set required output, like file-size or quality and achieve different results. For example, there are complaints about the image quality by the SkiaSharp package, but on the github issues you will find tricks to improve image quality. The scope of this test was to have comparable input, and compare the output ogf the packages. I am not sure this is fair.
 
 
+## Follow up
 
+- The pictures should have a watermark  
+- The supported formats should be JPEG (.jpg), WEBP (.webp) and Portable Network Graphics (.png)  
+- A program that should ultimately have functionality comparable to [Easy Thumbnails](https://www.fookes.com/easy-thumbnails) (in use by the team these days):
+  - Batch process to **scale down** to different sizes for web
+  - Batch process to save as different picture formats
+  - Batch process to add a watermark to all pictures except thumbnails
+- The program should run on iOS and Windows. 
+
+Following post: Image format support.
 
 
 
