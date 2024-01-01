@@ -19,11 +19,11 @@ hero:
 
 features:
 - title: Domain-driven design
-  details: My newest blog, some thoughts about Domain-driven design and how I got there.
+  details: Some thoughts about Domain-driven design and how I got there.
   link: /blog/domaindrivendesignwebshop/0domaindrivendesignintro
 
-- title: DDD Webshop Demo
-  details: The first blog in a series about the domain-driven design webshop demo. This blog describes the thoughts behind the first domain model and is mainly influenced by the software architecture course I followed in May 2023.
-  link: /blog/domaindrivendesignwebshop/1domaindrivendesignwebshop
+- title: Image Resize
+  details: Inspired by Bertrand Le Roy I updated his blog to the newest developments of 2023
+  link: /blog/imageresize
 ---
 

@@ -20,7 +20,7 @@
 	<rect x="0" y="0" width="1152" height="576" stroke="none" stroke-width="0" fill="#ffffff"></rect>
 	<g>
 		<text text-anchor="start" x="192" y="82.25" font-family="Arial" font-size="25" font-weight="bold" stroke="none"
-			  stroke-width="0" fill="#000000">Total speed
+			  stroke-width="0" fill="#000000">Total time elapsed
 		</text>
 		<rect x="192" y="61" width="768" height="25" stroke="none" stroke-width="0" fill-opacity="0"
 			  fill="#ffffff"></rect>
@@ -46,7 +46,7 @@
 					  stroke-width="0" fill="#222222">ImageSharp
 				</text>
 			</g>
-			<rect x="975" y="134" width="30" height="15" stroke="none" stroke-width="0" fill="#ff7f0e"></rect>
+			<rect x="975" y="134" width="30" height="15" stroke="none" stroke-width="0" fill="#374c80"></rect>
 		</g>
 		<g>
 			<rect x="975" y="158" width="162" height="15" stroke="none" stroke-width="0" fill-opacity="0"

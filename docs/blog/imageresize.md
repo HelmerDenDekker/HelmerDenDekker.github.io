@@ -23,12 +23,12 @@ In this test:
 - benchmarking of load, resize and save operations
 - using .NET 8
 - using Windows 11 only
-- save the original jpeg as 75% quality jpeg format
+- saves the original jpeg as 75% quality jpeg format
 
 
 ## Considerations
 
-I wanted to include at least the packages from the [original test by Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/):
+I wanted to include at least the packages from the [test by Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/):
 - System.Drawing, the newest version named System.Drawing.Common
 - ImageSharp
 - Magick.NET
@@ -55,7 +55,7 @@ It is very popular and for its many versions there are lots of examples. The imp
 ### ImageSharp
 
 ImageSharp is a fully featured, fully managed, cross-platform, 2D graphics library.  
-It is quite easy to implement. I had to fiddle a little bit, but it was not that hard.
+It is quite easy to implement. I had to fiddle a little bit, but it was not that difficult.
 
 ### Magick.NET
 
@@ -67,9 +67,11 @@ Code implementation is very clean and very easy, but I had to figure out which n
 MagicScaler is a high-performance image processing pipeline for .NET, focused on making complex imaging tasks simple. They claim their speed and efficiency are unmatched by anything else on the .NET platform.  
 Let's see about that later.  
 
+This package currently has full functionality only on Windows.
+
 The implementation took a bit of fiddling around since I wanted to control the output size of the picture.  
 
-//Version 0
+MagicScaler is still on version 0, this might indicate there is no production version available yet.
 
 ### SkiaSharp
 
@@ -81,16 +83,19 @@ Making this library work on Windows 11 took me no effort at all, and for me it w
 
 I only included this package because it was in the previous test. It is a .NET wrapper around the FreeImage library. This library is no longer maintained, and it seems FreeImage.NET is also no longer maintained.
 
+Implementation is the shortest with just 4 lines of code. It is however a bit ugly in style and hard to understand at first sight because of the descriptive nature. For example: JPEG_QUALITYGOOD means 75%. For me, having worked with images for all my life, 75% is very clear to me. I will never say this picture-compression will be good or have any quality. It makes me feel bad.
 
 ### ImageFlow
 
-Imageflow.NET is a .NET API for [Imageflow](https://github.com/imazen/imageflow), the fast image optimization and processing library for web servers. Imageflow focuses on security, quality, and performance - in that order. Imageflow.NET is a .NET Standard 2.0 library, and as such is compatible with .NET 4.6.2+, .NET Core 2.0+, and .NET 5/6/7/8.  
-Imageflow.NET is tri-licensed under a commercial license, the AGPLv3, and the Apache 2 license.  
-// implementation?  
-// Version 0  
+Imageflow.NET is a .NET API for [Imageflow](https://github.com/imazen/imageflow), an image optimization and processing library for web servers. Imageflow focuses on security, quality, and performance - in that order. Imageflow.NET is a .NET Standard 2.0 library, and as such is compatible with .NET 4.6.2+, .NET Core 2.0+, and .NET 5/6/7/8.
+
+Imageflow.NET is tri-licensed under a commercial license, the AGPLv3, and the Apache 2 license, which would drive any manager mad.  
+
+The implementation for me feels crazy. If you are familiar to ImageResizer, you may disagree with me but... ARGH!! Cooties!! I copied an example piece of code. And I hate it. It has all the expensive stuff in it which I always try to avoid. It is the only async one. It has the ResizerCommands from the old ImageResizer package. For me it feels awkward. I think I could easily improve this piece of code to make me feel less itchy, but I do not want to touch it.
+ImageFlow is still on version 0, this might indicate there is no production version available yet.
 
 
-### Package summarized
+### Packages summarized
 
 A summary of the packages used in this table:
 
@@ -102,7 +107,7 @@ A summary of the packages used in this table:
 | [MagicScaler](https://www.nuget.org/packages/PhotoSauce.MagicScaler)   |                                                                                   MIT |   10-2023 |  0.14.0 |     0.7 M |
 | [SkiaSharp](https://github.com/mono/SkiaSharp)                         |                                                                                   MIT |    9-2023 |  2.88.6 |    69.1 M |
 | [FreeImage](https://github.com/LordBenjamin/FreeImage.Standard)        |                           [Free Image](https://freeimage.sourceforge.io/license.html) |    6-2019 |   4.3.8 |    0.07 M |
-| [ImageFlow](https://github.com/imazen/imageflow-dotnet)                |                                                            AGPL >=3.0 or Apache >=2.0 |    9-2023 |  0.10.2 |     0.3 M |
+| [ImageFlow](https://github.com/imazen/imageflow-dotnet)                |                                                                tri or bi-license AGPL |    9-2023 |  0.10.2 |     0.3 M |
 
 I added the license information for your managers if you want to use this software in company code. I find managers to often dislike (or forbid) copyleft-type licenses.  
 
@@ -115,53 +120,63 @@ ImageSharp comes second, closely followed by SkiaSharp. A far fourth is Magick.N
 MagicScaler and ImageFlow are promising packages, but they are not that popular.
 
 
-
-
-
-
-
-
 ## Results in numbers
 
 The results of this test
 
-### Speed
+### Time elapsed
 
 The time elapsed is just an indication, as run on my laptop. So please just focus on the ratio.
 
 ![Time per operation](../assets/images/imageresize/speed.svg "Time per operation")
 
-These is the speed per operation as output from benchmark dotnet. 
-ImageFlow is off the chart, this is not a mistake. It is fast as lightning! At least the speed per operation is. ImageFlow spins up a huge amount of operations, so one operation is very fast. However, it does take a lot of operations and overhead to get this done.
+This is the speed per operation as output from benchmark dotnet. 
+ImageFlow is off the chart, this is not a mistake. It seems fast as lightning. ImageFlow spins up a huge amount of operations, so one operation is very fast. However, it does take a lot of operations and overhead to get this done.
 
-Let's look at the total time elapsed:
+The total time elapsed gives a better comparison:
 
 ![Time total](../assets/images/imageresize/totalspeed.svg "Total time elapsed")
 
-This looks very very different! ImageFlow is now slowest! Spinning up >500 operations has the downside of having a lot of overhead on my system, in this test. Another test may have another outcome!
+Now this looks very different! ImageFlow is now slowest. Spinning up >500 operations has the downside of having a lot of overhead on my system, in this test. Another test may have another outcome!
 Magick.NET is now the fastest package overall, while being the slowest package per operation. 
+
+#### Conclusion
 
 In this case I am not interested in per operation statistics, I want to know how long it takes to resize all of my images.
 
-For this test, loading, resizing and saving with 12 images of 0,5 MB size:
-Magick.NET is clearly fastest, and ImageFlow is the slowest.
+For this test, loading, resizing and saving with 12 images of 0,5 MB size:  
+Magick.NET is clearly fastest.  
+ImageFlow is the slowest.  
+All others show decent performance.
 
-I will create another test for the Xerbutri case later, bu I wanted to be able to compare with the results by 
+I will create another test for the Xerbutri case later, but I wanted to be able to compare with the results by Bertrand Le Roy.
 
+#### A quick flashback to the claims:
+
+MagicScaler: "speed and efficiency are unmatched by anything else on the .NET platform"
+Their speed is actually exactly in the middle in this test. I wonder if a more real-life scenario will reveal different results.
+
+SkiaSharp was made for speed, and it is second fastest in this test.
+
+ImageFlow mentions fast in its description, but in this case it is not.
 
 ### Memory usage
 
-For your machine this does not matter, but having functions or other stuff in the cloud where you pay (or simply crash on memory overload), this is the allocated memory usage.
+The next picture shows allocated memory usage. For your machine this does not matter, as generally speaking the amount of memory on your own machine is sufficient. If you have functions or other an app in the cloud where you pay for memory (or simply crash on memory overload), this is very relevant.
 
 ![Memory used](../assets/images/imageresize/memory.svg "Allocated memory")
 
-Low mem usage for System.Drawing, Magick.NET, SkiaSharp and FreeImage
+The packages System.Drawing, Magick.NET, SkiaSharp and FreeImage have low memory usage and are clear winners on this area.
 Having many operations takes its toll on the memory usage of ImageFlow.
 
 ImageSharp has by far the highest memory usage and is a bit absurd, taking twice the amount of a picture-size on disk. I am interested in the performance of these package with larger pictures.
 
+#### Conclusion
 
-
+System.Drawing and Magick.NET are clear winners.  
+Skiasharp, MagicScaler, and FreeImage show decent performance.  
+ImageFlow is a bit on the high side, but it is paying for the overhead of its many operations in this test.
+ImageSharp has crazy high memory usage in this test, and I would like to see its performance in the upcoming test.
 
 [//]: # ()
 [//]: # ()
@@ -200,25 +215,20 @@ ImageSharp has by far the highest memory usage and is a bit absurd, taking twice
 
 ### File size
 
-//ToDo create a bar graph
+![File size](../assets/images/imageresize/filesize.svg "File size")
 
-| Package        |   Size |  
-|----------------|-------:|
-| System.Drawing | 6,3 KB |
-| ImageSharp     | 6,7 KB |
-| Magick.Net     | 6,7 KB |
-| MagicScaler    | 6,7 KB |
-| SkiaSharp      | 4,0 Kb |
-| FreeImage      | 5,3 KB |
-| ImageFlow      | 4,0 KB |
-
-Size is average size on disk 
+SkiaSharp and ImageFlow have lowest file sizes. I am not going to touch this, because if you care about file size, you do not use JPEG format in 2024. I think all packages are doing a decent job, Skia and ImageFlow are the best.
 
 ## Quality
 
-Subjective
+Quality of the pictures is subjective.  
 
+I want to show you two cases, contrast and bokeh.
+
+This is the original high contrast picture.
 ![Original1](../assets/images/imageresize/DSCN0533.JPG "Original")
+
+And here are the produced thumbnails.
 
 | Package        |                                                                                                               |  
 |----------------|--------------------------------------------------------------------------------------------------------------:|
@@ -230,6 +240,11 @@ Subjective
 | FreeImage      |               ![DSCN0533-FreeImage](../assets/images/imageresize/DSCN0533-FreeImage.JPG "DSCN0533-FreeImage") |
 | ImageFlow      |               ![DSCN0533-Imageflow](../assets/images/imageresize/DSCN0533-Imageflow.JPG "DSCN0533-Imageflow") |
 
+All of the thumbnails are troublesome the least, they do not look good. All of the algorithms struggle with the high contrast, and leave pixelated areas around the lamp. Overall I like System.Drawing and MagicScaler the best. 
+
+#### Bokeh plant
+
+The first Bokeh-example with a red flowery plant.
 
 ![Original1](../assets/images/imageresize/IMG_2301.jpg "Original")
 
@@ -243,6 +258,12 @@ Subjective
 | FreeImage      |               ![IMG_2301-FreeImage](../assets/images/imageresize/IMG_2301-FreeImage.jpg "IMG_2301-FreeImage") |
 | ImageFlow      |               ![IMG_2301-Imageflow](../assets/images/imageresize/IMG_2301-Imageflow.jpg "IMG_2301-Imageflow") |
 
+Again, System.Drawing and MagicScaler are fine. ImageSharp is nice as well. The colors of Magick.NET, SkiaSharp and FreeImage look greyish.
+
+#### Bokeh snake
+
+The second example with the snake, which also shows the greens.
+
 ![Original1](../assets/images/imageresize/IMG_2325.jpg "Original")
 
 | Package        |                                                                                                               |  
@@ -255,6 +276,12 @@ Subjective
 | FreeImage      |               ![IMG_2325-FreeImage](../assets/images/imageresize/IMG_2325-FreeImage.jpg "IMG_2325-FreeImage") |
 | ImageFlow      |               ![IMG_2325-Imageflow](../assets/images/imageresize/IMG_2325-Imageflow.jpg "IMG_2325-Imageflow") |
 
+Again here, the colors of Magick.NET, Skia and FreeImage are clearly off compared to the original.
+The Bokeh effect is preserved by System.Drawing, ImageSharp, Magick.Net and MagicScaler
+
+#### Overall picture comparison
+
+Compare all of the thumbnails:
 
 | Package |                                                                                                System.Drawing |                                                                                         ImageSharp |                                                                                      Magick.Net |                                                                                           MagicScaler |                                                                                       SkiaSharp |                                                                                       FreeImage |                                                                                       ImageFlow |
 |--------:|--------------------------------------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------:|
@@ -271,48 +298,74 @@ Subjective
 |      11 | ![IMG_2734 System.Drawing](../assets/images/imageresize/IMG_2734-SystemDrawing.jpg "IMG_2734 System.Drawing") | ![IMG_2734-ImageSharp](../assets/images/imageresize/IMG_2734-ImageSharp.jpg "IMG_2734-ImageSharp") | ![IMG_2734-MagickNET](../assets/images/imageresize/IMG_2734-MagickNET.jpg "IMG_2734-MagickNET") | ![IMG_2734-MagicScaler](../assets/images/imageresize/IMG_2734-MagicScaler.jpg "IMG_2734-MagicScaler") | ![IMG_2734-SkiaSharp](../assets/images/imageresize/IMG_2734-SkiaSharp.jpg "IMG_2734-SkiaSharp") | ![IMG_2734-FreeImage](../assets/images/imageresize/IMG_2734-FreeImage.jpg "IMG_2734-FreeImage") | ![IMG_2734-Imageflow](../assets/images/imageresize/IMG_2734-Imageflow.jpg "IMG_2734-Imageflow") |
 |      12 | ![sample System.Drawing](../assets/images/imageresize/sample-SystemDrawing.jpg "sample System.Drawing") | ![sample-ImageSharp](../assets/images/imageresize/sample-ImageSharp.jpg "sample-ImageSharp") | ![sample-MagickNET](../assets/images/imageresize/sample-MagickNET.jpg "sample-MagickNET") | ![sample-MagicScaler](../assets/images/imageresize/sample-MagicScaler.jpg "sample-MagicScaler") | ![sample-SkiaSharp](../assets/images/imageresize/sample-SkiaSharp.jpg "sample-SkiaSharp") | ![sample-FreeImage](../assets/images/imageresize/sample-FreeImage.jpg "sample-FreeImage") | ![sample-Imageflow](../assets/images/imageresize/sample-Imageflow.jpg "sample-Imageflow") |
 
-Best quality in this test:
+#### Conclusion
 
-System.Drawing
-ImageSharp
-MagicScaler
+Best picture quality in this test:
 
-Good:
-ImageFlow, bit blurry
+- System.Drawing
+- ImageSharp
+- MagicScaler
 
-SkiaSharp is blurry and colors are off
-FreeImage colors are off
-Magick.NET colors are off
+Good Quality:
+- ImageFlow, the pictures are a bit blurry
+
+Mediocre Quality
+- SkiaSharp is blurry and colors are off
+- FreeImage colors are off
+- Magick.NET colors are off
+
+Please do mind that the way the test is performed influences the outcome of the test. For each packag the default settings are used, with the least amount of fuzz. I believe it is possible for all of these packages to create pictures of comparable quality, but it will take you more time to tune the settings.
+
+## Conclusion
+
+What is the best package?  
+It depends.    
+
+What does **best** mean for you?
+
+Quality matters to me most.
+These are my favorites:
+- System.Drawing
+- ImageSharp
+- MagicScaler
+
+ImageSharp has a good picture quality out of the box, it is a managed code library, no trouble with platform support, and easy to play around with. The downsides are memory usage and the license.
+
+MagicScaler has a good picture quality out of the box, it is quite fast, does not use excessive memory. But it currently only has full functionality on Windows. Also it is on version 0 which might indicate it is not ready for production. I think it is a potential winner.
+
+System.Drawing is overall the best package, with low memory usage, good picture quality and it is quite fast. Downside is the windows only support.
+
+I am really interested in developments around Skia, since there is lots of talk around it on Maui, and Microsoft seems to push it. So I expect it to improve in the near future.
 
 
-Differences: skiaSharp became worse on update
+
+
+
 
 ## Remarks
 
 Remarks on the results:
 
-First of all: Who does this?
-I mean: If you like images, who is going to turn a jpeg into a jpeg, because you are destroying the image, right?
+First of all: Who saves an image as jpeg in 2024?  
+I mean: If you like images, who is going to turn a jpeg into a jpeg, because you are destroying the image.  
 You would more likely save it as a PNG, or as a Webp image file. More about that in an upcoming blog!
 
-You could set required output, like file-size or quality and achieve different results. For example, there are complaints about the image quality by the SkiaSharp package, but on the github issues you will find tricks to improve image quality. The scope of this test was to have comparable input, and compare the output ogf the packages. I am not sure this is fair.
+You could set required output, like file-size or quality and achieve different results. For example, there are complaints about the image quality by the SkiaSharp package, but on the github issues you will find tricks to improve image quality. The scope of this test was to have comparable input, and compare the output of the packages.
 
+Instead of feeding input, it is possible to create similar output, for example filesize. And rerun this test and compare what package has the best quality for filesize. Or see what package could produce the best thumbnail with the settings available. There are lots of follow-up questions.
 
 ## Follow up
 
-- The pictures should have a watermark  
-- The supported formats should be JPEG (.jpg), WEBP (.webp) and Portable Network Graphics (.png)  
-- A program that should ultimately have functionality comparable to [Easy Thumbnails](https://www.fookes.com/easy-thumbnails) (in use by the team these days):
+- Which packages support JPEG (.jpg), WEBP (.webp) and Portable Network Graphics (.png)?
+- Which package has the best algorithm for producing the highest quality pictures?
+- Which package supports the best encoding (compression) mechanisms?
+- Which packages support placing a watermark?
+- Which packages will perform best in real-life scenario's with approx 40 pictures of 6Mb size?
+- An application that should ultimately have functionality comparable to [Easy Thumbnails](https://www.fookes.com/easy-thumbnails) (in use by the team Xerbutri or their website):
   - Batch process to **scale down** to different sizes for web
-  - Batch process to save as different picture formats
-  - Batch process to add a watermark to all pictures except thumbnails
-- The program should run on iOS and Windows. 
-
-Following post: Image format support.
-
-
-
-
+  - Batch process to save as **different picture formats**
+  - Batch process to add a **watermark** to all pictures except thumbnails
+- The application should run on iOS and Windows. 
 
 ## Resources
 
@@ -321,4 +374,3 @@ Inspiration:
 
 Packages:  
 [PhotoSauce](https://photosauce.net/)
-
