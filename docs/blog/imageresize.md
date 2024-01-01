@@ -1,7 +1,5 @@
-# Image resize in dotNet: from JPG to JPG
-*21-12-2023*
-
-Status: Work in progress  
+# Image resize in dotNet: from JPG to JPG on Windows OS
+*1-1-2024*
 
 ## Intro
 
@@ -14,32 +12,87 @@ So, I set of with resizing, what sizes are used on web these days? Also the resi
 My Question:  
 Can I resize images with a dotNet package? If so, what is the best package to use?
 
+## Boundary conditions
+
+In this test I used the 12 pictures by [Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/).  
+I am running almost exactly the same benchmark, updated slightly to 2023.
+
+In this test:
+- uses 12 pictures of 500kB size each, ~1280 x ~900 px 
+- resizes to thumbnail size (150px)
+- benchmarking of load, resize and save operations
+- using .NET 8
+- using Windows 11 only
+- save the original jpeg as 75% quality jpeg format
 
 
-## *Rapid fire thoughts*
+## Considerations
 
-Maui only for embedded resources :-(  
-
-Which packages in 2023?
-- System.Drawing
+I wanted to include at least the packages from the [original test by Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/):
+- System.Drawing, the newest version named System.Drawing.Common
 - ImageSharp
-- Magick.Net
+- Magick.NET
 - SkiaSharp
-- MagicScaler
+- FreeImage
 
-Others:
-[Image resizer](https://discoverdot.net/projects/image-resizer)
-[ImageProcessor](https://github.com/JimBobSquarePants/ImageProcessor) is dead, and this is a wrapper around system.drawing anyways. Became ImageSharp
+I did some research, and considered the following packages.
+- ImageFlow, which I added to the test
+- Microsoft.Maui.Graphics. I tried, but there is no support for Windows 11 at this moment, leaving you the choice to wrap around System.Drawing (already in this test) or SkiaSharp (also in this test) 
+- [Image resizer](https://discoverdot.net/projects/image-resizer), which is for .NET framework. For .NET 8 it recommends to use ImageFlow.
+- [ImageProcessor](https://github.com/JimBobSquarePants/ImageProcessor)  which is for .NET framework and is dead. It was a wrapper around System.Drawing (in this test). It recommends ImageSharp for .NET (Core).
 
-## Test and BC
 
-- .NET 6
-- Windows 11
-- JPG -> save as 75% quality JPG
+## About the packages
 
-## Decision makers
+The implementation code is in my [GitHub imageresize.benchmark repository](https://github.com/HelmerDenDekker/helmer.imageresize.benchmark). 
 
-For your decision making process:
+### System.Drawing.Common
+
+This package provides access to GDI+ graphics (Windows) functionality.  
+Non-Windows platforms are not supported since .NET 7, even with the runtime configuration switch. See [System Drawing on Windows](https://aka.ms/systemdrawingnonwindows) for more information.
+It is very popular and for its many versions there are lots of examples. The implementation is a bit more messy compared to ImageSharp or Magick.NET.
+
+### ImageSharp
+
+ImageSharp is a fully featured, fully managed, cross-platform, 2D graphics library.  
+It is quite easy to implement. I had to fiddle a little bit, but it was not that hard.
+
+### Magick.NET
+
+Magick.NET is a wrapper around the [ImageMagick](https://imagemagick.org/index.php) library. It has extensive file support.  
+Code implementation is very clean and very easy, but I had to figure out which nuget package(s) to use.
+
+### MagicScaler
+
+MagicScaler is a high-performance image processing pipeline for .NET, focused on making complex imaging tasks simple. They claim their speed and efficiency are unmatched by anything else on the .NET platform.  
+Let's see about that later.  
+
+The implementation took a bit of fiddling around since I wanted to control the output size of the picture.  
+
+//Version 0
+
+### SkiaSharp
+
+SkiaSharp is a wrapper around [Google's Skia Graphics library](https://skia.org/). Skia is an open source 2D graphics library which provides common APIs that work across a variety of hardware and software platforms. It serves as the graphics engine for Google Chrome and ChromeOS, Android, Flutter, and many other products.
+
+Making this library work on Windows 11 took me no effort at all, and for me it worked out of the box. The implemented code looks a bit strange to me, and I relied heavily on some examples I found online. However, microsoft have pages about skia in their documentation, so I guess it has their full support, which is nice.
+
+### Free Image
+
+I only included this package because it was in the previous test. It is a .NET wrapper around the FreeImage library. This library is no longer maintained, and it seems FreeImage.NET is also no longer maintained.
+
+
+### ImageFlow
+
+Imageflow.NET is a .NET API for [Imageflow](https://github.com/imazen/imageflow), the fast image optimization and processing library for web servers. Imageflow focuses on security, quality, and performance - in that order. Imageflow.NET is a .NET Standard 2.0 library, and as such is compatible with .NET 4.6.2+, .NET Core 2.0+, and .NET 5/6/7/8.  
+Imageflow.NET is tri-licensed under a commercial license, the AGPLv3, and the Apache 2 license.  
+// implementation?  
+// Version 0  
+
+
+### Package summarized
+
+A summary of the packages used in this table:
 
 | Package                                                                |                                                                               License | Published | Version | Downloads |
 |------------------------------------------------------------------------|--------------------------------------------------------------------------------------:|----------:|--------:|----------:|
@@ -57,7 +110,11 @@ Most of the packages are in full support or development, except Free Image which
 
 MagicScaler and ImageFlow are still on the zero version, which might indicate there is no official production version yet.  
 
-System.Drawing.Common is the most popular with 1124 million downloads!! ImageSharp comes second, closely followed by SkiaSharp. A far fourth is Magick.NET. MagicScaler and ImageFlow are promising packages, but they are not that popular. I only included FreeImage because it was in the previous test by [Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/) 
+System.Drawing.Common is the most popular with 1124 million downloads!!   
+ImageSharp comes second, closely followed by SkiaSharp. A far fourth is Magick.NET.   
+MagicScaler and ImageFlow are promising packages, but they are not that popular.
+
+
 
 
 
@@ -70,57 +127,80 @@ The results of this test
 
 ### Speed
 
-| Package        |       Mean |      Error |    StdDev | Ratio |
-|----------------|-----------:|-----------:|----------:|------:|
-| System.Drawing | 309.024 ms |  4.0873 ms | 1.0615 ms | 1.000 |
-| ImageSharp     |  98.459 ms |  3.8549 ms | 1.0011 ms | 0.319 |
-| Magick.Net     | 350.393 ms | 10.8063 ms | 2.8064 ms | 1.134 |
-| MagicScaler    |  57.191 ms |  2.4320 ms | 0.6316 ms | 0.185 |
-| SkiaSharp      | 114.386 ms |  4.3097 ms | 1.1192 ms | 0.370 |
-| FreeImage      | 206.092 ms | 12.7027 ms | 3.2988 ms | 0.667 |
-| ImageFlow      |   1.457 ms |  0.3499 ms | 0.0541 ms | 0.005 |
+The time elapsed is just an indication, as run on my laptop. So please just focus on the ratio.
 
+![Time per operation](../assets/images/imageresize/speed.svg "Time per operation")
 
-*Legends*  
-- Mean        : Arithmetic mean of all measurements
-- Error       : Half of 99.9% confidence interval
-- StdDev      : Standard deviation of all measurements
-- Ratio       : Mean of the ratio distribution 
-- 1 ms        : 1 Millisecond (0.001 sec)
+These is the speed per operation as output from benchmark dotnet. 
+ImageFlow is off the chart, this is not a mistake. It is fast as lightning! At least the speed per operation is. ImageFlow spins up a huge amount of operations, so one operation is very fast. However, it does take a lot of operations and overhead to get this done.
 
-Wow! What did the guys at imageFlow do? It is fast as lightning!!
+Let's look at the total time elapsed:
 
-Since 2017:
-ImageSharp became way faster.
-All others except system.drawing became a little faster as far as can be compared.
+![Time total](../assets/images/imageresize/totalspeed.svg "Total time elapsed")
+
+This looks very very different! ImageFlow is now slowest! Spinning up >500 operations has the downside of having a lot of overhead on my system, in this test. Another test may have another outcome!
+Magick.NET is now the fastest package overall, while being the slowest package per operation. 
+
+In this case I am not interested in per operation statistics, I want to know how long it takes to resize all of my images.
+
+For this test, loading, resizing and saving with 12 images of 0,5 MB size:
+Magick.NET is clearly fastest, and ImageFlow is the slowest.
+
+I will create another test for the Xerbutri case later, bu I wanted to be able to compare with the results by 
 
 
 ### Memory usage
 
-Allocated memory and garbage collection
-
 For your machine this does not matter, but having functions or other stuff in the cloud where you pay (or simply crash on memory overload), this is the allocated memory usage.
 
-| Package        |      Gen0 |      Gen1 |      Gen2 |  Allocated | Alloc Ratio |
-|----------------|----------:|----------:|----------:|-----------:|------------:|
-| System.Drawing |         - |         - |         - |   52.63 KB |        1.00 |
-| ImageSharp     |         - |         - |         - | 1323.22 KB |       25.14 |
-| Magick.Net     |         - |         - |         - |    60.5 KB |        1.15 |
-| MagicScaler    |         - |         - |         - |   151.2 KB |        2.87 |
-| SkiaSharp      |         - |         - |         - |   94.03 KB |        1.79 |
-| FreeImage      | 6000.0000 | 6000.0000 | 6000.0000 |  101.64 KB |        1.93 |
-| ImageFlow      |   48.8281 |   43.9453 |   40.0391 |  262.71 KB |        4.99 |
+![Memory used](../assets/images/imageresize/memory.svg "Allocated memory")
 
-*Legends*  
-- Gen0        : GC Generation 0 collects per 1000 operations
-- Gen1        : GC Generation 1 collects per 1000 operations
-- Gen2        : GC Generation 2 collects per 1000 operations
-- Allocated   : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
-- Alloc Ratio : Allocated memory ratio distribution
+Low mem usage for System.Drawing, Magick.NET, SkiaSharp and FreeImage
+Having many operations takes its toll on the memory usage of ImageFlow.
+
+ImageSharp has by far the highest memory usage and is a bit absurd, taking twice the amount of a picture-size on disk. I am interested in the performance of these package with larger pictures.
+
+
+
+
+[//]: # ()
+[//]: # ()
+[//]: # (| Package        |      Gen0 |      Gen1 |      Gen2 |    Allocated | Alloc Ratio |)
+
+[//]: # (|----------------|----------:|----------:|----------:|-------------:|------------:|)
+
+[//]: # (| System.Drawing |         - |         - |         - |     45.27 KB |        1.00 |)
+
+[//]: # (| ImageSharp     |         - |         - |         - |   1323.16 KB |       29.23 |)
+
+[//]: # (| Magick.Net     |         - |         - |         - |     59.98 KB |        1.32 |)
+
+[//]: # (| MagicScaler    |         - |         - |         - |    152.05 KB |        3.36 |)
+
+[//]: # (| SkiaSharp      |         - |         - |         - |      95.3 KB |        2.11 |)
+
+[//]: # (| FreeImage      | 6000.0000 | 6000.0000 | 6000.0000 |    100.49 KB |        2.22 |)
+
+[//]: # (| ImageFlow      |    42.9688 |   39.0625 |  35.1563  |   247.35 KB |        5.46 |)
+
+[//]: # ()
+[//]: # (*Legends*  )
+
+[//]: # (- Gen0        : GC Generation 0 collects per 1000 operations)
+
+[//]: # (- Gen1        : GC Generation 1 collects per 1000 operations)
+
+[//]: # (- Gen2        : GC Generation 2 collects per 1000 operations)
+
+[//]: # (- Allocated   : Allocated memory per single operation &#40;managed only, inclusive, 1KB = 1024B&#41;)
+
+[//]: # (- Alloc Ratio : Allocated memory ratio distribution)
 
 
 
 ### File size
+
+//ToDo create a bar graph
 
 | Package        |   Size |  
 |----------------|-------:|
