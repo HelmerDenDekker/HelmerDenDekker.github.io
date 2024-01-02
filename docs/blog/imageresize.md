@@ -1,13 +1,17 @@
 # Image resize in dotNet: from JPG to JPG on Windows OS
 *1-1-2024*
 
-## Intro
+## Introduction
 
-For the new [Team Xerbutri](https://github.com/TeamXerbutri) website, the guys asked me to improve the imagery.
+The guys of [Team Xerbutri](https://github.com/TeamXerbutri) asked me to improve the imagery on their new website.
 
-That is a bit of a broad question.
+That is a bit of a broad question, so where to start?
 
-So, I set of with resizing, what sizes are used on web these days? Also the resizing process takes a lot of time, and was done in old programs, batch processing the stuff in Jasc and saving the images multiple times as jpg, degrading the picture quality. Time for some modernization and automization of this process.
+What image formats are in play these days? What sizes are used? What is the most expensive process?
+
+Image resizing is the most expensive process.
+
+Resizing and adding watermarks takes a lot of time, and was done in old applications, batch processing the pictures in Jasc PSP and saving the images multiple times as jpg, degrading the picture quality. In the wake of the modernization and automation of this process I will write some blogposts.
 
 My Question:  
 Can I resize images with a dotNet package? If so, what is the best package to use?
@@ -28,7 +32,7 @@ In this test:
 
 ## Considerations
 
-I wanted to include at least the packages from the [test by Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/):
+I wanted to include at least the packages from the [2017 test by Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/):
 - System.Drawing, the newest version named System.Drawing.Common
 - ImageSharp
 - Magick.NET
@@ -314,6 +318,8 @@ You would more likely save it as a PNG, or as a Webp image file. More about that
 You could set required output, like file-size or quality and achieve different results. For example, there are complaints about the image quality by the SkiaSharp package, but on the github issues you will find tricks to improve image quality. The scope of this test was to have comparable input, and compare the output of the packages.
 
 Instead of feeding input, it is possible to create similar output, for example filesize. And rerun this test and compare what package has the best quality for filesize. Or see what package could produce the best thumbnail with the settings available. There are lots of follow-up questions.
+
+I am grateful for the blogpost and code by Bertrand Le Roy, it was a great inspiration and timesaver.
 
 ## Follow up
 
