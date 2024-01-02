@@ -17,6 +17,7 @@ export default defineConfig({
       {
         text: 'Blog',
         items: [
+          { text: 'Image Resize', link: '/blog/imageresize' },
           { text: 'DDD - 0 Introduction', link: '/blog/domaindrivendesignwebshop/0domaindrivendesignintro' },
           { text: 'DDD - 1 Webshop Design', link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop' },
           //{ text: 'DDD - 2 Webshop Layers', link: '/blog/domaindrivendesignwebshop/2domaindrivendesignwebshoplayers' },
@@ -36,7 +37,6 @@ export default defineConfig({
         items: [
           //FrontEnd
           { text: 'Frontend', link: '/resources/frontend/frontend' },
-          { text: 'Markdown Examples', link: '/resources/frontend/markdown-examples' },
           { text: 'Runtime API Examples', link: '/resources/frontend/api-examples' },
           // { text: 'Input Validation', link: '/resources/input-validation' },
           // Backend
@@ -51,8 +51,10 @@ export default defineConfig({
           //Other
           { text: 'Internet', link: '/resources/other/internet' },
           // Languages
-          { text: 'Markdown', link: '/resources/languages/markdown' },
+          { text: 'Markdown Examples', link: '/resources/languages/markdown-examples' },
+          //{ text: 'Markdown', link: '/resources/languages/markdown' },
           //Testing
+          { text: 'About NUnit', link: '/resources/testing/nunit' },
         ]
       },
     ],

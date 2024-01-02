@@ -24,11 +24,11 @@ Example:
 public void Add_ZeroToZero_ReturnsZero()
 {
     // Arrange
-    var stringCalculator = new StringCalculator();
+    var stringCalculator = new StringCalculator();
     // Act
-    var actual = stringCalculator.Add("0");
+    var actual = stringCalculator.Add("0");
     // Assert
-    Assert.Equal(0, actual);
+    Assert.Equal(0, actual);
 }
 ```
 
@@ -50,11 +50,11 @@ example:
 public void Add_NumberToNumber_ShouldReturnTheoryResult(int firstNumber, int secondNumber, int expected)
 {
     //Arrange
-    var calculator = new Calculator();
+    var calculator = new Calculator();
     //Act
-    var result = calculator.Add(firstNumber, secondNumber);
+    var result = calculator.Add(firstNumber, secondNumber);
     //Assert
-    Assert.Equal(expected, result);
+    Assert.Equal(expected, result);
 }
 ```
 
@@ -94,11 +94,11 @@ You can implement the type like this:
 public void Add_NumberToNumber_ShouldReturnTheoryResult(int firstNumber, int secondNumber, int expected)
 {
     //Arrange
-    var calculator = new Calculator();
+    var calculator = new Calculator();
     //Act
-    var result = calculator.Add(firstNumber, secondNumber);
+    var result = calculator.Add(firstNumber, secondNumber);
     //Assert
-    Assert.Equal(expected, result);
+    Assert.Equal(expected, result);
 }
 ```
 
@@ -118,11 +118,11 @@ public class CalculatorTests
     public void Add_NumberToNumber_ShouldReturnTheoryResult(int firstNumber, int secondNumber, int expected)
     {
         //Arrange
-        var calculator = new Calculator();
+        var calculator = new Calculator();
         //Act
-        var result = calculator.Add(firstNumber, secondNumber);
+        var result = calculator.Add(firstNumber, secondNumber);
         //Assert
-        Assert.Equal(expected, result);
+        Assert.Equal(expected, result);
     }
 
     public static IEnumerable<int[]> CalculatorAddTestData =>
@@ -145,11 +145,11 @@ public class CalculatorTests
     public void Add_NumberToNumber_ShouldReturnTheoryResult(int firstNumber, int secondNumber, int expected)
     {
         //Arrange
-        var calculator = new Calculator();
+        var calculator = new Calculator();
         //Act
-        var result = calculator.Add(firstNumber, secondNumber);
+        var result = calculator.Add(firstNumber, secondNumber);
         //Assert
-        Assert.Equal(expected, result);
+        Assert.Equal(expected, result);
     }
 }
 
@@ -165,7 +165,7 @@ public class CalculatorTestData
 }
 ```
 
-Again, this centralizes your testdata, making it unclear what th test is about
+Again, this centralizes your tes tdata, making it unclear what the test is about
 
 //ToDo: Name some other unique features of XUnit
 

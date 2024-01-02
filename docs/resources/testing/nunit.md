@@ -1,27 +1,7 @@
 # About NUnit
-*10-10-2023*
+*10-10-2023 - updated 1-1-2024*
 
-## Why NUnit?
-
-What is the difference compared to MSTest and XUnit?
-
-### NUnit  
-
-287 million downloads on nuget (10-10-2023)  
-Suitable for Test Driven Development (TDD), because of "automated"  test scenarios.  
-Attribute-rich, there is an attribute for every situation and otherwise create custom ones yourself  
-
-### xunit
-
-370 million downloads on nuget (10-10-2023)  
-Cleanest framework: Has the least amount of attributes possible.  
-For me: I like the Fact and Theory attributes. Fact is comparable to the Test attribute and Theory is for parametrized tests.  
-
-### MSTest
-
-218 million downloads on nuget (10-10-2023)  
-Used to be the "default" test framework shipped with Visual studio. However it is very easy to pick other test frameworks these days (2023)  
-
+NUnit is a unit-testing framework for all .Net languages
 
 ## Test execution in NUnit
 
@@ -62,8 +42,9 @@ In a previous company it was allowed to have only one assert per test. I am not 
 
 ### Assert on equality
 
-True if two variables have the same value.
-`Is.EqualTo`  in NUnit
+For [asserting equality](https://docs.nunit.org/articles/nunit/writing-tests/constraints/EqualConstraint.html), returns true if two variables have the same value.
+`Assert.That(actual, Is.EqualTo(expected))`
+
 
 ### Assert on Reference equality
 
