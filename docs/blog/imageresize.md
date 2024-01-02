@@ -178,40 +178,6 @@ Skiasharp, MagicScaler, and FreeImage show decent performance.
 ImageFlow is a bit on the high side, but it is paying for the overhead of its many operations in this test.
 ImageSharp has crazy high memory usage in this test, and I would like to see its performance in the upcoming test.
 
-[//]: # ()
-[//]: # ()
-[//]: # (| Package        |      Gen0 |      Gen1 |      Gen2 |    Allocated | Alloc Ratio |)
-
-[//]: # (|----------------|----------:|----------:|----------:|-------------:|------------:|)
-
-[//]: # (| System.Drawing |         - |         - |         - |     45.27 KB |        1.00 |)
-
-[//]: # (| ImageSharp     |         - |         - |         - |   1323.16 KB |       29.23 |)
-
-[//]: # (| Magick.Net     |         - |         - |         - |     59.98 KB |        1.32 |)
-
-[//]: # (| MagicScaler    |         - |         - |         - |    152.05 KB |        3.36 |)
-
-[//]: # (| SkiaSharp      |         - |         - |         - |      95.3 KB |        2.11 |)
-
-[//]: # (| FreeImage      | 6000.0000 | 6000.0000 | 6000.0000 |    100.49 KB |        2.22 |)
-
-[//]: # (| ImageFlow      |    42.9688 |   39.0625 |  35.1563  |   247.35 KB |        5.46 |)
-
-[//]: # ()
-[//]: # (*Legends*  )
-
-[//]: # (- Gen0        : GC Generation 0 collects per 1000 operations)
-
-[//]: # (- Gen1        : GC Generation 1 collects per 1000 operations)
-
-[//]: # (- Gen2        : GC Generation 2 collects per 1000 operations)
-
-[//]: # (- Allocated   : Allocated memory per single operation &#40;managed only, inclusive, 1KB = 1024B&#41;)
-
-[//]: # (- Alloc Ratio : Allocated memory ratio distribution)
-
-
 
 ### File size
 
@@ -283,8 +249,8 @@ The Bokeh effect is preserved by System.Drawing, ImageSharp, Magick.Net and Magi
 
 Compare all of the thumbnails:
 
-| Package |                                                                                                System.Drawing |                                                                                         ImageSharp |                                                                                      Magick.Net |                                                                                           MagicScaler |                                                                                       SkiaSharp |                                                                                       FreeImage |                                                                                       ImageFlow |
-|--------:|--------------------------------------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------:|------------------------------------------------------------------------------------------------:|
+| Package | System.Drawing                                                                                                | ImageSharp                                                                                         | Magick.Net                                                                                      | MagicScaler                                                                                           | SkiaSharp                                                                                       | FreeImage                                                                                       | ImageFlow                                                                                       |
+|--------:|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
 |       1 | ![DSCN0533 System.Drawing](../assets/images/imageresize/DSCN0533-SystemDrawing.JPG "DSCN0533 System.Drawing") | ![DSCN0533-ImageSharp](../assets/images/imageresize/DSCN0533-ImageSharp.JPG "DSCN0533-ImageSharp") | ![DSCN0533-MagickNET](../assets/images/imageresize/DSCN0533-MagickNET.JPG "DSCN0533-MagickNET") | ![DSCN0533-MagicScaler](../assets/images/imageresize/DSCN0533-MagicScaler.JPG "DSCN0533-MagicScaler") | ![DSCN0533-SkiaSharp](../assets/images/imageresize/DSCN0533-SkiaSharp.JPG "DSCN0533-SkiaSharp") | ![DSCN0533-FreeImage](../assets/images/imageresize/DSCN0533-FreeImage.JPG "DSCN0533-FreeImage") | ![DSCN0533-Imageflow](../assets/images/imageresize/DSCN0533-Imageflow.JPG "DSCN0533-Imageflow") |
 |       2 | ![IMG_2301 System.Drawing](../assets/images/imageresize/IMG_2301-SystemDrawing.jpg "IMG_2301 System.Drawing") | ![IMG_2301-ImageSharp](../assets/images/imageresize/IMG_2301-ImageSharp.jpg "IMG_2301-ImageSharp") | ![IMG_2301-MagickNET](../assets/images/imageresize/IMG_2301-MagickNET.jpg "IMG_2301-MagickNET") | ![IMG_2301-MagicScaler](../assets/images/imageresize/IMG_2301-MagicScaler.jpg "IMG_2301-MagicScaler") | ![IMG_2301-SkiaSharp](../assets/images/imageresize/IMG_2301-SkiaSharp.jpg "IMG_2301-SkiaSharp") | ![IMG_2301-FreeImage](../assets/images/imageresize/IMG_2301-FreeImage.jpg "IMG_2301-FreeImage") | ![IMG_2301-Imageflow](../assets/images/imageresize/IMG_2301-Imageflow.jpg "IMG_2301-Imageflow") |
 |       3 | ![IMG_2317 System.Drawing](../assets/images/imageresize/IMG_2317-SystemDrawing.jpg "IMG_2317 System.Drawing") | ![IMG_2317-ImageSharp](../assets/images/imageresize/IMG_2317-ImageSharp.jpg "IMG_2317-ImageSharp") | ![IMG_2317-MagickNET](../assets/images/imageresize/IMG_2317-MagickNET.jpg "IMG_2317-MagickNET") | ![IMG_2317-MagicScaler](../assets/images/imageresize/IMG_2317-MagicScaler.jpg "IMG_2317-MagicScaler") | ![IMG_2317-SkiaSharp](../assets/images/imageresize/IMG_2317-SkiaSharp.jpg "IMG_2317-SkiaSharp") | ![IMG_2317-FreeImage](../assets/images/imageresize/IMG_2317-FreeImage.jpg "IMG_2317-FreeImage") | ![IMG_2317-Imageflow](../assets/images/imageresize/IMG_2317-Imageflow.jpg "IMG_2317-Imageflow") |
@@ -296,7 +262,7 @@ Compare all of the thumbnails:
 |       9 | ![IMG_2525 System.Drawing](../assets/images/imageresize/IMG_2525-SystemDrawing.jpg "IMG_2525 System.Drawing") | ![IMG_2525-ImageSharp](../assets/images/imageresize/IMG_2525-ImageSharp.jpg "IMG_2525-ImageSharp") | ![IMG_2525-MagickNET](../assets/images/imageresize/IMG_2525-MagickNET.jpg "IMG_2525-MagickNET") | ![IMG_2525-MagicScaler](../assets/images/imageresize/IMG_2525-MagicScaler.jpg "IMG_2525-MagicScaler") | ![IMG_2525-SkiaSharp](../assets/images/imageresize/IMG_2525-SkiaSharp.jpg "IMG_2525-SkiaSharp") | ![IMG_2525-FreeImage](../assets/images/imageresize/IMG_2525-FreeImage.jpg "IMG_2525-FreeImage") | ![IMG_2525-Imageflow](../assets/images/imageresize/IMG_2525-Imageflow.jpg "IMG_2525-Imageflow") |
 |      10 | ![IMG_2565 System.Drawing](../assets/images/imageresize/IMG_2565-SystemDrawing.jpg "IMG_2565 System.Drawing") | ![IMG_2565-ImageSharp](../assets/images/imageresize/IMG_2565-ImageSharp.jpg "IMG_2565-ImageSharp") | ![IMG_2565-MagickNET](../assets/images/imageresize/IMG_2565-MagickNET.jpg "IMG_2565-MagickNET") | ![IMG_2565-MagicScaler](../assets/images/imageresize/IMG_2565-MagicScaler.jpg "IMG_2565-MagicScaler") | ![IMG_2565-SkiaSharp](../assets/images/imageresize/IMG_2565-SkiaSharp.jpg "IMG_2565-SkiaSharp") | ![IMG_2565-FreeImage](../assets/images/imageresize/IMG_2565-FreeImage.jpg "IMG_2565-FreeImage") | ![IMG_2565-Imageflow](../assets/images/imageresize/IMG_2565-Imageflow.jpg "IMG_2565-Imageflow") |
 |      11 | ![IMG_2734 System.Drawing](../assets/images/imageresize/IMG_2734-SystemDrawing.jpg "IMG_2734 System.Drawing") | ![IMG_2734-ImageSharp](../assets/images/imageresize/IMG_2734-ImageSharp.jpg "IMG_2734-ImageSharp") | ![IMG_2734-MagickNET](../assets/images/imageresize/IMG_2734-MagickNET.jpg "IMG_2734-MagickNET") | ![IMG_2734-MagicScaler](../assets/images/imageresize/IMG_2734-MagicScaler.jpg "IMG_2734-MagicScaler") | ![IMG_2734-SkiaSharp](../assets/images/imageresize/IMG_2734-SkiaSharp.jpg "IMG_2734-SkiaSharp") | ![IMG_2734-FreeImage](../assets/images/imageresize/IMG_2734-FreeImage.jpg "IMG_2734-FreeImage") | ![IMG_2734-Imageflow](../assets/images/imageresize/IMG_2734-Imageflow.jpg "IMG_2734-Imageflow") |
-|      12 | ![sample System.Drawing](../assets/images/imageresize/sample-SystemDrawing.jpg "sample System.Drawing") | ![sample-ImageSharp](../assets/images/imageresize/sample-ImageSharp.jpg "sample-ImageSharp") | ![sample-MagickNET](../assets/images/imageresize/sample-MagickNET.jpg "sample-MagickNET") | ![sample-MagicScaler](../assets/images/imageresize/sample-MagicScaler.jpg "sample-MagicScaler") | ![sample-SkiaSharp](../assets/images/imageresize/sample-SkiaSharp.jpg "sample-SkiaSharp") | ![sample-FreeImage](../assets/images/imageresize/sample-FreeImage.jpg "sample-FreeImage") | ![sample-Imageflow](../assets/images/imageresize/sample-Imageflow.jpg "sample-Imageflow") |
+|      12 | ![sample System.Drawing](../assets/images/imageresize/sample-SystemDrawing.jpg "sample System.Drawing")       | ![sample-ImageSharp](../assets/images/imageresize/sample-ImageSharp.jpg "sample-ImageSharp")       | ![sample-MagickNET](../assets/images/imageresize/sample-MagickNET.jpg "sample-MagickNET")       | ![sample-MagicScaler](../assets/images/imageresize/sample-MagicScaler.jpg "sample-MagicScaler")       | ![sample-SkiaSharp](../assets/images/imageresize/sample-SkiaSharp.jpg "sample-SkiaSharp")       | ![sample-FreeImage](../assets/images/imageresize/sample-FreeImage.jpg "sample-FreeImage")       | ![sample-Imageflow](../assets/images/imageresize/sample-Imageflow.jpg "sample-Imageflow")       |
 
 #### Conclusion
 
@@ -336,11 +302,6 @@ MagicScaler has a good picture quality out of the box, it is quite fast, does no
 System.Drawing is overall the best package, with low memory usage, good picture quality and it is quite fast. Downside is the windows only support.
 
 I am really interested in developments around Skia, since there is lots of talk around it on Maui, and Microsoft seems to push it. So I expect it to improve in the near future.
-
-
-
-
-
 
 ## Remarks
 
