@@ -1,14 +1,14 @@
 # About NUnit
-*10-10-2023 - updated 1-1-2024*
+*10-10-2023 - updated 12-1-2024*
 
-NUnit is a unit-testing framework for all .Net languages
+NUnit is a unit-testing framework for all .Net languages.
 
 ## Test execution in NUnit
 
 NUnit creates one instance for the test class.
 The image below depicts the test execution order:
 
-![Test execution order](/assets/images/nunit/testexecnunit.svg "Test execution order for Nunit")
+![Test execution order](../assets/images/nunit/testexecnunit.svg "Test execution order for Nunit")
 
 As in any class, first the constructor is run on initialization.  
 Instead of initializing in the constructor, or after that, you can use the `[OneTimeSetUp]` attribute method. This is where to write code that you reuse through the whole test class. Think of Logger Mocks and that kind of stuff. OneTimeSetUp breaches test isolation, so think twice about having test data in here. You can put things in here that require lots of time to setup. Speed is of the essence in unit testing.
@@ -42,14 +42,20 @@ In a previous company it was allowed to have only one assert per test. I am not 
 
 ### Assert on equality
 
-For [asserting equality](https://docs.nunit.org/articles/nunit/writing-tests/constraints/EqualConstraint.html), returns true if two variables have the same value.
-`Assert.That(actual, Is.EqualTo(expected))`
+For [asserting equality](https://docs.nunit.org/articles/nunit/writing-tests/constraints/EqualConstraint.html), returns true if two variables have the same value. 
 
+```cs
+Assert.That(actual, Is.EqualTo(expected));
+```
 
 ### Assert on Reference equality
 
-Two references point to the same object in memory
-`Is.SameAs` in NUnit
+Two references point to the same object in memory  
+
+```cs
+Assert.That(actual, Is.SameAs(expected));
+```
+
 
 ### Assert floating point numbers
 
@@ -57,18 +63,32 @@ Dealing with floating point numbers means the values will be rounded, and probab
 
 
 In NUnit you can add the Within, to give a tolerance the values should be within.  
-` Assert.That(a, Is.EqualTo(0.33).Within(0.004)); `  
-Or give a percentage:
-` .Within(10).Percent `
+
+ ```cs
+ Assert.That(a, Is.EqualTo(0.33).Within(0.004));
+```
+
+Or give a percentage:  
+
+```cs
+ Assert.That(a, Is.EqualTo(0.33).Within(10).Percent);
+ ```
 
 ### Assert on Collection Contents
 
 I used to compare on Count items, and some or every item to Assert.
 
 In NUnit you can:  
-`Assert.That(result, Has.Exactly(3).Items);`  
-Instead of classic count.  
-`Assert.AreEqual(result.Count(), 3);`  
+```cs
+Assert.That(result, Has.Exactly(3).Items);
+```
+
+Instead of classic count.
+
+```cs
+Assert.AreEqual(result.Count(), 3); 
+```
+
 But I think I like the latter better.
 
 No duplicate items in List:
@@ -110,8 +130,11 @@ Assert.That(result, Has.Exactly(1)
 
 ### Assert Exceptions
 
-Assert exceptions in this manner:
-` Assert.That(() => new SomeInput(0), Throws.TypeOf<ArgumentOutOfRangeException>()); `
+Assert exceptions in this manner:  
+
+```cs
+Assert.That(() => new SomeInput(0), Throws.TypeOf<ArgumentOutOfRangeException>());
+```
 
 ### Multiple Asserts
 

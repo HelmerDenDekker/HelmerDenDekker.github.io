@@ -1,10 +1,10 @@
-# Image format support in dotNet: from JPG to WEBP on Windows OS
-*11-1-2024*
+# Image format support in dotNet: from JPG to WebP on Windows OS
+*12-1-2024*
 
 ## Introduction
 
 My Question:  
-Which packages support JPEG (.jpg), WEBP (.webp) and Portable Network Graphics (.png)?
+Which packages support JPEG (.jpg), WebP (.webp) and Portable Network Graphics (.png)?
 
 ## Boundary conditions
 
@@ -29,14 +29,14 @@ A summary of the packages used in this table:
 
 A summary of the packages used in this table:
 
-| Package                                                                |                                       Formats |
-|------------------------------------------------------------------------|----------------------------------------------:|
-| [System.Drawing](https://www.nuget.org/packages/System.Drawing.Common) | Webp PNG Gif Wmf Exif Emf Heif Icon Jpeg Tiff |
-| [ImageSharp](https://github.com/SixLabors/ImageSharp)                  |            WebP PNG Gif Tga Tiff Pdm Jpeg Bmp |
-| [Magick.Net](https://github.com/dlemstra/Magick.NET)                   |                  WebP PNG Gif and ~100 others |
-| [MagicScaler](https://www.nuget.org/packages/PhotoSauce.MagicScaler)   |      WebP PNG Gif and any WIC codec installed |     
-| [SkiaSharp](https://github.com/mono/SkiaSharp)                         |                                  JPG PNG WebP |      
-| [ImageFlow](https://github.com/imazen/imageflow-dotnet)                |                                  JPG PNG WebP |     
+| Package                                                                |                                         Formats |
+|------------------------------------------------------------------------|------------------------------------------------:|
+| [System.Drawing](https://www.nuget.org/packages/System.Drawing.Common) | Jpeg PNG Webp  Gif Wmf Exif Emf Heif Icon  Tiff |
+| [ImageSharp](https://github.com/SixLabors/ImageSharp)                  |            Jpeg PNG WebP  Gif Tga Tiff Pdm  Bmp |
+| [Magick.Net](https://github.com/dlemstra/Magick.NET)                   |              Jpeg PNG WebP  Gif and ~100 others |
+| [MagicScaler](https://www.nuget.org/packages/PhotoSauce.MagicScaler)   |        WebP PNG Gif and any WIC codec installed |     
+| [SkiaSharp](https://github.com/mono/SkiaSharp)                         |                                   Jpeg PNG WebP |      
+| [ImageFlow](https://github.com/imazen/imageflow-dotnet)                |                                   Jpeg PNG WebP |     
 
 ### system.Drawing
 
