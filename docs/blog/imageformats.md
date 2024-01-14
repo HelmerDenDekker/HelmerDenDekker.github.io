@@ -6,41 +6,13 @@
 My Question:  
 Which packages support JPEG (.jpg), WebP (.webp) and Portable Network Graphics (.png)?
 
+Image formats are not really file formats, rather compression mechanisms.
+
 ## Boundary conditions
 
+As in TX test
 
 
-### Packages summarized
-
-A summary of the packages used in this table:
-
-| Package                                                                |                                                                               License | Published | Version | Downloads |
-|------------------------------------------------------------------------|--------------------------------------------------------------------------------------:|----------:|--------:|----------:|
-| [System.Drawing](https://www.nuget.org/packages/System.Drawing.Common) |                                                                                   MIT |   11-2023 |   6.0.0 |  1124.1 M |
-| [ImageSharp](https://github.com/SixLabors/ImageSharp)                  | [Six Labors split](https://www.nuget.org/packages/SixLabors.ImageSharp/3.1.1/license) |   12-2023 |   3.1.1 |    77.6 M |
-| [Magick.Net](https://github.com/dlemstra/Magick.NET)                   |                                                                            Apache 2.0 |   12-2023 |  13.5.0 |    15.0 M |
-| [MagicScaler](https://www.nuget.org/packages/PhotoSauce.MagicScaler)   |                                                                                   MIT |   10-2023 |  0.14.0 |     0.7 M |
-| [SkiaSharp](https://github.com/mono/SkiaSharp)                         |                                                                                   MIT |    9-2023 |  2.88.6 |    69.1 M |
-| [FreeImage](https://github.com/LordBenjamin/FreeImage.Standard)        |                           [Free Image](https://freeimage.sourceforge.io/license.html) |    6-2019 |   4.3.8 |    0.07 M |
-| [ImageFlow](https://github.com/imazen/imageflow-dotnet)                |                                                                tri or bi-license AGPL |    9-2023 |  0.10.2 |     0.3 M |
-
-### Format support
-
-
-A summary of the packages used in this table:
-
-| Package                                                                |                                         Formats |
-|------------------------------------------------------------------------|------------------------------------------------:|
-| [System.Drawing](https://www.nuget.org/packages/System.Drawing.Common) | Jpeg PNG Webp  Gif Wmf Exif Emf Heif Icon  Tiff |
-| [ImageSharp](https://github.com/SixLabors/ImageSharp)                  |            Jpeg PNG WebP  Gif Tga Tiff Pdm  Bmp |
-| [Magick.Net](https://github.com/dlemstra/Magick.NET)                   |              Jpeg PNG WebP  Gif and ~100 others |
-| [MagicScaler](https://www.nuget.org/packages/PhotoSauce.MagicScaler)   |        WebP PNG Gif and any WIC codec installed |     
-| [SkiaSharp](https://github.com/mono/SkiaSharp)                         |                                   Jpeg PNG WebP |      
-| [ImageFlow](https://github.com/imazen/imageflow-dotnet)                |                                   Jpeg PNG WebP |     
-
-### system.Drawing
-
-Has support on windows GDI+ since windows 10- 1089
 https://learn.microsoft.com/en-us/dotnet/api/system.drawing.imaging.imageformat.webp?view=dotnet-plat-ext-8.0
 How to
 https://github.com/dotnet/runtime/issues/70418
@@ -49,6 +21,9 @@ https://stackoverflow.com/questions/75988248/save-a-webp-file-with-system-drawin
 https://learn.microsoft.com/en-us/dotnet/api/system.drawing.imaging.imageformat?view=dotnet-plat-ext-8.0
 
 Test the formats, and inspect the results!
+
+Every format not supported silently falls back to PNG.
+For webp Skia fallback was used: SkiaSharp.Views.Desktop.Common
 
 ### ImageSharp
 
@@ -74,6 +49,7 @@ In Xamarin, For all the other formats, the Encode method writes nothing into the
 
 https://docs.imageflow.io/json/encode.html
 
+This produced a lot of broken and corrupted files again, need to look into this.
 
 ## Follow up
 
