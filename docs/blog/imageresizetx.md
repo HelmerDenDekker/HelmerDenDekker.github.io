@@ -72,7 +72,7 @@ I just spent max 15 minutes per package to do this stuff, I had no more time to 
 
 #### Conclusion
 
-...//ToDo
+Measuring takes some time, so I think all of these systems are fast enough. Only Magick.NET is considerably slower.
 
 ### Memory usage
 
@@ -80,18 +80,26 @@ The next picture shows allocated memory usage. For your machine this does not ma
 
 ![Memory used](../assets/images/imageformat/memory.svg "Allocated memory")
 
-Cloning in ImageSharp uses insane amount of memory, 400 times more than other the apps.
-//ToDo
+Cloning in ImageSharp uses insane amount of memory, 4000 times more than other the apps.  
+Those pictures are 55 Mb in total. Why is it using 1200Mb? In the last test it used 1.2Mb of the 3Mb on disk. If it scales exponentially, what will happen in a real scenario when the guys process 30-40 photo's of about 200-500Mb at once? At least 12Gb?  
+
+For the other apps: I did not spent any time optimising. It does save the one picture in 4 sizes and three formats, producing 12 files out of one picture. I think performance is great, considering most apps use <500 kB of allocated memory for handling 55 Mb of pictures.
 
 #### Conclusion
 
-//ToDo
+ImageSharp is very heavy on the memory.
 
 ### File size
 
 ![File size](../assets/images/imageformat/filesize.svg "File size")
 
-The Magicscaler PNG is not a mistake.
+Webp produces the smallest image file size possible. However, there are huge differences between the packages I need to investigate. ImageSharp has the smallest filesize, followed by MagicScaler. The other packages are equals.
+
+The MagicScaler PNG is not a mistake. It really is that small.
+The System.Drawing produces big PNG files.
+
+In the land of JPEG everything is about the same. SkiaSharp and System.Drawing produce small images. ImageSharp and MagicScaler a bit bigger. Magick.NET has the largest files.
+
 
 ## Quality
 
@@ -111,11 +119,11 @@ So, fireworks. What is happening?
 
 The same thing is basically happening in every picture, but here the differences are perfectly visible.
 
-System.Drawing: In the JPG there is this weird white-versus-color thing going on. I miss the red! The PNG is a bit better. The skia-saved webp is much too white!
-ImageSharp: The PNG has much more red compared to the JPG. The PNG looks like the original. For Webp the colors seem off.
-Magick.NET: The JPG is perfect, spot on. The PNG as well. The Webp: Where have the colors gone?
-Magicscaler is very white. 
-SkiaSharp: I like their take on the fireworks, because it is a bit less sharp, but it has a lot of blurring and edge halo going along. I need to fix this with the trick on Github.
+System.Drawing: In the JPG there is this weird white-versus-color thing going on. I miss the red! The PNG is a bit better. The skia-saved webp is much too white!  
+ImageSharp: The PNG has much more red compared to the JPG. The PNG looks like the original. For Webp the colors seem off.  
+Magick.NET: The JPG is perfect, spot on. The PNG as well. The Webp: Where have the colors gone?  
+MagicScaler is crisp and very white.   
+SkiaSharp: I like their take on the fireworks, because it is a bit less sharp, but it has a lot of blurring and edge halo going along. I need to fix this with the trick on Github.  
 
 
 ### Another light-dark example with details
@@ -136,40 +144,75 @@ Magick.NET: What happened in the JPEG? The fireworks was fine, and now... The re
 Magicscaler: compare this to the fireworks. In the snow-pictures the white is more dominant, it is aan issue. All three dragon pictures look okay to me.  
 SkiaSharp: It is just not sharp.
 
+### How about them apples?
+
+In a more normal scenario, above 320px the extreme whiteness of MagicScaler is present only in snowy pictures:  
+
+| Package              |                                                                                                               System.Drawing  | MagicScaler                                                                                                               FileSize (KB |  
+|----------------------|------------------------------------------------------------------------------------------------------------------------------:|---------------------------------------------------------------------------------------------------------------------------------------:|
+|  |         ![Snow as Webp by System.Drawing](../assets/images/imageformat/snow-sysdrawing.webp "Snow as Webp by System.Drawing") |                       ![Snow as Webp by MagicScaler](../assets/images/imageformat/snow-magicscaler.webp "Snow as Webp by MagicScaler") |
+
+In the MagicScaler the trees show more snow. This effect occurs in high contrast scenario's, these often occur in the pictures taken by Team Xerbutri.
+
+Looking at pictures with lower contrast, MagicScaler just looks very good, I mean, look at these file sizes! Who doesn't want this quality at this file size?
+
+| Package              |                                                                                                                                    | FileSize (KB) |  
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------:|--------------:|
+| System.Drawing (PNG) | ![Them apples as PNG by System.Drawing](../assets/images/imageformat/apples-sysdrawing.png "Them apples as PNG by System.Drawing") |           198 |
+| MagicScaler (PNG)    |      ![Them apples as PNG by MagicScaler](../assets/images/imageformat/apples-magicscaler.png "Them apples as PNG by MagicScaler") |            27 |
+| MagicScaler (Webp)   |   ![Them apples as Webp by MagicScaler](../assets/images/imageformat/apples-magicscaler.webp "Them apples as Webp by MagicScaler") |            18 |
+| MagicScaler (JPG)    |     ![Them apples as Webp by MagicScaler](../assets/images/imageformat/apples-magicscaler.jpg "Them apples as JPG by MagicScaler") |            28 |
+| System.Drawing (JPG) | ![Them apples as PNG by System.Drawing](../assets/images/imageformat/apples-sysdrawing.jpg "Them apples as JPG by System.Drawing") |            25 |
+| SkiaSharp (PNG)      |                 ![Them apples as PNG by SkiaSharp](../assets/images/imageformat/apples-skia.png "Them apples as PNG by SkiaSharp") |           112 |
 
 
-#### Conclusion
 
-Grades 1-10
+#### Conclusion regarding picture quality
 
-| Package        | JPG | PNG  | Webp |
-|----------------|-----|------|------|
-| System.Drawing | 7.5 | 8.5  | 7    |
-| ImageSharp     | 8   | 7    | 3    |
-| Magick.Net     | 7   | 8.5  | 6    |
-| MagicScaler    | 8*  | 8.5* | 8*   |
-| SkiaSharp      | 3   | 4    | 3    |
+In the 80 px thumbnail category, the whites from MagicScaler are strong in all of the pictures. Skia looks blurry. System.Drawing, ImageSharp and Magick.Net are fine.
 
-MagicScaler is far too white to be a winner.
-ImageSharp has good JPEG quality, memory usage is crazy high though. 
-System.Drawing has a good JPEG quality, small file size, and good performance.
+The 320px category is where the differences between packages (or their settings) stand out the strongest. I reviewed the picture quality with stars. Five stars meaning best quality, one star being bad. This very objective manner show the differences between the packages for the different compression formats:
 
-MagicScaler has the best quality for PNG size. I will need to investigate the white problem and what settings are used.
-System.Drawing PNG files are so large they are useless.
 
-Webp is okay, but quality-wise only magicscaler is good. Whitening problem though...
+| Package        |  JPG |   PNG |    Webp |
+|----------------|-----:|------:|--------:|
+| System.Drawing |  *** | ***** |     *** |
+| ImageSharp     | **** |   *** |       * |
+| Magick.Net     |  *** | ***** |     ** |
+| MagicScaler    | **** | ***** |   **** |
+| SkiaSharp      |    * |     * |       * |
 
-Based on these results:
-MagicScaler rocks with low file sizes and consistent quality, but has a whitening problem. So I will not use this for the Xerbutri website.
-ImageSharp has this weird memory problem, I cannot use it on a server, it will crash or cost me dearly.
+
+System.Drawing has great PNG quality, but JPEG and WebP are just fine. There are some edge halo effects in the JPG and blurriness in the Webp.   
+ImageSharp produces good JPG, but the PNG quality is mediocre. The Webp images are all blurry, which is weird.  
+Magick.NET produces a very good PNG quality image, where some JPGs are a bit blurry and have some edge halo, the Webp is even more blurry. Just a tiny bit more compared to System.Drawing.  
+MagicScaler produces great pictures in all sizes with regard to sharpness. The Them Apples WebP picture is just as good as the original, which at this filesize is real magic! The downside of this package is the whitening in high contrast scenarios. I'd like to know if there is a fix for that.
+SkiaSharp is just blurry overall.
+
 
 
 ## Conclusion
 
-Follow-up: 
+System.Drawing is the fastest package. Memory usage is great. However, the produced PNG files are so large they are useless. Also the WebP file size is more than twice the size of an ImageSharp or MagicScaler Webp. Quality-wise the PNG's are great, but JPG and Webp are overall just fine. File support is a ***. You may think certain files are supported, while silently falling back on... That is not nice.
+
+ImageSharp is very heavy on the memory. It was in the last test, and it still is in this test. Locally it just nicely warms the room, but I cannot use it on a server, it will crash or cost me dearly. Filesize is normal for JPG and PNG, and low for Webp.
+
+Magick.NET is the slowest package, producing good quality PNG pictures, but lagging behind in the JPG and Webp quality. I love its fireworks JPG and it has great real file support, so if that is your thing, go for it!  
+
+MagicScaler is far too white to be a winner for the Team Xerbutri case. This is especially a big deal in the 80px wide thumbnails and high contrast scenarios. MagicScaler has the best quality for PNG size. I will need to investigate the white problem and what settings are used. The total time elapsed is a bit slow, and it uses more memory than System.Drawing, but it is still light weight. And I did not optimize these packages, please remember that. The file sizes it produces are magically small! The quality it produces is high.
+
+SkiaSharp, sorry you guys. I need to redo this test one time with the sharpness tweak, because, unless you have bad sight, it just won't do.
+
+
+Overall I may say that System.Drawing has a good JPEG quality, small file size, and good performance. MagicScaler rocks with low file sizes and consistent quality, but has a whitening problem. So I will not use this for the Xerbutri website.
+
+
+### Follow-up
+
 - Why is MagicScaler so white? Is it a contrast setting?
 - Why are the PNGs of MagicScaler crazy small?
 - Can I tune picture quality?
+- What settings to use for which pictures?
 
 
 ## Resources
