@@ -224,4 +224,22 @@ About jpeg:
 [JPEG definitive guide](https://www.thewebmaster.com/jpeg-definitive-guide/)
 
 Packages:  
-[PhotoSauce](https://photosauce.net/)
+
+[Webp in System.Drawing](https://learn.microsoft.com/en-us/dotnet/api/system.drawing.imaging.imageformat.webp?view=dotnet-plat-ext-8.0)
+
+[Issues in System.Drawing with Webp on GitHub](https://github.com/dotnet/runtime/issues/70418)    
+
+[Issues in System.Drawing with Webp on StackOverflow](https://stackoverflow.com/questions/75988248/save-a-webp-file-with-system-drawing-imaging-generates-a-big-file-size-or-encode)  
+
+[Image formats in System.Drawing](https://learn.microsoft.com/en-us/dotnet/api/system.drawing.imaging.imageformat?view=dotnet-plat-ext-8.0)  
+
+[Image formats in ImageSharp](https://docs.sixlabors.com/articles/imagesharp/imageformats.html)
+
+[Image formats in Magick.Net](https://imagemagick.org/script/formats.php)
+
+[MagicScaler](https://photosauce.net/blog/post/introducing-magicscaler)
+
+[Image formats in SkiaSharp Xamarin](https://learn.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/graphics/skiasharp/bitmaps/saving)  
+[Image formats in SkiaSharp](https://learn.microsoft.com/en-us/dotnet/api/skiasharp.skencodedimageformat?view=skiasharp-2.88)  
+
+[Image formats in ImageFlow](https://docs.imageflow.io/json/encode.html)
