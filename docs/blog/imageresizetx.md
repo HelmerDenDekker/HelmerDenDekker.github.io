@@ -4,7 +4,7 @@
 ## Introduction
 
 Automating the picture resize process.
-I used about the same packages from the [image resize test](/imageresize), more realistic scenario for Team Xerbutri.
+I used about the same packages from the image resize test, but this time used a more realistic scenario for Team Xerbutri.
 
 
 ## Boundary conditions
@@ -13,7 +13,7 @@ In this test I used the 12 pictures.
 
 This test:
 - uses 12 pictures of approx 4500kB size each, ~6000 x ~4000 px 
-- resizes to 80px, 320px, 768px, 1280px
+- resizes to 80px, 320px, 768px and 1280px
 - benchmarking of load, resize and save operations
 - using .NET 8
 - using Windows 11 only
