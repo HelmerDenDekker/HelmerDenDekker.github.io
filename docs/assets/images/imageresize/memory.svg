@@ -136,25 +136,25 @@
 		<g>
 			<g>
 				<text text-anchor="middle" x="411" y="487.75" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#222222">SysD
+					  stroke-width="0" fill="#222222">SysDr
 				</text>
 				<text text-anchor="middle" x="466" y="487.75" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#222222">ImS
+					  stroke-width="0" fill="#222222">ImShrp
 				</text>
 				<text text-anchor="middle" x="521" y="487.75" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#222222">MaN
+					  stroke-width="0" fill="#222222">MgNt
 				</text>
 				<text text-anchor="middle" x="576" y="487.75" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#222222">MaS
+					  stroke-width="0" fill="#222222">MgSc
 				</text>
 				<text text-anchor="middle" x="631" y="487.75" font-family="Arial" font-size="15" stroke="none"
 					  stroke-width="0" fill="#222222">Skia
 				</text>
 				<text text-anchor="middle" x="686" y="487.75" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#222222">Free
+					  stroke-width="0" fill="#222222">ImFr
 				</text>
 				<text text-anchor="middle" x="741" y="487.75" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#222222">Flow
+					  stroke-width="0" fill="#222222">ImFlw
 				</text>
 			</g>
 			<g>

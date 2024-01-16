@@ -1,7 +1,7 @@
 # About NUnit
-*10-10-2023 - updated 1-1-2024*
+*10-10-2023 - updated 16-1-2024*
 
-NUnit is a unit-testing framework for all .Net languages
+NUnit is a unit-testing framework for all .Net languages.
 
 ## Test execution in NUnit
 
@@ -27,7 +27,7 @@ The `[Category]` attribute can be used to sort the unit tests.
 
 Use the `[TestCase]` attribute to provide data, see the examples in [HelmerDemo - NUnit unit tests](https://github.com/HelmerDenDekker/HelmerDemo.WebShopDemo/blob/rd-unittests/src/Services/Tests/WSD.Catalog.Domain.UnitTests.nUnit/CatalogItemLogicTests.cs)
 
-The `[Values]` attribute generates automatic test scenarios for all possible input combination, however be careful with Asserts when using this. It is really nice to use this in Test Driven Development, combined with the ` [Range] ` attribute to generate your input.
+The `[Values]` attribute generates automatic test scenarios for all possible input combination, however be careful with Asserts when using this. It is really nice to use this in Test Driven Development, combined with the `[Range]` attribute to generate your input.
 
 ## Assert in NUnit
 
@@ -42,33 +42,52 @@ In a previous company it was allowed to have only one assert per test. I am not 
 
 ### Assert on equality
 
-For [asserting equality](https://docs.nunit.org/articles/nunit/writing-tests/constraints/EqualConstraint.html), returns true if two variables have the same value.
-`Assert.That(actual, Is.EqualTo(expected))`
+For [asserting equality](https://docs.nunit.org/articles/nunit/writing-tests/constraints/EqualConstraint.html), returns true if two variables have the same value. 
 
+```cs
+Assert.That(actual, Is.EqualTo(expected));
+```
 
 ### Assert on Reference equality
 
-Two references point to the same object in memory
-`Is.SameAs` in NUnit
+Two references point to the same object in memory  
+
+```cs
+Assert.That(actual, Is.SameAs(expected));
+```
 
 ### Assert floating point numbers
 
 Dealing with floating point numbers means the values will be rounded, and probably (in some cases) not have the same values.
 
-
 In NUnit you can add the Within, to give a tolerance the values should be within.  
-` Assert.That(a, Is.EqualTo(0.33).Within(0.004)); `  
-Or give a percentage:
-` .Within(10).Percent `
+
+```cs
+ Assert.That(a, Is.EqualTo(0.33).Within(0.004));
+```
+
+Or give a percentage:  
+
+```cs
+ Assert.That(a, Is.EqualTo(0.33).Within(10).Percent);
+ ```
 
 ### Assert on Collection Contents
 
 I used to compare on Count items, and some or every item to Assert.
 
 In NUnit you can:  
-`Assert.That(result, Has.Exactly(3).Items);`  
-Instead of classic count.  
-`Assert.AreEqual(result.Count(), 3);`  
+
+```cs
+Assert.That(result, Has.Exactly(3).Items);
+```
+
+Instead of classic count.
+
+```cs
+Assert.AreEqual(result.Count(), 3); 
+```
+
 But I think I like the latter better.
 
 No duplicate items in List:
@@ -110,8 +129,11 @@ Assert.That(result, Has.Exactly(1)
 
 ### Assert Exceptions
 
-Assert exceptions in this manner:
-` Assert.That(() => new SomeInput(0), Throws.TypeOf<ArgumentOutOfRangeException>()); `
+Assert exceptions in this manner:  
+
+```cs
+Assert.That(() => new SomeInput(0), Throws.TypeOf<ArgumentOutOfRangeException>());
+```
 
 ### Multiple Asserts
 
@@ -125,6 +147,7 @@ Assert.That(result.IsSuccess, Is.True); // I expect succes
 Assert.That(result.StatusCode, Is.EqualTo(HttpStatusCode.Created) ); // I expect the statuscode to be Created type
 Assert.That(_catalogItemLogic.AvailableStock, Is.EqualTo(2)); // I expect the available stock to decrease
 ```
+
 It will check line by line, so if the first Assert fails, the test fails, but you do not know anything about why the result was not a success.
 
 In NUnit you can solve this by using Assert.Multiple like this:

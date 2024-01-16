@@ -1,5 +1,5 @@
 # Image resize in dotNet: from JPG to JPG on Windows OS
-*1-1-2024*
+*1-1-2024 - updated 16-1-2024*
 
 ## Introduction
 
@@ -126,11 +126,12 @@ MagicScaler and ImageFlow are promising packages, but they are not that popular.
 
 ## Results in numbers
 
-The results of this test
+The results of this test in numbers: the time elapsed to produce the pictures, the memory used and the resulting filesize.
 
 ### Time elapsed
 
 The time elapsed is just an indication, as run on my laptop. So please just focus on the ratio.
+The picture below shows the default output by Benchmarking.NET. It shows the time per operation.
 
 ![Time per operation](../assets/images/imageresize/speed.svg "Time per operation")
 
@@ -141,28 +142,29 @@ The total time elapsed gives a better comparison:
 
 ![Time total](../assets/images/imageresize/totalspeed.svg "Total time elapsed")
 
-Now this looks very different! ImageFlow is now slowest. Spinning up >500 operations has the downside of having a lot of overhead on my system, in this test. Another test may have another outcome!
+Now this looks very different!  
+ImageFlow is now slowest. Spinning up >500 operations has the downside of having a lot of overhead on my system, in this test. Another test may have another outcome!  
 Magick.NET is now the fastest package overall, while being the slowest package per operation. 
 
 #### Conclusion
 
-In this case I am not interested in per operation statistics, I want to know how long it takes to resize all of my images.
+In this test I am not interested in per operation statistics, I want to know how long it takes to resize all of my images.
 
 For this test, loading, resizing and saving with 12 images of 0,5 MB size:  
 Magick.NET is clearly fastest.  
 ImageFlow is the slowest.  
 All others show decent performance.
 
-I will create another test for the Xerbutri case later, but I wanted to be able to compare with the results by Bertrand Le Roy.
+I created an [other test for the Xerbutri scenario](./imageresizetx.md), but here I wanted to be able to compare with the results by Bertrand Le Roy.
 
 #### A quick flashback to the claims:
 
-MagicScaler: "speed and efficiency are unmatched by anything else on the .NET platform"
-Their speed is actually exactly in the middle in this test. I wonder if a more real-life scenario will reveal different results.
+MagicScaler: "speed and efficiency are unmatched by anything else on the .NET platform"  
+Their speed is actually exactly in the middle in this test. The Xerbutri test showed similar results in a heavier test. Speed is not their unique selling point.
 
-SkiaSharp was made for speed, and it is second fastest in this test.
+SkiaSharp was made for speed, and it is second fastest in this test. It maintains this position in the second heavier test.
 
-ImageFlow mentions fast in its description, but in this case it is not.
+ImageFlow mentions fast in its description, but in this test it is not.
 
 ### Memory usage
 
@@ -193,7 +195,7 @@ SkiaSharp and ImageFlow have lowest file sizes. I am not going to touch this, be
 
 Quality of the pictures is subjective.  
 
-I want to show you two cases, contrast and bokeh.
+I want to show you two cases: contrast and bokeh.
 
 This is the original high contrast picture.
 ![Original1](../assets/images/imageresize/DSCN0533.jpg "Original")
@@ -323,11 +325,11 @@ I am grateful for the blogpost and code by Bertrand Le Roy, it was a great inspi
 
 ## Follow up
 
-- Which packages support JPEG (.jpg), WEBP (.webp) and Portable Network Graphics (.png)?
+- [Which packages support JPEG (.jpg), WEBP (.webp) and Portable Network Graphics (.png)?](./imageresizetx.md)
 - Which package has the best algorithm for producing the highest quality pictures?
 - Which package supports the best encoding (compression) mechanisms?
 - Which packages support placing a watermark?
-- Which packages will perform best in real-life scenario's with approx 40 pictures of 6Mb size?
+- [Which packages will perform best in real-life scenario's with approx 40 pictures of 6Mb size?](./imageresizetx.md)
 - An application that should ultimately have functionality comparable to [Easy Thumbnails](https://www.fookes.com/easy-thumbnails) (in use by the team Xerbutri or their website):
   - Batch process to **scale down** to different sizes for web
   - Batch process to save as **different picture formats**
