@@ -1,4 +1,5 @@
 # REST
+
 *6-9-2023*
 
 Status: Work in progress
@@ -23,7 +24,7 @@ REST is an acronym for Representational State Transfer and an architectural styl
 ### Uniform interface
 
 Define a uniform interface for your API, and stick with it.
-//ToDo: API design standards link! 
+//ToDo: API design standards link!
 //ToDo: HATEOS link
 
 

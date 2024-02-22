@@ -1,9 +1,8 @@
 # How to implement: Frontend best practices
+
 *18-9-2023*
 
 Status: Work in progress
-
-
 
 ## Resources
 

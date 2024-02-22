@@ -1,4 +1,5 @@
 # Reading Appsettings
+
 *20-12-2023*
 
 Status: Work in progress  
@@ -9,14 +10,13 @@ Type of post: Resource
 When to use what, for loading appsettings
 
 By Mukesh:   
-When to use IOptions, IOptionsMonitor, and IOptionsSnapshot?  
+When to use IOptions, IOptionsMonitor, and IOptionsSnapshot?
+
 - Prefer to use IOptions, when you are not expecting your configuration values to change.
 - Use IOptionsSnapshot when you expect your values to change, but want them to be uniform for the entire request cycle.
 - Use IOptionsMonitor when you need real-time options data.
 
-
 ## *Outline*
-
 
 ## Resources
 
