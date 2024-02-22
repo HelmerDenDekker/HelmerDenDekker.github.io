@@ -24,14 +24,14 @@ Status: Work in progress - Not mine!
 
 Tale of the kingdom and our three heroes:
 
-![Bas presents the kingdom as analogue for the organisation](/assets/images/testknowhow/testkingdom.png "Bas presents the kingdom as analogue for the organisation")
+![Bas presents the kingdom as analogue for the organisation](../../assets/images/testknowhow/testkingdom.png "Bas presents the kingdom as analogue for the organisation")
 
 The kingdowm represents the organisation. Developers develop software, and three heroes take care that reliable software
 is delivered.
 
 ### The heroes
 
-![Bas presents the testers as farmer-general-wizard](/assets/images/testknowhow/testheroes.png "Bas presents the testers as farmer-general-wizard")
+![Bas presents the testers as farmer-general-wizard](../../assets/images/testknowhow/testheroes.png "Bas presents the testers as farmer-general-wizard")
 
 There are three levels of testers:
 
@@ -58,13 +58,13 @@ always need the level 1 tester (farmer) to perform emperical tests to see "if th
 
 The testers prevent bugs, take care of quality assurance. Risk prevention. Manual testing is very important.
 
-![Bas presents the work](/assets/images/testknowhow/testwork.png "Bas presents the work")
+![Bas presents the work](../../assets/images/testknowhow/testwork.png "Bas presents the work")
 
 ### The farmer: level 1 farmer
 
 This where you will find 90% of the bugs. The farmer tests the stories delivered by the developer.
 
-![Bas about level 1 testers](/assets/images/testknowhow/testfarmer.png "Bas about level 1 testers")
+![Bas about level 1 testers](../../assets/images/testknowhow/testfarmer.png "Bas about level 1 testers")
 
 These testers know about customer journeys. Sometimes even more than the business analists or product owners.
 
@@ -73,14 +73,14 @@ These testers know about customer journeys. Sometimes even more than the busines
 The general is the "test manager". Not a manager as organisational role, but The general does test the application and
 integration, and knows about these dependencies. The general can take care of test automation, writes scripts.
 
-![Bas about level 2 testers](/assets/images/testknowhow/testgeneral.png "Bas about level 2 testers")
+![Bas about level 2 testers](../../assets/images/testknowhow/testgeneral.png "Bas about level 2 testers")
 
 ### The wizard: level 3 tester
 
 Wizards are the test leads. They know how to perform magic, the know how to automate the testing, but they do not know
 how to grow crops.
 
-![Bas about level 3 testers](/assets/images/testknowhow/testwizard.png "Bas about level 3 testers")
+![Bas about level 3 testers](../../assets/images/testknowhow/testwizard.png "Bas about level 3 testers")
 
 Shift-left.
 

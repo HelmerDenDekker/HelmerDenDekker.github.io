@@ -31,5 +31,5 @@ I think it is a real nice idea. I want to try it.
 
 ## Resources
 
-[HATEOS - restfulapi.net](https://restfulapi.net/hateoas/)
+[HATEOS - restfulapi.net](https://restfulapi.net/hateoas/)  
 [HATEOS - Wikipedia](https://en.wikipedia.org/wiki/HATEOAS)

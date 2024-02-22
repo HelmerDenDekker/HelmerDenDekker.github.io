@@ -9,7 +9,7 @@ NUnit is a unit-testing framework for all .Net languages.
 NUnit creates one instance for the test class.
 The image below depicts the test execution order:
 
-![Test execution order](/assets/images/nunit/testexecnunit.svg "Test execution order for Nunit")
+![Test execution order](../../assets/images/nunit/testexecnunit.svg "Test execution order for Nunit")
 
 As in any class, first the constructor is run on initialization.  
 Instead of initializing in the constructor, or after that, you can use the `[OneTimeSetUp]` attribute method. This is

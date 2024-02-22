@@ -13,5 +13,5 @@ app.
 
 ## Resources
 
-[Microsoft CORS](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-6.0)
+[Microsoft CORS](https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-6.0)  
 [Mozilla CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)

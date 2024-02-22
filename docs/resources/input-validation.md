@@ -4,7 +4,7 @@
 
 ## Big picture
 
-![Input validation](/assets/images/inputvalidationnormalization/inputvalidation.svg "Input validation and normalization")
+![Input validation](../assets/images/inputvalidationnormalization/inputvalidation.svg "Input validation and normalization")
 
 ## Definition
 

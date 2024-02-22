@@ -2,7 +2,7 @@
 
 *20-11-2023*
 
-Status: Work in progress
+Status: Work in progress  
 Type of post: Resource
 
 ## *Rapid fire thoughts*
@@ -133,7 +133,7 @@ constraints on the feasible solutions.
 
 These are described in the numerical methods book.
 
-### Declaratice programming
+### Declarative programming
 
 Example:
 You want some data, and don't care about the workflow as in SQL. Describing the problem domain is minimized.

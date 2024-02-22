@@ -38,5 +38,5 @@ Define a uniform interface for your API, and stick with it.
 
 ## Resources
 
-[What is REST - restfulapi.net](https://restfulapi.net/)
+[What is REST - restfulapi.net](https://restfulapi.net/)  
 [Design beautiful REST+JSON APIs - Oktane 17](https://www.youtube.com/watch?v=MiOSzpfP1Ww)

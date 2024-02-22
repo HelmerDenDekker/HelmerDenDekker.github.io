@@ -1,8 +1,12 @@
 # Kafka
 
-*19-9-2023*
+*19-9-2023 - updated 22-2-2024*
 
-## Architecture
+This article contains my notes on kafka. It is a personal resource, which I put on the website to share with some of my friends.
+
+The first part is about kafka and what I learned. The second part is a how-to guide. Maybe I will split this article in two new ones one day.
+
+## Publish-subscribe architecture
 
 In a publish-subscribe pattern, the consumer posts the message to message middleware. The messaging middleware stores
 the message. The consumer has a subscription on certain messages, and receives these messages from the messaging
@@ -27,16 +31,16 @@ consumer has to actively look at the board for your message, and in messaging sy
 
 ### Messaging middleware
 
-Several messaging middlewares:
+There are several messaging middlewares:
 
 - Apache kafka
 - RabbitMQ
 - ActiveMQ
-- Mediatr (Is in fact a in-memory-queue, isn't it? correct me if I am wrong.)
+- Mediatr
 
 MQ stands for message queue.
 
-Problems:
+Problems are often caused by the following factors:
 
 - High volume of messages by all of the applications
 - Large messages
@@ -56,7 +60,7 @@ the message is gone from the middleware.
 
 ### Kafka
 
-In comes Kafka, created by LinkedIn around 2010 to handle all messaging in the LinkedIn applications/
+In comes Kafka, created by LinkedIn around 2010 to handle all messaging in the LinkedIn applications. It was designed to be:
 
 - Reliable (Fault tolerant)
 - Fast
@@ -75,14 +79,14 @@ It can handle high throughput.
 
 It is more than a messaging system.
 
-![Publish-subscribe pattern for kafka](/assets/images/kafka/kafka.svg "Publish-subscribe pattern for kafka")
+![Publish-subscribe pattern for kafka](../../assets/images/kafka/kafka.svg "Publish-subscribe pattern for kafka")
 
 The Kafka middleware runs on a broker.
 Kafka stores the messages, so it is fault-tolerant. However, what if the server breaks down, goes offline or becomes too
 busy. In order to guarantee 100% uptime multiple brokers on different servers are used in a cluster.
 Zookeeper manages the cluster so the consumer knows where to post.
 
-#### Point-to-point versus PubSub
+#### Point-to-point versus publish-subscribe
 
 If there is one producer and one consumer, you have the point-to-point pattern.
 
@@ -142,8 +146,7 @@ In the config folder there is a file named server.properties. This contains the 
 
 For the demo I want to create two brokers. So I am going to duplicate the config file to server-1.properties.
 
-In this file, first set the id of the broker. This must be set to a unique integer for each broker. Change it from 0 to
-1.
+In this file, first set the id of the broker. This must be set to a unique integer for each broker. Change it from 0 to 1.
 
 ```bat
 broker.id=1
@@ -187,7 +190,7 @@ Next start the kafka brokers by starting a new Git bash, and type
 bin/kafka-server-start.sh config/server.properties
 ```
 
-and in a third git bash window, the second broker by
+In a third git bash window, start the second broker by typing:
 
 ```bat
 bin/kafka-server-start.sh config/server-1.properties
@@ -201,10 +204,10 @@ Create a topic by starting a new git bash and type:
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --partitions 2 --replication-factor 2 --topic demo-tracking
 ```
 
-It wil return lots of line and:
+It will return lots of lines and:
 "Created topic demo tracking"
 
-IIt now formed 4 partitions (2 partitions, 2 replicated).
+It now formed 4 partitions (2 partitions, 2 replicated).
 
 List all topics in a cluster using the following command:
 
@@ -214,13 +217,13 @@ bin/kafka-topics.sh --list --bootstrap-server localhost:9092 demo-tracking
 
 ### Step 4 create a producer
 
-I created an ASP.NET application, could be any application as long as it has IHostedService.
+I created an ASP.NET application, could be any type of application as long as it has IHostedService.
 Install the [Confluent kafka](https://github.com/confluentinc/confluent-kafka-dotnet) nuget package.
 
-In the application In a quick and dirty manner I entered this code:
+In the application In a quick and dirty manner I added this code:
 
 ```cs
-string message = JsonSerializer.Serialize(verwerking);
+string message = JsonSerializer.Serialize("Hello world");
 string bootstrapServer = "localhost:9092";
 ProducerConfig config = new ProducerConfig {
     BootstrapServers = bootstrapServer,
@@ -255,58 +258,55 @@ Create a service:
 using Confluent.Kafka;
 using System.Text.Json;
 using System.Diagnostics;
-using VNGLog.Entities;
 
-namespace VNGLog.Services
+public class ApacheKafkaConsumerService : IHostedService
 {
-    public class ApacheKafkaConsumerService : IHostedService
+    private readonly string topic = "demo-tracking";
+    private readonly string groupId = "test_group";
+    private readonly string bootstrapServers = "localhost:9092";
+
+    public Task StartAsync(CancellationToken cancellationToken)
     {
-        private readonly string topic = "demo-tracking";
-        private readonly string groupId = "test_group";
-        private readonly string bootstrapServers = "localhost:9092";
-
-        public Task StartAsync(CancellationToken cancellationToken)
+        var config = new ConsumerConfig
         {
-            var config = new ConsumerConfig
-            {
-                GroupId = groupId,
-                BootstrapServers = bootstrapServers,
-                AutoOffsetReset = AutoOffsetReset.Earliest
-            };
+            GroupId = groupId,
+            BootstrapServers = bootstrapServers,
+            AutoOffsetReset = AutoOffsetReset.Earliest
+        };
 
-            try
+        try
+        {
+            using (var consumerBuilder = new ConsumerBuilder<Ignore, string>(config).Build())
             {
-                using (var consumerBuilder = new ConsumerBuilder<Ignore, string>(config).Build())
+                consumerBuilder.Subscribe(topic);
+                var cancelToken = new CancellationTokenSource();
+
+                try
                 {
-                    consumerBuilder.Subscribe(topic);
-                    var cancelToken = new CancellationTokenSource();
-
-                    try
+                    while (true)
                     {
-                        while (true)
-                        {
-                            var consumer = consumerBuilder.Consume(cancelToken.Token);
-                            var test = JsonSerializer.Deserialize<string>(consumer.Message.Value);
-                            Debug.WriteLine($"Test string: {test}");
-                        }
-                    }
-                    catch (OperationCanceledException)
-                    {
-                        consumerBuilder.Close();
+                        var consumer = consumerBuilder.Consume(cancelToken.Token);
+                        var test = JsonSerializer.Deserialize<string>(consumer.Message.Value);
+                        Debug.WriteLine($"Test string: {test}");
                     }
                 }
+                catch (OperationCanceledException)
+                {
+                    consumerBuilder.Close();
+                }
             }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-
-            return Task.CompletedTask;
         }
-        public Task StopAsync(CancellationToken cancellationToken)
+        catch (Exception ex)
         {
-            return Task.CompletedTask;
+            System.Diagnostics.Debug.WriteLine(ex.Message);
         }
+
+        return Task.CompletedTask;
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        return Task.CompletedTask;
     }
 }
 ```
@@ -317,7 +317,11 @@ In Program.cs add:
 builder.Services.AddSingleton<IHostedService, ApacheKafkaConsumerService>();
 ```
 
+### Result
+
+Now you are ready to go. Run the application.
+
 ## Resources
 
-[Kafka apache website](https://kafka.apache.org/)
+[Kafka apache website](https://kafka.apache.org/)  
 [Working with Apache Kafka in ASP.NET 6 Core](https://codemag.com/Article/2201061/Working-with-Apache-Kafka-in-ASP.NET-6-Core)
