@@ -18,8 +18,8 @@ including those for Xerbutri were started from sketches of what the pages would 
 
 My designs were developed in the following order:
 
-::: info Frontend-first
-Frontend -> controllers -> logic -> infra -> database
+::: info Frontend-first  
+Frontend -> controllers -> logic -> infra -> database  
 :::
 
 The controllers are MVC-controllers. Frontend were HTML-templates (the view of MVC).
@@ -41,8 +41,8 @@ Other names are data-centric approach or push design,
 
 The way of designing is inverted:
 
-::: info Database-first
-Database -> infra -> logic -> controllers -> frontend.
+::: info Database-first  
+Database -> infra -> logic -> controllers -> frontend.  
 :::
 
 Starting with the database meant a long time-to-market. The first months were spent with determining database design,
@@ -56,30 +56,31 @@ should be somewhere in the future, and push that into a horizontal layer.
 As I started with my first design of a calculation module, I just couldn't handle the data-driven way off working, so I
 went back to the way of working as I learned at the University. First define your problem-domain.
 
-::: info Start with the logic
-Logic
+::: info Start with the logic  
+Logic  
 :::
 
 And now what? Let's first show the results to the user. Because I had to convince the guys my tool was working right? So
 I build this orchestrator and called it a service.
 
-::: info Next define an orchestrator
-Service -> Logic
+::: info Next define an orchestrator  
+Service -> Logic  
 :::
 
 How to show this in the front end? That is quite easy, right?
-::: info Show in the frontend
-Frontend -> Controllers -> Service
+
+::: info Show in the frontend  
+Frontend -> Controllers -> Service  
 :::
 
 Now Helmer, how should we save the stuff calculated? Because your calculation is quite slow (HTTP-call!) and we want
 some caching of some sort. 'Let's use the database for that!' And so we started building models and the database (with
 Entity Framework this time, which made me quite happy).
 
-::: info Conclusion
-Frontend -> Controllers -> Infra -> Database
-AND
-Frontend -> Controllers -> Service -> Logic
+::: info Conclusion  
+Frontend -> Controllers -> Infra -> Database  
+AND  
+Frontend -> Controllers -> Service -> Logic  
 :::
 
 It was nice to be able to show our users real calculation results (no matter how "slow" they were) in a shorter time
@@ -92,7 +93,7 @@ In the Software Architecture course Domain-driven design was explained (in short
 design approach starting with the problem domain.
 Wait! I know that from my calculation services! However, there is a bit more.
 
-![Domain-driven design](/assets/images/domaindrivendesign/domaindrivendesign.svg "Domain-driven design; strategic and tactical design patterns")
+![Domain-driven design](../../assets/images/domaindrivendesign/domaindrivendesign.svg "Domain-driven design; strategic and tactical design patterns")
 
 ### Ubiquitous language
 
@@ -143,7 +144,7 @@ The Infrastructure layer is for persistence of data and integration to other ser
 
 The Application layer connects the different layers with each-other.
 
-![Domain-driven design: Architectural layers](/assets/images/domaindrivendesign/domaindrivendesignlayers.svg "Domain-driven design; Architectural layers")
+![Domain-driven design: Architectural layers](../../assets/images/domaindrivendesign/domaindrivendesignlayers.svg "Domain-driven design; Architectural layers")
 
 These layers live in isolation, and have interfaces to talk to each other.
 

@@ -9,7 +9,7 @@ as a demo for approaching and learning about domain-driven design. This is the f
 
 The starting point is the course material, which looks a bit like this:
 
-![Webshop as presented in the course](/assets/images/domaindrivendesign/DDDWebshopDomain.png "Webshop as presented in the course")
+![Webshop as presented in the course](../../assets/images/domaindrivendesign/DDDWebshopDomain.png "Webshop as presented in the course")
 
 ## Step 1: Strategic design
 
@@ -32,7 +32,7 @@ So for the webshop it was decided to:
 
 The subdomains in the strategic design look like this:
 
-![Webshop subdomains](/assets/images/domaindrivendesign/DDDWebshopAggregates.png "Webshop aggregates")
+![Webshop subdomains](../../assets/images/domaindrivendesign/DDDWebshopAggregates.png "Webshop aggregates")
 
 ### Identify bounded context
 
@@ -116,14 +116,14 @@ Entities:
 Drawing the relations and adding entities and value objects leads to this rather complex domain model. I have a value
 object called Money, but having it in here would mess everything up to a degree that it is no longer readable.
 
-![Webshop aggregates and domain](/assets/images/domaindrivendesign/DDDWebshopAggregateDomain.png "Webshop aggregates and domain")
+![Webshop aggregates and domain](../../assets/images/domaindrivendesign/DDDWebshopAggregateDomain.png "Webshop aggregates and domain")
 
 ### Split up into separate aggregates
 
 In the course these were called services. In domain-driven design these are called aggregates. Every entity is an
 aggregate, and in the picture below you can see the sketch of how these are all related.
 
-![Webshop aggregates and objects](/assets/images/domaindrivendesign/DDDWebshopServices.png "Webshop aggregates and objects")
+![Webshop aggregates and objects](../../assets/images/domaindrivendesign/DDDWebshopServices.png "Webshop aggregates and objects")
 
 This takes us to modelling step two, the invariants.
 
@@ -161,7 +161,7 @@ change it quickly.
 So the design below is just a snapshot, a frozen moment in time (23-06-2023 12:49). Reality will catch up. Your code is
 your documentation.
 
-![Proposed webshop domain model](/assets/images/domaindrivendesign/FinalWebshopDesign.png "Proposed webshop domain model")
+![Proposed webshop domain model](../../assets/images/domaindrivendesign/FinalWebshopDesign.png "Proposed webshop domain model")
 
 ## Github
 

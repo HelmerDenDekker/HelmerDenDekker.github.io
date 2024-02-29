@@ -9,7 +9,7 @@ Status: Work in progress
 In Domain-driven design there are five layers (in general). In my implementation there are four, because I integrated
 the integration layer with the persistence layer.
 
-![Domain-driven design: Architectural layers](/assets/images/domaindrivendesign/domaindrivendesignlayers.svg "Domain-driven design; Architectural layers")
+![Domain-driven design: Architectural layers](../../assets/images/domaindrivendesign/domaindrivendesignlayers.svg "Domain-driven design; Architectural layers")
 
 The layers in the application are isolated from each other.
 
@@ -36,7 +36,7 @@ As I read some books, many websites and studied a lot
 of [repositories](https://blog.jacobsdata.com/2020/03/02/a-clean-domain-driven-design-architectural-template), the
 following picture reflects the theory of how the domain model should be developed.
 
-![Domain-driven design: Model](/assets/images/domaindrivendesign/domaindrivendesignmodel.svg "Domain-driven design; Model")
+![Domain-driven design: Model](../../assets/images/domaindrivendesign/domaindrivendesignmodel.svg "Domain-driven design; Model")
 
 The aggregate encapsulates the entities and the value objects. The aggregate is accessed through a repository and
 instantiated with a factory.

@@ -85,6 +85,8 @@ forwarding address.
 //ToDo: check the restfulapi guidelines [Versioning - restfulapi.net](https://restfulapi.net/versioning/)
 [SO - on versioning](https://stackoverflow.com/questions/42371582/asp-net-api-versioning)
 
+Use the querystring. See Helmer.Shared on Github
+
 ### Example
 
 In the Helmer.DemoWebshop it is implemented like this:
