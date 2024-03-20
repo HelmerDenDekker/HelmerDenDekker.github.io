@@ -1,10 +1,9 @@
 # Generate a client
+
 *18-12-2023*
 
 Status: Work in progress  
 Type of post: Guide
-
-
 
 ## *Outline*
 
@@ -16,8 +15,9 @@ Generate a client:
 
 ## Context
 
-Say there is a petstore API (of a third party) you want to connect to. 
-We only have the openapi specs (in this case as yaml format, but Rico Suter has a nice example of how to get an online json in the NSwag docs)
+Say there is a petstore API (of a third party) you want to connect to.
+We only have the openapi specs (in this case as yaml format, but Rico Suter has a nice example of how to get an online
+json in the NSwag docs)
 
 ![Container of petstore for context](/assets/images/generateclient/container.svg "Context in container")
 
@@ -35,11 +35,9 @@ builder.Services.AddHttpClient<IPetStoreApiClient, PetStoreApiClient>>(c => c.Ba
 
 Use it wherever you need it by dependency injecting the IPetStoreApiClient.
 
-
-
 ## Resources
 
-[My github code for generating client](https://github.com/HelmerDenDekker/helmer.helper.clientgenerator)  
+[My github code for generating client](https://github.com/HelmerDenDekker/helmer.helper.clientgenerator)
 
 Inspired by:  
 [Stuart Lang, Generating a Typed Client for use with HttpClientFactory using NSwag](https://stu.dev/generating-typed-client-for-httpclientfactory-with-nswag/)  

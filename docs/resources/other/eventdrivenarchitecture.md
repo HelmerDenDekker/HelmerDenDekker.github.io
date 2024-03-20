@@ -1,9 +1,11 @@
 # Event driven architecture
+
 *18-9-2023*
 
 Status: Work in progress
 
 ## DDD - EDA
+
 ### Messages
 
 Messages -> events & commands
@@ -26,8 +28,6 @@ For example: Place an order
 Policy: whenever ....
 So, whenever a client orders a taco, we send him an email
 
-
-
 ## Benefits
 
 - Loose coupling (using broker)
@@ -42,7 +42,6 @@ So, whenever a client orders a taco, we send him an email
 - Complexity (distributed services)
 - Loss of transactionality (It is impossible to rollback with eventual consistency)
 - Lineage ()
-
 
 ## Typical architecture as was
 

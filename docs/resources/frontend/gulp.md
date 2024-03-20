@@ -1,14 +1,13 @@
 # Gulp
+
 *18-9-2023*
 
 Status: Work in progress
 
- Gulp helps us to automate many of the time consuming repetitive client side tasks.
+Gulp helps us to automate many of the time consuming repetitive client side tasks.
 
-
- Gulp was not recommended here:
- https://github.com/slikts/tooling/blob/master/not-recommended.md
- 
+Gulp was not recommended here:
+https://github.com/slikts/tooling/blob/master/not-recommended.md
 
 ## Notes
 
@@ -22,16 +21,19 @@ Resource on GULP
 
 ### 1. Set up a npm project
 
-First you need to set up a npm project, in order to create a package.json file, to keep track of packages and version installed.  
+First you need to set up a npm project, in order to create a package.json file, to keep track of packages and version
+installed.
 
-Go to the root folder of your project. Open up the command line interface (by typing cmd and hitting enter in windows explorer).
+Go to the root folder of your project. Open up the command line interface (by typing cmd and hitting enter in windows
+explorer).
 In the command line, type:
 
 ```bat
  npm init
 ```
 
-Npm will then prompt you to enter in information about the project.  
+Npm will then prompt you to enter in information about the project.
+
 - package name: enter the name of your project.
 - version: enter the version of your project
 - entry point: hit enter for the default
@@ -39,7 +41,6 @@ Npm will then prompt you to enter in information about the project.
 - keywords: leave empty, or introduce some keywords that define your application
 
 [Creating a package.json file](https://docs.npmjs.com/creating-a-package-json-file)
-
 
 ### 2. Install Gulp
 
@@ -54,7 +55,8 @@ In the command line, type:
  npm install --global gulp-cli
 ```
 
-Next install gulp with the --save-dev command in order to indicate that Gulp is a package to help you with development, and not a package needed for in a build process for your application.
+Next install gulp with the --save-dev command in order to indicate that Gulp is a package to help you with development,
+and not a package needed for in a build process for your application.
 
 In the command line, type:
 
@@ -96,12 +98,12 @@ The result will be like this:
 ### 5. Install plugins
 
 I am looking for:
+
 - Spin up webserver
 - Reloading the site when file is saved
 - Optimizing javascript, CSS and images
 
 In order to find these plugins, I go to the [Gulp plugin site](https://gulpjs.com/plugins/).
-
 
 ### 6. Spin up webserver
 
@@ -141,14 +143,15 @@ Test the file by typing the following command in the command line:
 ```bat
  gulp
 ```
-And for me it spins up localhost:3000 with my website!
 
+And for me it spins up localhost:3000 with my website!
 
 #### Using modules
 
 ALTERNATIVE!!! Using javascript modules.
 
-Rename the "gulpfile.js" into "gulpfile.mjs", since I do not want to use transpilation, but I want to have the import statement.
+Rename the "gulpfile.js" into "gulpfile.mjs", since I do not want to use transpilation, but I want to have the import
+statement.
 
 My webpage is in my src folder, and does not need any compilation or transpilation. So I can change the file to:
 
@@ -178,13 +181,12 @@ Test the file by typing the following command in the command line:
 ```bat
  gulp
 ```
+
 And for me it spins up localhost:3000 with my website!
 
 ### 7. Live reloading with BrowserSync
 
 This is where things get complex.
-
-
 
 [Minify JS with uglify](https://github.com/terinjokes/gulp-uglify/)
 [Concatenating files](https://www.npmjs.com/package/gulp-concat)
@@ -199,12 +201,9 @@ This is where things get complex.
 // [Gzip](https://www.npmjs.com/package/gulp-gzip)
 // [Minify HTML](https://www.npmjs.com/package/gulp-minify-html)
 
-
-
 // Browsersync
 
 // Gulp useref -> [Outdated quickstart with useref](https://css-tricks.com/gulp-for-beginners/)
-
 
 ## Resources
 

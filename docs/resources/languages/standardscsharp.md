@@ -1,18 +1,20 @@
 # Standards C-sharp
+
 *8-9-2023*
 
 Status: Work in progress
-
 
 //ToDo: Rewrite!
 
 ## Cupid is the new SOLID
 
-A lot of programmers can tell you about the SOLID principles when coding. Dan Norths poses "Why every element in SOLID is wrong", and developed something called CUPID:
+A lot of programmers can tell you about the SOLID principles when coding. Dan Norths poses "Why every element in SOLID
+is wrong", and developed something called CUPID:
 
 [Cupid, the back story by Dan North](https://dannorth.net/2021/03/16/cupid-the-back-story/)
 
 This needs to be elaborated on a bit, but basically:
+
 - Composable - plays well with others
 - Unix philosophy - does one thing, and does it well
 - Predictable - does what you expect
@@ -22,9 +24,10 @@ This needs to be elaborated on a bit, but basically:
 ## Architecture best practices
 
 There are a set of rules to make sure your code applies to architecture best practices.
+
 - Encapsulate third party dependencies
 - Use [Design patterns](https://refactoring.guru/)
- -Always write simple code. CUPID is the new SOLID
+  -Always write simple code. CUPID is the new SOLID
 
 From the CUPID-idea:
 
@@ -39,42 +42,55 @@ From the CUPID-idea:
 Never use abbreviations.
 
 //Do not
+
 ```cs
 var cnt = 1;
 ```
+
 //Do
+
 ```cs
 var counter = 1;
 ```
-Because cnt could be anything from counter, consultant or a curse word. Stick to CUPID: use the domain based language so code is recognizable.
 
+Because cnt could be anything from counter, consultant or a curse word. Stick to CUPID: use the domain based language so
+code is recognizable.
 
-Try to use implicit typing (var instead of explicit type), but keep CUPID in mind. So whenever using an explicit type is more clear, use the type:
+Try to use implicit typing (var instead of explicit type), but keep CUPID in mind. So whenever using an explicit type is
+more clear, use the type:
+
 ```cs
 var counter = 1;
 bool hasName;
 ```
+
 Do not prefix variables with the type:
 
 //Do Not:
+
 ```cs
 var intCounter = 1;
 var stringName = "name";
 ```
+
 //Do
+
 ```cs
 var counter = 1;
 var name = "name";
 ```
+
 Because when refactoring you may decide to change the type, from integer to double.
 
-For booleans use a verb, to make clear what it does, so isValid, instead of valid, and a better example: hasName instead of Name.
+For booleans use a verb, to make clear what it does, so isValid, instead of valid, and a better example: hasName instead
+of Name.
 
 ## Interfaces
 
 Use interfaces to define behavior.
 
 Important security notice: Only expose methods or functions through an interface that ARE shared with other code.
+
 ```cs
 public class HelmerLogic : IHelmerLogic
 {
@@ -85,10 +101,12 @@ public class HelmerLogic : IHelmerLogic
 	}
 }
 ```
-The class implementing the interface always inherits the documentation from the interface (as part of standardization and maintenance)
 
+The class implementing the interface always inherits the documentation from the interface (as part of standardization
+and maintenance)
 
 An interface uses the same name as the class, prefixed with an I.
+
 ```cs
 public interface IHelmerLogic
 {
@@ -99,21 +117,35 @@ public interface IHelmerLogic
 	public void AddColor(List<PrimaryColor> colors) {get; set;}
 }
 ```
+
 The interface always contains documentation in the summary about the method.
 
 ## Classes
 
-Remember CUPID, write simple code. Most of the times the user will either give a command (add, save, delete, update) or it will query (retrieve).
+Remember CUPID, write simple code. Most of the times the user will either give a command (add, save, delete, update) or
+it will query (retrieve).
 
 Commands are void. Queries return an object.
 
-Keep your properties in Models and Methods wherever they belong. Properties define an object (for example a Car, which has a property Color, EngineType, and more). The functionality of that car (UnlockDoor, StartEngine) should be in a different class, because these are methods. And methods should be either a query, returning a result, or a command, and never a mix of both.
+Keep your properties in Models and Methods wherever they belong. Properties define an object (for example a Car, which
+has a property Color, EngineType, and more). The functionality of that car (UnlockDoor, StartEngine) should be in a
+different class, because these are methods. And methods should be either a query, returning a result, or a command, and
+never a mix of both.
 
-Using statements should be outside the namespace. There is a lot of discussion on this topic. Having the using outside the namespace, is the most clear for all involved.
+Using statements should be outside the namespace. There is a lot of discussion on this topic. Having the using outside
+the namespace, is the most clear for all involved.
 Background:
-This has to do with conflicting types. Suppose you have created a type named DatabaseContext, but there is also a type with the same name in some NuGet package you are using. This will result in a compilation error, or the wrong type used, or ambiguous behavior in Visual Studio, where it sometimes gives errors in the code, and sometimes not. In case the using statements are outside the namespace, it will search for the type inside-out through the namespace, and next going through the usings top to bottom. So if the type is defined in a lower namespace, it will use the type in that namespace, instead of the type in the NuGet. When you move the usings inside the namespace, the search order will be different, first it will try and find the type in the current namespace. Next it will go through the usings top to bottom. So now it will take the DatabaseContext which is in the NuGet instead of the one in the namespace.
+This has to do with conflicting types. Suppose you have created a type named DatabaseContext, but there is also a type
+with the same name in some NuGet package you are using. This will result in a compilation error, or the wrong type used,
+or ambiguous behavior in Visual Studio, where it sometimes gives errors in the code, and sometimes not. In case the
+using statements are outside the namespace, it will search for the type inside-out through the namespace, and next going
+through the usings top to bottom. So if the type is defined in a lower namespace, it will use the type in that
+namespace, instead of the type in the NuGet. When you move the usings inside the namespace, the search order will be
+different, first it will try and find the type in the current namespace. Next it will go through the usings top to
+bottom. So now it will take the DatabaseContext which is in the NuGet instead of the one in the namespace.
 
 We have to try and not use conflicting types. Define which type you want:
+
 ```cs
 using DatabaseContext = Helmer.DataAccessLayer;
 
@@ -124,7 +156,9 @@ public class HelmerLogic
 	....
 }
 ```
+
 Model Class:
+
 ```cs
 public class Car
 {
@@ -196,6 +230,7 @@ public class HelmerLogic : IHelmerLogic
 	}	
 }
 ```
+
 ## Documentation Conventions
 
 [Documentation comments](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments)
@@ -211,7 +246,9 @@ Async
 
 [Best practices in async programming](https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming)
 
-When performing an async task, avoid using void. Because for an async task, the code expects a result. This is how async is designed, you can tell the code to go do something, do something else, and fetch the stuff you need with an await. If there is no result, how can we know it has happened or not? So this makes it difficult to test, or to handle Exceptions.
+When performing an async task, avoid using void. Because for an async task, the code expects a result. This is how async
+is designed, you can tell the code to go do something, do something else, and fetch the stuff you need with an await. If
+there is no result, how can we know it has happened or not? So this makes it difficult to test, or to handle Exceptions.
 
 ## Dependency injection
 
@@ -260,18 +297,23 @@ Use meaningful names for LINQ queries
 string displayName = $"{nameList[n].LastName}, {nameList[n].FirstName}";
 
 ## Nesting code
+
 Coding if-statements
 
-Use the exit-strategy, so nest you code as flat as possible (KISS and CUPID, so keep it simple, because deep nesting explodes test cases!!)
+Use the exit-strategy, so nest you code as flat as possible (KISS and CUPID, so keep it simple, because deep nesting
+explodes test cases!!)
 
 Comparing apples to apples:
 
+Say I would have to determine an apple, in a collection of fruit. The apple has a color (Green, Yellow, Red, or a
+combination), a Flavor (Tart, sweet, mild, rich, tangy, spicy, or combination of 2), and a Texture (Crisp, Juicy, Firm,
+or a combination of 3)
 
-Say I would have to determine an apple, in a collection of fruit. The apple has a color (Green, Yellow, Red, or a combination), a Flavor (Tart, sweet, mild, rich, tangy, spicy, or combination of 2), and a Texture (Crisp, Juicy, Firm, or a combination of 3)
-
-The figure above gives the idea of how to tackle this. If I would do this all in one method, the bifurcations would be like:  color (7), Flavor (21), Texture (7). I have seen programmers try to catch this in one if:
+The figure above gives the idea of how to tackle this. If I would do this all in one method, the bifurcations would be
+like:  color (7), Flavor (21), Texture (7). I have seen programmers try to catch this in one if:
 
 An example of deep nesting:
+
 ```cs
 if (fruit.Type == "apple")
 {
@@ -317,7 +359,10 @@ if (fruit.Type == "apple")
 	else...
 //You will get the idea, right?
 ```
-Suppose I would have to test this code. That would result in 1029 unit tests, because that will reflect all possible test cases, in order to be able to determine like 20 apples. How about them apples, right?? So, consider this, we call it the exit strategy.
+
+Suppose I would have to test this code. That would result in 1029 unit tests, because that will reflect all possible
+test cases, in order to be able to determine like 20 apples. How about them apples, right?? So, consider this, we call
+it the exit strategy.
 
 ```cs
 if (fruit.Type == "apple")
@@ -351,19 +396,22 @@ private string DetermineApples(Fruit fruit)
 //etcetera
 }
 ```
-So think of a specific scenario, and exit on that scenario. In this case we will have only twenty testcases to find the twenty apples within their 1029 possible combinations.
 
-For a nice video about this including some pointers on what to focus on when refactoring: Watch ["Why you shouldn't nest your code" by Code Aestetics (08:30 min)](https://www.youtube.com/watch?v=CFRhGnuXG-4)
+So think of a specific scenario, and exit on that scenario. In this case we will have only twenty testcases to find the
+twenty apples within their 1029 possible combinations.
+
+For a nice video about this including some pointers on what to focus on when refactoring:
+Watch ["Why you shouldn't nest your code" by Code Aestetics (08:30 min)](https://www.youtube.com/watch?v=CFRhGnuXG-4)
 
 ## Coding conventions
 
 [Microsoft C# ](https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions)
 
-
 Naming Conventions
 Initial Capitals (PascalCase)
 
 Use PascalCase (InitCaps or what they call Upper CamelCase or CamelHill) when naming a class, a record, or a struct
+
 ```cs
 public class HelmerService
 {
@@ -379,7 +427,9 @@ public struct HelmerCoordinate
 {
 }
 ```
+
 When naming an interface, prefix an I.
+
 ```cs
 public interface IHelmerService
 {
@@ -416,9 +466,11 @@ public class HelmerService : IHelmerService
     }
 }
 ```
+
 Medial capitals
 
-Use medial capitals (lower camelCase, I will call it medCaps) for naming private or internal fields, parameters going into methods.
+Use medial capitals (lower camelCase, I will call it medCaps) for naming private or internal fields, parameters going
+into methods.
 
 ```cs
 public class HelmerService
@@ -454,13 +506,13 @@ public class HelmerService
 Other naming conventions
 Namespaces
 
-Namespaces should use PascalCase for a single word, and a dot as a word separator. Because this is a bit cryptic, let me give an example:
+Namespaces should use PascalCase for a single word, and a dot as a word separator. Because this is a bit cryptic, let me
+give an example:
 
 Helmer.Common.Tools
 
-
-
-All the Helmer solutions start with the Helmer name, followed by a dot, next is the solution name (For example Common, or SamlServiceProvider). So this is one name, without any dots separating it.
+All the Helmer solutions start with the Helmer name, followed by a dot, next is the solution name (For example Common,
+or SamlServiceProvider). So this is one name, without any dots separating it.
 
 The third name is the project name.
 
@@ -490,13 +542,19 @@ Models
 For storing models (viewmodels, data transfer objects, models)
 Views
 
-Stores the views in the mvc-model. The view-folder will contain subfolders with the controller prefix (So a folder called Home, which belongs to the HomeController in the Controller folder)
+Stores the views in the mvc-model. The view-folder will contain subfolders with the controller prefix (So a folder
+called Home, which belongs to the HomeController in the Controller folder)
 Controllers
 
-Stores all the controllers. The naming convention is to prefix the page-name for the controller. So the controller for the homepage is called HomeController. Controllers should be dumb.
+Stores all the controllers. The naming convention is to prefix the page-name for the controller. So the controller for
+the homepage is called HomeController. Controllers should be dumb.
 Logic
 
-While expecting Logics, for some reason this is often just called Logic. The naming convention is the same as for controllers, files should have the page-name prefixed. So HomeLogic belongs to the HomeController. However there cane be shared logic as well, for example UserLogic, which has some user logic, and can be used by the HomeLogic to provide the name of the user for a Welcome message. Most of the times this is about retrieving data from a database or the HttpContext, so use the tablename or whatever info you retrieve as prefix.
+While expecting Logics, for some reason this is often just called Logic. The naming convention is the same as for
+controllers, files should have the page-name prefixed. So HomeLogic belongs to the HomeController. However there cane be
+shared logic as well, for example UserLogic, which has some user logic, and can be used by the HomeLogic to provide the
+name of the user for a Welcome message. Most of the times this is about retrieving data from a database or the
+HttpContext, so use the tablename or whatever info you retrieve as prefix.
 Helpers
 
     Helpers are always static (do not change a class to be static, helpers should be static classes by themselves)
@@ -514,12 +572,17 @@ Repositories
 For repositories in a DAL projects
 Enums
 
-It is also possible to store all Enums in a separate folder, if there are many. Where Logic and Controller do have a suffix, Enums normally do NOT have an Enum suffix.
+It is also possible to store all Enums in a separate folder, if there are many. Where Logic and Controller do have a
+suffix, Enums normally do NOT have an Enum suffix.
 Tests
 
-There are two types of tests in the code. Unit tests will test a small piece of code (so one method). Integration tests will test the integration of classes, or bigger chunks, please think before creating integration tests, because most of the time these will be expensive. Helmer den Dekker will create a confluence entry on C# testing later. This is about the naming conventions
+There are two types of tests in the code. Unit tests will test a small piece of code (so one method). Integration tests
+will test the integration of classes, or bigger chunks, please think before creating integration tests, because most of
+the time these will be expensive. Helmer den Dekker will create a confluence entry on C# testing later. This is about
+the naming conventions
 
 In case of Tests the method should have names indicating the test goal:
+
 ```cs
 [TestClass]
 public UsersLogicQueryTest
@@ -543,9 +606,11 @@ public UsersLogicQueryTest
     }
 ```
 
-Start with the method that is being tested, followed by an underscore, next the condition (UserRetrieved), underscore, should, underscore, followed by the expected result. Because when you design a test, you know what it should do.
+Start with the method that is being tested, followed by an underscore, next the condition (UserRetrieved), underscore,
+should, underscore, followed by the expected result. Because when you design a test, you know what it should do.
 
 For Example:
+
 ```cs
 [TestClass]
 public UsersLogicQueryTest
@@ -569,7 +634,10 @@ public UsersLogicQueryTest
     }
 ```
 
-This name is clear in its goal. So whenever someone changes the 2 in the Assert to 1, because they made a mistake in the code and change the test instead of the code (These things happen a lot!!), you will notice it when doing code review (Weird, it should return 2, but returns one) OR you will notice it because they changed the testmethod name, which should make alarm bells go ringing for you as code reviewer.
+This name is clear in its goal. So whenever someone changes the 2 in the Assert to 1, because they made a mistake in the
+code and change the test instead of the code (These things happen a lot!!), you will notice it when doing code review (
+Weird, it should return 2, but returns one) OR you will notice it because they changed the testmethod name, which should
+make alarm bells go ringing for you as code reviewer.
 Layout conventions
 
 Here are some general layout conventions, more about layout in Code Standardization

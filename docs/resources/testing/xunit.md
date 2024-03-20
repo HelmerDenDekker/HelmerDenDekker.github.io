@@ -1,4 +1,5 @@
 # Standards: Unit testing
+
 *7-9-2023*
 
 Status: Work in progress
@@ -12,10 +13,10 @@ I like the fact that XUnit has theory and facts
 
 AND it has isolation-by-default because it creates an instance of the test class for each test
 //ToDo: Rewrite!!
-  
+
 ## Fact attribute
 
-The most basic test method is a public parameterless method with the [Fact] attribute. 
+The most basic test method is a public parameterless method with the [Fact] attribute.
 
 Example:
 
@@ -32,12 +33,12 @@ public void Add_ZeroToZero_ReturnsZero()
 }
 ```
 
-
 ## Working with Test data in XUnit
 
 ### InlineData
 
-By using [Theory] you’ll get the opportunity to use test data in different ways. The most common attribute here is [InlineData]
+By using [Theory] you’ll get the opportunity to use test data in different ways. The most common attribute here
+is [InlineData]
 
 Example:  
 example:
@@ -58,8 +59,8 @@ public void Add_NumberToNumber_ShouldReturnTheoryResult(int firstNumber, int sec
 }
 ```
 
-
-This eliminates the need to add test data in the test method itself. In addition, this gives you the opportunity to test the method several times with different test data.
+This eliminates the need to add test data in the test method itself. In addition, this gives you the opportunity to test
+the method several times with different test data.
 
 When you execute the test you will see that every test will create separate instances
 //ToDo: Add a picture of the test performing
@@ -70,9 +71,11 @@ When you execute the test you will see that every test will create separate inst
 
 ### ClassData
 
-If the values are not constant values you can use [ClassData] to specify the data. This attribute takes a Type which xUnit will use to get the data.
+If the values are not constant values you can use [ClassData] to specify the data. This attribute takes a Type which
+xUnit will use to get the data.
 
 An example of a type could be:
+
 ```cs
 public class CalculatorAddTestData : IEnumerable<int[]>
 {
@@ -88,6 +91,7 @@ public class CalculatorAddTestData : IEnumerable<int[]>
 ```
 
 You can implement the type like this:
+
 ```cs
 [Theory]
 [ClassData(typeof(CalculatorAddTestData))]
@@ -104,12 +108,12 @@ public void Add_NumberToNumber_ShouldReturnTheoryResult(int firstNumber, int sec
 
 I am not a big fan of ClassData, because it centralizes your testdata, making it unclear what the test is about.
 
-
 ### MemberData
 
 This attribute can be used to load data in the test.
 
 Example:
+
 ```cs
 public class CalculatorTests
 {
@@ -135,7 +139,8 @@ public class CalculatorTests
 }
 ```
 
-You can implement this in different ways. So, it’s also possible to create another class to split the data from the testclass, like:
+You can implement this in different ways. So, it’s also possible to create another class to split the data from the
+testclass, like:
 
 ```cs
 public class CalculatorTests

@@ -1,15 +1,20 @@
 # Web Components
+
 *31-8-2023*
 
 Status: Work in progress
 
 ## Web components?
 
-I was used to creating web components in a framework. For example in the Xerbutri website using PHP, in the GPR websites using dotNET MVC partial views, or in VueJS using web components.
+I was used to creating web components in a framework. For example in the Xerbutri website using PHP, in the GPR websites
+using dotNET MVC partial views, or in VueJS using web components.
 
-Web components are (a set of) web platform APIs that allow us to create custom reusable and encapsulated html tags to use in web pages.
+Web components are (a set of) web platform APIs that allow us to create custom reusable and encapsulated html tags to
+use in web pages.
 
-For example, in PHP I had a piece of code named header.html, which PHP would grab and insert into any html template page. In the fourth version I wrote my own framework, for the fifth version I used Fat Free Framework to do the templating implementation for me.
+For example, in PHP I had a piece of code named header.html, which PHP would grab and insert into any html template
+page. In the fourth version I wrote my own framework, for the fifth version I used Fat Free Framework to do the
+templating implementation for me.
 
 However, we do not need 3rd party libraries or framework to use Web components.
 
@@ -17,7 +22,6 @@ However, we do not need 3rd party libraries or framework to use Web components.
 
 You can create your own custom HTML tags.
 In JavaScript you just extend the HTMLElement
-
 
 ```js{4}
 class Customized extends HTMLElement {...}
@@ -38,10 +42,8 @@ Scoped styles (style and markup encapsulated)
 
 ## HTML templates
 
-HTML and CSS 
+HTML and CSS
 Use slots to make it dynamic
-
-
 
 ## Resources
 
