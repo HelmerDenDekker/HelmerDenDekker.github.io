@@ -1,4 +1,5 @@
 # REST
+
 *6-9-2023*
 
 Status: Work in progress
@@ -23,7 +24,7 @@ REST is an acronym for Representational State Transfer and an architectural styl
 ### Uniform interface
 
 Define a uniform interface for your API, and stick with it.
-//ToDo: API design standards link! 
+//ToDo: API design standards link!
 //ToDo: HATEOS link
 
 
@@ -37,5 +38,5 @@ Define a uniform interface for your API, and stick with it.
 
 ## Resources
 
-[What is REST - restfulapi.net](https://restfulapi.net/)
+[What is REST - restfulapi.net](https://restfulapi.net/)  
 [Design beautiful REST+JSON APIs - Oktane 17](https://www.youtube.com/watch?v=MiOSzpfP1Ww)

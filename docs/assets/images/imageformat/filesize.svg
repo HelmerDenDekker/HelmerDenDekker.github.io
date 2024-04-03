@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1152" height="576"
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="576"
 	 style="overflow: hidden;" aria-label="A chart.">
 	<defs id="_ABSTRACT_RENDERER_ID_42">
 		<clipPath id="_ABSTRACT_RENDERER_ID_43">
@@ -98,7 +98,7 @@
 				<rect x="540" y="290" width="45" height="175" stroke="none" stroke-width="0" fill="#bc5090"></rect>
 				<rect x="585" y="444" width="45" height="21" stroke="none" stroke-width="0" fill="#ff6361"></rect>
 				<rect x="630" y="270" width="45" height="195" stroke="none" stroke-width="0" fill="#ffa600"></rect>
-				
+
 				<rect x="700" y="433" width="45" height="32" stroke="none" stroke-width="0" fill="#003f5c"></rect>
 				<rect x="745" y="430" width="45" height="35" stroke="none" stroke-width="0" fill="#58508d"></rect>
 				<rect x="790" y="420" width="45" height="45" stroke="none" stroke-width="0" fill="#bc5090"></rect>
