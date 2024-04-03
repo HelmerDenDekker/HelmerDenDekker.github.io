@@ -32,7 +32,7 @@ How to test a web app with a small group of people
 
 3. Gather feedback:  Use a survey or conduct interviews after the testing session. Ask testers about their experience,  what they liked/disliked, and suggestions for improvement.
 
-### Analyze and Report:
+###  Analyze and Report:
 
 1. Compile results:  Document all bugs, usability issues, and feedback from testers. Categorize them based on severity and frequency.
 
