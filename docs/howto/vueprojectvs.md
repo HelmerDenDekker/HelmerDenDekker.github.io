@@ -1,8 +1,8 @@
 # How to start a vue project in Visual Studio 2022
+
 *20-9-2023*
 
 Status: Work in progress
-
 
 ## Start a vue project
 
@@ -18,24 +18,28 @@ Choose "From existing Node.js code", the TypeScript or JavaScript, depending on 
 ### Configure your new project - wizard
 
 In the following wizard, the order is very, very important, otherwise it will reset fields.
+
 - Start with add to solution, if you already have a solution.
 - Next enter your project name (you cannot choose the vue name here, which is a shame)
 - Next select the location of the root of the project.
 
-Please check the "Project will be created in "< Your Location >". This should be a concat of the location and project name.
+Please check the "Project will be created in "< Your Location >". This should be a concat of the location and project
+name.
 
 Click Create, this will take you to the next wizard.
 
 ### Create New Project From Existing Node.js Code - wizard
 
 In the next wizard you need to select:
+
 - the source folder with the existing node code (where you created the vue project)
 - the language
 - filter for the files you want to add
 
 Click Next.
 
-!! This is an absolute disaster, because it will not add to solution, it will create a njsproj in the right folder and add it to a new solution.
+!! This is an absolute disaster, because it will not add to solution, it will create a njsproj in the right folder and
+add it to a new solution.
 
 ## Solved it
 

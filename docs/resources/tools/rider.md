@@ -1,4 +1,5 @@
 # Rider
+
 *5-10-2023*
 
 Status: Work in progress
@@ -11,8 +12,6 @@ Keyboard shortcuts for Rider:
 |-----------------|--------------------|
 | Format Document | CTRL + ALT + ENTER |
 | Quick action    | ALT + ENTER        |
-
-
 
 ## Resources
 

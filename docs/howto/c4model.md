@@ -1,22 +1,26 @@
 # How to generate architecture diagrams
 *8-9-2023 - updated 3-4-2024*
 
-In this article I will explain how to generate an architectural diagram.  
+In this article I will explain how to generate an architectural diagram.
 
 The [UML language](https://plantuml.com) is used to code the diagrams.
 The C4 model is used to structure the architectural diagrams.
 
 ## What is the C4 model?
 
-Aside from being a car manufactured by Citroën, it is a graphical notation technique for modelling the architecture of systems.
+Aside from being a car manufactured by Citroën, it is a graphical notation technique for modelling the architecture of
+systems.
 
 - C1 level: (System) Context diagram. It shows the system in scope and relationship with other systems and its users;
-- C2 level: Container diagrams. It shows the decomposed system and the relation between its containers. A container represents an application or data store;
+- C2 level: Container diagrams. It shows the decomposed system and the relation between its containers. A container
+  represents an application or data store;
 - C3 level: Component diagrams. It shows the interrelated components in a container;
 - C4 level: Code diagrams;
 
-The C2 level has nothing to do with Docker containers. It is just a term coined by simon Brown to describe something holding components, but not being the system. With a C, because otherwise it won't
-The C4 level is highly debated, for its usefulness and for its zoom-level. You can generate code diagrams from your IDE. Simon says: I do not recommend level 4. 
+The C2 level has nothing to do with Docker containers. It is just a term coined by simon Brown to describe something
+holding components, but not being the system. With a C, because otherwise it won't
+The C4 level is highly debated, for its usefulness and for its zoom-level. You can generate code diagrams from your IDE.
+Simon says: I do not recommend level 4.
 
 Simon also says: Don't do Simon says, so do not see this as a dogma. These are guidelines for architecture diagrams.
 
@@ -26,7 +30,9 @@ The first three models are clearly related, and I always see this as a zoom leve
 
 <img src="../assets/images/c4model/zoomlevel.svg" alt="Zoomlevel" width="600" height="auto">
 
-So, from the Context-level on C1, where you see the system and the world in lives in, you zoom into the system going to the C2 container level. Suppose you want to kno more about a certain application, you zoom into level 3, the components level.
+So, from the Context-level on C1, where you see the system and the world in lives in, you zoom into the system going to
+the C2 container level. Suppose you want to kno more about a certain application, you zoom into level 3, the components
+level.
 
 ## How to generate a C4-model-style diagram with Rider
 
@@ -126,10 +132,11 @@ I will use VS code throughout this how to.
 
 #### 2. Install Java
 
-The first step is to install JAVA. I had to go through the agony of visiting the plantUML website, sorry guys, but every time I get so nervous of how it looks and behaves. with the picture popping up, every time I go AAAAAARRGH!  
-Sorry.  I am calm now.
+The first step is to install JAVA. I had to go through the agony of visiting the plantUML website, sorry guys, but every
+time I get so nervous of how it looks and behaves. with the picture popping up, every time I go AAAAAARRGH!  
+Sorry. I am calm now.
 
-Install Java (if you do not have it installed already): [Java download link](https://www.java.com/en/download/)  
+Install Java (if you do not have it installed already): [Java download link](https://www.java.com/en/download/)
 
 Please check the license terms.
 
@@ -150,7 +157,8 @@ Now you are ready to go!
 For most of my repo's I store the architecture diagrams in the ".documentation" folder:  
 ![Documentation folder](../assets/images/c4model/docmap.png "Documentation folder")
 
-This is where I store the plantUml files. For example look at the [WebShopDemo GitHub documentation](https://github.com/HelmerDenDekker/HelmerDemo.WebShop/tree/develop/.documentation).
+This is where I store the plantUml files. For example look at
+the [WebShopDemo GitHub documentation](https://github.com/HelmerDenDekker/HelmerDemo.WebShop/tree/develop/.documentation).
 
 #### Code the architecture diagram
 
@@ -162,6 +170,7 @@ In the third line I include the legend.
 In the fifth line I enter a title for this model.
 
 Next you can go crazy with whatever you want. In this example I show:
+
 - Person, with the arguments variableName (this will be the name of the variable, you can use later in the relations)
 - System, like Person.
 - Rel, which shows the relation between Person and System
@@ -194,6 +203,7 @@ You can preview the context model by clicking preview current diagram.
 ![Example preview](../assets/images/c4model/example.png "Example preview")
 
 As you can see (I sketched lots of arrows):
+
 - The legend shows at the bottom
 - The title shows at the top
 - The Customer person shows as a Person icon
@@ -209,7 +219,6 @@ Here is an example of a generated diagram:
 
 ![Example context diagram](../assets/images/c4model/webshopcontext.svg "Example context diagram")
 
-
 ## How to generate a C4 model from Visual Studio
 
 <img src="../assets/images/c4model/visualstudio.svg" alt="visual studio" width="100" height="auto"> 
@@ -218,24 +227,25 @@ Mind this: Simon says: Do not use the C4 model (code = documentation on this lev
 
 How do you generate a C4-diagram?
 
-
 1. Open the folder of your solution in Visual Studio or Visual Studio Code
 2. Create a folder named <code>.classdiagrams</code> inside this folder.
-3. Open the Terminal (VS upper menu, Terminal --> New Terminal) or Package Manager (VSC: upper menu Tools --> Nuget Package Manager --> Package Manager Console)
+3. Open the Terminal (VS upper menu, Terminal --> New Terminal) or Package Manager (VSC: upper menu Tools --> Nuget
+   Package Manager --> Package Manager Console)
 4. In the terminal window execute.
 
 ```bat
 puml-gen [local-path-to-repo]\[project] [local-path-to-repo]\[project]\.classdiagramms -dir -excludePaths bin,obj,Properties
 ```
 
-You can add any folders you want to exclude in the end.  
-     
-Inside the <code>.classdiagrams</code> folder you will find all the separate class diagrams and a combined class diagram.
+You can add any folders you want to exclude in the end.
+
+Inside the <code>.classdiagrams</code> folder you will find all the separate class diagrams and a combined class
+diagram.
 
 ## Conclusion
 
-It is that easy. Feel free to look around in my diagrams to see how I created the Containers and Components diagrams: [WebShopDemo GitHub documentation](https://github.com/HelmerDenDekker/HelmerDemo.WebShop/tree/develop/.documentation).
-
+It is that easy. Feel free to look around in my diagrams to see how I created the Containers and Components
+diagrams: [WebShopDemo GitHub documentation](https://github.com/HelmerDenDekker/HelmerDemo.WebShop/tree/develop/.documentation).
 
 ## Resources
 
