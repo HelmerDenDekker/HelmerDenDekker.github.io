@@ -17,7 +17,8 @@ systems.
 - C3 level: Component diagrams. It shows the interrelated components in a container;
 - C4 level: Code diagrams;
 
-The C2 level has nothing to do with Docker containers. It is just a term coined by simon Brown to describe something
+The C2 level has nothing to do with Docker containers. It is just a t
+erm coined by simon Brown to describe something
 holding components, but not being the system. With a C, because otherwise it won't
 The C4 level is highly debated, for its usefulness and for its zoom-level. You can generate code diagrams from your IDE.
 Simon says: I do not recommend level 4.
