@@ -189,6 +189,18 @@ Add a console project to your solution. This project will set the database up, s
 See the [HelmerDemo.WebShopDemo.Infrastructure.Setup](https://github.com/HelmerDenDekker/HelmerDemo.WebShopDemo/tree/develop/src/Services/WSD.Catalog.Infrastructure.Setup) for implementation details.  
 // TODO step by step explanation
 
+// Do all the stuff, worker, program etc.
+Install Microsoft.EntityFrameworkCore.Tools package
+Open Visual studio
+
+Add initial migration, by going to Package manager console and selecting the *.Infrastructure project. Next run this command:
+
+```bash
+Add-Migration Initial -StartupProject Demo.Blog.Infrastructure.Setup
+```
+
+Add-Migration Initial -StartupProject Xerbutri.Cms.Infra.Setup
+
 #### Infrastructure EF migrations
 
 In Visual Studio, go to the Package Manager console and select the WSD.Catalog.Infrastructure project
@@ -196,7 +208,7 @@ In Visual Studio, go to the Package Manager console and select the WSD.Catalog.I
 ##### Create migration
 
 ```bash
-Add-Migration YOURNAME -StartupProject Demo.Blog.Infrastructure.Setup
+Add-Migration {MIGRATIONNAME} -StartupProject Demo.Blog.Infrastructure.Setup
 ```
 
 ##### Update database without specific migration
@@ -208,7 +220,7 @@ Update-Database -StartupProject Demo.Blog.Infrastructure.Setup
 ##### Update database with specific migration
 
 ```bash
-Update-Database -StartupProject Demo.Blog.Infrastructure.Setup
+Update-Database {MIGRATIONNAME} -StartupProject Demo.Blog.Infrastructure.Setup
 ```
 
 ##### Create SQL scripts from migration a to migration b
