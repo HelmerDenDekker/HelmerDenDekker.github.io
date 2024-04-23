@@ -1,4 +1,4 @@
-# {Title}
+# Test approach for a web app with a small group of people
 
 *21-3-2024*
 
@@ -11,7 +11,7 @@ How to test a web app with a small group of people
 
 ## *Outline*
 
-## Resources
+
 
 ### Preparation:
 
@@ -42,3 +42,4 @@ How to test a web app with a small group of people
 
 4. Report findings:  Create a clear report summarizing the testing process, results, and recommendations for improvement.
 
+## Resources

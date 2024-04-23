@@ -1,4 +1,4 @@
-# Create a new Helmer repo on GitHub
+# Create a new repo on GitHub
 
 *18-12-2023*
 

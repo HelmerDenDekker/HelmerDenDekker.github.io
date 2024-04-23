@@ -19,7 +19,7 @@ Say there is a petstore API (of a third party) you want to connect to.
 We only have the openapi specs (in this case as yaml format, but Rico Suter has a nice example of how to get an online
 json in the NSwag docs)
 
-![Container of petstore for context](/assets/images/generateclient/container.svg "Context in container")
+![Container of petstore for context](../assets/images/generateclient/container.svg "Context in container")
 
 ## How to
 
