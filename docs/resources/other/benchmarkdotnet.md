@@ -15,9 +15,15 @@ Benchmark class.
 For measuring single process only.
 Measure improvements on methods.
 
+## LinqPad
+
+With linqpad it is much easier to run the benchmarks.  
+
+
+
 ## Resources
 
 [Benchmark DotNet](https://benchmarkdotnet.org/)  
 [CodeMag Benchmarking deep dive](https://www.codemag.com/Article/2209061/Benchmarking-.NET-6-Applications-Using-BenchmarkDotNet-A-Deep-Dive)
 
-[Example for reviewing different nuget packages:](https://github.com/dotnet/BenchmarkDotNet/blob/master/samples/BenchmarkDotNet.Samples/IntroNuGet.cs)
+[Example for reviewing different nuget packages](https://github.com/dotnet/BenchmarkDotNet/blob/master/samples/BenchmarkDotNet.Samples/IntroNuGet.cs)

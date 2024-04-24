@@ -46,5 +46,5 @@ Or use the connection string as input type.
 
 ## Resources
 
-[How to connect and use Microsoft SQL Server Express LocalDB](https://www.sqlshack.com/how-to-connect-and-use-microsoft-sql-server-express-localdb/)
-[SQL Server Express LocalDB](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver16)
+[How to connect and use Microsoft SQL Server Express LocalDB](https://www.sqlshack.com/how-to-connect-and-use-microsoft-sql-server-express-localdb/)  
+[SQL Server Express LocalDB](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver16)  

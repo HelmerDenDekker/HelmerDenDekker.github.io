@@ -220,8 +220,14 @@ bookingContext.SetState(new NewState());
 bookingContext.Submit();
 ```
 
-### Conclusion
+## Conclusion
 
-Let me try to make a working example one day.
+These are the steps.
+The state pattern creates more layers in the application.
+The state pattern takes the big ball of code-mud, and breaks it down into smaller pieces.
+It eradicates the need for if-else statements, and makes the code more readable and maintainable.
+
+### Remarks
+A working example might give more insight in how to implement the state pattern.
 
 ## Resources

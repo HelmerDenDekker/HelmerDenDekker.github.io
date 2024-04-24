@@ -47,7 +47,7 @@ Pro
 
 ## Directory packages props
 
-Only works fo VS2022>=17.2 & .NEt SDK >=6.0.3 & nuget.exe >=6.2.0
+Only works fo VS2022>=17.2 & .NET SDK >=6.0.3 & nuget.exe >=6.2.0
 
 This is a lot of refactoring work, especially if you use a lot of packages in an existing solution.
 However, it does pay of if you do a lot of patching in an existing solution.
