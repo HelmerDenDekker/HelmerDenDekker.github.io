@@ -1,11 +1,9 @@
-# {Title}
+# HTML notes
 
 *24-4-2024*
 
 Status: Done  
 Type of post: Resource
-
-## *Rapid fire thoughts*
 
 ## Intro
 
