@@ -164,7 +164,7 @@ in the <code>PrivateObject</code> class, it accepts a <var>methodName</var> as <
 to be entered into the method as an <code>object[]</code>, and it returns an object.
 
 So, in the test below you find an example of how to test the <code>private</code> method. The method-name to invoke and
-the parameters are entered into the <code>Invoke</code> method. The result is asserted with AreEqual.
+the parameters are entered into the <code>Invoke</code> method. The result is asserted with <code>AreEqual</code>.
 
 ```cs
 [TestMethod]

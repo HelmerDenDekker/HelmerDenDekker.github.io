@@ -2,6 +2,8 @@
 
 *18-7-2023*
 
+Status: Work in progress
+
 Where to place responsibility for the mapping?
 
 1. Make the Entity itself responsible for the mapping
@@ -9,9 +11,9 @@ Where to place responsibility for the mapping?
 
 ## Active Record pattern
 
-The object wraps a row in a database table or view.
-It encapsulates database access
-It adds business logic on that data.
+The object wraps a row in a database table or view.  
+It encapsulates database access.  
+It adds business logic on that data.  
 
 In domain driven design (DDD) terms, the active record puts the persistence methods directly on the Entity object.
 
@@ -23,7 +25,7 @@ The persistence model, persistence logic and business logic are tightly coupled.
 ### When to use?
 
 - Applications with simple domain models
-- Applications which are are CRUD-intensive. (create, read, update and delete).
+- Applications which are CRUD-intensive. (create, read, update and delete).
 - Applications where the domain model and persistence model are the same.
 
 ## Data Mapper pattern
