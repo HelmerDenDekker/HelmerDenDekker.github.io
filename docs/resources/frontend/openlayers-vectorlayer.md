@@ -176,7 +176,7 @@ Changing the style is relly eady, but I could not find an easy description of ho
 
 It was a bit like throwing pizza at the wall, and see what sticks.
 
-What I think this does, 
+What I think this does, is when all features loaded, it sets the type to icon, which is the style I want to use.
 
 ```js{4}
 const vector = new VectorLayer({
