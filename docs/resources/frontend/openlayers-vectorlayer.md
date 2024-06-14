@@ -155,7 +155,49 @@ const vector = new VectorLayer({
 });
 map.addLayer(vector);
 ```
- Note to self: something seems wrong with the kml-file. It does not show the data.
+As I am using vite, it does load the kml from the assets location, which it needs as a base.
+Using the local file path works.
+```js{4}
+const vector = new VectorLayer({
+	source: new VectorSource({
+		url: 'assets/kml/2012-02-10.kml',
+		format: new KML({
+		})
+	}),
+});
+map.addLayer(vector);
+```
+
+Conclusion (for now 14-6-2024) is that there is something wrong with my kml.
+
+### Changing the style
+
+Changing the style is relly eady, but I could not find an easy description of how to do that. 
+
+It was a bit like throwing pizza at the wall, and see what sticks.
+
+What I think this does, 
+
+```js{4}
+const vector = new VectorLayer({
+	source: new VectorSource({
+		url: 'assets/kml/2012-02-10.kml',
+		format: new KML({
+		})
+	}),
+	style: function (feature) {
+			return styles[feature.get('type')];}
+});
+map.addLayer(vector);
+
+vector.getSource().on('featuresloadend', function (event) {
+		event.features.forEach(function (feature) {
+			feature.set('type', 'icon');
+		});
+	});
+```
+Which overrides all the styles in the kml and shows the icon style.
+
 
 
 
