@@ -139,7 +139,7 @@ Note to self: For the icon as image, I need the absolute source path for vite...
 
 ### KML or GeoJson
 
-Why do kml-files not wor[2012-02-10.kml](..%2F..%2F..%2F..%2F..%2FUsers%2FHelmerdenDekker%2FDownloads%2F2012-02-10.kml)k?
+Why do kml-files not work?
 
 Local File Access:  By default, OpenLayers' HTTP protocol cannot load files directly from your local machine due to security restrictions.  If your KML file is local, you'll need to use a different approach,  like serving it through a web server
 
@@ -168,38 +168,12 @@ const vector = new VectorLayer({
 map.addLayer(vector);
 ```
 
-Conclusion (for now 14-6-2024) is that there is something wrong with my kml.
+There is something wrong with my kml. As a result of exporting it from somewhere I cannot remember, the scheme was attached with an xml tag. That xml tag caused the error.
 
-### Changing the style
 
-Changing the style is relly eady, but I could not find an easy description of how to do that. 
-
-It was a bit like throwing pizza at the wall, and see what sticks.
-
-What I think this does, is when all features loaded, it sets the type to icon, which is the style I want to use.
-
-```js{4}
-const vector = new VectorLayer({
-	source: new VectorSource({
-		url: 'assets/kml/2012-02-10.kml',
-		format: new KML({
-		})
-	}),
-	style: function (feature) {
-			return styles[feature.get('type')];}
-});
-map.addLayer(vector);
-
-vector.getSource().on('featuresloadend', function (event) {
-		event.features.forEach(function (feature) {
-			feature.set('type', 'icon');
-		});
-	});
-```
-Which overrides all the styles in the kml and shows the icon style.
 
 
 
 
 ## Resources
-[npm ol](https://www.npmjs.com/package/ol)
+
