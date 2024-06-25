@@ -36,7 +36,9 @@ in javascript with `import Popup from 'ol-popup';`
 
 <code> @import "ol-popup/src/ol-popup.css";</code>
 
+### Conclusion
 
+Geocoder does not seem to work with useGeographic()
 
 
 
