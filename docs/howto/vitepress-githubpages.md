@@ -1,27 +1,27 @@
-# Vitepress and GitHub Pages
+# VitePress and GitHub Pages
 
-*27-3-2023 - updated 31-8-2023*
+*27-3-2023 - updated 15-7-2024*
 
-I wanted to try out GitHub Pages and VitePress so I just gave it a shot this afternoon. I have to say, starting it is
-very easy. This is my first page.
+I wanted to try out GitHub Pages and VitePress, so I just gave it a shot this afternoon. I have to say, starting it is
+very easy. This is the first page of my vite-press website on GitHub Pages.
 
 ## GitHub Pages
 
 So I started out with the [Quickstart for GitHub Pages](https://docs.github.com/en/pages/quickstart).
 
-It was really easy to setup the repo. I have done that many times before. However I spent a full ten seconds looking for
+It was really easy to set up the repo. I have done that many times before. However, I spent a full ten seconds looking for
 the links *Under "Build and deployment", under "Source", select Deploy from a branch*.
 That annoyed me, so for future reference:
 
-![Under "Build and deployment", under "Source", select Deploy from a branch.](/assets/images/vitepress/vitepressgithubpages01.png "It is here!")
+![Under "Build and deployment", under "Source", select Deploy from a branch.](../assets/images/vitepress/vitepressgithubpages01.png "It is here!")
 
 I won't forget that!
 
-## Vitepress
+## VitePress
 
 Next: [Quickstart for GitHub Pages](https://docs.github.com/en/pages/quickstart).
 
-Which was really really easy, since I work with vite on a daily basis, and I have everything installed on my laptop
+Which was really, really easy, since I work with vite on a daily basis, and I have everything installed on my laptop
 already. The documentation of VitePress is perfect for me, since it looks like the Vue documentation.
 
 ::: details Action plan (short version)
@@ -50,12 +50,12 @@ And answer the questions, for help go to the quickstart mentioned above.
 
 :::
 
-All settled, right? No!
+All settled, right? No!  
 
 First of all, for the first time in my life Visual Studio Code was bugging me not wanting to push to my repo (I think it
 wanted to say: workday is over Helmer!). This is really weird since I worked on this account with VS Code earlier today.
-I have Visual Studio for BackEnd development, so as a quick and dirty fix I fired up VS 2022, cloned and pushed without
-drama.
+I have Visual Studio for backend development, so as a quick and dirty fix I fired up VS 2022, cloned and pushed without
+drama.  
 
 Nice!
 
@@ -76,12 +76,11 @@ pipeline ready in no time.
 
 Next go to your repository settings. You have to change the build and deployment setting here to "GitHub Actions":
 
-![Under "Build and deployment", under "Source", select GitHub Actions.](/assets/images/vitepress/vitepressgithubpages02.png "Change to GitHub Actions")
+![Under "Build and deployment", under "Source", select GitHub Actions.](../assets/images/vitepress/vitepressgithubpages02.png "Change to GitHub Actions")
 
 If you forget about this, there will be double deployments, one with the "Deploy from branch", just showing your readme,
-and one with "Vitepress" with your website. Whichever one comes last is deployed on the server.
+and one with "VitePress" with your website. Whichever one comes last is deployed on the server.
 
-## Access Control
+## Conclusion
 
-For Enterprise subscribers, GitHub Pages now
-has [access control](https://github.blog/changelog/2021-01-21-access-control-for-github-pages/)
+With the documentation and some research it was not that hard to set up a VitePress website on GitHub Pages. There are a few things I had to figure out, and that is what this blog is for.
