@@ -6,7 +6,7 @@ Status: Work in progress
 
 In this page some Front End frameworks are discussed, in a philosophical way.
 
-// ToDo Rewrite!!
+[//]: # (	ToDo Rewrite!!)
 For context: a monolith architecture is a no go. This will create too much technical debt. We need flexibility for laws
 can be scrapped or changed, so there is a need for the ability to change just that what needs to be changed.
 

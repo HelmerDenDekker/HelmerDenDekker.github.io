@@ -13,7 +13,7 @@ These are the newest guidelines by Microsoft:
 [Guidelines for using HttpClient](https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines)
 
 Janne Timmers found me this explanation, which is great:
-[Youtube - Stop using the HttpClient the wrong way in .NET](https://www.youtube.com/watch?v=Z6Y2adsMnAA)
+[YouTube - Stop using the HttpClient the wrong way in .NET](https://www.youtube.com/watch?v=Z6Y2adsMnAA)
 
 In short:
 
@@ -24,7 +24,7 @@ In short:
 
 ​ ----------------------------------------------------------------------------------------------
 
-//ToDo Rewrite!!
+[//]: # (	ToDo :  Rewrite!! )
 
 The solution: use IHttpClientFactory
 

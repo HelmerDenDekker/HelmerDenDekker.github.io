@@ -6,7 +6,7 @@ Status: Work in progress - Not mine!
 
 *By Janne Timmers*
 
-//ToDo: rewrite!!
+[//]: # (	ToDo: rewrite!!)
 
 ## OAuth 2.0:
 

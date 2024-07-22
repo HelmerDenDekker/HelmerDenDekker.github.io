@@ -11,7 +11,7 @@ I am doing this stuff ALL the time, and still it confuses the hell out of me.
 
 I want:
 
-- github repo, helmer.reponame
+- GitHub repo, helmer.reponame
 - I want a C# template with the .documentation, .azuredevops, .github template folders, and all other stuff in the root
 - The code in the src folder
 - The src folder must have the solution
@@ -46,6 +46,6 @@ Everything should be okay to add a new project to the src folder, with the defau
 
 ### Step 4 Add to source control
 
-In VS, log into github, and click add to source control, by default it will create a new repo and all
+In VS, log into GitHub, and click add to source control, by default it will create a new repo and all
 
 ## Resources

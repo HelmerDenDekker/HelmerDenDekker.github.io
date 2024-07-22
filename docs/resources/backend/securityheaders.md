@@ -9,9 +9,9 @@ in [the presentation layer of the HelmerwebshopDemo project](https://github.com/
 
 
 -------------------------------------------------------------------
-//ToDo: Why would you write CSP in code? Why not in the web.config so IIS can take care of it? You need to set up a CSP policy in IIS anyway, so why not use that?
+[//]: # (	ToDo: Why would you write CSP in code? Why not in the web.config so IIS can take care of it? You need to set up a CSP policy in IIS anyway, so why not use that?)
 
-//ToDo Rewrite into a How-to
+[//]: # (	ToDo Rewrite into a How-to)
 
 ## API Header settings General info:
 

@@ -33,7 +33,7 @@ Love Copilot, love MAUI.
 
 Except, when I tried unit testing. This was a total disaster. So I had to refactor my code, and move all the helpers into a separate project (library). The tests are running smooth AND MAUI as well. So.
 
-I am a bign fan now.
+I am a big fan now.
 
 ### Try-sies
 
@@ -43,16 +43,17 @@ I would like to try some more stuff with images later.
 
 Heads-up: Combining Blazor-Hybrid and MAUI - refresh problem. StateHasChanged will not always update the state. Have to look into that.
 
+- Not all things that work in Blazor do work in MAUI
 
 ## *Outline*
 
 How to unit test MAUI app.
 
-TODO Learn: MAUI App architecture
+[//]: # (TODO Learn: MAUI App architecture)
 
-TODO MudBlazor and Hybrid Blazor
+[//]: # (TODO MudBlazor and Hybrid Blazor)
 
-TODO Images and MAUI
+[//]: # (TODO Images and MAUI)
 
 
 

@@ -4,15 +4,16 @@
 
 Status: Work in progress
 
-//ToDo: What do you want to tell about XUnit, and stick to this AND the standards
+[//]: # (	ToDo: What do you want to tell about XUnit, and stick to this AND the standards)
 
 ## Why use XUnit?
 
-//ToDo: XUnit versus MsTests
+[//]: # (	ToDo: XUnit versus MsTests)
 I like the fact that XUnit has theory and facts
 
 AND it has isolation-by-default because it creates an instance of the test class for each test
-//ToDo: Rewrite!!
+
+[//]: # (	ToDo: Rewrite!!)
 
 ## Fact attribute
 
@@ -63,11 +64,12 @@ This eliminates the need to add test data in the test method itself. In addition
 the method several times with different test data.
 
 When you execute the test you will see that every test will create separate instances
-//ToDo: Add a picture of the test performing
+
+[//]: # (	ToDo : Add a picture of the test performing)
 
 -----------------------------------------------------------------------------------------
 
-//ToDo: NOT ACCORDING TO STANDARDS!!
+[//]: # (	ToDo : NOT ACCORDING TO STANDARDS!!)
 
 ### ClassData
 
@@ -172,7 +174,7 @@ public class CalculatorTestData
 
 Again, this centralizes your tes tdata, making it unclear what the test is about
 
-//ToDo: Name some other unique features of XUnit
+[//]: # (	ToDo: Name some other unique features of XUnit)
 
 ## Resources
 

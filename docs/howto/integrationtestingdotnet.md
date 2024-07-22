@@ -2,7 +2,7 @@
 
 *5-10-2023*
 
-I just saw this easy integration testing in .NET 6 on youtube and was like: 'WOW! I want to try this out!' So I created
+I just saw this easy integration testing in .NET 6 on YouTube and was like: 'WOW! I want to try this out!' So I created
 a quick example and played around with it.
 
 ## Testing an API endpoint
