@@ -34,6 +34,9 @@ export default defineConfig({
 					{text: 'How to: VitePress and GitHub Pages', link: '/howto/vitepress-githubpages'},
 					{text: 'How to: Advanced unit tests', link: '/howto/advancedunittesting'},
 					{text: 'How to: Integration test', link: '/howto/integrationtestingdotnet'},
+					{text: 'How to: Dialog modal with JS', link: '/resources/frontend/jsmodal'},
+					{text: 'How to: Popover with JS', link: '/resources/frontend/jspopover'},
+					{text: 'OpenLayers: How to create a dashed line', link: '/resources/frontend/openlayers-dashedline'},
 				]
 			},
 			{
@@ -42,6 +45,8 @@ export default defineConfig({
 					//FrontEnd
 					{text: 'Frontend', link: '/resources/frontend/frontend'},
 					{text: 'Runtime API Examples', link: '/resources/frontend/api-examples'},
+					// {text: 'How to: Create a dialog modal with JavaScript and CSS', link: '/resources/frontend/jsmodal'},
+					// {text: 'How to: Create a popover with JavaScript and CSS', link: '/resources/frontend/jspopover'},
 					// { text: 'Input Validation', link: '/resources/input-validation' },
 					// Backend
 					{text: 'Backend', link: '/resources/backend/backend'},

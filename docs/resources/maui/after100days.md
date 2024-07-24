@@ -7,14 +7,26 @@ Type of post: Opinion piece Resource
 
 ## *Rapid fire thoughts*
 
-The idea is great, I have some remarks though.
+About pitfall of frustration. What did I learn:
+- Keep expectations low
+- Keep it simple
+- Keep it small
+- Try what you want
+- Small iterations
 
-- It works, but it is not easy. And the documentation is not helping. 
+The idea is great, I have some remarks though. If you are a web developer: Lower all expectations to an absolute minimum, and prepare to be hugely disappointed.
+
+- The official documentation is not helping. MAUI is way too broad and promising, in the end nothing will work as expected (except the XAML-bits). 
 - Gerald Versluis is my new hero.
-- Showing user images is a no go. It is very difficult
-- Using any url in Blazor webview is a no go, it will not work
+- Showing user images is a no-go. It is very difficult
+- Using any url in Blazor webview is a no-go, it will not work (security)
 - Most of the things I tried in Hybrid Blazor, do not work in MAUI. And seriously, these things work faster and more stable in XAML.
+- Learning curve: very steep!
+- Unit testing: I could not make it work.
+- Using separate projects for the logic, so it can be unit tested: the MAUI app will not publish.
+- Publishing: It does not work for me. After two days of struggling, I ended up with an MSIx that did not work.
 
+In the end, I just used the Webview. At least that works.
 
 // My frustrations with MAUI
 - Case of overpromise, underdeliver (a bit like blazor), sometimes feels like a marketing stunt
@@ -73,7 +85,7 @@ Problem: endless build errors
 I keep having issues with the publish not being able to find projects that I reference.
 I do this trick, where I first build as release. And next it says like "cannot find namespace". Open it. It is there. Clean. Rebuild. In release mode! No problem found. Try again and expect a different result. (definition of madness).
 
-Problem restore nuget packages.[.gitignore](..%2F..%2F..%2F..%2Fteamxerbutri.cms.maui%2F.gitignore)
+Problem restore nuget packages
 
 O God, no, I did not run restore. attempt ten. PMC, dotnet restore. Starting to hate the guy who wrote: You can just use Publish in Visual Studio. 
 
