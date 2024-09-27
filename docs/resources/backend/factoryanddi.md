@@ -1,6 +1,6 @@
 # Factory and dependency injection
 
-*24-7-2024*
+*24-9-2024*
 
 _Status: Work in progress_  
 _Type of post: Resource_
@@ -32,14 +32,25 @@ public class StateMachine : IStateMachine
     private bool _isRunning;
     private IDependency _dependency;
     
-    private StateMachine(IDependency dependency)
+    private StateMachine(IDependency dependency, ITranslationProvider translationProvider)
 	{
 		_dependency = dependency;
+        _translationProvider = translationProvider;
 	}
     
-	internal static StateMachine InitializeStateMachine(IDependency dependency)
+    public void SendMessage(string message)
+	{
+		// Do stuff
+	}
+    
+	internal static StateMachine InitializeStateMachine(IDependency dependency, ITranslationProvider translationProvider)
 	{
 		return new StateMachine(dependency);
+	}
+    
+    internal string Translate(string key)
+	{
+		return _translationProvider.Translate(key);
 	}
 
 }
@@ -51,10 +62,12 @@ public class StateMachineFactory : IStateMachineFactory
 	private IDependency _dependency;
 	private IStateStore _stateStore;
 	
-	public StateMachineFactory(IDependency dependency, IStateStore store)
+	public StateMachineFactory(IDependency dependency, IStateStore store, ITranslationProvider translationProvider)
+	
 	{
 		_dependency = dependency;
 		_stateStore = stateStore;
+        _translationProvider = translationProvider;
 	}
 	
 	public StateMachine CreateStateMachine()
@@ -64,7 +77,7 @@ public class StateMachineFactory : IStateMachineFactory
 			return _stateStore.Get("sessionId");
 		}
 
-		return StateMachine.InitializeStateMachine(_dependency);
+		return StateMachine.InitializeStateMachine(_dependency, _translationProvider);
 	}
 }
 ```
@@ -85,7 +98,47 @@ public interface IStateMachine
 
 That is all I want to know. I do not want to tire my component (and brain) with all creation logic. Just inject the IStateMachine, and call the method.
 
-So that is where the dependencies are. Wite the unit tests with bunit nd bob is your uncle!
+So that is where the dependencies are. Write the unit tests with bunit and bob is your uncle!
+
+## About the states themselves and unit testing
+
+The states have a dependency on the StateMachine. These states need access to shared internals.
+
+Is that a good idea?
+
+For example, in active state I want a translated welcome message sent. 
+I COULD introduce a new interface, but interfaces are public, and the methods like translate are not meant to be public.
+
+This causes a problem when I want to unit test states. I cannot mock the state machine as it is not an interface.
+
+[//]: # ( ToDo: How to unit test states? States should be unit tested, they contain the logic!)
+
+```cs
+public class ActiveState : StateBase
+{
+	public override void EnterState(StateMachine stateMachine)
+	{
+		// Do stuff like:
+        stateMachine.State = State.Active;
+        stateMachine.Running = true;
+        var welcomeMessage = stateMachine.Translate("Welcome");
+        stateMachine.SendMessage(welcomeMessage);
+	}
+}
+
+```
+
+
+```cs
+public class StateBase
+{
+	public abstract void Dispose();
+    
+    public abstract void EnterState(StateMachine stateMachine);
+    
+}
+```
+
 
 ## Resources
 
