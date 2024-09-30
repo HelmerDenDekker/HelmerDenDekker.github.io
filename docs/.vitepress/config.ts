@@ -64,6 +64,7 @@ export default defineConfig({
 					//{ text: 'Markdown', link: '/resources/languages/markdown' },
 					//Testing
 					{text: 'About NUnit', link: '/resources/testing/nunit'},
+					{text: 'Unit test attributes', link: '/resources/testing/attributes'},
 				]
 			},
 		],
