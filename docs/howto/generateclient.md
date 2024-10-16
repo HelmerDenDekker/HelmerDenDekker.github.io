@@ -23,7 +23,7 @@ json in the NSwag docs)
 
 ## How to
 
-//ToDo: Write a how to with the steps and code
+[//]: # (	ToDo: Write a how to with the steps and code)
 
 ## Using the generated client
 

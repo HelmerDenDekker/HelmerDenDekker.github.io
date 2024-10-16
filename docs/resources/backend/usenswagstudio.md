@@ -13,7 +13,7 @@ How to generate a client - the way I like it.
 On the left side in NSwagStudio, in the **Input** area, select the **Runtime**, and in the **OpenAPI/Swagger
 specification** enter the path to the yaml spec file.
 
-![NSwag Studio Input](/assets/images/nswag/nswag1.png "Input section of NSwag Studio")
+![NSwag Studio Input](../../assets/images/nswag/nswag1.png "Input section of NSwag Studio")
 
 NB, if it throws any errors, JetBrains Rider has a real nice yaml validation AI.
 
@@ -26,14 +26,15 @@ nice for local testing purposes.
 In the **Outputs** area check the **CSharp Client** checkbox.
 Next select the **CSharp Client** tab, and go to the **Settings** tab.
 
-![NSwag Studio Outputs](/assets/images/nswag/nswag2.png "Input section of NSwag Studio")
+![NSwag Studio Outputs](../../assets/images/nswag/nswag2.png "Input section of NSwag Studio")
 
 As you can see there are loads of settings you can play around with.
 
 I will discuss these, for the 13.2 version of NSwagStudio:
 
 1. Start with setting the **Namespace** to the proper namespace of your project
-   //ToDo continue here
+
+   [//]: # (	ToDo :  continue here )
    For all the settings,
    see [CSharp Client Generator Settings](https://github.com/RicoSuter/NSwag/wiki/CSharpClientGeneratorSettings)
 

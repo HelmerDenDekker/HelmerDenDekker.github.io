@@ -14,11 +14,11 @@ OpenID Connect (oidc openidconnect):
 
 In OpenID connect there are flows defined for the protocol implementation. These flows are regularly updated, making
 anything I write down here deprecated in a year (probably). Please check
-the [OpenID foundation website](https://openid.net/) for up to date info.
+the [OpenID foundation website](https://openid.net/) for up-to-date info.
 
 ## Authorization code flow explained
 
-![OpenID connect flow](/assets/images/openid/openid.svg "OpenID connect  flow")
+![OpenID connect flow](../../assets/images/openid/openid.svg "OpenID connect  flow")
 
 The user wants to visit your webpage. So it enters the url in the browser, and hits enter.
 

@@ -13,11 +13,11 @@ Encapsulation of the logic was very important.
 
 The monolith was refactored into layers, a bit like the domain driven design, or onion model:
 
-![Domain-driven design: Architectural layers](/assets/images/domaindrivendesign/domaindrivendesignlayers.svg "Domain-driven design; Architectural layers")
+![Domain-driven design: Architectural layers](../assets/images/domaindrivendesign/domaindrivendesignlayers.svg "Domain-driven design; Architectural layers")
 
 The layer we call the domain was organised like this:
 
-![Domain layers](/assets/images/advancedunittest/domainunittesting.svg "Domain layers")
+![Domain layers](../assets/images/advancedunittest/domainunittesting.svg "Domain layers")
 
 The public available methods were exposed through an interface. The Logic only contained the public methods. All
 protected and private methods were contained in the LogicHelper. I do not want to discuss the what, how and why, but

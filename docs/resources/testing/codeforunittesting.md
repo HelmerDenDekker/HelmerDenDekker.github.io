@@ -4,7 +4,7 @@
 
 Status: Work in progress
 
-//ToDo This part is about writing testable code
+[//]: # (	ToDo :  This part is about writing testable code )
 
 ## Testing scenarios
 
@@ -176,13 +176,14 @@ public class UserLogicCommandTest
 }
 ```
 
-//ToDo: Denk aan wat je wilt vertellen en wijk daar niet van af! Onderstaande is niet passend, en ik verwacht hier een
-soort conclusie, Dus: Kleine units code testen. Naamgeving. Test opzet. Command Query seperatie, zodat je goed kan
+[//]: # (	ToDo: Denk aan wat je wilt vertellen en wijk daar niet van af!)
+[//]: # ( ToDo: Onderstaande is niet passend, en ik verwacht hier een soort conclusie, Dus:) 
+Kleine units code testen. Naamgeving. Test opzet. Command Query seperatie, zodat je goed kan
 testen.
 
 ## Mocking Misuse
 
-//ToDo Dit is dus een slecht voorbeeld, omdat het langzamer is. Laat dat ook zien in een test!
+[//]: # (	ToDo :  Dit is dus een slecht voorbeeld, omdat het langzamer is. Laat dat ook zien in een test!)
 Sometimes you have to use mocking to isolate and focus on the code being tested and not on the behavior or state of
 external dependencies. With this technique the dependencies are replaced by closely controlled replacements objects that
 simulate the behavior of the real ones.

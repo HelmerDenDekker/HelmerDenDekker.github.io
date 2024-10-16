@@ -19,13 +19,14 @@ REST is an acronym for Representational State Transfer and an architectural styl
 5. Layered system
 6. Code on demand
 
-//ToDo: Short explanation per constraint
+[//]: # (	ToDo: Short explanation per constraint )
 
 ### Uniform interface
 
 Define a uniform interface for your API, and stick with it.
-//ToDo: API design standards link!
-//ToDo: HATEOS link
+
+[//]: # (	ToDo: API design standards link! )
+[//]: # (	ToDo: HATEOS link )
 
 
 ---

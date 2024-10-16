@@ -21,7 +21,7 @@ Only reuse technical components, no business logic. Business logic can and will 
 
 ## My experience with code reuse
 
-//ToDo -> add pictures using Excalidraw to clarify and REWRITE!!!!
+[//]: # (	ToDo :  -> add pictures using Excalidraw to clarify and REWRITE!!!!)
 
 This article describes a code reuse in a philosophical way. Several options and their pros and cons are jotted down. It
 is a living document

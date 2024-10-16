@@ -187,7 +187,8 @@ The idea is to run the Setup project and it sets up the database and migrations 
 
 Add a console project to your solution. This project will set the database up, seed it and take care of migrations.  
 See the [HelmerDemo.WebShopDemo.Infrastructure.Setup](https://github.com/HelmerDenDekker/HelmerDemo.WebShopDemo/tree/develop/src/Services/WSD.Catalog.Infrastructure.Setup) for implementation details.  
-// TODO step by step explanation
+
+[//]: # (TODO step by step explanation)
 
 // Do all the stuff, worker, program etc.
 Install Microsoft.EntityFrameworkCore.Tools package

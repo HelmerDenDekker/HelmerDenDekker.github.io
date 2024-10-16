@@ -4,7 +4,7 @@
 
 Status: Work in progress
 
-//ToDo: Rewrite!
+[//]: # (	ToDo: Rewrite!)
 
 ## Cupid is the new SOLID
 

@@ -4,7 +4,7 @@
 
 Status: Work in progress
 
-ToDo: Create some kind of template
+[//]: # (ToDo: Create some kind of template)
 
 ## Step 1: Set up branch protection
 

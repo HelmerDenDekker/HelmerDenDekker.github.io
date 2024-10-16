@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Basic popover example</title>
+	<style>
+		/* dismiss */
+		.dismiss {
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top of non-actionable elements*/
+			left: 0;
+			top: 0;
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+		}
+
+		/* popover-type content box  */
+		.popover {
+			position: fixed; /* Stay in place */
+			bottom: 0;
+			background-color: #fefefe;
+			padding: 24px;
+			border-radius: 28px ;
+			max-width: 640px;
+			border: #1b1b1f solid 1px;
+		}
+		
+		#reset-text {
+			position: relative;
+			z-index: 2;
+		}
+	</style>
+</head>
+<body>
+	<h2>Basic Popover-type example</h2>
+	<p id="text">Click the button to open the popover.</p>
+
+	<!-- Open the popover -->
+	<button id="popover-open">Open Popover</button>
+	<button id="reset-text">Reset text color</button>
+
+	<!-- The dismiss -->
+	<div id="dismiss" class="dismiss">
+
+		<!-- Popover non-modal content -->
+		<div class="popover">
+			<p>The popover is non-intrusive. It does not expect an action, only interaction with elements within this popover. It has a light dismiss.</p>
+			<button id="change-text-color">Change text color</button>
+			<button id="show-dismiss">Show Dismiss layer</button>
+		</div>
+
+	</div>
+
+
+	<script>
+		// declare the element with the text to change color
+		const text = document.getElementById("text");
+		
+		// declare the dismiss-layer div, which is the base element for the popover
+		const dismiss = document.getElementById("dismiss");
+
+		// declare the button that opens the modal
+		const open = document.getElementById("popover-open");
+
+		// declare the reset button
+		const reset = document.getElementById("reset-text");
+		reset.disabled = true;
+		
+		// declare the change-text-color button
+		const color = document.getElementById("change-text-color");
+		
+		// declare the show-dismiss button
+		const showDismiss = document.getElementById("show-dismiss");
+		
+		// When the user clicks the open button, open the popover 
+		open.onclick = function() {
+			dismiss.style.display = "block";
+		}
+		
+		reset.onclick = function() {
+			text.style.color = "black";
+			reset.disabled = true;
+		}
+		
+		color.onclick = function() {
+			text.style.color = "red";
+			reset.disabled = false;
+		}
+		
+		dismiss.onclick = function(event) {
+			if(event.target === dismiss) {
+				dismiss.style.display = "none";
+			}
+		}
+		
+		// When the user clicks on the show-dismiss button, show the dismiss layer in black
+		showDismiss.onclick = function() {
+			dismiss.style.backgroundColor = "black";
+		}
+		
+	</script>
+
+</body>
+</html>
