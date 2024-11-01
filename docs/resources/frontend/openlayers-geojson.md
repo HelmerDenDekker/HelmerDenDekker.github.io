@@ -1,15 +1,13 @@
-# Klad: OpenLayers en GeoJson, grofweg hoe ik het aan de praat heb gekregen
+# Using GeoJSON with OpenLayers
 
-*10-7-2024*
+*1-11-2024*
 
 Status: Work in progress  
 Type of post: Resource
 
-## *Rapid fire thoughts*
-
 ## *Outline*
 
-Stukje bij beetje:
+Bit by bit:
 
 ### 1 Define styles
 
@@ -104,6 +102,8 @@ const geojsonVector = new VectorLayer({
 map.addLayer(geojsonVector);
 ```
 
+This will show you the point on the map. Congrats.
+
 ### 4 Get JSON from an url address
 
 In real life, we get jsons from an url address. This is the last step:
@@ -122,8 +122,11 @@ const urlVector = new VectorLayer({
 map.addLayer(urlVector);
 ```
 
-map.addLayer(urlVector);
-
+This shows the point on the map as it came from the url address. So now the map will show any point or linestring you will throw at it.
 
 
 ## Resources
+
+For editing or creating GeoJson objects, I recommend [Geojson.io](https://geojson.io/).  
+[The example of OpenLayers GeoJSON](https://openlayers.org/en/latest/examples/geojson.html)
+
