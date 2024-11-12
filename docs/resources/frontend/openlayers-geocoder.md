@@ -5,9 +5,7 @@
 Status: Work in progress  
 Type of post: Guide/Resource
 
-## *Rapid fire thoughts*
 
-Write down how you did
 
 ## *Outline*
 
@@ -18,7 +16,6 @@ In the second part, I added a vector layer with a KML file.
 
 This part concerns the implementation of [Geocoder](https://github.com/Dominique92/ol-geocoder).
 
-### Styles
 
 ### Geocoder
 
@@ -41,11 +38,6 @@ in javascript with `import Popup from 'ol-popup';`
 Geocoder does not seem to work with useGeographic()
 
 
-
-
-
-
-
 ## Resources
-[OpenLayers Style API](https://openlayers.org/en/latest/apidoc/module-ol_style_Style-Style.html#clone)
-[GeoJson example](https://openlayers.org/en/latest/examples/geojson.html)
+[OpenLayers Style API](https://openlayers.org/en/latest/apidoc/module-ol_style_Style-Style.html#clone)  
+[GeoJson example](https://openlayers.org/en/latest/examples/geojson.html)  

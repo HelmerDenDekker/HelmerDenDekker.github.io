@@ -126,6 +126,5 @@ This was very easy to achieve. I am happy with the result.
 Next step: Vector layers.
 
 
-
 ## Resources
 [npm ol](https://www.npmjs.com/package/ol)
