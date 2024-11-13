@@ -36,6 +36,8 @@ Scopes (namespaces) to keep the procedures in the modules.
 Methods with arguments as inputs, that return value (or perform a command).
 `returnvalue method(argument)`
 
+Death by a thousand ifs.
+
 #### Object oriented
 
 Groups instructions with the part of the state they operate on.
@@ -50,6 +52,8 @@ The classic big 3:
 - Encapsulation (hide details)
 - Inheritance
 - Polymorphism
+
+Death by a thousand classes.
 
 ##### Encapsulation:
 
