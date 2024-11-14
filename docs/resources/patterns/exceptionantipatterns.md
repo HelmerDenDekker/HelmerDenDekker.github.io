@@ -98,11 +98,16 @@ Disadvantages
 
 
 
+### Notification pattern
+
+What I was thinking: If I have to go to DB, and something fails there, I want to tell the user, by adding a notification.
+This is not validation-related.
 
 
-- Classes should be self-validating (from DDD) 
+
 
 
 ## Resources
 
 [Top 10 .NET Exception Anti-Patterns in C#](https://medium.com/new-devs-guide/top-10-dotnet-exception-anti-patterns-in-c-3827576d82a)  
+[Martin Fowler: Use Notifications instead of errors](https://martinfowler.com/articles/replaceThrowWithNotification.html)

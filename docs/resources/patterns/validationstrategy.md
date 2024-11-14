@@ -19,33 +19,178 @@ Custom attributes can be added to the model to extend the validation. Extend Val
 
 Implement IValidatableObject to add custom validation to a class.
 
+Use Data Annotations.
+Use attributes.
 
-## Example
+Rule 1: For validation rules, use the CustomAttribute. 
+Rule 2: For (VERY!!) custom validation, use IValidatableObject.
 
-User model with custom validation.
+## Validation rules
+
+Use the custom validation attribute for shared validation rules.
+
+For example a DateTimeCompareAttribute by Benjamin Day
+
+```csharp
+public class DateTimeCompareValidatorAttribute : ValidationAttribute
+{
+	private readonly DateTimeCompare _compareType;
+	private readonly string _otherPropertyName;
+
+	public DateTimeCompareValidatorAttribute(DateTimeCompare comparison, string otherPropertyName)
+	{
+		_comparison = comparison;
+		_otherPropertyName = otherPropertyName;
+	}
+
+	protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+	{
+		if (value == null)
+			return ValidationResult("Value cannot be null");
+        
+        DateTime valueAsDateTime;
+        
+        if(!DateTime.TryParse(value.ToString(), out valueAsDateTime))
+			return new ValidationResult("Value is not a valid date");
+        
+        object otherPropertyInfo = validationContext.ObjectInstance.GetType().GetProperty(_otherPropertyName);
+        
+        if(otherPropertyInfo == null)
+            return new ValidationResult($"Invalid property name other property");
+        
+        var otherValue = otherPropertyInfo.GetValue(validationContext.ObjectInstance);
+        
+        if(otherValue == null)
+			return new ValidationResult("Other value cannot be null");
+        
+        DateTime otherValueAsDateTime;
+		
+		if(!DateTime.TryParse(otherValue.ToString(), out otherValueAsDateTime))
+            			return new ValidationResult("Other value is not a valid date");
+		
+		switch(_comparison)
+		{
+			case DateTimeCompare.LessThan:
+				if(valueAsDateTime < otherValueAsDateTime)
+					return ValidationResult.Success;
+				break;
+			case DateTimeCompare.LessThanOrEqual:
+				if(valueAsDateTime <= otherValueAsDateTime)
+					return ValidationResult.Success;
+				break;
+			case DateTimeCompare.Equal:
+				if(valueAsDateTime == otherValueAsDateTime)
+					return ValidationResult.Success;
+				break;
+			case DateTimeCompare.GreaterThan:
+				if(valueAsDateTime > otherValueAsDateTime)
+					return ValidationResult.Success;
+				break;
+			case DateTimeCompare.GreaterThanOrEqual:
+				if(valueAsDateTime >= otherValueAsDateTime)
+					return ValidationResult.Success;
+				break;
+			default:
+				return new ValidationResult($"Comparison is not valid for {_comparison}");
+		}
+
+		return new ValidationResult($"Comparison is not valid for {_comparison}");
+	}
+}
+```
+
+
+## Custom validation
+
+Use IValidatableObject to add custom validation to a class.
 
 ```csharp
 public class User : IValidatableObject
 {
     [Required]
-	public string Name { get; set; }
-	
+    public string Name { get; set; }
+
     [Required]
     [EmailAddress]
     public string Email { get; set; }
 
-	public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-	{
-		if (string.IsNullOrEmpty(Name))
-		{
-			yield return new ValidationResult("Name is required", new[] { nameof(Name) });
-		}
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (Name == "admin")
+        {
+            yield return new ValidationResult("Name cannot be admin", new[] { nameof(Name) });
+        }
+    }
+}
+```
 
-		if (string.IsNullOrEmpty(Email))
-		{
-			yield return new ValidationResult("Email is required", new[] { nameof(Email) });
-		}
+This adds the validation logic to the model.
+
+## Custom validator
+
+To have more control over the validation, for unit testing:
+
+```csharp
+public class DefaultValidator<T> : IValidator<T>
+{
+    public bool IsValid(T model)
+    {
+        var results = Validate(model);
+
+        return results.Count == 0;
+    }
+    
+    private IList<ValidationResult> Validate(T model)
+    {
+        var context = new ValidationContext(model);
+        var results = new List<ValidationResult>();
+        Validator.TryValidateObject(model, context, results, true);
+        return results;
 	}
+}
+```
+
+Implement like this:
+
+```csharp
+public class UserController : Controller
+{
+    private readonly IValidator<User> _validator;
+
+    public UserController(IValidator<User> validator)
+    {
+        _validator = validator;
+    }
+
+    [HttpPost]
+    public IActionResult Post(User user)
+    {
+        if (!_validator.IsValid(user))
+        {
+            return BadRequest();
+        }
+
+        // Save user
+        return Ok();
+    }
+}
+```
+
+
+
+# Benjamin Day and the Strategy pattern
+
+User model validation.
+
+```csharp
+public class User
+{
+    [Required]
+    public string Name { get; set; }
+
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; }
 }
 ```
 
@@ -63,22 +208,65 @@ Default Validator strategy
 ```csharp
 public class DefaultValidatorStrategy<T> : IValidatorStrategy<T>
 {
-	public bool IsValid(T model)
-	{
-		var results = Validate(model);
-        
+    public bool IsValid(T model)
+    {
+        var results = Validate(model);
+
         return results.Count == 0;
-	}
+    }
     
     private IList<ValidationResult> Validate(T model)
-	{
-		var context = new ValidationContext(model);
-		var results = new List<ValidationResult>();
-		Validator.TryValidateObject(model, context, results, true);
-		return results;
+    {
+        var context = new ValidationContext(model);
+        var results = new List<ValidationResult>();
+        Validator.TryValidateObject(model, context, results, true);
+        return results;
 	}
 }
 ```
+Controller
+
+```csharp
+public class UserController : Controller
+{
+    private readonly IValidatorStrategy<User> _validator;
+
+    public UserController(IValidatorStrategy<User> validator)
+    {
+        _validator = validator;
+    }
+
+    [HttpPost]
+    public IActionResult Post(User user)
+    {
+        if (!_validator.IsValid(user))
+        {
+            return BadRequest();
+        }
+
+        // Save user
+        return Ok();
+    }
+}
+```
+
+
+
+## Conclusion
+
+Why should I use the strategy pattern for this? I have no use case for multiple strategies.
+
+Validation rules are about the object you are working with. See input/output validation.
+
+I think it is very true and okay for object to be self-validating. Keeping the distance between this knowledge/business rules and the object as small as possible.
+
+## My view and take on this
+
+
+- Classes should be self-validating (from DDD)
+
+
+
 
 
 ## Resources
