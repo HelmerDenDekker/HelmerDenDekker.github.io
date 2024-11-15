@@ -25,6 +25,8 @@ Only use it for scenarios:
 - These algorithms can be selected at runtime.
 - The client should be able to choose the algorithm.
 
+THIS IS KEY! The client should be able to choose the algorithm. For example, the payment method of choice. The shipping method of choice.
+
 ## Strategy pattern
 
 The strategy pattern is a behavioural design pattern that enables selecting an algorithm at runtime.
@@ -33,7 +35,7 @@ The strategy pattern is a behavioural design pattern that enables selecting an a
 
 Say, you need to save some data.
 
-Suppose the product-owner wants you to save the data in a database, and/or a file and/or a Blob.  
+Suppose the product-owner wants the user to choose whether to save the data to a database, or a file or a Blob.  
 
 The strategy pattern is a good fit for this.
 
@@ -111,7 +113,7 @@ public class MyObject
 
 #### Usage
 
-Orchestration is done by the Service layer pattern.
+Orchestration is done by the Service layer pattern. 
 
 ```csharp
 public class MyObjectService
@@ -128,78 +130,101 @@ public class MyObjectService
 }
 ```
 
-This is cutting a lot of corners.
+This is cutting a lot of corners. This is not really what strategy pattern is about, because in this case we as developer choose the strategy. Key of the strategy pattern is the client having the choice.
 
-### Variation
+### Variation by Helmer, using Dependency Injection
+
+just my thoughts about the subject.
+
+Introducing a type, for the client to choose from, a StorageEnum
+
+```csharp
+public enum StorageEnum
+{
+	Database,
+	File,
+	Blob
+}
+```
 
 #### The MyObject class
 
-The `MyObject` class has a property of type `IStorageStrategy`.
+The `MyObject` class has a property of type `StorageEnum`.
 
 ```csharp
 public class MyObject
 {
 	public string Name { get; set; }
 	public string Description { get; set; }
+    public StorageEnum StorageType { get; set; }
     
-    public MyObject(string name, string description)
+    public MyObject(string name, string description, StorageEnum storageEnum)
 	{
 		Name = name;
 		Description = description;
+        StorageType = storageEnum;
 	}
-    
-    // Save the object implementation
-	public void Save(IStorageStrategy storageStrategy)
-	{
-        // Add null check
-		storageStrategy.Save(this);
-	}
+}
+```
+
+#### The interface
+
+Also, the strategy should be aware of the type.
+
+```csharp
+public interface IStorageStrategy
+{
+		void Save(MyObject data);
+    	StorageEnum Type { get; }
 }
 ```
 
 #### Usage
 
+You need to know at this point the strategy the user wants to use in order to inject the right strategy.
+
+Factory pattern is a good fit for this: (or is it overkill?)
+
+```csharp
+public class StorageStrategyFactory : IStorageStrategyFactory
+{
+    public StorageStrategyFactory(IEnumerable<IStorageStrategy> strategies)
+	{
+		_strategies = strategies;
+	}
+    
+	public IStorageStrategy GetStorageStrategy(StorageEnum type)
+	{
+		return _strategies.FirstOrDefault(s => s.Type == type);
+	}
+}
+
+```
+
+
 Orchestration is done by the Service layer pattern.
 
 ```csharp
-public class MyObjectService
+public class MyObjectService : IMyObjectService
 {
+    private readonly IStorageStrategyFactory _storageStrategyFactory;
+    
+    public MyObjectService(IStorageStrategyFactory storageStrategyFactory)
+	{
+		_storageStrategyFactory = storageStrategyFactory;
+	}
+    
 	public void Save()
 	{
-        var myObject = new MyObject("My object", "My description");
-        
-		myObject.Save(new DatabaseStorageStrategy());
-        
-        myObject.Save(new FileStorageStrategy());
+        var myObject = new MyObject("My object", "My description", StorageEnum.File);
+        var storageStrategy = _storageStrategyFactory.GetStorageStrategy(myObject.StorageType);
+	    storageStrategy.Save(myObject)
 	}
 }
 ```
-Newing up is not done. I would much rather inject the strategy in the constructor.
-
-### Use Dependency Injection
-
-.
 
 
-
-```csharp
-public class MyObjectService
-{
-	private readonly IStorageStrategy _storageStrategy;
-	
-	public MyObjectService(IStorageStrategy storageStrategy)
-	{
-		_storageStrategy = storageStrategy;
-	}
-	
-	public void Save()
-	{
-		var myObject = new MyObject("My object", "My description");
-		
-		myObject.Save(_storageStrategy);
-	}
-}
-```
+Something like that should work. I guess.
 
 ## Resources
 

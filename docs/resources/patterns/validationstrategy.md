@@ -99,6 +99,25 @@ public class DateTimeCompareValidatorAttribute : ValidationAttribute
 }
 ```
 
+And use it like this:
+
+```csharp
+public class User
+{
+	[Required]
+	public string Name { get; set; }
+
+	[Required]
+	[EmailAddress]
+	public string Email { get; set; }
+
+	[DateTimeCompareValidator(DateTimeCompare.GreaterThan, "StartDate")]
+	public DateTime EndDate { get; set; }
+
+	public DateTime StartDate { get; set; }
+}
+```
+
 
 ## Custom validation
 
