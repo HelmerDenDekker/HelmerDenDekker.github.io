@@ -1,4 +1,4 @@
-# Using strategy pattern in dotNET for validation
+# Validation in dotNET with Data annotations
 
 *13-11-2024*
 
@@ -198,6 +198,20 @@ public class UserController : Controller
 
 
 # Benjamin Day and the Strategy pattern
+
+## my take on this.
+
+I do not agree with it, as:
+- The client does not have choice on the strategy.
+- There is no need to switch on runtime.
+
+For the user it is of no interest how the validation takes place (which algorithm).
+
+This is about composition, not about strategy.
+
+
+
+## Example by Benjamin Day
 
 User model validation.
 

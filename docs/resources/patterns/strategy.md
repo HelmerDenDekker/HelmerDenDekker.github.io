@@ -22,10 +22,10 @@ Drawbacks of the strategy pattern
 
 Only use it for scenarios:
 - where you have multiple algorithms that can be used interchangeably.
-- These algorithms can be selected at runtime.
-- The client should be able to choose the algorithm.
+- These algorithms can be selected at **runtime**.
+- **The client should be able to choose the algorithm**.
 
-THIS IS KEY! The client should be able to choose the algorithm. For example, the payment method of choice. The shipping method of choice.
+Strategy should not be mistaken for composition. Strategy is about selecting an algorithm at runtime. Composition is about building objects.
 
 ## Strategy pattern
 
