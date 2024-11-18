@@ -37,9 +37,9 @@ Benefits:
 
 Drawbacks:
 - Not specific
-- Overgeneralization (too abstract)
+- Over-generalization (too abstract)
 - Performance (specific can be faster)
-- Complexity
+- Complexity (more layers)
 
 ### About Specific repository
 
@@ -49,7 +49,7 @@ Benefits:
 - Performance (sometimes)
 
 Drawbacks:
-- Duplication of code accross interfaces
+- Duplication of code across interfaces
 - Learning curve
 - Maintenance concerns (update in multiple places)
 
@@ -60,43 +60,77 @@ Drawbacks:
 ```csharp
 public interface IRepository<T>
 {
-	T GetById(int id);
-	IEnumerable<T> List();
-	void Add(T entity);
-	void Delete(T entity);
-	void Update(T entity);
+    Task<T?> GetAsync(int id);
+    Task<IEnumerable<T>> GetAsync();
+    void Add(T entity);
+    void Delete(T entity);
+    void Update(T entity);
+    Task SaveChangesAsync(); // Or in Unit of Work
 }
 ```
+
+Additional methods can be added as needed. For example a Find with a filter method like this:
+
+```csharp
+public interface IRepository<T>
+{
+    Task<T?> GetAsync(int id);
+    Task<IEnumerable<T>> GetAsync();
+    void Add(T entity);
+    void Delete(T entity);
+    void Update(T entity);
+    Task SaveChangesAsync(); // Or in Unit of Work
+    Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
+}
+```
+
+That last one is really smart!! It allows me to filter on the repository, from the Service where the filter is used.
+So I think (!) that this allows me to test my filter in the service, and both have a performant query on the DB side. I want to benchmark this so bad!
+
 
 Concrete implementation
 
 ```csharp
-public class MyEntitySqlServerRepository : IRepository<MyEntity>
+public class EntityFrameworkRepository<T> : IRepository<T> where T: class
 {
-	public MyEntity GetById(int id)
-	{
-		// Implementation
-	}
-
-	public IEnumerable<MyEntity> List()
-	{
-		// Implementation
-	}
-
-	public void Add(MyEntity entity)
-	{
-		// Implementation
-	}
-
-	public void Delete(MyEntity entity)
-	{
-		// Implementation
-	}
-
-	public void Update(TMyEntity entity)
-	{
-		// Implementation
-	}
+    private readonly MyDbContext _context;
+    private DbSet<T> _dbSet;
+    
+    public SqlServerRepository(MyDbContext context)
+    {
+        _context = context;
+        _dbSet = _context.Set<T>();
+    }
+    
+    public async Task<T?> GetAsync(int id)
+    {
+        return await _dbSet.FindAsync(id);
+    }
+    
+    public async Task<IEnumerable<T>> GetAsync()
+    {
+        return await _dbSet.ToListAsync();
+    }
+    
+    public void Add(T entity)
+    {
+        _dbSet.Add(entity);
+    }
+    
+    public void Delete(T entity)
+    {
+        _dbSet.Remove(entity);
+    }
+    
+    public void Update(T entity)
+    {
+        // no code is required in the update method as changes are tracked by the context
+    }
+    
+    public async Task SaveChangesAsync()
+    {
+        await _context.SaveChangesAsync();
+    }
 }
 ```
 
@@ -105,17 +139,18 @@ Using in a service
 ```csharp
 public class UserService
 {
-	private readonly IRepository<User> _userRepository;
+    private readonly IRepository<User> _userRepository;
 
-	public UserService(IRepository<User> userRepository)
-	{
-		_userRepository = userRepository;
-	}
+    public UserService(IRepository<User> userRepository)
+    {
+        _userRepository = userRepository;
+    }
 
-	public void AddUser(User user)
-	{
-		_userRepository.Add(user);
-	}
+    public Task AddUser(User user)
+    {
+        _userRepository.Add(user);
+        await _userRepository.SaveChangesAsync();
+    }
 }
 ```
 
@@ -124,68 +159,58 @@ public class UserService
 ```csharp
 public interface IUserRepository
 {
-	User GetByEmail(string email);
+    User GetByEmail(string email);
 }
 ```
 
 Concrete implementation
 
 ```csharp
-public class UserSqlServerRepository : IUserRepository
+public class UserRepository : IUserRepository
 {
-	public User GetByEmail(string email)
-	{
-		// Implementation
-	}
+    private readonly MyDbContext _dbContext;
+    
+    public UserRepository(MyDbContext context)
+    {
+        _dbContext = context;
+    }
+
+    public User GetByEmail(string email)
+    {
+        return _dbContext.Users.FirstOrDefault(u => u.Email == email);
+    }
 }
 ```
 
 ## Combined
 
+Just implement the generic interface in the specific repository.
+
 ```csharp
-public class UserRepository : IRepository<User>, IUserRepository
+public interface IUserRepository : IRepository<User>
 {
-	private readonly IRepository<User> _repository;
-
-	public UserRepository(IRepository<User> repository)
-	{
-		_repository = repository;
-	}
-
-	public User GetByEmail(string email)
-	{
-		// Implementation
-	}
-
-	public User GetById(int id)
-	{
-		return _repository.GetById(id);
-	}
-
-	public IEnumerable<User> List()
-	{
-		return _repository.List();
-	}
-
-	public void Add(User entity)
-	{
-		_repository.Add(entity);
-	}
-
-	public void Delete(User entity)
-	{
-		_repository.Delete(entity);
-	}
-
-	public void Update(User entity)
-	{
-		_repository.Update(entity);
-	}
+    User GetByEmail(string email);
 }
 ```
 
 
+The resulting implementation
 
+```csharp
+public UserRepository : EntityFrameworkRepository<User>, IUserRepository
+{
+    private readonly MyDbContext _dbContext;
+    
+    public UserRepository(MyDbContext context) : base(context)
+    {
+    }
+
+    public User GetByEmail(string email)
+    {
+        return _dbSet.FirstOrDefault(u => u.Email == email);
+    }
+}
+```
 
 
 
