@@ -96,7 +96,7 @@ public class EntityFrameworkRepository<T> : IRepository<T> where T: class
     private readonly MyDbContext _context;
     private DbSet<T> _dbSet;
     
-    public SqlServerRepository(MyDbContext context)
+    public EntityFrameworkRepository(MyDbContext context)
     {
         _context = context;
         _dbSet = _context.Set<T>();

@@ -37,9 +37,9 @@ public class DateTimeCompareValidatorAttribute : ValidationAttribute
 	private readonly DateTimeCompare _compareType;
 	private readonly string _otherPropertyName;
 
-	public DateTimeCompareValidatorAttribute(DateTimeCompare comparison, string otherPropertyName)
+	public DateTimeCompareValidatorAttribute(DateTimeCompare compareType, string otherPropertyName)
 	{
-		_comparison = comparison;
+		_compareType = compareType;
 		_otherPropertyName = otherPropertyName;
 	}
 
@@ -68,7 +68,7 @@ public class DateTimeCompareValidatorAttribute : ValidationAttribute
 		if(!DateTime.TryParse(otherValue.ToString(), out otherValueAsDateTime))
             			return new ValidationResult("Other value is not a valid date");
 		
-		switch(_comparison)
+		switch(_compareType)
 		{
 			case DateTimeCompare.LessThan:
 				if(valueAsDateTime < otherValueAsDateTime)
@@ -91,10 +91,10 @@ public class DateTimeCompareValidatorAttribute : ValidationAttribute
 					return ValidationResult.Success;
 				break;
 			default:
-				return new ValidationResult($"Comparison is not valid for {_comparison}");
+				return new ValidationResult($"Comparison is not valid for {_compareType}");
 		}
 
-		return new ValidationResult($"Comparison is not valid for {_comparison}");
+		return new ValidationResult($"Comparison is not valid for {_compareType}");
 	}
 }
 ```
@@ -148,6 +148,14 @@ This adds the validation logic to the model.
 ## Custom validator
 
 To have more control over the validation, for unit testing:
+
+```csharp
+public interface IValidator<T>
+{
+	bool IsValid(T model);
+}
+```
+
 
 ```csharp
 public class DefaultValidator<T> : IValidator<T>
