@@ -17,7 +17,7 @@ I start off with some anti-patterns. As often what we do not want leads to what 
 
 ## KEEP OUT: Exception Anti-patterns
 
-What goes wrong when using exceptions?
+Exception top-tips:
 
 1. Avoid using exceptions if you can. Exceptions are expensive.
 2. Do catch Exceptions in your code
