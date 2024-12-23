@@ -1,8 +1,7 @@
 # Adapter pattern
 
 *13-11-2024*
-
-Status: Work in progress  
+ 
 Type of post: Guide
 
 
