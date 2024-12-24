@@ -261,4 +261,4 @@ public class StateBase
 
 ## Resources
 
-I used the pluralsight course on Desing patterns in C# by Keven Docx for some ideas. And I might have combined some stuff I read along the way, but nothing in particular. Just me and my brain. 
+I used the pluralsight course on Design patterns in C# by Keven Docx for some ideas. And I might have combined some stuff I read along the way, but nothing in particular. Just me and my brain. 
