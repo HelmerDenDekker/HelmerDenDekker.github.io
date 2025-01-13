@@ -61,6 +61,11 @@ It is an app in which it is possible to have multiple users editing the same dat
 - The data cannot be stored in LocalStorage reliably, because it is too big and changes too fast.
 - Web sockets do not guarantee delivery, I need some kind of streaming of the changes.
 
+More abstract:
+- Variables need to persist between page navigations.
+- Variables can be shared between certain pages:
+  - Pages with the same contentId are shared.
+
 
 Out of scope:
 - Offline use of the application. When connection is lost, so be it.
