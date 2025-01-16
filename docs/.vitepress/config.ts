@@ -20,9 +20,7 @@ export default defineConfig({
 					{text: 'Image Resize', link: '/blog/imageresize'},
 					{text: 'Image Formats', link: '/blog/imageresizetx'},
 					{text: 'DDD - 0 Introduction', link: '/blog/domaindrivendesignwebshop/0domaindrivendesignintro'},
-					{
-						text: 'DDD - 1 Webshop Design',
-						link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop'
+					{text: 'DDD - 1 Webshop Design', link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop'
 					},
 					//{ text: 'DDD - 2 Webshop Layers', link: '/blog/domaindrivendesignwebshop/2domaindrivendesignwebshoplayers' },
 				]
@@ -36,9 +34,7 @@ export default defineConfig({
 					{text: 'How to: Integration test', link: '/howto/integrationtestingdotnet'},
 					{text: 'How to: Dialog modal with JS', link: '/resources/frontend/jsmodal'},
 					{text: 'How to: Popover with JS', link: '/resources/frontend/jspopover'},
-					{text: 'OpenLayers: How to create a dashed line', link: '/resources/frontend/openlayers-dashedline'},
-					{text: 'How to: Create a dialog modal with JavaScript and CSS', link: '/resources/frontend/jsmodal'},
-					{text: 'How to: Create a popover with JavaScript and CSS', link: '/resources/frontend/jspopover'},
+					{text: 'How to: create a dashed line in OpenLayers', link: '/resources/frontend/openlayers-dashedline'}, ,
 				]
 			},
 			{
