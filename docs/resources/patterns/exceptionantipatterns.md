@@ -110,4 +110,6 @@ This is not validation-related.
 ## Resources
 
 [Top 10 .NET Exception Anti-Patterns in C#](https://medium.com/new-devs-guide/top-10-dotnet-exception-anti-patterns-in-c-3827576d82a)  
-[Martin Fowler: Use Notifications instead of errors](https://martinfowler.com/articles/replaceThrowWithNotification.html)
+[Martin Fowler: Use Notifications instead of errors](https://martinfowler.com/articles/replaceThrowWithNotification.html)  
+[Microsoft best practices](https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions#custom-exception-types)  
+[Using standard exception types](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/using-standard-exception-types)  
