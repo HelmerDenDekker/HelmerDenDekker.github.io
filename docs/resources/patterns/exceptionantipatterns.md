@@ -21,7 +21,7 @@ Exception top-tips:
 
 1. Avoid using exceptions if you can. Exceptions are expensive.
 2. Do catch Exceptions in your code
-3. Do throw exceptions (sometimes) in order to stop the program from breaking down. *t
+3. Do throw exceptions (sometimes) in order to stop the program from breaking down.
 4. Avoid catching Exception. Only catch specific or custom exceptions! 
 5. Never throw Exception, throw custom, specific exceptions.
 6. Never ‘throw ex’! Use ‘throw’. Throw ex will reset the call stack (you know what I mean, you cannot follow where
