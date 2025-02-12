@@ -21,7 +21,7 @@ Exception top-tips:
 
 1. Avoid using exceptions if you can. Exceptions are expensive.
 2. Do catch Exceptions in your code
-3. Do throw exceptions (sometimes) in order to stop the program from breaking down. *t
+3. Do throw exceptions (sometimes) in order to stop the program from breaking down.
 4. Avoid catching Exception. Only catch specific or custom exceptions! 
 5. Never throw Exception, throw custom, specific exceptions.
 6. Never ‘throw ex’! Use ‘throw’. Throw ex will reset the call stack (you know what I mean, you cannot follow where
@@ -110,4 +110,6 @@ This is not validation-related.
 ## Resources
 
 [Top 10 .NET Exception Anti-Patterns in C#](https://medium.com/new-devs-guide/top-10-dotnet-exception-anti-patterns-in-c-3827576d82a)  
-[Martin Fowler: Use Notifications instead of errors](https://martinfowler.com/articles/replaceThrowWithNotification.html)
+[Martin Fowler: Use Notifications instead of errors](https://martinfowler.com/articles/replaceThrowWithNotification.html)  
+[Microsoft best practices](https://learn.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions#custom-exception-types)  
+[Using standard exception types](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/using-standard-exception-types)  
