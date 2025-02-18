@@ -1,0 +1,358 @@
+# Image resize in dotNet: from JPG to JPG on Windows OS
+
+*18-2-2025*
+
+## Introduction
+
+Around Christmas I was thinking about my Image resize blog, and how it reflects poorly on me and the guys creating the packages, I decided to drastically rewrite my blog.  
+The old blog can still be found [here](./imageresize.md), so you can check what I have learned.  
+
+The question I wanted to anwer: Can I resize images with a dotNet package? If so, what is the best package to use?  
+
+I can give you the answers straight away:
+- Yes, you can resize images with several dotNet packages.
+- The best package to use depends on your use case
+
+## About existing blogs
+
+As I was reading some blogs about this subject, I became very confused. Every package has its own blog about how they are the best, highlighting some of their unique selling points.  
+Also, there are some other blogs of some other guys, giving their opinion about the best package.  
+
+### What I have learned from the blogs
+
+- As a developer and blogger I have limited time. I have 1 day to review the 10 different packages, so that leaves me with about half an hour per package, and I have to write the blog. Please keep this in mind when forming your opinion. I am human and I will make mistakes.  
+- As a developer you are biased. I found my blog to be biased towards the use case I had in mind. Blogs written by the package owners strongly reflect the unique selling points. Keep in mind that most of these packages are open-source, developed by guys with their use-case in mind, and giving it their best shot (and lots of love and time).  
+- You can make any package look good or bad, depending on the use case. Or, you can make any package do what you want. Again, I had limited time, so any blog of any writer will tell you more about the writer than it will about the package reviewed.
+
+## Boundary conditions
+
+In this test I used the 12 pictures
+by [Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/).  
+I am running almost exactly the same benchmark, updated slightly to 2023.
+
+In this test:
+
+- uses 12 pictures of 500kB size each, ~1280 x ~900 px
+- resizes to thumbnail size (150px) and mobile size (768px)
+- benchmarking of load, resize and save operations with Benchmark.NET
+- using .NET 8
+- using Windows 11 only
+- saves the original jpeg as 95% quality jpeg format
+
+## Considerations
+
+I wanted to include at least the packages from
+the [2017 test by Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/):
+
+- System.Drawing, the newest version named System.Drawing.Common
+- ImageSharp
+- Magick.NET
+- SkiaSharp
+- FreeImage
+
+I did some research, and considered the following packages.
+
+- ImageFlow, which I added to the test
+- Microsoft.Maui.Graphics. I tried, but there is no support for Windows 11 at this moment, leaving you the choice to
+  wrap around System.Drawing (already in this test) or SkiaSharp (also in this test)
+- [Image resizer](https://discoverdot.net/projects/image-resizer), which is for .NET framework. For .NET 8 it recommends
+  to use ImageFlow.
+- [ImageProcessor](https://github.com/JimBobSquarePants/ImageProcessor)  which is for .NET framework and is dead. It was
+  a wrapper around System.Drawing (in this test). It recommends ImageSharp for .NET (Core).
+- [NetVips](https://github.com/kleisauke/net-vips), a wrap around the libvips library.
+
+
+## About the packages
+
+The implementation code is in
+my [GitHub imageresize.benchmark repository](https://github.com/HelmerDenDekker/helmer.imageresize.benchmark).
+
+### System.Drawing.Common
+
+This package provides access to GDI+ graphics (Windows) functionality.  
+Non-Windows platforms are not supported since .NET 7, even with the runtime configuration switch.
+See [System Drawing on Windows](https://aka.ms/systemdrawingnonwindows) for more information.  
+
+Use case:  
+It is a graphics library, not an image processing library. It does have a lot of image manipulation functions.
+
+Unique selling points:
+- Popular package, well-known. Lots of documentation and examples available, which makes it easy to learn and implement.
+- It is a Microsoft package, so it is well-supported.
+
+Drawbacks:
+- It is Windows only.
+- The real support of file formats by this package is limited.
+- Weirdness of implementation: It is a graphics library, not an image processing library.
+
+### ImageSharp
+
+ImageSharp is a fully featured, fully managed, cross-platform, 2D graphics library.  
+It is quite easy to implement. I had to fiddle a little bit, but it was not that difficult.
+
+Use case:
+Cross-platform graphics library.
+
+Unique selling points:
+- Cross-platform (I did not test this!)
+- Ease of implementation.
+
+Drawbacks:  
+- The license. It is a split license, which is not a problem for most developers, but it could be a problem for some
+  managers.
+
+### Magick.NET
+
+Magick.NET is a wrapper around the [ImageMagick](https://imagemagick.org/index.php) library.
+
+Use case:
+Image processing library with extensive file format support.
+
+Unique selling points:  
+- Extensive file support.
+- Batch processing optimizations.
+- Ease of implementation
+- Open-source
+
+Drawbacks:  
+- Figuring out which nuget packages I needed for my computer took me more time than expected.
+
+
+### MagicScaler
+
+MagicScaler is a high-performance image processing pipeline for .NET, focused on making complex imaging tasks simple.
+They claim their speed and efficiency are unmatched by anything else on the .NET platform.  
+Let's see about that later.
+
+Use case:
+Image processing library.
+
+Unique selling points:  
+- It is quite clever by default, making it easy to get good quality images by default for most use cases.
+
+Drawbacks:
+- It is still on version 0, this might indicate there is no production version available yet.
+- I am not sure that it is compatible with other platforms than Windows.
+
+### SkiaSharp
+
+SkiaSharp is a wrapper around [Google's Skia Graphics library](https://skia.org/). Skia is an open source 2D graphics
+library which provides common APIs that work across a variety of hardware and software platforms. It serves as the
+graphics engine for Google Chrome and ChromeOS, Android, Flutter, and many other products.
+
+Use case:
+Cross-platform graphics library.
+
+Unique selling points:
+- It was made for fast image processing.
+- It is cross-platform.
+- It is a Google package, so it is well-supported (in theory).
+
+Drawbacks:
+- The documentation is a bit lacking. It took me more time than expected to figure stuff out.
+- You need to know a lo of tricks to get the quality right for one use case. So to get to, say, MagicScaler level you need an enormous amount of extra code. Code equals time.
+- The speed of development is high. Which is a good thing, but with a lack of documentation you need to dive into source code to understand it. It makes a lot of documentation, examples and questions out-dated, leaving you on the wrong foot most of the time.
+
+### Free Image
+
+I only included this package because it was in the previous test. It is a .NET wrapper around the FreeImage library.
+This library is no longer maintained, and it seems FreeImage.NET is also no longer maintained.
+
+Unique selling points:
+- The only wrapper around the FreeImage library.
+
+Drawbacks:
+- It is not maintained anymore.
+- Makes me want to take a shower after viewing the implementation code. Ugly and hard to understand implementation for developers. Good for image-nerds.
+
+### ImageFlow
+
+Imageflow.NET is a .NET API for [Imageflow](https://github.com/imazen/imageflow), an image optimization and processing library for web servers.
+It focuses on security, quality, and performance - in that order. Imageflow.NET is compatible with .NET 4.6.2+, .NET Core 2.0+, and .NET 5/6/7/8.
+
+Use case:
+Image processing library for web servers.
+
+Unique selling points:
+- It is cross-dotNET-platform.
+- Image processing for web servers.
+
+Drawbacks:
+- Imageflow.NET is tri-licensed under a commercial license, the AGPLv3, and the Apache 2 license, which would drive any
+manager mad.
+- The implementation for me feels crazy. If you are familiar to ImageResizer, you may disagree with me but... ARGH!!
+Cooties!! I copied an example piece of code. And I hate it. It has all the expensive stuff in it which I always try to
+avoid. It is the only async one. It has the ResizerCommands from the old ImageResizer package. For me it feels awkward.
+I think I could easily improve this piece of code to make me feel less itchy, but I do not want to touch it.
+- ImageFlow is still on version 0, this might indicate there is no production version available yet.
+
+### NetVips
+
+NetVips is a .NET wrapper around the libvips library. It is cross-platform and has a lot of image processing functions.
+
+Use case:
+Easy to implement image processing library for .NET Framework (>=4.52) and .NET >6.0.
+
+Unique selling points:
+- It supports Windows, Linux and MacOS (I did not test this).
+- Pipeline-like implementation, which is quite clever.
+- Documentation is good.
+
+
+### Packages summarized
+
+A summary of the packages used in this table:
+
+| Package                                                                |                                                                               License | Published | Version | Downloads |
+|------------------------------------------------------------------------|--------------------------------------------------------------------------------------:|----------:|--------:|----------:|
+| [System.Drawing](https://www.nuget.org/packages/System.Drawing.Common) |                                                                                   MIT |   02-2025 |  8.0.13 |  1800.0 M |
+| [Magick.Net](https://www.nuget.org/packages/Magick.NET.Core)           |                                                                            Apache 2.0 |    1-2025 |  14.4.0 |    26.5 M |
+| [MagicScaler](https://www.nuget.org/packages/PhotoSauce.MagicScaler)   |                                                                                   MIT |   12-2024 |  0.15.0 |     1.1 M |
+| [ImageSharp](https://www.nuget.org/packages/SixLabors.ImageSharp)      | [Six Labors split](https://www.nuget.org/packages/SixLabors.ImageSharp/3.1.1/license) |   11-2024 |   3.1.6 |   139.7 M |
+| [NetVips](https://www.nuget.org/packages/NetVips)                  |                                                                                   MIT |   11-2024 |   3.0.0 |     1.5 M |
+| [SkiaSharp](https://www.nuget.org/packages/SkiaSharp)                  |                                                                                   MIT |   12-2024 | 3.116.1 |   136.6 M |
+| [FreeImage](https://www.nuget.org/packages/FreeImage.Standard)         |                           [Free Image](https://freeimage.sourceforge.io/license.html) |    6-2019 |   4.3.8 |     0.1 M |
+| [ImageFlow](https://www.nuget.org/packages/Imageflow.Net)                |                                                                tri or bi-license AGPL |    5-2024 |  0.13.2 |     1.0 M |
+I added the license information for your managers if you want to use this software in company code. I find managers to
+often dislike (or forbid) copyleft-type licenses.
+
+Most of the packages are in full support or development, except Free Image which has not been updated for a while.
+System.Drawing and Skiasharp are Microsoft backed packages. This could be an advantage in terms of support.
+
+MagicScaler and ImageFlow are still on the zero version, which might indicate there is no official production version
+yet.
+
+System.Drawing.Common is the most popular with 1124 million downloads!!   
+ImageSharp comes second, closely followed by SkiaSharp. A far fourth is Magick.NET.   
+MagicScaler and ImageFlow are promising packages, but they are not that popular.
+
+## About the pictures
+
+The pictures were chosen on-purpose. 
+
+This picture of the lamp has a sRGB color space and contains an embedded color profile.
+The picture of the hummingbird has a sRGB color space as well.
+The other 10 pictures have an Adobe RGB color space (Uncalibrated) with an embedded profile for sRGB.
+
+
+
+
+
+## Quality
+
+The quality of a picture is subjective. Also, let me remind you that with any package it is possible to reach a certain level of quality.
+For this test I used a limited amount of time.
+
+### ColorSpace management
+
+Most applications use sRGB colorSpace to show a jpg picture. However, there is not such a thing as a default colorSpace. There are several color profiles in-use, and if the developer does not use the right settings to handle this, the picture will look terrible.
+I changed the settings for most of the libraries to do a conversion to sRGB.
+This conversion step will slow the process down, but I'd rather have a slow process than faulty colors.
+
+The picture of Wild River has an Adobe RGB profile, which has to be converted to sRGB. Because of the blue, it will show if I have the settings wrong. 
+
+
+This is the original picture, notice the blue.
+![Wild River](../assets/images/imageresize/IMG_2525.jpg "Wild River")
+
+For reference, I did not change the color management settings of FreeImage, giving you an idea of what color mangling looks like. You can also look at my [previous post](./imageresize.md) for the results under previous settings.
+The blue of FreeImage is clearly off. The other packages are spot on.
+
+| Package        |                                                                                                                      |  
+|----------------|---------------------------------------------------------------------------------------------------------------------:|
+| System.Drawing | ![IMG_2525 System.Drawing](../assets/images/imageresize2025/IMG_2525-SystemDrawing-80.jpg "IMG_2525 System.Drawing") |
+| Magick.Net     |               ![IMG_2525-MagickNET](../assets/images/imageresize2025/IMG_2525-MagickNET-80.jpg "IMG_2525-MagickNET") |
+| MagicScaler    |         ![IMG_2525-MagicScaler](../assets/images/imageresize2025/IMG_2525-MagicScaler-80.jpg "IMG_2525-MagicScaler") |
+| ImageSharp     |            ![IMG_2525-ImageSharp](../assets/images/imageresize2025/IMG_2525-ImageSharp-80.jpg "IMG_2525-ImageSharp") |
+| NetVips      |                 ![IMG_2525-NetVips](../assets/images/imageresize2025/IMG_2525-NetVips-80.jpg "IMG_2525-NetVips") |
+| SkiaSharp      |           ![IMG_2525-SkiaSharp](../assets/images/imageresize2025/IMG_2525-SkiaSharpJeVe-80.jpg "IMG_2525-SkiaSharp") |
+| FreeImage      |               ![IMG_2525-FreeImage](../assets/images/imageresize2025/IMG_2525-FreeImage-80.jpg "IMG_2525-FreeImage") |
+
+
+### Highlights
+
+When resampling from one ColorSpace to another, the luminescence is not translated correctly. For this Gamma-correction is needed.
+I did not change these settings for this test. This is extremely noticeable in dark pictures with sharp light features. If the wrong correction is used, the light will be much brighter, and the darks will be darker.
+
+![Fireworks](../assets/images/imageresize2025/Vuurwerk2020.jpg "Fireworks")
+
+| Package        |                                                                                                                       |  
+|----------------|----------------------------------------------------------------------------------------------------------------------:|
+| System.Drawing | ![Vuurwerk2020- System.Drawing](../assets/images/imageresize2025/Vuurwerk2020-SystemDrawing-320.jpg "Vuurwerk2020- System.Drawing") |
+| Magick.Net     |               ![Vuurwerk2020-MagickNET](../assets/images/imageresize2025/Vuurwerk2020-MagickNET-320.jpg "Vuurwerk2020-MagickNET") |
+| MagicScaler    |         ![Vuurwerk2020-MagicScaler](../assets/images/imageresize2025/Vuurwerk2020-MagicScaler-320.jpg "Vuurwerk2020-MagicScaler") |
+| ImageSharp     |            ![Vuurwerk2020-ImageSharp](../assets/images/imageresize2025/Vuurwerk2020-ImageSharp-320.jpg "Vuurwerk2020-ImageSharp") |
+| NetVips      |                     ![Vuurwerk2020-NetVips](../assets/images/imageresize2025/Vuurwerk2020-NetVips-320.jpg "Vuurwerk2020-NetVips") |
+| SkiaSharp      |           ![Vuurwerk2020-SkiaSharp](../assets/images/imageresize2025/Vuurwerk2020-SkiaSharpJeVe-320.jpg "Vuurwerk2020-SkiaSharp") |
+| FreeImage      |               ![Vuurwerk2020-FreeImage](../assets/images/imageresize2025/Vuurwerk2020-FreeImage-320.jpg "Vuurwerk2020-FreeImage") |
+
+Although MagicScaler themselves say they have the best solution for the Highlight problem, I think they overdo the whites a bit.
+Do mind that this issue disappears for MagicScaler as soon as the sizes become larger.
+
+### Resampling in High Quality
+
+I configured the packages to output high quality images.
+
+| Package        |                                                                                                                       |  
+|----------------|----------------------------------------------------------------------------------------------------------------------:|
+| System.Drawing | ![IMG_2445- System.Drawing](../assets/images/imageresize2025/IMG_2445-SystemDrawing-320.jpg "IMG_2445- System.Drawing") |
+| Magick.Net     |               ![IMG_2445-MagickNET](../assets/images/imageresize2025/IMG_2445-MagickNET-320.jpg "IMG_2445-MagickNET") |
+| MagicScaler    |         ![IMG_2445-MagicScaler](../assets/images/imageresize2025/IMG_2445-MagicScaler-320.jpg "IMG_2445-MagicScaler") |
+| ImageSharp     |            ![IMG_2445-ImageSharp](../assets/images/imageresize2025/IMG_2445-ImageSharp-320.jpg "IMG_2445-ImageSharp") |
+| NetVips      |                     ![IMG_2445-NetVips](../assets/images/imageresize2025/IMG_2445-NetVips-320.jpg "IMG_2445-NetVips") |
+| SkiaSharp      |           ![IMG_2445-SkiaSharp](../assets/images/imageresize2025/IMG_2445-SkiaSharpJeVe-320.jpg "IMG_2445-SkiaSharp") |
+| FreeImage      |               ![IMG_2445-FreeImage](../assets/images/imageresize2025/IMG_2445-FreeImage-320.jpg "IMG_2445-FreeImage") |
+
+MagicScaler and System Drawing have the sharpest images.
+SkiaSsharp and FreeImage are blurry and have these weird artifacts.
+
+### Sharpening
+
+As far as sharpening goes, I did not change the settings for this test.
+
+| Package        |                                                                                                                       |  
+|----------------|----------------------------------------------------------------------------------------------------------------------:|
+| System.Drawing | ![Vlinder1- System.Drawing](../assets/images/imageresize2025/Vlinder1-SystemDrawing-320.jpg "Vlinder1- System.Drawing") |
+| Magick.Net     |               ![Vlinder1-MagickNET](../assets/images/imageresize2025/Vlinder1-MagickNET-320.jpg "Vlinder1-MagickNET") |
+| MagicScaler    |         ![Vlinder1-MagicScaler](../assets/images/imageresize2025/Vlinder1-MagicScaler-320.jpg "Vlinder1-MagicScaler") |
+| ImageSharp     |            ![Vlinder1-ImageSharp](../assets/images/imageresize2025/Vlinder1-ImageSharp-320.jpg "Vlinder1-ImageSharp") |
+| NetVips      |                     ![Vlinder1-NetVips](../assets/images/imageresize2025/Vlinder1-NetVips-320.jpg "Vlinder1-NetVips") |
+| SkiaSharp      |           ![Vlinder1-SkiaSharp](../assets/images/imageresize2025/Vlinder1-SkiaSharpJeVe-320.jpg "Vlinder1-SkiaSharp") |
+| FreeImage      |               ![Vlinder1-FreeImage](../assets/images/imageresize2025/Vlinder1-FreeImage-320.jpg "Vlinder1-FreeImage") |
+
+MagicScaler clearly has the sharpest picture of them all.  
+Closely followed by Magick.NET and System.Drawing.
+
+## Results in numbers
+
+The results of this test in numbers: the time elapsed to produce the pictures, the memory used and the resulting
+filesize.
+
+
+
+### File size
+
+I did set the quality higher than the previous blog.  
+I did need to keep the icc-profile for MagickNet in order to convert the color space. I did remove the Exif data, but it did not remove the profile, so the filesize is pretty big.
+Next, even worse, is the NetVips, where I did remove the Exif according to docs, but it was not removed from the file. I think I made  mistake in the code, resulting to a huge filesize.
+
+![File size](../assets/images/imageresize2025/filesize.svg "File size")
+
+
+
+
+
+## Resources
+
+Inspiration:  
+[.NET Core Image Processing](https://devblogs.microsoft.com/dotnet/net-core-image-processing/)
+
+Packages:  
+[PhotoSauce](https://photosauce.net/)  
+[System.Drawing](https://www.nuget.org/packages/System.Drawing.Common)  
+[ImageSharp](https://github.com/SixLabors/ImageSharp)  
+[Magick.Net](https://github.com/dlemstra/Magick.NET)  
+[SkiaSharp](https://github.com/mono/SkiaSharp)  
+[FreeImage](https://github.com/LordBenjamin/FreeImage.Standard)  
+[ImageFlow](https://github.com/imazen/imageflow-dotnet)  
+
