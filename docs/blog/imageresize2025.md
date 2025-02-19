@@ -4,6 +4,7 @@
 
 ## Introduction
 
+[//]: # (	 TODO rewrite intro)
 Around Christmas I was thinking about my Image resize blog, and how it reflects poorly on me and the guys creating the packages, I decided to drastically rewrite my blog.  
 The old blog can still be found [here](./imageresize.md), so you can check what I have learned.  
 
@@ -304,7 +305,7 @@ I configured the packages to output high quality images.
 | FreeImage      |               ![IMG_2445-FreeImage](../assets/images/imageresize2025/IMG_2445-FreeImage-320.jpg "IMG_2445-FreeImage") |
 
 MagicScaler and System Drawing have the sharpest images.
-SkiaSsharp and FreeImage are blurry and have these weird artifacts.
+SkiaSharp and FreeImage are blurry and have weird artifacts.
 
 ### Sharpening
 
@@ -328,18 +329,39 @@ Closely followed by Magick.NET and System.Drawing.
 The results of this test in numbers: the time elapsed to produce the pictures, the memory used and the resulting
 filesize.
 
-
-
 ### File size
 
 I did set the quality higher than the previous blog.  
-I did need to keep the icc-profile for MagickNet in order to convert the color space. I did remove the Exif data, but it did not remove the profile, so the filesize is pretty big.
-Next, even worse, is the NetVips, where I did remove the Exif according to docs, but it was not removed from the file. I think I made  mistake in the code, resulting to a huge filesize.
+I did need to keep the icc-profile for MagickNet in order to convert the color space. I did remove the Exif data, but it did not remove the profile, so the filesize is pretty big. Magick.NET has lots of options, and I think it must be possible to save it without the ICC color profile attached, but I do not have the time to figure this out at the moment.
 
 ![File size](../assets/images/imageresize2025/filesize.svg "File size")
 
+So, in the end, the filesize reflects more on my abilities to find the right settings in the library in a restricted amount of time, while keeping the processing at a certain level, than it says about the qualities of the library itself.
 
+### Memory allocation
 
+For measuring the memory allocation I used benchmark.NET with a low iteration count, so do not look at the absolute numbers, but rather to the ratio's.
+
+![Memory allocation](../assets/images/imageresize2025/memory.svg "Memory allocation")
+
+### Total time elapsed
+
+For measuring the total time elapsed I used benchmark.NET with a low iteration count. Also, keep in mind I have the code optimized for quality and low file size, not for speed!
+
+![Total time elapsed](../assets/images/imageresize2025/time.svg "Total time elapsed")
+
+Compared to the 2024 blog, Magick.NET uses a lot more time. This is because I altered the code for having a comparable quality to the other packages, as well as having an as low as possible file size. This extra code compromises the speed, making it more than three times slower. 
+In other words, Magick.NET can be made from slowest to fastest by replacing three lines of code.
+
+## Conclusion
+
+Which package is best?  
+None of them.  
+
+All packages have their drawbacks, or specific use cases. 
+Also, there is the case of your business needs, for example, regarding the license types used. 
+
+For me, I found SkiaSharp very hard to implement, and I still did not get it right.
 
 
 ## Resources
