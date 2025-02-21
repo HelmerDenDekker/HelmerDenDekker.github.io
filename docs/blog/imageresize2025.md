@@ -4,46 +4,37 @@
 
 ## Introduction
 
-[//]: # (	 TODO rewrite intro)
-Around Christmas I was thinking about my Image resize blog, and how it reflects poorly on me and the guys creating the packages, I decided to drastically rewrite my blog.  
-The old blog can still be found [here](./imageresize.md), so you can check what I have learned.  
 
-The question I wanted to anwer: Can I resize images with a dotNet package? If so, what is the best package to use?  
+Last month I was reflecting on stuff that I had learned last year. And having worked on image processing a bit, reading some other blogs, looking at my own blog it made me realize:
+- The flaws found in the previous blog tell the story of me not having enough time to correctly implement the right settings.
+- The blog did not touch on the unique selling points of the packages. Neither does it discuss the use-cases.
+- Blogs are biased. I learned that you can choose any set of settings to make any one package come out as the best, while not telling the full story. This is what I did with my blog as well, as I was biased towards low filesize with maximum quality.
+
+With this in mind, I decided to drastically rewrite my blog. The old blog can still be found [here](./imageresize.md), so you can check what I have learned.  
+
+The question I wanted to answer: Can I resize images with a dotNet package? If so, what is the best package to use?  
 
 I can give you the answers straight away:
 - Yes, you can resize images with several dotNet packages.
 - The best package to use depends on your use case
 
-## About existing blogs
-
-As I was reading some blogs about this subject, I became very confused. Every package has its own blog about how they are the best, highlighting some of their unique selling points.  
-Also, there are some other blogs of some other guys, giving their opinion about the best package.  
-
-### What I have learned from the blogs
-
-- As a developer and blogger I have limited time. I have 1 day to review the 10 different packages, so that leaves me with about half an hour per package, and I have to write the blog. Please keep this in mind when forming your opinion. I am human and I will make mistakes.  
-- As a developer you are biased. I found my blog to be biased towards the use case I had in mind. Blogs written by the package owners strongly reflect the unique selling points. Keep in mind that most of these packages are open-source, developed by guys with their use-case in mind, and giving it their best shot (and lots of love and time).  
-- You can make any package look good or bad, depending on the use case. Or, you can make any package do what you want. Again, I had limited time, so any blog of any writer will tell you more about the writer than it will about the package reviewed.
-
 ## Boundary conditions
 
-In this test I used the 12 pictures
-by [Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/).  
-I am running almost exactly the same benchmark, updated slightly to 2023.
+This test:
 
-In this test:
+- uses 12 pictures of 500kB size each, ~1280 x ~900 px  by [Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/).
+- resizes to thumbnail size (~80px), small (320px) and medium (768px) sizes
+- benchmarks the loading, resizing and saving operations with Benchmark.NET
+- uses .NET 8 (LTS)
+- uses Windows 11 only
+- saves the images in jpeg format
+- wants to achieve the highest image quality.
 
-- uses 12 pictures of 500kB size each, ~1280 x ~900 px
-- resizes to thumbnail size (150px) and mobile size (768px)
-- benchmarking of load, resize and save operations with Benchmark.NET
-- using .NET 8
-- using Windows 11 only
-- saves the original jpeg as 95% quality jpeg format
+So, please keep in mind that this is not a real-world use case. In real life images are much larger. Also in most cases the quality requirements for thumbnails and bigger images differ.
 
 ## Considerations
 
-I wanted to include at least the packages from
-the [2017 test by Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/):
+I wanted to include at least the packages from the [2017 test by Bertrand Le Roy](https://devblogs.microsoft.com/dotnet/net-core-image-processing/):
 
 - System.Drawing, the newest version named System.Drawing.Common
 - ImageSharp
@@ -55,11 +46,9 @@ I did some research, and considered the following packages.
 
 - ImageFlow, which I added to the test
 - Microsoft.Maui.Graphics. I tried, but there is no support for Windows 11 at this moment, leaving you the choice to
-  wrap around System.Drawing (already in this test) or SkiaSharp (also in this test)
-- [Image resizer](https://discoverdot.net/projects/image-resizer), which is for .NET framework. For .NET 8 it recommends
-  to use ImageFlow.
-- [ImageProcessor](https://github.com/JimBobSquarePants/ImageProcessor)  which is for .NET framework and is dead. It was
-  a wrapper around System.Drawing (in this test). It recommends ImageSharp for .NET (Core).
+  wrap around System.Drawing or SkiaSharp.
+- [Image resizer](https://discoverdot.net/projects/image-resizer), which is for .NET framework. For .NET 8 it recommends to use ImageFlow.
+- [ImageProcessor](https://github.com/JimBobSquarePants/ImageProcessor)  which is for .NET framework and is dead. It was a wrapper around System.Drawing (in this test). It recommends ImageSharp for .NET (Core).
 - [NetVips](https://github.com/kleisauke/net-vips), a wrap around the libvips library.
 
 
@@ -75,47 +64,31 @@ Non-Windows platforms are not supported since .NET 7, even with the runtime conf
 See [System Drawing on Windows](https://aka.ms/systemdrawingnonwindows) for more information.  
 
 Use case:  
-It is a graphics library, not an image processing library. It does have a lot of image manipulation functions.
+It is a graphics library, so it is more than just image processing. It depends on the GDI+ library, the support for System.Drawing varies per library version and system the application is running on. System.Drawing.Common is only supported on Windows. 
 
 Unique selling points:
-- Popular package, well-known. Lots of documentation and examples available, which makes it easy to learn and implement.
-- It is a Microsoft package, so it is well-supported.
+- Popular package, well-known. There ar lots of documentation and examples available, which makes it easy to learn and implement.
+- It is a Microsoft package, so it is kept up-to-date.
 
 Drawbacks:
 - It is Windows only.
 - The real support of file formats by this package is limited.
 - Weirdness of implementation: It is a graphics library, not an image processing library.
 
-### ImageSharp
-
-ImageSharp is a fully featured, fully managed, cross-platform, 2D graphics library.  
-It is quite easy to implement. I had to fiddle a little bit, but it was not that difficult.
-
-Use case:
-Cross-platform graphics library.
-
-Unique selling points:
-- Cross-platform (I did not test this!)
-- Ease of implementation.
-
-Drawbacks:  
-- The license. It is a split license, which is not a problem for most developers, but it could be a problem for some
-  managers.
-
 ### Magick.NET
 
-Magick.NET is a wrapper around the [ImageMagick](https://imagemagick.org/index.php) library.
+Magick.NET is a wrapper around the [ImageMagick](https://imagemagick.org/index.php) library. There is a lot of functionality in this library, I recommend to check the website for more information. 
 
 Use case:
-Image processing library with extensive file format support.
+Use this library if you want to use ImageMagick image processing functionality in dotNET. It is a powerful image manipulation library. And the file format support is amazing, it supports over 100 file formats. 
 
-Unique selling points:  
+Unique selling points:
 - Extensive file support.
 - Batch processing optimizations.
 - Ease of implementation
 - Open-source
 
-Drawbacks:  
+Drawbacks:
 - Figuring out which nuget packages I needed for my computer took me more time than expected.
 
 
@@ -126,14 +99,44 @@ They claim their speed and efficiency are unmatched by anything else on the .NET
 Let's see about that later.
 
 Use case:
-Image processing library.
+Image processing library with clever default settings. It generates images optimized per use case with default settings. So a thumbnail will be sharper, better highlighted and of smaller size by default, compared to a larger image. 
 
-Unique selling points:  
-- It is quite clever by default, making it easy to get good quality images by default for most use cases.
+Unique selling points:
+- Ease of implementation. It is quite clever by default, making it easy to get optimized-per-use-case images without any hassle.
+- Speed and efficiency. It is claimed to be the fastest image processing library for .NET.
 
 Drawbacks:
 - It is still on version 0, this might indicate there is no production version available yet.
-- I am not sure that it is compatible with other platforms than Windows.
+- I am not sure that it is compatible with other platforms than Windows and Linux.
+
+### ImageSharp
+
+ImageSharp is a fully featured, fully managed, cross-platform, 2D graphics library. Fully managed means there is no dependency on native libraries or interop code. 
+It is quite easy to implement. I had to fiddle a little bit, but it was not that difficult.
+
+Use case:
+Cross-platform graphics library.
+
+Unique selling points:
+- Cross-platform (I did not test this!)
+- Ease of implementation (Easy to use API).
+
+Drawbacks:  
+- The license. It is a split license, which is not a problem for most developers, but it could be a problem for some
+  managers.
+
+### NetVips
+
+NetVips is a .NET wrapper around the libvips library. It is cross-platform and has a lot of image processing functions. It supports Windows, Linux and macOS.
+
+Use case:
+Easy to implement image processing library for .NET Framework (>=4.52) and .NET >6.0.
+
+Unique selling points:
+- It supports Windows, Linux and MacOS (I did not test this).
+- Pipeline-like implementation, which is quite clever.
+- Documentation is good.
+- Speed and efficiency. It is claimed to be the fastest image processing library for .NET.
 
 ### SkiaSharp
 
@@ -151,7 +154,7 @@ Unique selling points:
 
 Drawbacks:
 - The documentation is a bit lacking. It took me more time than expected to figure stuff out.
-- You need to know a lo of tricks to get the quality right for one use case. So to get to, say, MagicScaler level you need an enormous amount of extra code. Code equals time.
+- You need to know a lot of tricks to get the quality right for one use case. So to get to, say, MagicScaler level you need an enormous amount of extra code. Code equals time.
 - The speed of development is high. Which is a good thing, but with a lack of documentation you need to dive into source code to understand it. It makes a lot of documentation, examples and questions out-dated, leaving you on the wrong foot most of the time.
 
 ### Free Image
@@ -179,26 +182,13 @@ Unique selling points:
 - Image processing for web servers.
 
 Drawbacks:
-- Imageflow.NET is tri-licensed under a commercial license, the AGPLv3, and the Apache 2 license, which would drive any
+- ImageFlow.NET is tri-licensed under a commercial license, the AGPLv3, and the Apache 2 license, which would drive any
 manager mad.
 - The implementation for me feels crazy. If you are familiar to ImageResizer, you may disagree with me but... ARGH!!
 Cooties!! I copied an example piece of code. And I hate it. It has all the expensive stuff in it which I always try to
 avoid. It is the only async one. It has the ResizerCommands from the old ImageResizer package. For me it feels awkward.
 I think I could easily improve this piece of code to make me feel less itchy, but I do not want to touch it.
 - ImageFlow is still on version 0, this might indicate there is no production version available yet.
-
-### NetVips
-
-NetVips is a .NET wrapper around the libvips library. It is cross-platform and has a lot of image processing functions.
-
-Use case:
-Easy to implement image processing library for .NET Framework (>=4.52) and .NET >6.0.
-
-Unique selling points:
-- It supports Windows, Linux and MacOS (I did not test this).
-- Pipeline-like implementation, which is quite clever.
-- Documentation is good.
-
 
 ### Packages summarized
 
@@ -234,10 +224,6 @@ The pictures were chosen on-purpose.
 This picture of the lamp has a sRGB color space and contains an embedded color profile.
 The picture of the hummingbird has a sRGB color space as well.
 The other 10 pictures have an Adobe RGB color space (Uncalibrated) with an embedded profile for sRGB.
-
-
-
-
 
 ## Quality
 
