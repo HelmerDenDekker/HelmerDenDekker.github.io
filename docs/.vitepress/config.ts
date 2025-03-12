@@ -17,7 +17,7 @@ export default defineConfig({
 			{
 				text: 'Blog',
 				items: [
-					{text: 'Image Resize', link: '/blog/imageresize'},
+					{text: 'Image Resize', link: '/blog/imageresize2025'},
 					{text: 'Image Formats', link: '/blog/imageresizetx'},
 					{text: 'DDD - 0 Introduction', link: '/blog/domaindrivendesignwebshop/0domaindrivendesignintro'},
 					{text: 'DDD - 1 Webshop Design', link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop'
@@ -34,7 +34,7 @@ export default defineConfig({
 					{text: 'How to: Integration test', link: '/howto/integrationtestingdotnet'},
 					{text: 'How to: Dialog modal with JS', link: '/resources/frontend/jsmodal'},
 					{text: 'How to: Popover with JS', link: '/resources/frontend/jspopover'},
-					{text: 'How to: create a dashed line in OpenLayers', link: '/resources/frontend/openlayers-dashedline'}, ,
+					{text: 'How to: create a dashed line in OpenLayers', link: '/resources/frontend/openlayers-dashedline'},
 				]
 			},
 			{
