@@ -1,32 +1,15 @@
-body{
-  font-family:"Verdana", "Sans serif";
-  color: #000080;
-  background-color: #FFFFFF;
-}
-
-.tekst{
-  font-family:"Verdana", "Sans serif";
-  color: #000080;
-  background-color:white;
-}
-
-.tab{
-  text-indent: 5%
-}
-
-#blaware{
-  background-image: url(Blaware.jpg);
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  background-attachment: fixed;
+body {
+	font-family: "Verdana", sans-serif;
+	color: #000080;
+	background-color: #d9d9d9;;
 }
 
 #page {
-  position:absolute;
-  left:10.5em;
-  border-color: white white white #000080;
-  border-width: 5px;
-  border-style: solid;
-  padding: 0 0 0 5px;
+	position: absolute;
+	left: 10.5em;
+	border-color: #cccccc #cccccc #c0c0c0 #000080;
+	border-width: 5px;
+	border-style: solid;
+	padding: 0 15px;
 }
 
