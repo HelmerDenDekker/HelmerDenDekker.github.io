@@ -3,26 +3,23 @@
 <head>
 	<title>W3 schools dropdown menu example</title>
 	<style>
-		body{
+		body {
 			padding: 0;
 			margin: 0;
 		}
-		
-		header{
-			position: fixed;
-			top: 0;
-			height: 64px;
+
+		header {
+			height: 46px;
 			padding: 8px;
 			background-color: #000;
 			display: flex;
 			justify-content: flex-end;
 		}
-		
-		article{
-			padding-top: 64px;
+
+		article {
 			margin-left: 8px;
 		}
-		
+
 		ul {
 			list-style-type: none;
 			margin: 0;
@@ -38,7 +35,6 @@
 		li a, .dropbtn {
 			display: inline-block;
 			color: white;
-			text-align: center;
 			padding: 14px 16px;
 			text-decoration: none;
 		}
@@ -56,7 +52,7 @@
 			position: absolute;
 			background-color: #f9f9f9;
 			min-width: 160px;
-			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 			z-index: 1;
 		}
 
@@ -67,7 +63,9 @@
 			display: block;
 		}
 
-		.dropdown-content a:hover {background-color: #f1f1f1;}
+		.dropdown-content a:hover {
+			background-color: #f1f1f1;
+		}
 
 		.dropdown:hover .dropdown-content {
 			display: block;
@@ -76,22 +74,22 @@
 </head>
 <body>
 <header>
-<ul>
-	<li><a href="#">Home</a></li>
-	<li><a href="#">News</a></li>
-	<li class="dropdown">
-		<a href="#" class="dropbtn">Dropdown</a>
-		<div class="dropdown-content">
-			<a href="#">Link 1</a>
-			<a href="#">Link 2</a>
-			<a href="#">Link 3</a>
-		</div>
-	</li>
-</ul>
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">News</a></li>
+		<li class="dropdown">
+			<a class="dropbtn" href="#">Dropdown</a>
+			<div class="dropdown-content">
+				<a href="#">Link 1</a>
+				<a href="#">Link 2</a>
+				<a href="#">Link 3</a>
+			</div>
+		</li>
+	</ul>
 </header>
 <article>
-<h3>Dropdown Menu inside a Navigation Bar</h3>
-<p>Hover over the "Dropdown" link to see the dropdown menu.</p>
+	<h3>Dropdown Menu inside a Navigation Bar</h3>
+	<p>Hover over the "Dropdown" link to see the dropdown menu.</p>
 </article>
 </body>
 </html>
