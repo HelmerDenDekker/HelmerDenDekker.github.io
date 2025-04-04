@@ -1,0 +1,84 @@
+ul.menu, ul.menu li {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font-size: 100%;
+}
+
+ul.menu {
+	position: absolute;
+	z-index: 1000;
+	cursor: default;
+	width: 8em;
+	left: 1em;
+	top: 1.05em;
+}
+
+ul.menu li {
+	position: relative;
+	text-align: left;
+	cursor: pointer;
+	width: 8em;
+	margin: 5px 0 0 0;
+}
+
+ul.menu a {
+	display: block;
+	cursor: pointer;
+	background: #e6e6e6;
+	border: 6px solid;
+	padding: 5px 7px;
+	font: normal normal bold 1em verdana, sans-serif;
+	color: #000080;
+	text-decoration: none;
+	font-family: "Verdana", sans-serif;
+	border-color: #0000FF #000080 #000080 #0000FF;
+}
+
+ul.menu a:visited {
+	color: #800080;
+	background: #d9d9d9;
+    border-color: #8000FF #800080 #800080 #8000FF;
+}
+
+ul.menu a:hover, ul.menu a:focus {
+	background: #FFFFFF;
+	color: #0000FF;
+    border-color: #0000c0 #0000FF #0000FF #0000c0;
+}
+
+ul.menu a:active  {
+	background: #FFFFFF;
+	color: #FF0000;
+	border-color: #FF0000 #CC0000 #CC0000 #FF0000;
+}
+
+@media screen, projection {
+	* html ul.menu li {
+		display: inline;
+		float: left;
+		background: #ffffff;
+	}
+}
+
+* html ul.menu li {
+	position: static;
+}
+
+* html ul.menu a {
+	position: relative;
+}
+
+a:visited {
+	color: #800080;
+}
+
+/* hover must come after visited */
+a:hover {
+	color: #000099;
+}
+
+/* active must come after hover */
+a:active {
+	color: #FF0000;
+}
