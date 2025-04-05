@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>W3 schools dropdown menu example</title>
+	<title>CSS tricks dropdown menu example</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<style>
 		body {
@@ -13,8 +13,6 @@
 			height: 46px;
 			padding: 8px;
 			background-color: #000;
-			display: flex;
-			justify-content: flex-end;
 		}
 
 		article {
@@ -25,51 +23,68 @@
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
-			overflow: hidden;
+			//overflow: hidden;
 			background-color: #333;
 		}
 
+		a {
+			text-decoration: none;
+		}
+
+		nav {
+			font-family: monospace;
+		}
+
+		ul {
+			background: darkorange;
+			list-style: none;
+			margin: 0;
+			padding-left: 0;
+		}
+
 		li {
-			display: inline-block;
-		}
-
-		li a, .dropbtn {
-			display: inline-block;
-			color: white;
-			padding: 14px 16px;
+			color: #fff;
+			background: darkorange;
+			display: block;
+			float: left;
+			padding: 1rem;
+			position: relative;
 			text-decoration: none;
+			transition-duration: 0.5s;
 		}
 
-		li a:hover, .dropdown:hover .dropbtn {
-			background-color: blue;
+		li a {
+			color: #fff;
 		}
 
-		li.dropdown {
-			display: inline-block;
+		li:hover {
+			background: red;
+			cursor: pointer;
 		}
 
-		.dropdown-content {
-			display: none;
+		ul li ul {
+			background: orange;
+			visibility: hidden;
+			opacity: 0;
+			min-width: 5rem;
 			position: absolute;
-			background-color: #f9f9f9;
-			min-width: 160px;
-			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-			z-index: 1;
+			transition: all 0.5s ease;
+			margin-top: 1rem;
+			left: 0;
+			display: none;
 		}
 
-		.dropdown-content a {
-			color: black;
-			padding: 12px 16px;
-			text-decoration: none;
+		ul li:hover > ul,
+		ul li:focus-within > ul, 
+		ul li ul:hover {
+			visibility: visible;
+			opacity: 1;
 			display: block;
 		}
 
-		.dropdown-content a:hover {
-			background-color: #f1f1f1;
-		}
-
-		.dropdown:hover .dropdown-content {
-			display: block;
+		ul li ul li {
+			clear: both;
+			width: 100%;
 		}
 	</style>
 </head>
@@ -78,19 +93,19 @@
 	<ul>
 		<li><a href="#">Home</a></li>
 		<li><a href="#">News</a></li>
-		<li class="dropdown">
-			<a class="dropbtn" href="#">Dropdown</a>
-			<div class="dropdown-content">
-				<a href="#">Link 1</a>
-				<a href="#">Link 2</a>
-				<a href="#">Link 3</a>
-			</div>
+		<li>
+			<a href="#">Dropdown</a>
+			<ul class="dropdown">
+				<li><a href="#">Sub-1</a></li>
+				<li><a href="#">Sub-2</a></li>
+				<li><a href="#">Sub-3</a></li>
+			</ul>
 		</li>
 	</ul>
 </header>
 <article>
 	<h3>Dropdown Menu inside a Navigation Bar</h3>
-	<p>Hover over the "Dropdown" link to see the dropdown menu.</p>
+	<p>Hover over the "Dropdown" link to see the dropdown menu. This is the example from CSS-tricks. It uses float.</p>
 </article>
 </body>
 </html>
