@@ -127,9 +127,14 @@
 </header>
 <article>
 	<h3>Dropdown Menu inside a Navigation Bar</h3>
-	<p id="no-touch" class="hide">Hover over the "Dropdown" link to see the dropdown menu. This is a non-touch
+	<p id="no-touch" class="hide">Hover over the dotted link to see the dropdown menu. This is a non-touch
 		device.</p>
-	<p id="touch" class="hide">Click the "Dropdown" link to see the dropdown menu. This is a touch device.</p>
+	<p id="touch" class="hide">Click the dotted link to see the dropdown menu. This is a touch device.</p>
+	<br />
+	<hr />
+	<p>Logs:</p>
+	<ul id="logs"></ul>
+		
 </article>
 
 <script>
@@ -141,21 +146,32 @@
 		let dropButton = document.getElementById("dropbtn-1");
 
 		dropButton.addEventListener("click", function () {
-			
-			document.getElementById("submenu-1").classList.toggle("show");
+			let show = document.getElementById("submenu-1").classList.toggle("show");
+			if (show) {
+				log("Menu clicked and showing the menu");
+			} else {
+				log("Menu clicked and hiding the menu");
+			}
 			window.addEventListener("click", handleMenuDismiss, true);
 		})
 
-		function handleMenuDismiss(e) {
+		function handleMenuDismiss() {
+			log("Dismissed and hiding the menu")
 			let myDropdown = document.getElementById("submenu-1");
 			if (myDropdown.classList.contains('show')) {
 				myDropdown.classList.remove('show');
 			}
 			window.removeEventListener("click", handleMenuDismiss, true);
 		}
-
-
 	}
+	
+	function log(message) {
+		let logs = document.getElementById("logs");
+		let li = document.createElement("li");
+		li.textContent = message;
+		logs.appendChild(li);
+	}
+	
 </script>
 
 </body>
