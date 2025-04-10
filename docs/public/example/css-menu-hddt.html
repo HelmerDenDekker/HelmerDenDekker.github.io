@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My own dropdown menu example with toggle</title>
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		header {
+			height: 56px;
+			padding-right: 8px;
+			padding-left: 8px;
+			padding-top: 8px;
+			background-color: #000;
+			display: flex;
+			justify-content: flex-end;
+		}
+
+		article {
+			margin-left: 8px;
+		}
+
+		.main-menu {
+			list-style: none;
+			margin: 0;
+			padding: 0 12px 0 0;
+			background: #333;
+		}
+
+		.main-menu li {
+			display: inline-block;
+			background: darkorange;
+		}
+
+		.main-menu li a {
+			margin: 0;
+			padding: 12px 0 0 12px;
+			border: none;
+			text-decoration: none;
+			width: 36px;
+			height: 36px;
+			display: inline-block;
+		}
+
+		.no-touch .main-menu li:hover {
+			cursor: pointer;
+			background: red;
+		}
+
+		.sub-menu {
+			position: absolute;
+			right: 16px;
+			z-index: 1;
+			display: none;
+		}
+
+		.sub-menu.show {
+			width: 112px;
+		}
+
+		.no-touch .main-menu li:hover ul {
+			display: block;
+			width: 112px;
+		}
+
+		.main-menu li ul li {
+			display: block;
+			width: 100%;
+		}
+
+		.main-menu li button {
+			border: none;
+			background-color: darkorange;
+		}
+
+		.no-touch .main-menu li:hover > ul,
+		.no-touch .main-menu li:focus-within > ul,
+		.no-touch .main-menu li ul:hover {
+			display: block;
+		}
+
+		p.no-touch {
+			background-color: red;
+		}
+
+		.show {
+			display: block;
+		}
+
+		.hide {
+			display: none;
+		}
+
+	</style>
+</head>
+<body>
+<header>
+	<ul class="main-menu">
+		<li><a href="#">
+			<svg aria-hidden="true" class="tx-icon" height="24" viewBox="0 0 24 24" width="24">
+				<path d="m24,24 l-12,0 l-12,-12 l12,-12 l12,0 l-12,12 l12,12 Z"></path>
+			</svg>
+		</a></li>
+		<li><a href="#">
+			<svg aria-hidden="true" class="tx-icon" height="24" viewBox="0 0 24 24" width="24">
+				<path d="m24,24 l-12,0 l-12,-12 l12,-12 l12,0 l-12,12 l12,12 Z"></path>
+			</svg>
+		</a></li>
+		<li class="dropdown">
+			<a id="dropbtn-1" href="#">
+				<svg aria-hidden="true" class="tx-icon" height="24" viewBox="0 0 24 24" width="24">
+					<circle cx="12" cy="3" r="3"></circle>
+					<circle cx="12" cy="12" r="3"></circle>
+					<circle cx="12" cy="21" r="3"></circle>
+				</svg>
+			</a>
+			<ul id="submenu-1" class="sub-menu">
+				<li><a href="#">Sub-1</a></li>
+				<li><a href="#">Sub-2</a></li>
+				<li><a href="#">Sub-3</a></li>
+			</ul>
+		</li>
+	</ul>
+</header>
+<article>
+	<h3>Dropdown Menu inside a Navigation Bar</h3>
+	<p id="no-touch" class="hide">Hover over the "Dropdown" link to see the dropdown menu. This is a non-touch
+		device.</p>
+	<p id="touch" class="hide">Click the "Dropdown" link to see the dropdown menu. This is a touch device.</p>
+</article>
+
+<script>
+	if (!("ontouchstart" in document.documentElement)) {
+		document.documentElement.classList.add("no-touch");
+		document.getElementById("no-touch").classList.remove("hide");
+	} else {
+		document.getElementById("touch").classList.remove("hide");
+		let dropButton = document.getElementById("dropbtn-1");
+
+		dropButton.addEventListener("click", function () {
+			
+			document.getElementById("submenu-1").classList.toggle("show");
+			window.addEventListener("click", handleMenuDismiss, true);
+		})
+
+		function handleMenuDismiss(e) {
+			let myDropdown = document.getElementById("submenu-1");
+			if (myDropdown.classList.contains('show')) {
+				myDropdown.classList.remove('show');
+			}
+			window.removeEventListener("click", handleMenuDismiss, true);
+		}
+
+
+	}
+</script>
+
+</body>
+</html>
