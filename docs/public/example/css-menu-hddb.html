@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My own dropdown menu example with flex instead of float</title>
+	<title>My own menu</title>
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<style>
 		body {
 			padding: 0;
 			margin: 0;
+			box-sizing: border-box;
 		}
 
 		header {
@@ -30,12 +31,43 @@
 			background: #333;
 		}
 
-
-		.main-menu li {
+		.menu-item {
 			display: inline-block;
 			background: darkorange;
 		}
 
+		.menu-item:hover {
+			cursor: pointer;
+			background: red;
+		}
+
+		/* Styling the dropdown */
+		.dropdown{
+			position: relative;
+		}
+		
+		/* Position the dropdown content as absolute */
+		.sub-menu {
+			position: absolute;
+			
+			right: 16px;
+			z-index: 1;
+			
+			/* hide submenu */
+			visibility: hidden;
+			display: none;
+			opacity: 0;
+			//transform: scaleY(0);
+		}
+		
+		/* Show the dropdown menu on hover */
+		.main-menu >li:hover > a + .sub-menu{
+			opacity: 1;
+			visibility: visible;
+			display: block;
+			//transform: scaleY(1);
+		}
+		
 		.main-menu li a {
 			margin: 0;
 			padding: 12px 0 0 12px;
@@ -45,25 +77,8 @@
 			height: 36px;
 			display: inline-block;
 		}
-
-		.main-menu li:hover {
-			cursor: pointer;
-			background: red;
-		}
-
-		.main-menu li ul {
-			visibility: hidden;
-			opacity: 0;
-			position: absolute;
-			right: 16px;
-			z-index: 1;
-			display: none;
-		}
-
+		
 		.main-menu li:hover ul {
-			visibility: visible;
-			opacity: 1;
-			display: block;
 			width: 112px;
 		}
 
@@ -71,12 +86,7 @@
 			display: block;
 			width: 100%;
 		}
-
-		.main-menu li button {
-			border: none;
-			background-color: darkorange;
-		}
-
+		
 		.main-menu li:hover > ul,
 		.main-menu li:focus-within > ul,
 		.main-menu li ul:hover {
@@ -89,28 +99,28 @@
 <body>
 <header>
 	<ul class="main-menu">
-		<li><a href="#">
+		<li class="menu-item"><a href="#">
 			<svg aria-hidden="true" class="tx-icon" height="24" viewBox="0 0 24 24" width="24">
 				<path d="m24,24 l-12,0 l-12,-12 l12,-12 l12,0 l-12,12 l12,12 Z"></path>
 			</svg>
 		</a></li>
-		<li><a href="#">
+		<li class="menu-item"><a href="#">
 			<svg aria-hidden="true" class="tx-icon" height="24" viewBox="0 0 24 24" width="24">
 				<path d="m24,24 l-12,0 l-12,-12 l12,-12 l12,0 l-12,12 l12,12 Z"></path>
 			</svg>
 		</a></li>
-		<li class="dropdown">
-			<a>
+		<li class="menu-item dropdown">
+			<a href="#">
 				<svg aria-hidden="true" class="tx-icon" height="24" viewBox="0 0 24 24" width="24">
 					<circle cx="12" cy="3" r="3"></circle>
 					<circle cx="12" cy="12" r="3"></circle>
 					<circle cx="12" cy="21" r="3"></circle>
 				</svg>
 			</a>
-			<ul class="dropdown-content">
-				<li><a href="#">Sub-1</a></li>
-				<li><a href="#">Sub-2</a></li>
-				<li><a href="#">Sub-3</a></li>
+			<ul class="sub-menu">
+				<li class="menu-item"><a href="#">Sub-1</a></li>
+				<li class="menu-item"><a href="#">Sub-2</a></li>
+				<li class="menu-item"><a href="#">Sub-3</a></li>
 			</ul>
 		</li>
 	</ul>
