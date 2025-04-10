@@ -96,7 +96,7 @@
 
 	</style>
 </head>
-<body>
+<body id="body">
 <header>
 	<ul class="main-menu">
 		<li><a href="#">
@@ -142,6 +142,18 @@
 		document.documentElement.classList.add("no-touch");
 		document.getElementById("no-touch").classList.remove("hide");
 	} else {
+		let body = document.getElementById("body");
+			
+		log("Touch device detected");
+		log("iOS window test location href: " + window.location.href);
+		log("iOS window test location pathname: " + window.location.pathname);
+		log("iOS window test innerWidth: " + window.innerWidth);
+		log("iOS window test innerHeight: " + window.innerHeight);
+		log("iOS document clientWidth: " + document.documentElement.clientWidth);
+		log("iOS document clientHeight: " + document.documentElement.clientHeight);
+		log("iOS document body clientWidth: " + document.body.clientWidth);
+		log("iOS document body clientHeight: " + document.body.clientHeight);
+		
 		document.getElementById("touch").classList.remove("hide");
 		let dropButton = document.getElementById("dropbtn-1");
 
@@ -152,8 +164,12 @@
 			} else {
 				log("Menu clicked and hiding the menu");
 			}
-			window.addEventListener("click", handleMenuDismiss, true);
+			body.addEventListener("click", handleMenuDismiss, true);
 		})
+		
+		document.addEventListener("click",function (){
+			log("Clicked in the document");
+		});
 
 		function handleMenuDismiss() {
 			log("Dismissed and hiding the menu")
@@ -161,7 +177,7 @@
 			if (myDropdown.classList.contains('show')) {
 				myDropdown.classList.remove('show');
 			}
-			window.removeEventListener("click", handleMenuDismiss, true);
+			body.removeEventListener("click", handleMenuDismiss, true);
 		}
 	}
 	
