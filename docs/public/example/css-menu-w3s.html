@@ -25,7 +25,6 @@
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
-			overflow: hidden;
 			background-color: #333;
 		}
 
@@ -44,8 +43,9 @@
 			background-color: blue;
 		}
 
-		li.dropdown {
+		.dropdown {
 			display: inline-block;
+			position: relative;
 		}
 
 		.dropdown-content {
@@ -53,8 +53,9 @@
 			position: absolute;
 			background-color: #f9f9f9;
 			min-width: 160px;
+			right: 0;
 			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-			z-index: 1;
+			z-index: 100;
 		}
 
 		.dropdown-content a {
@@ -75,7 +76,7 @@
 </head>
 <body>
 <header>
-	<ul>
+	<ul class="main-menu">
 		<li><a href="#">Home</a></li>
 		<li><a href="#">News</a></li>
 		<li class="dropdown">
