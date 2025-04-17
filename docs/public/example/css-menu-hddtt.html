@@ -134,6 +134,8 @@
 	<p id="touch" class="hide">Click the dotted link to see the dropdown menu. This is a touch device.</p>
 	<br />
 	<hr />
+	<p>Logs:</p>
+	<ul id="logs"></ul>
 		
 </article>
 
@@ -142,22 +144,50 @@
 		document.documentElement.classList.add("no-touch");
 		document.getElementById("no-touch").classList.remove("hide");
 	} else {
+		let body = document.getElementById("body");
+			
+		log("Touch device detected");
+		log("iOS window test location href: " + window.location.href);
+		log("iOS window test location pathname: " + window.location.pathname);
+		log("iOS window test innerWidth: " + window.innerWidth);
+		log("iOS window test innerHeight: " + window.innerHeight);
+		log("iOS document clientWidth: " + document.documentElement.clientWidth);
+		log("iOS document clientHeight: " + document.documentElement.clientHeight);
+		log("iOS document body clientWidth: " + document.body.clientWidth);
+		log("iOS document body clientHeight: " + document.body.clientHeight);
+		
 		document.getElementById("touch").classList.remove("hide");
 		let dropButton = document.getElementById("dropbtn-1");
 
 		dropButton.addEventListener("click", function () {
-			document.getElementById("submenu-1").classList.toggle("show");
-			document.addEventListener("click", handleMenuDismiss, true);
+			let show = document.getElementById("submenu-1").classList.toggle("show");
+			if (show) {
+				log("Menu clicked and showing the menu");
+			} else {
+				log("Menu clicked and hiding the menu");
+			}
+			body.addEventListener("click", handleMenuDismiss, true);
 		})
 		
+		document.addEventListener("click",function (){
+			log("Clicked in the document");
+		});
 
 		function handleMenuDismiss() {
+			log("Dismissed and hiding the menu")
 			let myDropdown = document.getElementById("submenu-1");
 			if (myDropdown.classList.contains('show')) {
 				myDropdown.classList.remove('show');
 			}
-			document.removeEventListener("click", handleMenuDismiss, true);
+			body.removeEventListener("click", handleMenuDismiss, true);
 		}
+	}
+	
+	function log(message) {
+		let logs = document.getElementById("logs");
+		let li = document.createElement("li");
+		li.textContent = message;
+		logs.appendChild(li);
 	}
 	
 </script>

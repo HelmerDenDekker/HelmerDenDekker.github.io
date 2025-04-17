@@ -67,7 +67,7 @@ CSS-tricks helped me out with the tabbing problem.
 
 ### Finally
 
-I ended up with something like [this example](https://helmerdendekker.github.io/example/css-menu-hdd-b.html){target="_blank"}.
+I ended up with something like [this example](https://helmerdendekker.github.io/example/css-menu-hddb.html){target="_blank"}.
 
 It not really the final version, but it is a good start.
 
