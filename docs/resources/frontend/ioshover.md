@@ -1,6 +1,6 @@
-# How to handle iOS on hover
+# How to handle hover on iOS touch-devices
 
-*13-01-2025*
+*17-04-2025*
 
 _Status: {Work in progress} {Idea}_  
 _Type of post: {Opinion piece} {Guide} {Resource}_
