@@ -2,9 +2,6 @@
 
 *17-04-2025*
 
-_Status: {Work in progress}_  
-_Type of post: {Guide}_
-
 ## Problem statement
 
 On iOS devices, when hovering over a hoverable element that hides or shows another element using visibility or display, the displayed element remains on-display.
@@ -33,7 +30,7 @@ And I added the class no-touch in my css to the elements that use display to hid
 
 Next I had to make the dropdown clickable. I did this by adding a click event to the dropdown link.
 ```js
-else {
+if (("ontouchstart" in document.documentElement))  {
 	let menuButton = document.getElementById("menu-button");
 	menuButton.addEventListener("click", function () {
 		document.getElementById("menu").classList.toggle("show");
@@ -50,12 +47,19 @@ function handleMenuDismiss() {
 }
 ```
 
+My show class is a simple class that sets the display property to block.
+
+```css
+.show {
+	display: block;
+}
+```
+
 I did not use the dismiss-layer from the popover example, because I want to menu to close when clicked (tapped) anywhere in the full document.
 
 An example of the fix can be found [here](https://helmerdendekker.github.io/example/css-menu-hddt.html){target="_blank"}.
 
-
 ## Resources
 
-[How to deal with :hover on touch screen devices](https://www.prowebdesign.ro/how-to-deal-with-hover-on-touch-screen-devices/)
-[iOS has a :hover problem](https://humanwhocodes.com/blog/2012/07/05/ios-has-a-hover-problem/)
+[How to deal with :hover on touch screen devices](https://www.prowebdesign.ro/how-to-deal-with-hover-on-touch-screen-devices/)  
+[iOS has a :hover problem](https://humanwhocodes.com/blog/2012/07/05/ios-has-a-hover-problem/)  

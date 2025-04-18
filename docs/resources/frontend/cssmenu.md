@@ -2,29 +2,28 @@
 
 *17-4-2025*
 
-_Status: Work in progress_  
-_Type of post: {Guide}_
-
 ## Creating a CSS menu
 
 Ever since I discovered CSS to create a menu (in 2004?) I try to create my menus using CSS only, and avoiding
 JavaScript.  
-It is not that I dislike JavaScript, it just makes thing so complex (to code).
+It is not that I dislike JavaScript, it just makes thing so complex.
 
 I started out with the W3 schools example, and having read many others, I just found them to work with float. And I do
 not like float.
 
-## The very first menu I ever made
+### The very first menu I ever made
 
-I created an example of my first menu here:
-I have created an [example of my first menu](https://helmerdendekker.github.io/example/css-menu-one.html){target="_blank"}.
-It is all in Dutch.
+I created an [example of my first menu](https://helmerdendekker.github.io/example/css-menu-one.html){target="_blank"}.
+It is all in Dutch.  
+It is a very simple menu using just CSS. 
+It uses the hover-effects, active and visited to provide user-feedback.
+However, it is not 2004 anymore and websites have evolved. These days most websites look a lot cleaner.
 
 ## What did I want to achieve?
 
 For the newest website, the look need to be much cleaner.  
-I want a menu:
 
+I want a menu:
 - that appears when hovering over the menu icon.
 - that shows the drop-down menu so you can select the item you want.
 - that closes when you hover outside the menu.
@@ -63,20 +62,20 @@ I was waisting my time finding out why. So I stopped and decided to use anchors 
 
 ### Tabbing
 
-CSS-tricks helped me out with the tabbing problem.
+I want to be able to tab through the submenu items as well. Thanks to [this nice CSS-tricks blog](https://css-tricks.com/solved-with-css-dropdown-menus/) I found out that you can use the `:focus-within` pseudo-class.
 
 ### Finally
 
 I ended up with something like [this example](https://helmerdendekker.github.io/example/css-menu-hddb.html){target="_blank"}.
 
-It not really the final version, but it is a good start.
+It's not really the final version, but it is a good start.
 
 In the end, I ended up with a nice CSS-only dropdown. However, while testing this on iOS, it did not work as intended.
 More about that problem in the next article: [How to handle hover on iOS touch-devices](ioshover.md).
 
 ## Resources
 
-[W3S CSS Dropdowns](https://www.w3schools.com/Css/css_dropdowns.asp)
-[W3S How to CSS Dropdown](https://www.w3schools.com/howto/howto_css_dropdown.asp)
-[W3S Clickable Dropdown with JS](https://www.w3schools.com/howto/howto_js_dropdown.asp)
-[CSS-tricks Dropdown Menu](https://css-tricks.com/solved-with-css-dropdown-menus/)
+[W3S CSS Dropdowns](https://www.w3schools.com/Css/css_dropdowns.asp)  
+[W3S How to CSS Dropdown](https://www.w3schools.com/howto/howto_css_dropdown.asp)  
+[W3S Clickable Dropdown with JS](https://www.w3schools.com/howto/howto_js_dropdown.asp)  
+[CSS-tricks Dropdown Menu](https://css-tricks.com/solved-with-css-dropdown-menus/)  

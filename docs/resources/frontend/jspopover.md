@@ -123,7 +123,6 @@ My trick to solve this is make them stand out. Make sure you define the elements
 
 [UX design bootcamp, about overlay types](https://bootcamp.uxdesign.cc/popups-dialogs-tooltips-and-popovers-ux-patterns-2-939da7a1ddcd)    
 
-
 ### Examples from the past
 
 [Create an overlay with CSS (w3 schools, deprecated)](https://www.w3schools.com/howto/howto_css_overlay.asp)  
