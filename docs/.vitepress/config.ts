@@ -34,7 +34,8 @@ export default defineConfig({
 					{text: 'How to: Integration test', link: '/howto/integrationtestingdotnet'},
 					{text: 'How to: Dialog modal with JS', link: '/resources/frontend/jsmodal'},
 					{text: 'How to: Popover with JS', link: '/resources/frontend/jspopover'},
-					{text: 'How to: create a dashed line in OpenLayers', link: '/resources/frontend/openlayers-dashedline'},
+					{text: 'How to: Create a dashed line in OpenLayers', link: '/resources/frontend/openlayers-dashedline'},
+					{text: 'How to: Handle hover on iOS touch-devices', link: '/resources/frontend/ioshover'},
 				]
 			},
 			{
@@ -43,6 +44,7 @@ export default defineConfig({
 					//FrontEnd
 					{text: 'Frontend', link: '/resources/frontend/frontend'},
 					{text: 'Runtime API Examples', link: '/resources/frontend/api-examples'},
+					{text: 'How to create a dropdown-menu with CSS', link: '/resources/frontend/cssmenu'},
 					
 					// { text: 'Input Validation', link: '/resources/input-validation' },
 					// Backend

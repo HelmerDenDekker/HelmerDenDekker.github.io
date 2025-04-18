@@ -21,6 +21,25 @@ For example: The homepage has 3 CSS files, all tuned to performance. A main one 
 all the CSS for everything on the page. An "indexLarge.css" for large screens. It has a "indexFilter.css" for the filter
 component (which was added at a later stage).
 
-The problems encountered
+The problems encountered:
+- Change is hard (difficult)
+- The distance between the CSS and the HTML is large
+- Optimized on screen-size and performance rather than maintainability
+- It is impossible to debug
+
+
+### CSS-structure
+
+Write clean CSS.  
+
+Use sensible grouping
+
+Modular classes
+
+Use meaningful class names
+
+- Use BEM
+
+
 
 ## Resources

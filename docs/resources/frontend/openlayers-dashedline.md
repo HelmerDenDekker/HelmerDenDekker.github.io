@@ -1,4 +1,4 @@
-# OpenLayers: How to create a dashed line
+# How to create a dashed line in OpenLayers
 
 *22-7-2024*
 

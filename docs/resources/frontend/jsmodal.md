@@ -116,8 +116,8 @@ Creating a dialog modal is not that difficult. It is a matter of creating the ri
 ## Resources
 
 [Dialog material design](https://m3.material.io/components/dialogs/overview)  
-[UX design bootcamp, about overlay types](https://bootcamp.uxdesign.cc/popups-dialogs-tooltips-and-popovers-ux-patterns-2-939da7a1ddcd)
+[UX design bootcamp, about overlay types](https://bootcamp.uxdesign.cc/popups-dialogs-tooltips-and-popovers-ux-patterns-2-939da7a1ddcd)  
 
 ### Examples from the past
-[Create an overlay with CSS (w3 schools, deprecated)](https://www.w3schools.com/howto/howto_css_overlay.asp)
-[Create a css/js modal (w3 schools, deprecated)](https://www.w3schools.com/howto/howto_css_modals.asp)
+[Create an overlay with CSS (w3 schools, deprecated)](https://www.w3schools.com/howto/howto_css_overlay.asp)  
+[Create a css/js modal (w3 schools, deprecated)](https://www.w3schools.com/howto/howto_css_modals.asp)  
