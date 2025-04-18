@@ -7,8 +7,6 @@ Type of post: Opinion piece
 
 ## *Rapid fire thoughts*
 
-[//]: # ( ToDo: Write!)
-
 - Problem statement
 
 Looking for a way to return a Result from logic. While brainstorming with Tejas, we came up with the idea of a Result object.
@@ -27,7 +25,7 @@ Result type class with
 - StatusCode
 - Message
 
-The query-type is a Result<T> : Result, but with a Value property of type T.
+The query-type is a `Result<T>`  Result, but with a Value property of type T.
 
 Simple and effective, right?
 
@@ -35,7 +33,7 @@ Simple and effective, right?
 
 - The logic involved, having to go to StatusCode to compare the result with the expected value.
 - Object creation was a problem, because I did never want new Result() to be called, but this happened nonetheless.
-- Because Result<T> and Result are the same classes, I needed a way to downcast for something that cannot be a result carrying a Value. Because only the OK Result can carry a value. I created a DownCast extension method, having to call this DownCast everywhere. I went mad refactoring code.
+- Because `Result<T>` and Result are the same classes, I needed a way to downcast for something that cannot be a result carrying a Value. Because only the OK Result can carry a value. I created a DownCast extension method, having to call this DownCast everywhere. I went mad refactoring code.
 
 
 ## The second iteration
@@ -44,7 +42,7 @@ Inspired by a geek-out podcast with Nick Chapsas, I realized an enum would proba
 
 So I created a new Result class. This is just an enum.
 
-Result<T> was replaced by a ValueTask, and all messages, statusCodes and IsSucces were replaced by a ResultExtension class, so only when you really want a message to be returned, it is fetched. And it is not carried around by the class all the time as heavy weight.
+`Result<T>` was replaced by a ValueTask, and all messages, statusCodes and IsSucces were replaced by a ResultExtension class, so only when you really want a message to be returned, it is fetched. And it is not carried around by the class all the time as heavy weight.
 
 ## Results
 
