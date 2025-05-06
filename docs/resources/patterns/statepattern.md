@@ -14,6 +14,24 @@ I want a resource so I can track how to implement
 The state pattern idea  
 How to implement the state pattern
 
+# State machine
+
+When to use?
+If there is behaviour that differs depending on the state of an object.
+
+If the state is linear, you can use pipe-and-filter (chain of responsibility) pattern.
+With linear the process being linear sequence of steps.
+
+Use a state machine when the state is not linear.
+
+## State machine terminology
+
+- State: This is a situation with unique behaviour
+- Behaviour: Logic typical for one state
+- Transition: The change from one state to another
+- Trigger: The event that causes the transition
+
+
 
 ## The State Pattern
 
@@ -21,7 +39,7 @@ The state pattern consists of three elements:
 
 - the context
 - the state interface
-- the state 
+- the state
 
 ![State Pattern](../../assets/images/statepattern/statepattern.svg "State pattern")
 
