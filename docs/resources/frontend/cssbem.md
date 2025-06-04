@@ -69,12 +69,7 @@ Simplified file structure (flat)
 ## What about javascript?
 
 BEM is not only for CSS, but also for JavaScript.
-
-
-
-
-
-
+This goes a bit beyond the scope of this article, but you can use BEM to structure your JavaScript code as well.
 
 ## Resources
 
