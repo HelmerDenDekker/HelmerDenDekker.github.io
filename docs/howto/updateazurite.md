@@ -28,4 +28,4 @@ Get the version number with azurite -v.
 
 It says my version is 3.3.34, which is the latest, HOWEVER, I still get the error.
 
-Well, kids, do not forget to shut down whatever is running azurite, and restart it. Now i will use the latest version.
+Well, kids, do not forget to shut down whatever is running azurite, and restart it. Now the latest version is used.

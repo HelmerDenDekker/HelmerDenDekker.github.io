@@ -40,6 +40,13 @@ Use meaningful class names
 
 - Use BEM
 
+## Example: the Xerbutri website version 6
+
+Version 6.1.1 has an object-oriented approach to CSS. The assets are grouped by technology instead of functionality. In comparison with the previous version, there are many more files.
+
+## Future
+
+Towards vertical slices. 
 
 
 ## Resources
