@@ -46,6 +46,9 @@ An element is optional, not all blocks have elements.
 
 A modifier is a flag on a block or element that changes its appearance, behavior, or state of a block or element.
 
+For example, when a button is disabled, it has a modifier disabled like `button_disabled`. I do not use the `--` notation.
+
+
 ### Generic rules
 
 You also shouldn't use CSS tag or ID selectors when using BEM.

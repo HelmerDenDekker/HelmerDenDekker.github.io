@@ -1,6 +1,6 @@
 # Modern CSS
 
-*18-9-2023*
+*18-9-2023 - updated 20-8-2025*
 
 Status: Work in progress
 
@@ -40,13 +40,37 @@ Use meaningful class names
 
 - Use BEM
 
-## Example: the Xerbutri website version 6
+## Example: the Xerbutri website version 6.1
 
 Version 6.1.1 has an object-oriented approach to CSS. The assets are grouped by technology instead of functionality. In comparison with the previous version, there are many more files.
 
-## Future
+What do you mean, Helmer?
 
-Towards vertical slices. 
+I created classes that represent objects. So my index page is an object. It inherits its base functionality from a statemachine-boss-class. The index has children, like the cards that should be rendered on screen.
 
+I had my CSS structured along the lines of these classes, and their behaviour. All CSS files are grouped in one folder called css. All files are grouped in a folder called js. All images are grouped in a folder called images. All javascript-files are grouped in a folder called js.
+
+So if I had to make a change to the filter of the cards on the index page, I had to look in multiple css-files in multiple folders.
+
+## BEM for the Xerbutri website version 6.2
+
+In version 6.2 the CSS is refactored to follow BEM principles, and more importantly, the Team Xerbutri code is now vertical sliced. 
+
+What does this mean?
+
+For example the index page has cards and a these cards have a filter.
+So the css is now organized in a folder structure like this:
+
+index > card > filter  
+
+All the css, js-files, images and icons that belong to the filter are in the filter folder. 
+
+So whenever I want to change something in the filter for the cards, this is the only place I have to look for my css and js files.
+For example if I decide to delete the images used from the css, it is clear to me that these images are only used here, and nowhere else. So I can safely delete them.
+
+### Sharing
+
+There are also shared components, for example the header is the same in all the pages.
+This is organized in a shared folder, so the header.css and header.js are in the shared folder.	
 
 ## Resources
