@@ -2,8 +2,8 @@
 
 *13-11-2024*
 
-_Status: {Work in progress} {Idea}_  
-_Type of post: {Opinion piece} {Guide} {Resource}_
+_Status: {Work in progress}_  
+_Type of post: {Guide} _
 
 ## *Rapid fire thoughts*
 
@@ -32,14 +32,6 @@ For the client, it is just about sending. The implementation is abstracted away.
 
 Next the mechanisms, the concrete implementations:
 
-
-
-
-
-
-
-
-
 ```csharp
 public class NotificationService
 {
@@ -56,10 +48,6 @@ public class NotificationService
 	}
 }
 ```
-
-
-
-
 
 
 ## *Outline*
