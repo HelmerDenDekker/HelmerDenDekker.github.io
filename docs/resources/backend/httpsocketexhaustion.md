@@ -132,6 +132,31 @@ Wrapping this in a using creates one socket per call, leaving the socket open fo
 Using a static HttpClient per service, creates one socket per service, leaving the socket open for ~240s. Amount of sockets == amount of services.  
 Using a static IHttpClientFactory, creates one socket per client (named/typed), leaving the socket open for ~240s. Amount of sockets == amount of clients.  
 
+## Reaction: Really! Come on, Helmer!
+
+First of all, do you know have many sockets a machine has? It has 2^16 ports over TCP, and each port has as many sockets, right? So there are millions of sockets available!!! Or something like that, maybe trillions!!  
+Also, we have caching, so don't worry!
+
+No!  
+
+These are the kind of responses I got trying to explain it.  
+Sorry. Theoretically you are right. In practice, an old server will only have about 3000 sockets available. A newer Windows server has 15000 sockets available. A Linux server has a bit more sockets.  
+I say, the proof of the pudding is in the eating (I hate that phrase).
+
+It is DDOS time!!  
+
+Don't do this on a production environment!!  
+
+I wrote a simple loop, in order to test this on my machine.
+
+When using "new HttpClient()" per call, there is never any post exhaustion. Somehow dotnet starts cleaning up when about 1000 connections are made, so it uses around 100-500 connections at once.
+
+When wrapping it in a using statement, the ports are exhausted after 16274 calls.  
+
+I so wanna give you the finger with your theoretical 4.294.967.296 socket answer!!!
+
+
+
 ## Resources
 
 The problem and solution are explained in this page:
