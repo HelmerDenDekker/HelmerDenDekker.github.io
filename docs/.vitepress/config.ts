@@ -36,6 +36,7 @@ export default defineConfig({
 					{text: 'How to: Popover with JS', link: '/resources/frontend/jspopover'},
 					{text: 'How to: Create a dashed line in OpenLayers', link: '/resources/frontend/openlayers-dashedline'},
 					{text: 'How to: Handle hover on iOS touch-devices', link: '/resources/frontend/ioshover'},
+					{text: 'How to: Use the HttpClient the right way in .NET', link: '/resources/backend/httpsocketexhaustion'},
 				]
 			},
 			{
