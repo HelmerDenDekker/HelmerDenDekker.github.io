@@ -1,12 +1,13 @@
 # How to: Use the HttpClient the right way in .NET
 
-*1-9-2023 - updated 15-9-2025*
+*1-9-2023 - updated 25-9-2025*
 
-## Problem
+## What is the problem?
 
-There is a lot of noise about the use of the HttpClient, despite Microsoft (and others) have clear explanations about how to use it.
+In real life and online there is a lot of noise about how to use HttpClient correctly, despite Microsoft (and others) have clear explanations about how to use it.
+Recently I ran into this problem for the umpteenth time, so I decided to update my 2019-2023 blog post about it.
 
-### Diving into code
+### Code example
 
 Sometimes I encounter code like this:
 
@@ -22,29 +23,21 @@ public class MyApiService
 }
 ```
 
-The HttpClient is covered in a using. You should NEVER do this, it will lead to ~~socket~~ port exhaustion.
-I understand the cause: The HttpClient implements the HttpMessageInvoker, which implements IDisposable, so developers think they need to dispose it by wrapping the HttpClient in a using.  
+The HttpClient is wrapped in a using. Avoid this! It will lead to ~~socket~~ port exhaustion.
 
-For this test, I am using a simple console application with a Worker that calls a scoped dependency injected ApiService.
+::: details Explanation
+I understand why.  
+The HttpClient implements the HttpMessageInvoker, which implements IDisposable.  
+So I understand the urge to wrap it in a using statement.   
+Please restrain yourself!  
+:::
 
-### Common reactions to me stating this problem
+## What is going on?
 
-These are the kind of responses I got trying to explain it.  
-- Really??? Come on, Helmer!  
-- Do you know have many sockets a machine has? It has 2^16 ports over TCP, and each port has as many sockets, right? So there are millions of sockets available!!! Or even trillions!!  
-- We have caching, so don't worry!  
-- Never heard of it, so it won't be that big of a deal.  
+The proof of the pudding is in the eating.  
+I hate that saying, but I do find that a good example or test is the best way to show what is going on.  
 
-About the sockets: Theoretically there are 4.294.967.296 sockets.  
-However, this is where things start to go wrong. Sockets are not ports. And the HttpClient opens a new TCP connection on an available port, not a socket. This causes some confusion typically.  
-
-In practice:
-- an old server will only have about 3000 ports available.
-- A newer Windows server has 15000 ports available.
-- A Linux server has around 30.000 ports available.
-
-If I look at the design of my website, which is API-heavy, it takes only 10 simultaneous users to exhaust the ports using the httpClient the wrong way.  
-Looking at the traffic peaks, this is a realistic scenario.
+There are four scenarios I want to show you:
 
 ## Scenario 1: The worst case, creating a new HttpClient per call
 
@@ -72,17 +65,17 @@ DDOS time!
 
 Don't do this on a production environment!!
 
-I wrote a simple loop, in order to test this (on my machine). It just calls the (locally hosted) api repeatedly through the service until it breaks. When it does, the iteration is written to the screen.
+I wrote console app with a simple loop, calling the (locally hosted) api repeatedly through the service until it breaks. When it does, the iteration is written to the screen.
 
 Much to my surprise, there is never any port exhaustion!  
 Somehow something (dotnet?) starts cleaning up when about 1000 connections are established.
 Running the tests multiple time, it uses around 100-500 connections at once in steady load.  
 
-I did not expect this behaviour at all from the worst-case scenario.
+I did not expect this behaviour at all from the "worst-case scenario".  
+As you can see, theory != practice.
 
 ## Scenario 2: Slightly better, but still bad
 
-How to handle this problem?  
 Reviewing the code, you cannot help but notice that the HttpClient implements the HttpMessageInvoker, which implements IDisposable.  
 OMG! Forgot to wrap it in a using statement!  
 Let's try that!
@@ -114,8 +107,6 @@ So, in theory, we made the situation a bit better. The system can handle twice a
 Is it?? 
 
 ### Test to break stuff
-
-In my test, this is the only way the ports actually get exhausted.  
 
 I took the code from last test, and ran it with the using statement.
 
@@ -177,7 +168,6 @@ public class ApiService : IApiService
 	}
 }
 ```
-
 Register the IHttpClientFactory in the DI container with the AddHttpClient extension method.
 
 ```csharp
@@ -197,9 +187,39 @@ When using the HttpClientFactory in my loop-test, there is never any port exhaus
 ## Recap
 
 Creating a "new HttpClient" per call creates one TCP connection per call, leaving this connection open for ~240s (Established + Time Wait). Amount of connections == amount of calls.  
+
 Wrapping this in a using creates one connection per call, leaving the connection open for ~120s (Time Wait). Amount of connections == amount of calls.  
+
 Using a static HttpClient per service, creates one connection per service, leaving the connection open for ~240s. Amount of connections == amount of services.  
-Using a static IHttpClientFactory, creates one connection per client (named/typed), leaving the connection open for ~240s. Amount of connections == amount of clients.
+
+Using a static IHttpClientFactory, creates one connection per client (named/typed), leaving the connection open for ~240s. Amount of connections == amount of clients.  
+
+## Common reactions to me stating this problem
+
+These are the kind of responses I got trying to explain it:
+- Do you know have many sockets a machine has? It has 2^16 ports over TCP, and each port has as many sockets, right? So there are millions of sockets available!!! Or even trillions!!
+- We have caching, so don't worry!
+- Never heard of it, so it won't be that big of a deal.
+
+About the sockets: Theoretically there are 4.294.967.296 sockets.  
+However, this is where things start to go wrong. Sockets are not ports. And the HttpClient opens a new TCP connection on an available port, not a socket. This causes some confusion typically.
+
+In practice:
+- an old server will only have about 3000 ports available.
+- A newer Windows server has 15000 ports available.
+- A Linux server has around 30.000 ports available.
+
+If I look at the design of my website, which is API-heavy, it takes only 10 simultaneous users to exhaust the ports using the HttpClient the wrong way.  
+Looking at the traffic peaks, this is a realistic scenario.
+So, yes, it is a big deal. Even with caching in my case, because there are lots of unique API calls.
+
+Is it a problem?
+
+It depends.  
+
+If you do not have that many calls, maybe not.
+However, most of the time, in the companies I worked for, code is copy-pasted. And if you start with using HttpClient the wrong way, it will resonate through all the applications sadly.  
+Using the HttpClientFactory is very easy, so why not do it the right way, always?
 
 ## Resources
 
