@@ -23,7 +23,7 @@ In SAML-speak:
 - the application you want to enter is the "service provider", since it provides the service you want to request.
 - The application responsible for identity management is called "identity provider"
 
-![SAML authentication flow](/assets/images/saml/saml.svg "SAML authentication flow")
+![SAML authentication flow](../../assets/images/saml/saml.svg "SAML authentication flow")
 
 This sequence diagram shows the "behind the scenes" of a user visiting your application ("service provider"). The user
 enters the url in the browser, and hits enter.
@@ -63,7 +63,7 @@ technologies and protocols.
 Theoretically it is a lot slower than OpenIDConnect, but I never tested this in real life.
 
 Having all the responses go back to the user agent, mean it has a larger attack surface for a hacker compared to
-OpenIdconnect (again, theoretically).
+OpenIdConnect (again, theoretically).
 
 In my (limited 2-year) experience, I found implementing SAML correctly in dotNET projects was complex. For me it was a
 lot more difficult compared to OpenIdConnect (but I have 4 year multi-project experience with that, so...). Setting up
