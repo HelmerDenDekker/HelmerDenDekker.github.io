@@ -91,6 +91,19 @@ documentHandlerChain.Handle(newDocument);
 Nice! 
 However, the problem is that the chain branches.
 
+### Solution for branching chains - First idea
+
+I simplified my flow and used depth in my classes to handle this.
+
+![Chain of Responsibility with branching](../../assets/images/chain/chains.svg)
+
+So, I have a first chain for document validation, which immediately returns to this handler when the document is empty for example. 
+The DocumentHandler accepts a class called DocumentRequest, which has a Document and a Result property. 
+Based on the result, the next handler in the chain is called or not.
+
+### Solution for branching chains - Composite pattern
+
+Another way to solve this is to use the Composite pattern. 
 
 
 
