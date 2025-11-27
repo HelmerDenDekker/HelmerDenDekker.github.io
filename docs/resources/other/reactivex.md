@@ -41,24 +41,26 @@ Explained for pro's: ReactiveX is a combination of the Observer pattern, the Ite
 I was inspired by [Ian Griffiths](https://endjin.com/who-we-are/our-people/ian-griffiths/#blogs) diagram, and I extended
 it. [IAsyncObservable is in preview](https://github.com/dotnet/reactive) at the time of writing.
 
-Pull -> the consumer proactively looks for data changes (polling in case of events)  
+Pull -> the consumer proactively looks for data changes (polling in case of events, or go to an API when I want the newest data.)  
 Push -> the consumer receives a value whenever it is available  
 Push-Pull -> the consumer receives a change notification as the push-part, and needs to pull the changes
 
 ### ReactiveX explained like I am five years old
 
-I want candy.  
+Me: I want candy.  
 
 Pull: I go to the cabinet, and take the candy.  
-Push: I ask my mom for candy. I will wait until she gives it to me.  
+Push: My mom will bring me candy from the cabinet, whenever it is available.  
 Push-Pull: I ask my mom for candy. She will let me know when I can go to the cabinet and take it myself.  
 
-I want many!?  
+Pull: Advantage: I can make my own decisions on when to get candy. Disadvantage, if there is no candy, I have to go to the cabinet again. And again. And again.
+Push: Advantage: No need to run to the cabinet all the time. Disadvantage: A dependency on my mom, which is complicated.
 
-I can get a roll of mints.  
-I can get them one by one myself (pull).  
-Or I can ask my mom to give me one every time she seems fit (push).
-Or, I can ask my mom to let me know when I can take one myself (push-pull).
+Me: I want many!?  
+
+Pull: I can get a roll of mints. I can get them one by one myself.  
+Push: I can ask my mom to give me one every time she seems fit.
+Push-Pull: I can ask my mom to let me know when I can take one myself.
 
 The "push" is the ReactiveX way of handling stuff.  
 
