@@ -1,4 +1,4 @@
-# State in Blazor-Server
+# Share state across multiple tabs in Blazor-Server
 
 *23-12-2024*
 
@@ -11,7 +11,7 @@ About: application state in a .NET 8 Blazor Web App using Interactive Server Ren
 
 ### Problem
 
-I have to keep state in this application. 
+I have to keep state in this application. I want to share state between different pages/tabs in the browser per user. 
 
 What do you mean?  
 Blazor Server is already a stateful framework. It keeps state between the users session and the server.
@@ -71,7 +71,20 @@ Out of scope:
 - Offline use of the application. When connection is lost, so be it.
 - Merging the data is out of scope for this blog.
 
+## Solution proposition
 
+Store - manage - update.
+Have subscriptions.
+
+- UserSessionStore. (state persistence) Lifetime: singleton
+- UserViewModel (bound to the view, should handle state changes both ways) Lifetime: circuit
+- UserSessionState (the state of the user session, with all the properties and domain logic) Lifetime: custom
+- UserSessionStoreManager => handles expiration of sessions etc. Lifetime: singleton
+
+This is all I need?
+Suppose Logout => multiple tabs. I change the state, INotifyPropertyChanged will kick in for all other viewmodels and change the state.
+
+Do this with the MessageBox in the Demo application.
 
 [//]: # ( ToDo: Write!)
 
