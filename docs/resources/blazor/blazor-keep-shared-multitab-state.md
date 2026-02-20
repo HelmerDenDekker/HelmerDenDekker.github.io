@@ -86,6 +86,19 @@ Suppose Logout => multiple tabs. I change the state, INotifyPropertyChanged will
 
 Do this with the MessageBox in the Demo application.
 
+### Design the MessageBox
+
+Like the previous.
+There needs to be a store to store the state of the MessageBox. Lifetime: singleton.
+There is one MessageBoxState per user session. The lifetime needs to be custom.
+The MessageBoxViewModel needs to be bound to the view, and should handle state changes both ways. Lifetime: circuit.
+There is a StoreManager to handle expiration (and keeps track of the number of live instances)
+
+I am not sure if this will work. However, this is decoupled. So it will work way better than the previously proposed actor architecture.
+
+
+
+
 [//]: # ( ToDo: Write!)
 
 ## *Outline*
