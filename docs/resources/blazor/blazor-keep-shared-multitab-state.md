@@ -71,6 +71,35 @@ Out of scope:
 - Offline use of the application. When connection is lost, so be it.
 - Merging the data is out of scope for this blog.
 
+
+## Layers to this problem.
+
+First: Where to store/fetch the state? Multiple tabs/pages, means that the user needs a UserId to identify the user across tabs or pages. This needs to be in the browser.  
+Second: Store and share with the components within a Blazor page. Fetching the userId from localStorage every time is expensive. Also, I do not want a central appState, with ALL values. I do not need the values every time. I can cascade the userId using Blazor, OR I can use a (scoped) UserProvider. In the last case I am not using components to store state. I like that.
+
+
+
+
+
+
+## Storing state
+
+What means are available to share state between tabs for one user?
+
+Storing state in the browser (client side)
+
+- URL parameters (but how to set the url? This is not practical in most cases)
+- LocalStorage is shared between tabs.
+- SessionStorage is not shared between tabs or pages.
+- Browser messaging (not really storing, but you could store state in "memory" and use browser messaging to propagate changes to other tabs. This is a bit hacky, but it could work.)
+
+Storing state on the server (server side)
+- Cookies.
+
+The problem with client side storage is that it is "slow". 
+
+
+
 ## Solution proposition
 
 Store - manage - update.
