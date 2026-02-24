@@ -2,7 +2,7 @@
   "type": "module",
   "devDependencies": {
     "lockfile-lint": "4.14.1",
-    "vitepress": "1.0.0-alpha.63"
+    "vitepress": "1.6.3"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",

@@ -1,4 +1,4 @@
-# State in Blazor-Server
+# Share state across multiple tabs in Blazor-Server
 
 *23-12-2024*
 
@@ -11,7 +11,7 @@ About: application state in a .NET 8 Blazor Web App using Interactive Server Ren
 
 ### Problem
 
-I have to keep state in this application. 
+I have to keep state in this application. I want to share state between different pages/tabs in the browser per user. 
 
 What do you mean?  
 Blazor Server is already a stateful framework. It keeps state between the users session and the server.
@@ -70,6 +70,61 @@ More abstract:
 Out of scope:
 - Offline use of the application. When connection is lost, so be it.
 - Merging the data is out of scope for this blog.
+
+
+## Layers to this problem.
+
+First: Where to store/fetch the state? Multiple tabs/pages, means that the user needs a UserId to identify the user across tabs or pages. This needs to be in the browser.  
+Second: Store and share with the components within a Blazor page. Fetching the userId from localStorage every time is expensive. Also, I do not want a central appState, with ALL values. I do not need the values every time. I can cascade the userId using Blazor, OR I can use a (scoped) UserProvider. In the last case I am not using components to store state. I like that.
+
+
+
+
+
+
+## Storing state
+
+What means are available to share state between tabs for one user?
+
+Storing state in the browser (client side)
+
+- URL parameters (but how to set the url? This is not practical in most cases)
+- LocalStorage is shared between tabs.
+- SessionStorage is not shared between tabs or pages.
+- Browser messaging (not really storing, but you could store state in "memory" and use browser messaging to propagate changes to other tabs. This is a bit hacky, but it could work.)
+
+Storing state on the server (server side)
+- Cookies.
+
+The problem with client side storage is that it is "slow". 
+
+
+
+## Solution proposition
+
+Store - manage - update.
+Have subscriptions.
+
+- UserSessionStore. (state persistence) Lifetime: singleton
+- UserViewModel (bound to the view, should handle state changes both ways) Lifetime: circuit
+- UserSessionState (the state of the user session, with all the properties and domain logic) Lifetime: custom
+- UserSessionStoreManager => handles expiration of sessions etc. Lifetime: singleton
+
+This is all I need?
+Suppose Logout => multiple tabs. I change the state, INotifyPropertyChanged will kick in for all other viewmodels and change the state.
+
+Do this with the MessageBox in the Demo application.
+
+### Design the MessageBox
+
+Like the previous.
+There needs to be a store to store the state of the MessageBox. Lifetime: singleton.
+There is one MessageBoxState per user session. The lifetime needs to be custom.
+The MessageBoxViewModel needs to be bound to the view, and should handle state changes both ways. Lifetime: circuit.
+There is a StoreManager to handle expiration (and keeps track of the number of live instances)
+
+I am not sure if this will work. However, this is decoupled. So it will work way better than the previously proposed actor architecture.
+
 
 
 

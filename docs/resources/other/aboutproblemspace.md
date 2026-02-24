@@ -7,6 +7,11 @@ _Type of post: {Opinion piece} {Guide} {Resource}_
 
 ## *Rapid fire thoughts*
 
+Adhere to the basic rules of software architecture and design.
+
+Please split State and Behavior. Never needed to think much about it.
+
+
 What problems do we face?
 
 - Saving stuff (crud = IO) => Repository & use async for freeing up threads
