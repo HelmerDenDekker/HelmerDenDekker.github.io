@@ -5,6 +5,8 @@
 _Status: {Work in progress} {Idea}_  
 _Type of post: {Opinion piece} {Guide} {Resource}_
 
+[//]: # ( ToDo: ALSO SEE: when-to-use-async.md)
+
 ## *Rapid fire thoughts*
 
 [//]: # ( ToDo: I think this is more of a fire-and-return PROBLEM and a fire-and-forget cancellation challenge. )
@@ -72,14 +74,6 @@ At least, I expected that to happen. But it does not...
 What happens in reality:  
 User navigates away in step 2, it finishes and returns. No errors whatsoever. I am not sure why, but in some point in time, when something decides to clean up old components maybe, at that point it throws an exception. But I have no idea when that is.  
 It is hard to trace back where the error comes from. Also, the error is swallowed not reproducible.
-
-
-
-
-
-
-
-
 
 
 
