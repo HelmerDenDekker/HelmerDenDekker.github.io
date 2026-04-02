@@ -143,7 +143,7 @@ The blue in the pictures below should be unchanged (same shade of blue) in the i
 I did not change any settings for this test, so any color mangling comes out of the box. Or because of other reasons?  
 - System.Drawing handles colorspace management for blue just fine.  
 - ImageSharp has the right blue.  
-- Magick.NET does some color mangling, but this can be fixed by keeping the icc-profile in the image, which I did not do for this test. So, this is a settings issue, not a package issue.
+- Magick.NET handles colorspace management fine, since I fixed the color mangling by keeping the icc-profile in the image.
 - MagicScaler has the right blue, but seems to be a bit brighter or sharper.  
 - NetVips has the right blue, look at the code to make sure it keeps the icc-profile in the image.  
 - SkiaSharp has some color mangling.  
@@ -186,7 +186,7 @@ I configured the packages to output high quality images.
 
 - System.Drawing: Has the best quality for PNG, and a good JPG and WebP quality as well.
 - ImageSharp: The Webp has weird artifacts, the JPG and PNG look good!  
-- Magick.NET: All the different formats are similar in quality. Overall it is fine, but a bit grey-ish (especially the blue).  
+- Magick.NET: All the different formats are similar in quality.  
 - MagicScaler: Crisp and sharp, and consistent over the file formats, the highlights are too white overall.  
 - NetVips: The quality is fine and quite consistent.  
 - SkiaSharp: blurry and grey-ish blue.  
@@ -222,7 +222,7 @@ differences between the packages for the different compression formats:
 |----------------|-----:|-----:|-----:|-----------------------------------:|
 | System.Drawing |  *** | **** |  *** |                                    |
 | ImageSharp     | **** | **** |  *** |                    Artifact issues |
-| Magick.Net     |  *** |  *** |   ** |                       Color issues |
+| Magick.Net     |  *** | **** |  *** |                        |
 | MagicScaler    |  *** |  *** |  *** |        Sharp, but highlight issues |
 | NetVips        |  *** |  *** |  *** |                        |
 | SkiaSharp      |    * |    * |    * | Artifact, blurriness, color issues |

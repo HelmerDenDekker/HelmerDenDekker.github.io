@@ -9,7 +9,7 @@
 	<rect x="0" y="0" width="1152" height="576" stroke="none" stroke-width="0" fill="#ffffff"></rect>
 	<g>
 		<text text-anchor="start" x="192" y="82.25" font-family="Arial" font-size="25" font-weight="bold" stroke="none"
-			  stroke-width="0" fill="#000000">Memory allocation in KB
+			  stroke-width="0" fill="#000000">Memory allocation in kB
 		</text>
 		<rect x="192" y="61" width="768" height="25" stroke="none" stroke-width="0" fill-opacity="0"
 			  fill="#ffffff"></rect>
@@ -121,14 +121,14 @@
 				<rect x="192" y="132" width="768" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
 			</g>
 			<g>
-				<rect x="384" y="461" width="54" height="4" stroke="none" stroke-width="0" fill="#003f5c"></rect>
-				<rect x="439" y="454" width="54" height="11" stroke="none" stroke-width="0" fill="#374c80"></rect>
-				<rect x="494" y="448" width="54" height="17" stroke="none" stroke-width="0" fill="#7a5195"></rect>
-				<rect x="549" y="281" width="54" height="184" stroke="none" stroke-width="0" fill="#bc5090"></rect>
-				<rect x="604" y="441" width="54" height="24" stroke="none" stroke-width="0" fill="#ef5675"></rect>
-				<rect x="659" y="458" width="54" height="7" stroke="none" stroke-width="0" fill="#ff764a"></rect>
-				<rect x="714" y="456" width="54" height="9" stroke="none" stroke-width="0" fill="#ffa600"></rect>
-				<rect x="769" y="2" width="54" height="463" stroke="none" stroke-width="0" fill="#00aa55"></rect>
+				<rect x="384" y="458" width="54" height="7" stroke="none" stroke-width="0" fill="#003f5c"></rect>
+				<rect x="439" y="442" width="54" height="23" stroke="none" stroke-width="0" fill="#374c80"></rect>
+				<rect x="494" y="431" width="54" height="34" stroke="none" stroke-width="0" fill="#7a5195"></rect>
+				<rect x="549" y="97" width="54" height="368" stroke="none" stroke-width="0" fill="#bc5090"></rect>
+				<rect x="604" y="417" width="54" height="48" stroke="none" stroke-width="0" fill="#ef5675"></rect>
+				<rect x="659" y="452" width="54" height="13" stroke="none" stroke-width="0" fill="#ff764a"></rect>
+				<rect x="714" y="448" width="54" height="17" stroke="none" stroke-width="0" fill="#ffa600"></rect>
+				<rect x="769" y="324" width="54" height="141" stroke="none" stroke-width="0" fill="#00aa55"></rect>
 			</g>
 			<g>
 				<rect x="192" y="465" width="768" height="1" stroke="none" stroke-width="0" fill="#333333"></rect>
@@ -169,42 +169,42 @@
 			</g>
 			<g>
 				<text text-anchor="end" x="177" y="426.375" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#444444">1000
+					  stroke-width="0" fill="#444444">500
 				</text>
 			</g>
 			<g>
 				<text text-anchor="end" x="177" y="382" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#444444">2,000
+					  stroke-width="0" fill="#444444">1,000
 				</text>
 			</g>
 			<g>
 				<text text-anchor="end" x="177" y="337.625" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#444444">3,000
+					  stroke-width="0" fill="#444444">1,500
 				</text>
 			</g>
 			<g>
 				<text text-anchor="end" x="177" y="293.25" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#444444">4,000
+					  stroke-width="0" fill="#444444">2,000
 				</text>
 			</g>
 			<g>
 				<text text-anchor="end" x="177" y="248.875" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#444444">5,000
+					  stroke-width="0" fill="#444444">2,500
 				</text>
 			</g>
 			<g>
 				<text text-anchor="end" x="177" y="204.5" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#444444">6,000
+					  stroke-width="0" fill="#444444">3,000
 				</text>
 			</g>
 			<g>
 				<text text-anchor="end" x="177" y="160.125" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#444444">7,000
+					  stroke-width="0" fill="#444444">3,500
 				</text>
 			</g>
 			<g>
 				<text text-anchor="end" x="177" y="115.75" font-family="Arial" font-size="15" stroke="none"
-					  stroke-width="0" fill="#444444">8,000
+					  stroke-width="0" fill="#444444">4,000
 				</text>
 			</g>
 		</g>

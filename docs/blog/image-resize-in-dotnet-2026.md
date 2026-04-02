@@ -248,10 +248,10 @@ The blue in the pictures below should be unchanged (same shade of blue) in the i
 
 I did not change any settings for this version, so any color mangling comes out of the box.  
 - System.Drawing handles colorspace management for blue just fine.
-- Magick.NET does some color mangling, but this can be fixed by keeping the icc-profile in the image, which I did not do for this test. So, this is a settings issue, not a package issue.
+- Magick.NET handles colorspace management fine, since I fixed the color mangling by keeping the icc-profile in the image.
 - MagicScaler has the right blue, but seems to be a bit brighter or sharper.
 - ImageSharp has the right blue.
-- NetVips looks like ImageSharp, the right blue color.
+- NetVips handles colorspace management fine, since I fixed the color mangling by keeping the icc-profile in the image.
 - SkiaSharp handles the color space management well, it seems to be a bit darker, and it has other issues.
 - FreeImage does color mangling, this might be prevented with the right setting.
 - ImageFlow has the right color of blue, but it is a bit brighter.
@@ -278,7 +278,7 @@ I did not change these settings for this test. This is extremely noticeable in d
 
 This shows some major differences in the handling of highlights between the packages.
 - System.Drawing handles highlights okay, but seems to lose a bit of redness.
-- Magick.NET handles highlights nicely.
+- Magick.NET handles highlights perfectly.
 - MagicScaler say they have the best highlighting, but in this test it reflects all the problems. The light is too bright, the color is gone. I talked about this extensively in the [2024 image format blog](./imageresizetx.md). The smaller the image size, the bigger the problem.
 - ImageSharp handles highlights the best. It looks like the original.
 - NetVips handles highlights well, comparable to ImageSharp.
@@ -328,11 +328,11 @@ Closely followed by Magick.NET and System.Drawing.
 | Package        | Colors | Highlights | Sharpness |
 |----------------|-------:|-----------:|----------:|
 | System.Drawing |   **** |        low |     sharp |
-| Magick.Net     |      * |    perfect |     sharp |
-| MagicScaler    |  **** |   too high |  sharpest |
+| Magick.Net     |  ***** |    perfect |     sharp |
+| MagicScaler    |   **** |   too high |  sharpest |
 | ImageSharp     |  ***** |    perfect |     sharp |
 | NetVips        |  ***** |    perfect |     sharp |
-| SkiaSharp      |  **** |        low |    blurry |
+| SkiaSharp      |   **** |        low |    blurry |
 | FreeImage      |      * |    perfect |    blurry |
 | ImageFlow      |  ***** |       high |    blurry |
 
@@ -343,11 +343,11 @@ filesize.
 
 ### File size
 
-Last blog, I kept the icc-profile for MagickNet to convert the color space. This time I did not, and so the colors are off, but the filesize is low for this package.
+For measuring file-size I took the 320px-images for each package used on this page:
 
 ![File size](../assets/images/imageresize2026/filesize.svg "File size")
 
-So, in the end, the filesize reflects more on my abilities to find the right settings in the library in a restricted amount of time, while keeping the processing at a certain level, than it says about the qualities of the library itself.
+In the end, the filesize reflects more on my abilities to find the right settings in the library in a restricted amount of time, while keeping the processing at a certain level, than it says something about the qualities of the library itself.
 
 ### Memory allocation
 
@@ -363,7 +363,7 @@ For measuring the total time elapsed I used benchmark.NET with a low iteration c
 
 ![Total time elapsed](../assets/images/imageresize2026/time.svg "Total time elapsed")
 
-Magick.Net is the slowest (off the chart). Imageflow is speed-king. System.Drawing is a bit slower, the others take around 500ms.
+Magick.Net is the slowest (off the chart), followed by ImageFlow. The others take around 500ms, System.Drawing being a bit slower.
 
 ## Conclusion
 
@@ -372,16 +372,16 @@ Also, there is the case of your business needs, for example, regarding the licen
 
 ### Summarized:
 
-| Package        | Pros                               | Cons                                                                                                                                        | 
-|----------------|:-----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| System.Drawing | Popular (documentation support)    | Windows-only, limited file-format support                                                                                                   |
-| Magick.Net     | File-format support                | Either good quality and large files OR low quality and small file-size                                                                      |
-| MagicScaler    |                                    | Extreme highlights and sharpness affect quality                                                                                             |
-| ImageSharp     | Cross-platform                     | License for commercial use, high memory usage                                                                                               |
-| NetVips        | Cross-platform, good image quality |                                                                                                                                             |
-| SkiaSharp      |                                    | Blurry images with lots of artifacts, hard to implement                                                                                     |
-| FreeImage      |                                    | Blurry images with mangled colors, license for commercial use, out-dated, large filesize                                                    |
-| ImageFlow      | Fast                               | Blurry images, license for commercial use, huge memory allocation => images not always saved, lacks documentation for dotnet implementation |
+| Package        | Pros                               | Cons                                                                                     | 
+|----------------|:-----------------------------------|:-----------------------------------------------------------------------------------------|
+| System.Drawing | Popular (documentation support)    | Windows-only, limited file-format support                                                |
+| Magick.Net     | File-format support                | Either good quality and large files OR low quality and small file-size                   |
+| MagicScaler    |                                    | Extreme highlights and sharpness affect quality                                          |
+| ImageSharp     | Cross-platform                     | License for commercial use, high memory usage                                            |
+| NetVips        | Cross-platform, good image quality |                                                                                          |
+| SkiaSharp      |                                    | Blurry images with lots of artifacts, hard to implement                                  |
+| FreeImage      |                                    | Blurry images with mangled colors, license for commercial use, out-dated, large filesize |
+| ImageFlow      |                                | Blurry images, license for commercial use.                                               |
 
 I experienced a lot of problems using System.Drawing, due to limited support for codecs, filetypes and color spaces. Personally I'd steer clear of this package, unless you have a very specific use case for it.  
 Also. I'd avoid FreeImage, because it is not maintained anymore, and the quality of the images is mediocre. Spending time on tweaking the settings for this package is not worth it, in my opinion.
