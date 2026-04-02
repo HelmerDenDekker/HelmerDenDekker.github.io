@@ -1,6 +1,6 @@
 # Image resize in dotNet: from JPG to JPG on Windows OS
 
-*1-4-2026*
+*2-4-2026*
 
 ## Introduction
 

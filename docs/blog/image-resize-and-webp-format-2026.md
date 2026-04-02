@@ -1,6 +1,6 @@
 # Image resize in dotNet: from JPG to Webp on Windows OS
 
-*1-4-2026*
+*2-4-2026*
 
 ## Introduction
 
@@ -131,7 +131,6 @@ This is the original picture, notice the blue.
 
 The blue in the pictures below should be unchanged (same shade of blue) in the ideal case.
 
-
 | Package        | JPG                                                                                                                               | PNG                                                                                                                           | Webp                                                                                                                              |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | System.Drawing | ![IMG_2525 System.Drawing](../assets/images/imageformat2026/IMG_2525-SystemDrawing-80.jpg "IMG_2525 System.Drawing") | ![IMG_2525 System.Drawing](../assets/images/imageformat2026/IMG_2525-SystemDrawing-80.png "IMG_2525 System.Drawing") | ![IMG_2525 System.Drawing](../assets/images/imageformat2026/IMG_2525-SystemDrawing-80-SK.webp "IMG_2525 System.Drawing") |
@@ -147,7 +146,7 @@ I did not change any settings for this test, so any color mangling comes out of 
 - Magick.NET does some color mangling, but this can be fixed by keeping the icc-profile in the image, which I did not do for this test. So, this is a settings issue, not a package issue.
 - MagicScaler has the right blue, but seems to be a bit brighter or sharper.  
 - NetVips has the right blue, look at the code to make sure it keeps the icc-profile in the image.  
-- SkiaSharp has the same problem.  
+- SkiaSharp has some color mangling.  
 
 ### Highlights
 
@@ -169,8 +168,7 @@ I did not change these settings for this test. This is extremely noticeable in d
 - Magick.NET: The JPG is perfect, spot on. The PNG as well. The Webp: Where have the colors gone?  
 - MagicScaler: The only package with a consistent behavior across formats. The JPG, PNG and WebP are all very similar, but they are all far too white, there is something wrong with the luminescence translation.  
 - NetVips: The JPG and PNG are very good, but the WebP misses color.  
-- SkiaSharp: Just looks dreadful with the artifacts, even the PNG. It handles the highlights just fine, but misses a bit of red.  
-
+- SkiaSharp: Just looks dreadful with the artifacts, even the PNG. It handles the highlights just fine, but misses a bit of red.
 
 ### Resampling in High Quality
 
@@ -217,7 +215,7 @@ In the 80 px thumbnail category, the whites from MagicScaler are strong in all o
 System.Drawing, ImageSharp and Magick.Net are fine.
 
 The 320px category is where the differences between packages (or their settings) stand out the strongest. I reviewed the
-picture quality with stars. Five stars meaning best quality, one star being bad. This very objective manner show the
+picture quality with stars. Five stars meaning best quality, one star being bad and five stars means great. This very objective manner show the
 differences between the packages for the different compression formats:
 
 | Package        |  JPG |  PNG | Webp |                            Remarks |
