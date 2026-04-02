@@ -233,8 +233,7 @@ The picture of Wild River has an Adobe RGB profile, which has to be converted to
 This is the original picture, notice the blue.
 ![Wild River](../assets/images/imageresize/IMG_2525.jpg "Wild River")
 
-For reference, I did not change the color management settings of FreeImage, giving you an idea of what color mangling looks like. You can also look at my [previous post](./imageresize.md) for the results under previous settings.
-The blue of FreeImage is clearly off, just like Magick.NET. ImageFlow seems to be overcompensating?
+The blue in the pictures below should be unchanged (same shade of blue) in the ideal case.
 
 | Package        |                                                                                                                      |  
 |----------------|---------------------------------------------------------------------------------------------------------------------:|
@@ -247,6 +246,17 @@ The blue of FreeImage is clearly off, just like Magick.NET. ImageFlow seems to b
 | FreeImage      |               ![IMG_2525-FreeImage](../assets/images/imageresize2026/IMG_2525-FreeImage-80.jpg "IMG_2525-FreeImage") |
 | ImageFlow      |               ![IMG_2525-ImageFlow](../assets/images/imageresize2026/IMG_2525-Imageflow-80.jpg "IMG_2525-Imageflow") |
 
+I did not change any settings for this version, so any color mangling comes out of the box.  
+- System.Drawing handles colorspace management for blue just fine.
+- Magick.NET does some color mangling, but this can be fixed by keeping the icc-profile in the image, which I did not do for this test. So, this is a settings issue, not a package issue.
+- MagicScaler has the right blue, but seems to be a bit brighter or sharper.
+- ImageSharp has the right blue.
+- NetVips looks like ImageSharp, the right blue color.
+- SkiaSharp handles the color space management well, it seems to be a bit darker, and it has other issues.
+- FreeImage does color mangling, this might be prevented with the right setting.
+- ImageFlow has the right color of blue, but it is a bit brighter.
+
+The result shows the work to be done in setting up the Magick.NET and FreeImage packages to correctly handle the color space management.
 
 ### Highlights
 
@@ -266,8 +276,15 @@ I did not change these settings for this test. This is extremely noticeable in d
 | FreeImage      |                 ![Vuurwerk2020-FreeImage](../assets/images/imageresize2026/Vuurwerk2020-FreeImage-320.jpg "Vuurwerk2020-FreeImage") |
 | ImageFlow      |                 ![Vuurwerk2020-ImageFlow](../assets/images/imageresize2026/Vuurwerk2020-Imageflow-320.jpg "Vuurwerk2020-Imageflow") |
 
-Although MagicScaler themselves say they have the best solution for the Highlight problem, I think they overdo the whites a bit.
-Do mind that this issue disappears for MagicScaler as the resize dimensions become larger. So, for a thumbnail, it is a problem, but for a medium-sized image, it is not. Also, this indicates it is a setting issue, not a package issue.
+This shows some major differences in the handling of highlights between the packages.
+- System.Drawing handles highlights okay, but seems to lose a bit of redness.
+- Magick.NET handles highlights nicely.
+- MagicScaler say they have the best highlighting, but in this test it reflects all the problems. The light is too bright, the color is gone. I talked about this extensively in the [2024 image format blog](./imageresizetx.md). The smaller the image size, the bigger the problem.
+- ImageSharp handles highlights the best. It looks like the original.
+- NetVips handles highlights well, comparable to ImageSharp.
+- SkiaSharp... I don't know. The lines are messed up, basically useless. I do not think the gamma correction is to blame for this. Skipping the way it looks, it highlights just a bit too much.
+- FreeImage handles highlights well, comparable to ImageSharp.
+- ImageFlow clearly emphasizes the highlights, but it is not as bad as MagicScaler.
 
 ### Resampling in High Quality
 
@@ -308,16 +325,16 @@ Closely followed by Magick.NET and System.Drawing.
 #### Conclusion regarding picture quality
 
 
-| Package        | Colors |  Highlights | Sharpness |
-|----------------|-------:|------------:|----------:|
-| System.Drawing |  ***** |        high |   sharper |
-| Magick.Net     |     ** |     perfect |  original |
-| MagicScaler    |  ***** |    too high |   sharper |
-| ImageSharp     |  ***** |     perfect |  original |
-| NetVips        |  ***** |     perfect |     sharp |
-| SkiaSharp      |  ***** | blurry-grey |    blurry |
-| FreeImage      |      * |     too low |    blurry |
-| ImageFlow      |  ***** |        high |    blurry |
+| Package        | Colors | Highlights | Sharpness |
+|----------------|-------:|-----------:|----------:|
+| System.Drawing |   **** |        low |     sharp |
+| Magick.Net     |      * |    perfect |     sharp |
+| MagicScaler    |  **** |   too high |  sharpest |
+| ImageSharp     |  ***** |    perfect |     sharp |
+| NetVips        |  ***** |    perfect |     sharp |
+| SkiaSharp      |  **** |        low |    blurry |
+| FreeImage      |      * |    perfect |    blurry |
+| ImageFlow      |  ***** |       high |    blurry |
 
 ## Results in numbers
 
@@ -355,17 +372,21 @@ Also, there is the case of your business needs, for example, regarding the licen
 
 ### Summarized:
 
-| Package        | Pros                                      | Cons                                                                                                            | 
-|----------------|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------|
-| System.Drawing | Good image quality, low memory allocation | Windows-only, limited file-format support                                                                       |
-| Magick.Net     | File-format support   | either good qualit and large files OR low quality and small file-size                                           |
-| MagicScaler    | Fast, sharp images                        | Extreme highlights affect quality                                                                               |
-| ImageSharp     | Fast, cross-platform                      | High memory usage                                                                                               |
-| NetVips        | Cross-platform, good image quality        |                                                                                                                 |
-| SkiaSharp      |                                           | Hard to implement, blurry images                                                                                |
-| FreeImage      |                                           | Out-dated, blurry images with mangled colors                                                                    |
-| ImageFlow      | Fast                                      | Blurry images, huge memory allocation => images not always saved, lacks documentation for dotnet implementation |
+| Package        | Pros                               | Cons                                                                                                                                        | 
+|----------------|:-----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
+| System.Drawing | Popular (documentation support)    | Windows-only, limited file-format support                                                                                                   |
+| Magick.Net     | File-format support                | Either good quality and large files OR low quality and small file-size                                                                      |
+| MagicScaler    |                                    | Extreme highlights and sharpness affect quality                                                                                             |
+| ImageSharp     | Cross-platform                     | License for commercial use, high memory usage                                                                                               |
+| NetVips        | Cross-platform, good image quality |                                                                                                                                             |
+| SkiaSharp      |                                    | Blurry images with lots of artifacts, hard to implement                                                                                     |
+| FreeImage      |                                    | Blurry images with mangled colors, license for commercial use, out-dated, large filesize                                                    |
+| ImageFlow      | Fast                               | Blurry images, license for commercial use, huge memory allocation => images not always saved, lacks documentation for dotnet implementation |
 
+I experienced a lot of problems using System.Drawing, due to limited support for codecs, filetypes and color spaces. Personally I'd steer clear of this package, unless you have a very specific use case for it.  
+Also. I'd avoid FreeImage, because it is not maintained anymore, and the quality of the images is mediocre. Spending time on tweaking the settings for this package is not worth it, in my opinion.
+
+All the other packages are promising in their own way. I believe most of the downsides can be fixed, like the image quality for SkiaSharp, and the highlighting for MagicScaler.
 
 ## Resources
 

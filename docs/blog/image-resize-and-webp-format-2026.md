@@ -21,7 +21,6 @@ This test:
 - benchmarks the loading, resizing and saving operations with Benchmark.NET
 - uses .NET 10 (LTS)
 - uses Windows 11 only
-- saves the images in jpeg format
 - wants to achieve the highest image quality.
 - saves the original jpeg as 95% quality jpeg format, png and webp in different sizes
 
@@ -47,26 +46,22 @@ I did not use the imageFlow, because I had trouble with the memory use in the pr
 The packages claim to support lots of formats. And in fact have no support whatsoever. I only checked for Webp, PNG and
 Jpg.
 
-| Package                                                                | JPG | PNG | Webp |                                         Remarks |
-|------------------------------------------------------------------------|-----|-----|------|------------------------------------------------:|
-| [System.Drawing](https://www.nuget.org/packages/System.Drawing.Common) | y   | y   | *    |      depends on GDI+ codecs installed and found |
-| [ImageSharp](https://github.com/SixLabors/ImageSharp)                  | y   | y   | y    |                        GIF and ~3 other formats |
-| [Magick.Net](https://github.com/dlemstra/Magick.NET)                   | y   | y   | y    |                      GIF and ~100 other formats |
-| [MagicScaler](https://www.nuget.org/packages/PhotoSauce.MagicScaler)   | y   | y   | y    |                 depends on WIC codecs installed |
-| [NetVips](https://www.nuget.org/packages/NetVips)                     | y   | y   | y    |                  GIF and multiple other formats |
-| [SkiaSharp](https://github.com/mono/SkiaSharp)                         | y   | y   | y    |           none of the 9 other supported formats |      
-| [ImageFlow](https://github.com/imazen/imageflow-dotnet)                | y   | y   | y    |                      no other formats supported |     
+| Package                                                                | JPG | PNG | Webp |                                    Remarks |
+|------------------------------------------------------------------------|-----|-----|------|-------------------------------------------:|
+| [System.Drawing](https://www.nuget.org/packages/System.Drawing.Common) | y   | y   | *    | depends on GDI+ codecs installed and found |
+| [ImageSharp](https://github.com/SixLabors/ImageSharp)                  | y   | y   | y    |                   GIF and ~3 other formats |
+| [Magick.Net](https://github.com/dlemstra/Magick.NET)                   | y   | y   | y    |                 GIF and ~100 other formats |
+| [MagicScaler](https://www.nuget.org/packages/PhotoSauce.MagicScaler)   | y   | y   | y    |            depends on WIC codecs installed |
+| [NetVips](https://www.nuget.org/packages/NetVips)                     | y   | y   | y    |             GIF and multiple other formats |
+| [SkiaSharp](https://github.com/mono/SkiaSharp)                         | y   | y   | y    |     none of the 9 other supported formats? |      
+| [ImageFlow](https://github.com/imazen/imageflow-dotnet)                | y   | y   | y    |                 no other formats supported |     
 
 For System.Drawing.Common, Webp has support on windows GDI+ since windows 10- 1089. However, it depends on the codec
-installed on your system. If no codec can be found, System.Drawing will silently fall back to PNG.
+installed on your system. If no codec can be found, System.Drawing will silently fall back to PNG. I could not get it to work (in the limited time available).
 
-In this test the silent fallback was observed. In order to have a WebP format in test. system.drawing uses
-the [SkiaSharp.Views.Desktop.Common](https://www.nuget.org/packages/SkiaSharp.Views.Desktop.Common/) package for
-encoding and saving the image as WebP.
+In this test the silent fallback was observed. In order to have a WebP format in test, System.Drawing uses the SkiaSharp package for encoding and saving the image as WebP.
 
-According to
-a [Xamarin blog by Microsoft](https://learn.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/graphics/skiasharp/bitmaps/saving#exploring-the-image-formats),
-SkiaSharp only supports three of the 12 image formats. This test does not check that claim.
+According to a [Xamarin blog by Microsoft](https://learn.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/graphics/skiasharp/bitmaps/saving#exploring-the-image-formats), SkiaSharp only supports three of the 12 image formats. This test does not check that claim.
 
 ## Results in numbers
 
@@ -87,7 +82,7 @@ improve, or have ideas.
 #### Conclusion
 
 Measuring decreases the performance of the code. All of these packages are fast enough, with Magick.NET being twice
-slower.
+slower than the other packages.
 
 ### Memory usage
 
@@ -97,41 +92,62 @@ memory (or simply crash on memory overload), this is very relevant.
 
 ![Memory used](../assets/images/imageformat2026/memory.svg "Allocated memory")
 
-Cloning in ImageSharp uses insane amount of memory, 4000 times more than other the apps.  
-Those pictures are 55 Mb in total. Why is it using 1200Mb? In the last test it used 1.2Mb of the 3Mb on disk. If it
-scales exponentially, what will happen in a real scenario when the guys process 30-40 photo's of about 200-500Mb at
-once? At least 12Gb?
-
-For the other apps: I did not spent any time optimising. It does save the one picture in 4 sizes and three formats,
-producing 12 files out of one picture. I think performance is great, considering most apps use <500 kB of allocated
-memory for handling 55 Mb of pictures.
+For the record: I screwed up System.Drawing by the way I use Skia to save the WebP files. Memory usage of System.Drawing without Skia/WebP is in the order of 500kB. The usage of Skia is about 500kB, so there is nno reason why those combined should be that high.
+ImageSharp uses a lot of memory. Same as for the image resize blog, I just cut corners, and used the FileHelper shortcut. There are so many options within this package to improve, and I should. If only I could find the right way...
 
 #### Conclusion
 
-ImageSharp is very heavy on the memory. The other packages perform very nice indeed.
+For the largest part memory usage is caused by my mistakes, but it shows that these packages are very sensitive to small changes causing them to misbehave drastically. If you want to use these packages, you need to understand them and their settings
 
 ### File size
 
-// TODO Filesize compare => look at previous blog.
-
+Here the filesize of some 320px-images is shown. It is more about the ratio than the absolute numbers. Keep in mind that this is foremost a reflection of the settings and encoders used.
 
 ![File size](../assets/images/imageformat2026/filesize.svg "File size")
 
-Webp produces the smallest image file size possible. However, there are huge differences between the packages. I read
-the System.Drawing GDI codec makes no effort to produce small files, and that certainly shows. It is possible to use
-other codecs, but this has an effect on quality as well.  
-ImageSharp has the smallest filesize, followed by MagicScaler. The other packages are equals.
+In general, WebP has the smallest size, closely followed by jpg. The png files are the largest, but there are differences in produced file size between the packages.
 
-The MagicScaler PNG is not a mistake. It really is that small.
-The System.Drawing produces big PNG files. Again, this shows the encoder settings can make a big difference. In this
-test the defaults are sed, but there is room for improvement.
+- ImageSharp produces very small WebP files. I cannot explain why, in the next paragraph see if this has effect on the quality. 
+- MagicScalar produces very small PNG files, because they lower the bit depth to 24, where other packages are on 32. Keep this in mind when looking at the picture quality later. This might be a configuration that can be changed?
+- System.Drawing and NetVips produce large PNG-files for no apparent reason.
 
-In the land of JPEG everything is about the same. SkiaSharp and System.Drawing produce small images. ImageSharp and
-MagicScaler a bit bigger. Magick.NET has the largest files.
+Another way to look at this is: What configuration needs to change in order to produce comparable results?
 
 ## Quality
 
 Quality is again a subjective matter. Let's look to some of the pictures produced and see the differences.
+
+### ColorSpace management
+
+Most applications use sRGB colorSpace to show a jpg picture. However, there is not such a thing as a default colorSpace. There are several color profiles in-use, and if the developer does not use the right settings to handle this, the picture will look terrible.
+I changed the settings for most of the libraries to do a conversion to sRGB.
+This conversion step will slow the process down, but I'd rather have a slow process than faulty colors.
+
+The picture of Wild River has an Adobe RGB profile, which has to be converted to sRGB. Because of the blue, it will show if I have the settings wrong.
+
+
+This is the original picture, notice the blue.
+![Wild River](../assets/images/imageresize/IMG_2525.jpg "Wild River")
+
+The blue in the pictures below should be unchanged (same shade of blue) in the ideal case.
+
+
+| Package        | JPG                                                                                                                               | PNG                                                                                                                           | Webp                                                                                                                              |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| System.Drawing | ![IMG_2525 System.Drawing](../assets/images/imageformat2026/IMG_2525-SystemDrawing-80.jpg "IMG_2525 System.Drawing") | ![IMG_2525 System.Drawing](../assets/images/imageformat2026/IMG_2525-SystemDrawing-80.png "IMG_2525 System.Drawing") | ![IMG_2525 System.Drawing](../assets/images/imageformat2026/IMG_2525-SystemDrawing-80-SK.webp "IMG_2525 System.Drawing") |
+| ImageSharp     | ![IMG_2525-ImageSharp](../assets/images/imageformat2026/IMG_2525-ImageSharp-80.jpg "IMG_2525-ImageSharp")            | ![IMG_2525-ImageSharp](../assets/images/imageformat2026/IMG_2525-ImageSharp-80.png "IMG_2525-ImageSharp")            | ![IMG_2525-ImageSharp](../assets/images/imageformat2026/IMG_2525-ImageSharp-80.webp "IMG_2525-ImageSharp")               |
+| Magick.Net     | ![IMG_2525-MagickNET](../assets/images/imageformat2026/IMG_2525-MagickNET-80.jpg "IMG_2525-MagickNET")               | ![IMG_2525-MagickNET](../assets/images/imageformat2026/IMG_2525-MagickNET-80.png "IMG_2525-MagickNET")               | ![IMG_2525-MagickNET](../assets/images/imageformat2026/IMG_2525-MagickNET-80.webp "IMG_2525-MagickNET")                  |
+| MagicScaler    | ![IMG_2525-MagicScaler](../assets/images/imageformat2026/IMG_2525-MagicScaler-80.jpg "IMG_2525-MagicScaler")         | ![IMG_2525-MagicScaler](../assets/images/imageformat2026/IMG_2525-MagicScaler-80.png "IMG_2525-MagicScaler")         | ![IMG_2525-MagicScaler](../assets/images/imageformat2026/IMG_2525-MagicScaler-80.webp "IMG_2525-MagicScaler")            |
+| NetVips        | ![IMG_2525-NetVips](../assets/images/imageformat2026/IMG_2525-NetVips-80.jpg "IMG_2525-NetVips")                 | ![IMG_2525-NetVips](../assets/images/imageformat2026/IMG_2525-NetVips-80.png "IMG_2525-NetVips")               | ![IMG_2525-NetVips](../assets/images/imageformat2026/IMG_2525-NetVips-80.webp "IMG_2525-NetVips")                  |
+| SkiaSharp      | ![IMG_2525-SkiaSharp](../assets/images/imageformat2026/IMG_2525-SkiaSharp-80.jpg "IMG_2525-SkiaSharp")               | ![IMG_2525-SkiaSharp](../assets/images/imageformat2026/IMG_2525-SkiaSharp-80.png "IMG_2525-SkiaSharp")               | ![IMG_2525-SkiaSharp](../assets/images/imageformat2026/IMG_2525-SkiaSharp-80.webp "IMG_2525-SkiaSharp")                  |
+
+I did not change any settings for this test, so any color mangling comes out of the box. Or because of other reasons?  
+- System.Drawing handles colorspace management for blue just fine.  
+- ImageSharp has the right blue.  
+- Magick.NET does some color mangling, but this can be fixed by keeping the icc-profile in the image, which I did not do for this test. So, this is a settings issue, not a package issue.
+- MagicScaler has the right blue, but seems to be a bit brighter or sharper.  
+- NetVips has the right blue, look at the code to make sure it keeps the icc-profile in the image.  
+- SkiaSharp has the same problem.  
 
 ### Highlights
 
@@ -148,14 +164,12 @@ I did not change these settings for this test. This is extremely noticeable in d
 | SkiaSharp      | ![Vuurwerk2020-SkiaSharp](../assets/images/imageformat2026/Vuurwerk2020-SkiaSharp-320.jpg "Vuurwerk2020-SkiaSharp")               | ![Vuurwerk2020-SkiaSharp](../assets/images/imageformat2026/Vuurwerk2020-SkiaSharp-320.png "Vuurwerk2020-SkiaSharp")               | ![Vuurwerk2020-SkiaSharp](../assets/images/imageformat2026/Vuurwerk2020-SkiaSharp-320.webp "Vuurwerk2020-SkiaSharp")                  |
 
 
-System.Drawing: In the JPG there is this weird white-versus-color thing going on. I miss the red! The PNG is a bit
-better. The skia-saved webp misses red.  
-ImageSharp: The PNG has much more red compared to the JPG (due to chroma-subsampling). The PNG looks like the original.  
-For Webp the colors seem off.  
-Magick.NET: The JPG is perfect, spot on. The PNG as well. The Webp: Where have the colors gone?  
-MagicScaler is crisp and very white.  
-NetVips: The color in the Webp is off, the jpg looks okay.  
-SkiaSharp: PNG is okay. For the jpg and webp, I am missing the red.  
+- System.Drawing: The PNG is like the original. In the JPG there is this weird white-versus-color thing going on. I miss the red!. The skia-saved webp misses red.    
+- ImageSharp: The PNG looks like the original. The JPG is fine compared to the original, but look at the WebP, the red is gone.    
+- Magick.NET: The JPG is perfect, spot on. The PNG as well. The Webp: Where have the colors gone?  
+- MagicScaler: The only package with a consistent behavior across formats. The JPG, PNG and WebP are all very similar, but they are all far too white, there is something wrong with the luminescence translation.  
+- NetVips: The JPG and PNG are very good, but the WebP misses color.  
+- SkiaSharp: Just looks dreadful with the artifacts, even the PNG. It handles the highlights just fine, but misses a bit of red.  
 
 
 ### Resampling in High Quality
@@ -172,13 +186,12 @@ I configured the packages to output high quality images.
 | NetVips        | ![IMG_2445-NetVips](../assets/images/imageformat2026/IMG_2445-NetVips-320.jpg "IMG_2445-NetVips")                 | ![IMG_2445-NetVips](../assets/images/imageformat2026/IMG_2445-NetVips-320.png "IMG_2445-NetVips")               | ![IMG_2445-NetVips](../assets/images/imageformat2026/IMG_2445-NetVips-320.webp "IMG_2445-NetVips")                  |
 | SkiaSharp      | ![IMG_2445-SkiaSharp](../assets/images/imageformat2026/IMG_2445-SkiaSharp-320.jpg "IMG_2445-SkiaSharp")               | ![IMG_2445-SkiaSharp](../assets/images/imageformat2026/IMG_2445-SkiaSharp-320.png "IMG_2445-SkiaSharp")               | ![IMG_2445-SkiaSharp](../assets/images/imageformat2026/IMG_2445-SkiaSharp-320.webp "IMG_2445-SkiaSharp")                  |
 
-ImageSharp: the Webp has weird artifacts, the JPG and PNG look good.  
-Magick.NET: All the different formats are similar in quality. Overall it is fine, but a bit grey-ish.  
-MagicScaler: Crisp and sharp, as to be expected.  
-NetVips: stunning, but a bit grey.  
-SkiaSharp: blurry.  
-System.Drawing: Nice!  
-
+- System.Drawing: Has the best quality for PNG, and a good JPG and WebP quality as well.
+- ImageSharp: The Webp has weird artifacts, the JPG and PNG look good!  
+- Magick.NET: All the different formats are similar in quality. Overall it is fine, but a bit grey-ish (especially the blue).  
+- MagicScaler: Crisp and sharp, and consistent over the file formats, the highlights are too white overall.  
+- NetVips: The quality is fine and quite consistent.  
+- SkiaSharp: blurry and grey-ish blue.  
 
 ### Sharpening
 
@@ -193,11 +206,10 @@ As far as sharpening goes, I did not change the default settings for this test.
 | NetVips        | ![Vlinder1-NetVips](../assets/images/imageformat2026/Vlinder1-NetVips-320.jpg "Vlinder1-NetVips")                 | ![Vlinder1-NetVips](../assets/images/imageformat2026/Vlinder1-NetVips-320.png "Vlinder1-NetVips")               | ![Vlinder1-NetVips](../assets/images/imageformat2026/Vlinder1-NetVips-320.webp "Vlinder1-NetVips")                  |
 | SkiaSharp      | ![Vlinder1-SkiaSharp](../assets/images/imageformat2026/Vlinder1-SkiaSharp-320.jpg "Vlinder1-SkiaSharp")               | ![Vlinder1-SkiaSharp](../assets/images/imageformat2026/Vlinder1-SkiaSharp-320.png "Vlinder1-SkiaSharp")               | ![Vlinder1-SkiaSharp](../assets/images/imageformat2026/Vlinder1-SkiaSharp-320.webp "Vlinder1-SkiaSharp")                  |
 
-ImageSharp Webp is blurry, others are fine.  
-MagickNet again overall fine, all formats have the same quality.  
-MagicScaler is crisp and sharp, with similar quality in all formats.  
+None of the packages do anything wrong here, but in the details there are differences.
 
-// TODO
+MagicScalar produces the sharpest images by far for all formats.
+All other packages are fine, where SkiaSharp is a bit blurry.
 
 #### Conclusion regarding picture quality
 
@@ -208,65 +220,51 @@ The 320px category is where the differences between packages (or their settings)
 picture quality with stars. Five stars meaning best quality, one star being bad. This very objective manner show the
 differences between the packages for the different compression formats:
 
-| Package        |  JPG |   PNG | Webp |
-|----------------|-----:|------:|-----:|
-| System.Drawing |  *** | ***** |  *** |
-| ImageSharp     | **** |   *** |    * |
-| Magick.Net     |  *** | ***** |   ** |
-| MagicScaler    | **** | ***** | **** |
-| NetVips        | **** | ***** | **** |
-| SkiaSharp      |    * |     * |    * |
+| Package        |  JPG |  PNG | Webp |                            Remarks |
+|----------------|-----:|-----:|-----:|-----------------------------------:|
+| System.Drawing |  *** | **** |  *** |                                    |
+| ImageSharp     | **** | **** |  *** |                    Artifact issues |
+| Magick.Net     |  *** |  *** |   ** |                       Color issues |
+| MagicScaler    |  *** |  *** |  *** |        Sharp, but highlight issues |
+| NetVips        |  *** |  *** |  *** |                        |
+| SkiaSharp      |    * |    * |    * | Artifact, blurriness, color issues |
 
 System.Drawing has great PNG quality, but JPEG and WebP are just fine. There are some edge halo effects in the JPG and
 blurriness in the Webp.
 
-ImageSharp produces good JPG, but the PNG quality is mediocre. The Webp images are all blurry, which is weird.
+ImageSharp produces good JPG and PNG, but some WebP images are blurry and have artifacts. 
 
-Magick.NET produces a very good PNG quality image, where some JPGs are a bit blurry and have some edge halo, the Webp is
+Magick.NET produces a nice PNG quality image, where some JPGs are a bit blurry and have some edge halo, the Webp is
 even more blurry. Just a tiny bit more, compared to System.Drawing.
 
-MagicScaler produces great pictures in all sizes with regard to sharpness. The them apples WebP picture is just as good
-as the original, which at this filesize is real magic! The downside of this package is the whitening in high contrast
+MagicScaler produces great pictures in all sizes with regard to sharpness. The low filesize is real magic, as it does not really seem to affect the quality. The downside of this package is the whitening in high contrast
 scenarios. I'd like to know if there is a fix for that.
+
+NetVips scores fine on all formats, but it is not as sharp as MagicScaler.
 
 SkiaSharp is just blurry overall.
 
 ## Conclusion
 
-System.Drawing is the fastest package. Memory usage is great. However, the produced PNG files are so large they are
-useless. Also the WebP file size is more than twice the size of an ImageSharp or MagicScaler Webp. Quality-wise the
-PNG's are great, but JPG and Webp are overall just fine. File support is a ***. You may think certain files are
-supported, while silently falling back on... That is not nice.
+All packages have their drawbacks, or specific use cases. For example, when designing a graphics-application for Android, despite its drawbacks, SkiaSharp is your go-to library. So read the table below with care.   
+Also, there is the case of your business needs, for example, regarding the license types used. So I invite you to use my benchmark code, change the settings for the use case you have in mind, and choose the right package with the set of requirements you have in mind.
 
-ImageSharp is very heavy on the memory. It was in the last test, and it still is in this test. Locally it just nicely
-warms the room, but I cannot use it on a server, it will crash or cost me dearly. Filesize is normal for JPG and PNG,
-and low for Webp.
+### Summarized:
 
-Magick.NET is the slowest package, producing good quality PNG pictures, but lagging behind in the JPG and Webp quality.
-I love its fireworks JPG and it has great real file support, so if that is your thing, go for it!
+| Package        | Pros                               | Cons                                                                                  | 
+|----------------|:-----------------------------------|:--------------------------------------------------------------------------------------|
+| System.Drawing | Popular (documentation support)    | Limited file-format support, windows-only                                             |
+| Magick.Net     | File-format support                | Either good quality and large files OR low quality and small file-size                |
+| MagicScaler    |                                    | Extreme highlights and sharpness affect quality                                       |
+| ImageSharp     | Cross-platform                     | License for commercial use, high memory usage, small files result in bad webp quality |
+| NetVips        | Cross-platform |                                                                                       |
+| SkiaSharp      |                                    | Blurry images with lots of artifacts, hard to implement                               |
 
-MagicScaler is far too white to be a winner for the Team Xerbutri scenario. This is especially a big deal in the 80px
-wide thumbnails and high contrast scenarios. MagicScaler has the best quality for PNG size. I will need to investigate
-the white problem and what settings are used. The total time elapsed is a bit slow, and it uses more memory than
-System.Drawing, but it is still light weight. And I did not optimize these packages, please remember that. The file
-sizes it produces are magically small! The quality it produces is high.
+I experienced a lot of problems using System.Drawing, due to limited support for codecs, filetypes and color spaces. Personally I'd steer clear of this package, unless you have a very specific use case for it.  
+Also. I'd avoid FreeImage, because it is not maintained anymore, and the quality of the images is mediocre. Spending time on tweaking the settings for this package is not worth it, in my opinion.
 
-SkiaSharp, sorry you guys. I need to redo this test one time with the sharpness tweak, because, unless you have bad
-sight, it just won't do.
+All the other packages are promising in their own way. I believe most of the downsides can be fixed, like the image quality for SkiaSharp, and the highlighting for MagicScaler.
 
-Learned a lot out of this benchmark. But there is no winner. The overall performance of System.Drawing is fine. What I
-want is MagicScaler quality and filesizes, without the whitening in high contrast situations.
-
-### Follow-up
-
-- Why is MagicScaler so white? Is it a contrast setting?
-- Can I tune picture quality? Pictures with high contrast and vibrant color ask for a different approach in settings.
-- Can I improve on the file size, by chosing another codec, or other settings?
-- Imageflow produced broken files, maybe due to a mistake in the code. I do not expect it to be a winner, and the
-  implementation is not my style.
-- For SkiaSharp I found this sharp-filter on github. Implementing this will take some time, and I just don't know if it
-  is worth the effort. I still think this is a package to go for if you want full platform support. Will it improve the
-  results that much?
 
 ## Resources
 

@@ -17,8 +17,8 @@ export default defineConfig({
 			{
 				text: 'Blog',
 				items: [
-					{text: 'Image Resize', link: '/blog/imageresize2025'},
-					{text: 'Image Formats', link: '/blog/imageresizetx'},
+					{text: 'Image Resize', link: '/blog/image-resize-in-dotnet-2026'},
+					{text: 'Image Formats', link: '/blog/image-resize-and-webp-format-2026'},
 					{text: 'DDD - 0 Introduction', link: '/blog/domaindrivendesignwebshop/0domaindrivendesignintro'},
 					{text: 'DDD - 1 Webshop Design', link: '/blog/domaindrivendesignwebshop/1domaindrivendesignwebshop'
 					},
