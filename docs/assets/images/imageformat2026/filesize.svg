@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="576"
+	 style="overflow: hidden;" aria-label="A chart.">
+	<defs id="_ABSTRACT_RENDERER_ID_42">
+		<clipPath id="_ABSTRACT_RENDERER_ID_43">
+			<rect x="192" y="110" width="768" height="356"></rect>
+		</clipPath>
+	</defs>
+	<rect x="0" y="0" width="1152" height="576" stroke="none" stroke-width="0" fill="#ffffff"></rect>
+	<g>
+		<text text-anchor="start" x="192" y="82.25" font-family="Arial" font-size="25" font-weight="bold" stroke="none"
+			  stroke-width="0" fill="#000000">File size of 320px in kB
+		</text>
+		<rect x="192" y="61" width="768" height="25" stroke="none" stroke-width="0" fill-opacity="0"
+			  fill="#ffffff"></rect>
+	</g>
+	<g>
+		<rect x="975" y="110" width="162" height="111" stroke="none" stroke-width="0" fill-opacity="0"
+			  fill="#ffffff"></rect>
+		<g>
+			<rect x="975" y="110" width="162" height="15" stroke="none" stroke-width="0" fill-opacity="0"
+			      fill="#ffffff"></rect>
+			<g>
+				<text text-anchor="start" x="1011" y="122.75" font-family="Arial" font-size="15" stroke="none"
+				      stroke-width="0" fill="#222222">System.Drawing
+				</text>
+			</g>
+			<rect x="975" y="110" width="30" height="15" stroke="none" stroke-width="0" fill="#003f5c"></rect>
+		</g>
+		<g>
+			<rect x="975" y="134" width="162" height="15" stroke="none" stroke-width="0" fill-opacity="0"
+			      fill="#ffffff"></rect>
+			<g>
+				<text text-anchor="start" x="1011" y="146.75" font-family="Arial" font-size="15" stroke="none"
+				      stroke-width="0" fill="#222222">Magick.Net
+				</text>
+			</g>
+			<rect x="975" y="134" width="30" height="15" stroke="none" stroke-width="0" fill="#374c80"></rect>
+		</g>
+		<g>
+			<rect x="975" y="158" width="162" height="15" stroke="none" stroke-width="0" fill-opacity="0"
+			      fill="#ffffff"></rect>
+			<g>
+				<text text-anchor="start" x="1011" y="170.75" font-family="Arial" font-size="15" stroke="none"
+				      stroke-width="0" fill="#222222">MagicScaler
+				</text>
+			</g>
+			<rect x="975" y="158" width="30" height="15" stroke="none" stroke-width="0" fill="#7a5195"></rect>
+		</g>
+		<g>
+			<rect x="975" y="182" width="162" height="15" stroke="none" stroke-width="0" fill-opacity="0"
+			      fill="#ffffff"></rect>
+			<g>
+				<text text-anchor="start" x="1011" y="194.75" font-family="Arial" font-size="15" stroke="none"
+				      stroke-width="0" fill="#222222">ImageSharp
+				</text>
+			</g>
+			<rect x="975" y="182" width="30" height="15" stroke="none" stroke-width="0" fill="#bc5090"></rect>
+		</g>
+		<g>
+			<rect x="975" y="206" width="162" height="15" stroke="none" stroke-width="0" fill-opacity="0"
+			      fill="#ffffff"></rect>
+			<g>
+				<text text-anchor="start" x="1011" y="218.75" font-family="Arial" font-size="15" stroke="none"
+				      stroke-width="0" fill="#222222">NetVips
+				</text>
+			</g>
+			<rect x="975" y="206" width="30" height="15" stroke="none" stroke-width="0" fill="#ef5675"></rect>
+		</g>
+		<g>
+			<rect x="975" y="230" width="162" height="15" stroke="none" stroke-width="0" fill-opacity="0"
+			      fill="#ffffff"></rect>
+			<g>
+				<text text-anchor="start" x="1011" y="242.75" font-family="Arial" font-size="15" stroke="none"
+				      stroke-width="0" fill="#222222">SkiaSharp
+				</text>
+			</g>
+			<rect x="975" y="230" width="30" height="15" stroke="none" stroke-width="0" fill="#ff764a"></rect>
+		</g>
+	</g>
+	<g>
+		<rect x="192" y="110" width="768" height="356" stroke="none" stroke-width="0" fill="#ffffff"></rect>
+		<g clip-path="url(https://www.statskingdom.com/chart-maker.html#_ABSTRACT_RENDERER_ID_43)">
+			<g>
+				<rect x="192" y="465" width="768" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+				<rect x="192" y="406" width="768" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+				<rect x="192" y="347" width="768" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+				<rect x="192" y="288" width="768" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+				<rect x="192" y="228" width="768" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+				<rect x="192" y="169" width="768" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+				<rect x="192" y="110" width="768" height="1" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+				<rect x="192" y="435" width="768" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+				<rect x="192" y="376" width="768" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+				<rect x="192" y="317" width="768" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+				<rect x="192" y="258" width="768" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+				<rect x="192" y="199" width="768" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+				<rect x="192" y="140" width="768" height="1" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+			</g>
+			<g>
+				<rect x="200" y="430" width="35" height="35" stroke="none" stroke-width="0" fill="#003f5c"></rect>
+				<rect x="235" y="433" width="35" height="32" stroke="none" stroke-width="0" fill="#374c80"></rect>
+				<rect x="270" y="432" width="35" height="33" stroke="none" stroke-width="0" fill="#7a5195"></rect>
+				<rect x="305" y="449" width="35" height="16" stroke="none" stroke-width="0" fill="#bc5090"></rect>
+				<rect x="340" y="432" width="35" height="33" stroke="none" stroke-width="0" fill="#ef5675"></rect>
+				<rect x="375" y="433" width="35" height="32" stroke="none" stroke-width="0" fill="#ff764a"></rect>
+
+				<rect x="450" y="220" width="35" height="245" stroke="none" stroke-width="0" fill="#003f5c"></rect>
+				<rect x="485" y="301" width="35" height="164" stroke="none" stroke-width="0" fill="#374c80"></rect>
+				<rect x="520" y="420" width="35" height="45" stroke="none" stroke-width="0" fill="#7a5195"></rect>
+				<rect x="555" y="304" width="35" height="161" stroke="none" stroke-width="0" fill="#bc5090"></rect>
+				<rect x="590" y="249" width="35" height="216" stroke="none" stroke-width="0" fill="#ef5675"></rect>
+				<rect x="625" y="293" width="35" height="172" stroke="none" stroke-width="0" fill="#ff764a"></rect>
+
+				<rect x="700" y="425" width="35" height="40" stroke="none" stroke-width="0" fill="#003f5c"></rect>
+				<rect x="735" y="409" width="35" height="56" stroke="none" stroke-width="0" fill="#374c80"></rect>
+				<rect x="770" y="417" width="35" height="48" stroke="none" stroke-width="0" fill="#7a5195"></rect>
+				<rect x="805" y="406" width="35" height="59" stroke="none" stroke-width="0" fill="#bc5090"></rect>
+				<rect x="840" y="408" width="35" height="57" stroke="none" stroke-width="0" fill="#ef5675"></rect>
+				<rect x="875" y="425" width="35" height="40" stroke="none" stroke-width="0" fill="#ff764a"></rect>
+			</g>
+			<g>
+				<rect x="192" y="465" width="768" height="1" stroke="none" stroke-width="0" fill="#333333"></rect>
+			</g>
+		</g>
+		<g></g>
+		<g>
+			<g>
+				<text text-anchor="middle" x="300" y="530" font-family="Arial" font-size="15"
+					  stroke="none" stroke-width="0" fill="#222222">Webp
+				</text>
+			</g>
+
+			<g>
+				<text text-anchor="middle" x="550" y="530" font-family="Arial" font-size="15"
+					  stroke="none" stroke-width="0" fill="#222222">PNG
+				</text>
+			</g>
+			<g>
+				<text text-anchor="middle" x="810" y="530" font-family="Arial" font-size="15" stroke="none"
+					  stroke-width="0" fill="#222222">JPG
+				</text>
+			</g>
+			<g>
+				<text text-anchor="middle" x="215" y="487.75" font-family="Arial" font-size="12" stroke="none"
+					  stroke-width="0" fill="#222222">SysDr
+				</text>
+				<text text-anchor="middle" x="252" y="487.75" font-family="Arial" font-size="12" stroke="none"
+					  stroke-width="0" fill="#222222">Mgck
+				</text>
+				<text text-anchor="middle" x="287" y="487.75" font-family="Arial" font-size="12" stroke="none"
+					  stroke-width="0" fill="#222222">MgSc
+				</text>
+				<text text-anchor="middle" x="322" y="487.75" font-family="Arial" font-size="12" stroke="none"
+					  stroke-width="0" fill="#222222">ImShp
+				</text>
+				<text text-anchor="middle" x="360" y="487.75" font-family="Arial" font-size="12" stroke="none"
+					  stroke-width="0" fill="#222222">NVips
+				</text>
+				<text text-anchor="middle" x="395" y="487.75" font-family="Arial" font-size="12" stroke="none"
+					  stroke-width="0" fill="#222222">Skia
+				</text>
+
+				<text text-anchor="middle" x="465" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">SysDr
+				</text>
+				<text text-anchor="middle" x="502" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">Mgck
+				</text>
+				<text text-anchor="middle" x="537" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">MgSc
+				</text>
+				<text text-anchor="middle" x="572" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">ImShp
+				</text>
+				<text text-anchor="middle" x="610" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">NVips
+				</text>
+				<text text-anchor="middle" x="645" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">Skia
+				</text>
+
+
+				<text text-anchor="middle" x="715" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">SysDr
+				</text>
+				<text text-anchor="middle" x="752" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">Mgck
+				</text>
+				<text text-anchor="middle" x="787" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">MgSc
+				</text>
+				<text text-anchor="middle" x="822" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">ImShp
+				</text>
+				<text text-anchor="middle" x="860" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">NVips
+				</text>
+				<text text-anchor="middle" x="895" y="487.75" font-family="Arial" font-size="12" stroke="none"
+				      stroke-width="0" fill="#222222">Skia
+				</text>
+				
+			</g>
+			<g>
+				<text text-anchor="end" x="177" y="470.75" font-family="Arial" font-size="15" stroke="none"
+					  stroke-width="0" fill="#444444">0
+				</text>
+			</g>
+			<g>
+				<text text-anchor="end" x="177" y="411.5833" font-family="Arial" font-size="15" stroke="none"
+					  stroke-width="0" fill="#444444">25
+				</text>
+			</g>
+			<g>
+				<text text-anchor="end" x="177" y="352.4167" font-family="Arial" font-size="15" stroke="none"
+					  stroke-width="0" fill="#444444">50
+				</text>
+			</g>
+			<g>
+				<text text-anchor="end" x="177" y="293.25" font-family="Arial" font-size="15" stroke="none"
+					  stroke-width="0" fill="#444444">75
+				</text>
+			</g>
+			<g>
+				<text text-anchor="end" x="177" y="234.0833" font-family="Arial" font-size="15" stroke="none"
+					  stroke-width="0" fill="#444444">100
+				</text>
+			</g>
+			<g>
+				<text text-anchor="end" x="177" y="174.9167" font-family="Arial" font-size="15" stroke="none"
+					  stroke-width="0" fill="#444444">125
+				</text>
+			</g>
+			<g>
+				<text text-anchor="end" x="177" y="115.75" font-family="Arial" font-size="15" stroke="none"
+					  stroke-width="0" fill="#444444">150
+				</text>
+			</g>
+		</g>
+	</g>
+	<g></g>
+</svg>

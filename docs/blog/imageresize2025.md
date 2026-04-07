@@ -204,11 +204,12 @@ A summary of the packages used in this table:
 | [SkiaSharp](https://www.nuget.org/packages/SkiaSharp)                    |                                                                                   MIT |   12-2024 | 3.116.1 |   136.6 M |
 | [FreeImage](https://www.nuget.org/packages/FreeImage.Standard)           |                           [Free Image](https://freeimage.sourceforge.io/license.html) |    6-2019 |   4.3.8 |     0.1 M |
 | [ImageFlow](https://www.nuget.org/packages/Imageflow.Net)                |                                                                tri or bi-license AGPL |    5-2024 |  0.13.2 |     1.0 M |
+  
 I added the license information for your managers if you want to use this software in company code. I find managers to
 often dislike (or forbid) copyleft-type licenses.
 
 Most of the packages are in full support or development, except Free Image which has not been updated for a while.
-System.Drawing and Skiasharp are Microsoft backed packages. This could be an advantage in terms of support.
+System.Drawing and SkiaSharp are Microsoft backed packages. This could be an advantage in terms of support.
 
 MagicScaler and ImageFlow are still on the zero version, which might indicate there is no official production version
 yet.
