@@ -3,7 +3,7 @@
 *3-4-2026*
 
 _Status: {Work in progress} {Idea}_  
-_Type of post: {Opinion piece} {Guide} {Resource}_
+_Type of post: {Guide} {Resource}_
 
 ## *Rapid fire thoughts*
 
@@ -31,7 +31,7 @@ The downside is that I need to store all stuff about stuff in this one place, an
 
 I can also use cascading parameters, so ComponentA has PropertyA => ComponentB is part of ComponentB, and I can cascade the propertyA into ComponentB. This is a good solution if the components are in a parent-child relationship, but it is not good if they are in a sibling relationship.
 
-
+[//]: # ( ToDo: The solution I am using for sharing state, makes it so that at rerendering, the appState seems to be empty?)
 
 
 ## *Outline*
