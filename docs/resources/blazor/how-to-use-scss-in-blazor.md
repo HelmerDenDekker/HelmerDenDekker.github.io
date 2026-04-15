@@ -44,15 +44,23 @@ Not updated since 2017.
 - compiles scss to single css file
 - MSBuild support
 
+Runs a "local" dart-sass compiler.
+
 Last updated 2 days ago (2026)
 
 #### Delegate.SassBuilder
 
 Last updated 2016
 
+#### WebOptimizer.Sass
+
+
+[WebOptimizer.Sass](https://github.com/ligershark/WebOptimizer.Sass)
+
 ## And TypeScript?
 
 [Compile TypeScript code (ASP.NET Core)](https://learn.microsoft.com/en-us/visualstudio/javascript/compile-typescript-code-nuget?view=visualstudio)
+[Blazor train](https://www.youtube.com/watch?v=I_zFlBKgl5s)
 
 ## *Outline*
 
