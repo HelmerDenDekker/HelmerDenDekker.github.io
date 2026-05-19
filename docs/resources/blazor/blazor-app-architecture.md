@@ -8,10 +8,28 @@ Type of post: Guide
 ## *Rapid fire thoughts*
 
 [//]: # ( ToDo: Write!)
-
 This is about Blazor-Server.
 
 ## Problem statement
+
+Blazor has component-based architecture.  
+Each component manages its own state.
+However, the problem is that often state is shared.
+And this is where Blazor becomes inefficient.
+
+Question:
+- How to organize a (more complex) Blazor app.
+- How to share state between components.
+- How to share state between tabs.
+- How and where to persist state, and how often.
+
+Basically, applications are a solution for synchronizing between the view and a persistence layer.  
+The view has a state, and after the user submits, this state is persisted and can be retrieved.
+
+So, my real question is, when to submit the view in Blazor?
+
+
+## Problem statement thoughts.
 
 Blazor gives you a lot of freedom. My problem is encountering different kinds of logic, in different (but scattered!) places in blazor apps.
 
@@ -22,7 +40,12 @@ For the FrontEnd the state was in the DOM / browser.
 You could just work anywhere, and the state of the application and the state of the database were decoupled.
 
 The business logic was in the backend, and some logic like validation needed to be replicated to the frontEnd.
-We had clear pattern for that.
+We had clear pattern for that.  
+There was a clear idea of what was a view, and what was state.  
+With Blazor these boundaries are fading. The view and the state are mixed together in the same component, sometimes acompanied by logic.
+
+I think the components-idea is great. But this is about the view, what used to be the frontend.   
+I think there is still a place for FrontEnd logic to be separated from Backend-logic for complexer applications.
 
 ### Fading boundaries
 
@@ -38,7 +61,7 @@ However, these are two different components, so they have different Models, each
 
 In MVVM the ViewModel is the abstraction of the view, with the Model and the Commands.
 
-The state of the object is stored in the Model. This is where the logic is.
+The state of the object is stored in the Model. This is where the business logic is.
 
 In this case, the problem is that the state of the navigation tree and the state of the add navigation view are not shared. They are in different components, and they are not aware of each other. This is a problem, because we want them to be aware of each other.
 
@@ -48,8 +71,9 @@ In many MAUI courses, state is moved further up for this reason. They will end u
 - View to bind the properties
 - Model keeps state and raises change events.
 
-My problem with the whole viewmodel thing is in most examples, the ViewModel and Model are mixed.
+My problem with the whole viewmodel thing is in most examples, the ViewModel and Model are mixed (in Blazor!).
 
+Using MVVM, this is the way to go. The "State" should be "stored" or kept in the model. The ViewModel is for data binding State with the View.
 
 ### What about MVU
 
@@ -144,3 +168,5 @@ What about idempotency?
 ## *Outline*
 
 ## Resources
+[ASP.NET Core Blazor Best Practices — Architecture and Performance Optimization](https://blog.devart.com/asp-net-core-blazor-best-practices-architecture-and-performance-optimization.html)
+[ASP.NET Core Blazor rendering performance best practices](https://learn.microsoft.com/en-us/aspnet/core/blazor/performance/rendering?view=aspnetcore-10.0)
