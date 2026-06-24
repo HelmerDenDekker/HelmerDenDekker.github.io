@@ -1,6 +1,6 @@
 # Image resize in dotNet: from JPG to Webp on Windows OS
 
-*2-4-2026*
+*2-4-2026  - updated 24-6-2026*
 
 ## Introduction
 
@@ -113,6 +113,8 @@ In general, WebP has the smallest size, closely followed by jpg. The png files a
 
 Another way to look at this is: What configuration needs to change in order to produce comparable results?
 
+For specs used, scroll to bottom of article.
+
 ## Quality
 
 Quality is again a subjective matter. Let's look to some of the pictures produced and see the differences.
@@ -163,12 +165,42 @@ I did not change these settings for this test. This is extremely noticeable in d
 | SkiaSharp      | ![Vuurwerk2020-SkiaSharp](../assets/images/imageformat2026/Vuurwerk2020-SkiaSharp-320.jpg "Vuurwerk2020-SkiaSharp")               | ![Vuurwerk2020-SkiaSharp](../assets/images/imageformat2026/Vuurwerk2020-SkiaSharp-320.png "Vuurwerk2020-SkiaSharp")               | ![Vuurwerk2020-SkiaSharp](../assets/images/imageformat2026/Vuurwerk2020-SkiaSharp-320.webp "Vuurwerk2020-SkiaSharp")                  |
 
 
-- System.Drawing: The PNG is like the original. In the JPG there is this weird white-versus-color thing going on. I miss the red!. The skia-saved webp misses red.    
-- ImageSharp: The PNG looks like the original. The JPG is fine compared to the original, but look at the WebP, the red is gone.    
-- Magick.NET: The JPG is perfect, spot on. The PNG as well. The Webp: Where have the colors gone?  
-- MagicScaler: The only package with a consistent behavior across formats. The JPG, PNG and WebP are all very similar, but they are all far too white, there is something wrong with the luminescence translation.  
-- NetVips: The JPG and PNG are very good, but the WebP misses color.  
+- System.Drawing: 
+  - The PNG is fine. The highlights are a tiny bit too low, but the colors are fine.
+  - In the JPG, the highlights are a bit too high, and there is a loss of red in the picture (80% match of pixels, mainly due to highlighting).
+  - The Skia-saved WebP looks almost exactly like the JPG, but the JPG has more black (artifacts), resulting in an 85% match of pixels. All due to highlighting.
+- ImageSharp: 
+  - For the PNG it is just like System.Drawing, the highlights in the PNG are a tiny bit low.
+  - The JPG differs only in the artifacts, not the highlighting (86% match of pixels, only due to artifacts).
+  - For the WebP in the 320px size there are huge color mismatches (magenta/blue) and the highlights are too high. This results in a poor 77% pixel match score.
+- Magick.NET: 
+  - The highlights in the PNG are exactly the same as System.Drawing and ImageSharp. Definitely sharper, but that is another topic.
+  - The JPG is a bit too light (87% match of pixels, due to highlighting and artifacts).
+  - The Webp: Where have the colors gone? The red is way too low. There is only an 82% match of pixels, due to too much highlighting.  
+- MagicScaler: The only package with a consistent behavior across formats. They are all far too white, there is something wrong with the luminescence translation.
+  - The PNG is far too white, too much highlighting, the red is gone.
+  - The JPG is even more white.
+  - The Webp and JPG only differ in artifacts.
+- NetVips:
+  - In the PNG, the highlighting is a tiny bit better than Magick.NET, but it lacks a bit of sharpness.
+  - In the JPG, the highlighting is as good as the PNG, it scores a brilliant 90% pixel match, only due to artifacts. No differences in highlighting.
+  - The Webp has too much white, replacing the red. It still scores 87.5% pixel match, mostly due to highlighting. Not bad for a Webp.
 - SkiaSharp: Just looks dreadful with the artifacts, even the PNG. It handles the highlights just fine, but misses a bit of red.
+
+And in table form:
+
+| Package        |   JPG |   PNG | Webp |                      Remarks |
+|----------------|------:|------:|-----:|-----------------------------:|
+| System.Drawing |    ** |  **** |  *** |                              |
+| ImageSharp     |  **** |  **** |    * | Weird color mismatch in Webp |
+| Magick.Net     |  **** |  **** |  *** |                              |
+| MagicScaler    |     * |     * |    * |         Extreme highlighting |
+| NetVips        | ***** | ***** | **** |                              |
+| SkiaSharp      |    ** |    ** |   ** |  Weird interlacing artifacts |
+
+
+Only the SkiaSharp and MagicScalar have exactly the same highlighting in the WebP as the JPG formats.
+Remarkable: the System.Drawing package actually has a better WebP performance. However, a 15% pixel difference due to highlighting only is huge(ly disappointing).
 
 ### Resampling in High Quality
 
@@ -206,8 +238,40 @@ As far as sharpening goes, I did not change the default settings for this test.
 
 None of the packages do anything wrong here, but in the details there are differences.
 
-MagicScalar produces the sharpest images by far for all formats.
-All other packages are fine, where SkiaSharp is a bit blurry.
+
+- System.Drawing:
+  - The sharpness in the PNG is just fine.
+  - For the JPG the sharpness is fine as well.
+  - The skia-saved WebP is a bit less sharp than the PNG, as is to be expected, but overall it is nice.
+- ImageSharp:
+  - Delivers a sharper PNG than System.Drawing, but not as sharp as Magick.NET.
+  - The JPG sharpness is a bit of a letdown, actually. The other packages (except SkiaSharp) are sharper.
+  - For the WebP it is the same story as for JPG, the sharpness other packages are sharper, in spite of its name. 
+- Magick.NET:
+  - The PNG is the sharpest of them all.
+  - The JPG is very sharp, comes in second after MagicScaler, but has none of the highlighting tricks. So in fact, is the best package for JPG as well.
+  - The Webp is a bit less sharp, MagicScaler and NetVips perform better.
+- MagicScaler:
+  - The PNG sharpness is good, only Magick.NET is sharper.
+  - The JPG is the best, due to the extreme highlights, simulating crisp edges for the eyes.
+  - This is the same story for the Webp, the extreme highlights make it look sharper than the other packages.
+- NetVips:
+  - In the PNG format, it is fine, like System.Drawing. But the differences between Magick.NET, ImageSharp and MagicScaler are small.
+  - In the JPG format, this package does a better job. Only Magick.Net is better, if we take MagicScaler out of the equation.
+  - The Webp format is even better, and a clear winner over System.Drawing, ImageSharp and Magick.NET. Only MagicScaler is better, due to the highlighting trick.
+- SkiaSharp: Sorry, I need a trick to improve the sharpness. I have not found it yet.
+
+And in table form:
+
+| Package        |   JPG |   PNG |  Webp |                         Remarks |
+|----------------|------:|------:|------:|--------------------------------:|
+| System.Drawing |   *** |  **** |   *** |                                 |
+| ImageSharp     |    ** |  **** |    ** |                                 |
+| Magick.Net     |  **** | ***** |  **** |                                 |
+| MagicScaler    | ***** |  **** | ***** | Sharp due to highlighting trick |
+| NetVips        |  **** |  **** | ***** |                                 |
+| SkiaSharp      |     * |     * |     * |                    Looks blurry |
+
 
 #### Conclusion regarding picture quality
 
@@ -218,14 +282,14 @@ The 320px category is where the differences between packages (or their settings)
 picture quality with stars. Five stars meaning best quality, one star being bad and five stars means great. This very objective manner show the
 differences between the packages for the different compression formats:
 
-| Package        |  JPG |  PNG | Webp |                            Remarks |
-|----------------|-----:|-----:|-----:|-----------------------------------:|
-| System.Drawing |  *** | **** |  *** |                                    |
-| ImageSharp     | **** | **** |  *** |                    Artifact issues |
-| Magick.Net     |  *** | **** |  *** |                        |
-| MagicScaler    |  *** |  *** |  *** |        Sharp, but highlight issues |
-| NetVips        |  *** |  *** |  *** |                        |
-| SkiaSharp      |    * |    * |    * | Artifact, blurriness, color issues |
+| Package        |   JPG |   PNG |  Webp |                            Remarks |
+|----------------|------:|------:|------:|-----------------------------------:|
+| System.Drawing |   *** |  **** |   *** |                                    |
+| ImageSharp     |   *** |  **** |     * |                    Artifact issues |
+| Magick.Net     |  **** | ***** |  *** |                        |
+| MagicScaler    |   *** |   *** |   *** |        Sharp, but highlight issues |
+| NetVips        | ***** | ***** | ***** |                        |
+| SkiaSharp      |     * |     * |     * | Artifact, blurriness, color issues |
 
 System.Drawing has great PNG quality, but JPEG and WebP are just fine. There are some edge halo effects in the JPG and
 blurriness in the Webp.
@@ -266,6 +330,8 @@ All the other packages are promising in their own way. I believe most of the dow
 
 ## Resources
 
+[Diffchecker](https://diffchecker.dev/image/)  
+
 Inspiration:  
 [.NET Core Image Processing](https://devblogs.microsoft.com/dotnet/net-core-image-processing/)
 
@@ -289,3 +355,59 @@ Packages:
 [Image formats in SkiaSharp](https://learn.microsoft.com/en-us/dotnet/api/skiasharp.skencodedimageformat?view=skiasharp-2.88)
 
 [Image formats in ImageFlow](https://docs.imageflow.io/json/encode.html)
+
+## Specifications
+
+For the fireworks images:
+
+### For PNG-format:
+
+Color-specification in table form:
+
+| Package        | Format |  Depth | Color space | Alpha |      Subsampling |
+|----------------|-------:|-------:|------------:|------:|-----------------:|
+| System.Drawing |   RGBA |  8-bit |        sRGB |   Yes |                - |
+| ImageSharp     |    RGB |  8-bit |         ICC |    No |                - |
+| Magick.Net     |    RGB |  8-bit |        sRGB |    No |                - |
+| MagicScaler    |  YCbCr |  8-bit |        sRGB |    No | YCbCr4:2:2 (2 1) |
+| NetVips        |    RGB |  8-bit |         icc |    No |                - |
+| SkiaSharp      |   RGBA |  8-bit |        sRGB |   Yes |                - |
+
+
+Encoding-specification in table form:
+
+| Package        |        Compression |     Res |   Filter |     Interlace | 
+|----------------|-------------------:|--------:|---------:|--------------:|
+| System.Drawing | Lossless (Deflate) |  96 dpi | Adaptive | Noninterlaced |
+| ImageSharp     | Lossless (Deflate) | 300 dpi | Adaptive | Noninterlaced |
+| Magick.Net     | Lossless (Deflate) | 300 dpi | Adaptive | Noninterlaced |
+| MagicScaler    |        Lossy (DCT) |  96 dpi |      DCT |      Baseline |
+| NetVips        | Lossless (Deflate) | 300 dpi | Adaptive | Noninterlaced |
+| SkiaSharp      | Lossless (Deflate) |       - | Adaptive | Noninterlaced |
+
+
+
+### For JPG-format:
+
+Color-specification in table form:
+
+| Package        |   Format |  Depth |            Color space | Alpha |      Subsampling |
+|----------------|---------:|-------:|-----------------------:|------:|-----------------:|
+| System.Drawing |    YCbCr |  8-bit |                   sRGB |    No | YCbCr4:2:0 (2 2) |
+| ImageSharp     |    YCbCr |  8-bit | ICC Profile (embedded) |    No | YCbCr4:4:4 (1 1) |
+| Magick.Net     |    YCbCr |  8-bit | ICC Profile (embedded) |    No | YCbCr4:4:4 (1 1) |
+| MagicScaler    |    YCbCr |  8-bit |                   sRGB |    No | YCbCr4:2:0 (2 2) |
+| NetVips        |    YCbCr |  8-bit | ICC Profile (embedded) |    No | YCbCr4:4:4 (1 1) |
+| SkiaSharp      |    YCbCr |  8-bit |                   sRGB |    No | YCbCr4:2:0 (2 2) |
+
+
+Encoding-specification in table form:
+
+| Package        |  Compression |     Res |   Filter |     Interlace | 
+|----------------|-------------:|--------:|---------:|--------------:|
+| System.Drawing |  Lossy (DCT) |  96 dpi |      DCT |      Baseline |
+| ImageSharp     |  Lossy (DCT) | 300 dpi |      DCT |      Baseline |
+| Magick.Net     |  Lossy (DCT) | 300 dpi |      DCT |      Baseline |
+| MagicScaler    |  Lossy (DCT) |       - |      DCT |      Baseline |
+| NetVips        |  Lossy (DCT) |       - |      DCT |      Baseline |
+| SkiaSharp      |  Lossy (DCT) |       - |      DCT |      Baseline |

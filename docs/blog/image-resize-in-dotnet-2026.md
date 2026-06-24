@@ -1,6 +1,6 @@
 # Image resize in dotNet: from JPG to JPG on Windows OS
 
-*2-4-2026*
+*2-4-2026 - updated 24-6-2026*
 
 ## Introduction
 
@@ -277,14 +277,16 @@ I did not change these settings for this test. This is extremely noticeable in d
 | ImageFlow      |                 ![Vuurwerk2020-ImageFlow](../assets/images/imageresize2026/Vuurwerk2020-Imageflow-320.jpg "Vuurwerk2020-Imageflow") |
 
 This shows some major differences in the handling of highlights between the packages.
-- System.Drawing handles highlights okay, but seems to lose a bit of redness.
-- Magick.NET handles highlights perfectly.
+- System.Drawing the highlights are a bit low and the red is too dull (greyish).
+- Magick.NET handles highlights perfectly. Clear winner?
 - MagicScaler say they have the best highlighting, but in this test it reflects all the problems. The light is too bright, the color is gone. I talked about this extensively in the [2024 image format blog](./imageresizetx.md). The smaller the image size, the bigger the problem.
 - ImageSharp handles highlights the best. It looks like the original.
 - NetVips handles highlights well, comparable to ImageSharp.
 - SkiaSharp... I don't know. The lines are messed up, basically useless. I do not think the gamma correction is to blame for this. Skipping the way it looks, it highlights just a bit too much.
 - FreeImage handles highlights well, comparable to ImageSharp.
 - ImageFlow clearly emphasizes the highlights, but it is not as bad as MagicScaler.
+
+Magick.NET, ImageSharp, FreeImage and NetVips handle the highlights the best. There is almost no visible difference between these packages, although calculations show only about 95% of the pixels match.
 
 ### Resampling in High Quality
 
@@ -324,6 +326,7 @@ Closely followed by Magick.NET and System.Drawing.
 
 #### Conclusion regarding picture quality
 
+As summerized in the table below, Magick.NET takes the lead in quality. It is closely followed by ImageSharp and NetVips. In 4th place System.Drawing and MagicScalar.
 
 | Package        | Colors | Highlights | Sharpness |
 |----------------|-------:|-----------:|----------:|
