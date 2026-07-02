@@ -190,14 +190,13 @@ I did not change these settings for this test. This is extremely noticeable in d
 And in table form:
 
 | Package        |   JPG |   PNG | Webp |                      Remarks |
-|----------------|------:|------:|-----:|-----------------------------:|
+|----------------|------:|------:|-----:|-----------------------------|
 | System.Drawing |    ** |  **** |  *** |                              |
 | ImageSharp     |  **** |  **** |    * | Weird color mismatch in Webp |
 | Magick.Net     |  **** |  **** |  *** |                              |
 | MagicScaler    |     * |     * |    * |         Extreme highlighting |
 | NetVips        | ***** | ***** | **** |                              |
 | SkiaSharp      |    ** |    ** |   ** |  Weird interlacing artifacts |
-
 
 Only the SkiaSharp and MagicScalar have exactly the same highlighting in the WebP as the JPG formats.
 Remarkable: the System.Drawing package actually has a better WebP performance. However, a 15% pixel difference due to highlighting only is huge(ly disappointing).
@@ -238,7 +237,6 @@ As far as sharpening goes, I did not change the default settings for this test.
 
 None of the packages do anything wrong here, but in the details there are differences.
 
-
 - System.Drawing:
   - The sharpness in the PNG is just fine.
   - For the JPG the sharpness is fine as well.
@@ -264,27 +262,26 @@ None of the packages do anything wrong here, but in the details there are differ
 And in table form:
 
 | Package        |   JPG |   PNG |  Webp |                         Remarks |
-|----------------|------:|------:|------:|--------------------------------:|
-| System.Drawing |   *** |  **** |   *** |                                 |
-| ImageSharp     |    ** |  **** |    ** |                                 |
-| Magick.Net     |  **** | ***** |  **** |                                 |
+|----------------|------:|------:|------:|--------------------------------|
+| System.Drawing |   *** |  **** |   *** |                                |
+| ImageSharp     |    ** |  **** |    ** |                                |
+| Magick.Net     |  **** | ***** |  **** |                                |
 | MagicScaler    | ***** |  **** | ***** | Sharp due to highlighting trick |
-| NetVips        |  **** |  **** | ***** |                                 |
+| NetVips        |  **** |  **** | ***** |                                |
 | SkiaSharp      |     * |     * |     * |                    Looks blurry |
-
 
 #### Conclusion regarding picture quality
 
-In the 80 px thumbnail category, the whites from MagicScaler are strong in all of the pictures. Skia looks blurry.
+In the 80 px thumbnail category, the whites from MagicScaler are strong in all the pictures. Skia looks blurry.
 System.Drawing, ImageSharp and Magick.Net are fine.
 
 The 320px category is where the differences between packages (or their settings) stand out the strongest. I reviewed the
-picture quality with stars. Five stars meaning best quality, one star being bad and five stars means great. This very objective manner show the
+picture quality with stars. Five stars meaning best quality, one-star being bad and five stars means great. This very objective manner show the
 differences between the packages for the different compression formats:
 
 | Package        |   JPG |   PNG |  Webp |                            Remarks |
-|----------------|------:|------:|------:|-----------------------------------:|
-| System.Drawing |   *** |  **** |   *** |                                    |
+|----------------|------:|------:|------:|-----------------------------------|
+| System.Drawing |   *** |  **** |   *** |                                   |
 | ImageSharp     |   *** |  **** |     * |                    Artifact issues |
 | Magick.Net     |  **** | ***** |  *** |                        |
 | MagicScaler    |   *** |   *** |   *** |        Sharp, but highlight issues |
@@ -385,8 +382,6 @@ Encoding-specification in table form:
 | NetVips        | Lossless (Deflate) | 300 dpi | Adaptive | Noninterlaced |
 | SkiaSharp      | Lossless (Deflate) |       - | Adaptive | Noninterlaced |
 
-
-
 ### For JPG-format:
 
 Color-specification in table form:
@@ -399,7 +394,6 @@ Color-specification in table form:
 | MagicScaler    |    YCbCr |  8-bit |                   sRGB |    No | YCbCr4:2:0 (2 2) |
 | NetVips        |    YCbCr |  8-bit | ICC Profile (embedded) |    No | YCbCr4:4:4 (1 1) |
 | SkiaSharp      |    YCbCr |  8-bit |                   sRGB |    No | YCbCr4:2:0 (2 2) |
-
 
 Encoding-specification in table form:
 
