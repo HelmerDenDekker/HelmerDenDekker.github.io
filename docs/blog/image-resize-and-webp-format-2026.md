@@ -167,16 +167,16 @@ I did not change these settings for this test. This is extremely noticeable in d
 
 - System.Drawing: 
   - The PNG is fine. The highlights are a tiny bit too low, but the colors are fine.
-  - In the JPG, the highlights are a bit too high, and there is a loss of red in the picture (80% match of pixels, mainly due to highlighting).
-  - The Skia-saved WebP looks almost exactly like the JPG, but the JPG has more black (artifacts), resulting in an 85% match of pixels. All due to highlighting.
+  - In the JPG, the highlights are a bit too high, and there is a loss of red in the picture (80% of the pixels in the JPG image match the pixels in the PNG, differences are mainly caused by highlighting).
+  - The Skia-saved WebP looks almost exactly like the JPG, but the JPG has more black (artifacts), resulting in an 85% pixel match with the PNG. All due to highlighting.
 - ImageSharp: 
   - For the PNG it is just like System.Drawing, the highlights in the PNG are a tiny bit low.
-  - The JPG differs only in the artifacts, not the highlighting (86% match of pixels, only due to artifacts).
+  - The JPG differs only in the artifacts, not the highlighting (86% of the pixels in the JPG image match the pixels in the PNG, differences are only due to artifacts).
   - For the WebP in the 320px size there are huge color mismatches (magenta/blue) and the highlights are too high. This results in a poor 77% pixel match score.
 - Magick.NET: 
   - The highlights in the PNG are exactly the same as System.Drawing and ImageSharp. Definitely sharper, but that is another topic.
-  - The JPG is a bit too light (87% match of pixels, due to highlighting and artifacts).
-  - The Webp: Where have the colors gone? The red is way too low. There is only an 82% match of pixels, due to too much highlighting.  
+  - The JPG is a bit too light (87% of the pixels in the JPG image match the pixels in the PNG, differences are due to highlighting and artifacts).
+  - The Webp: Where have the colors gone? The red is way too low. There is only an 82% pixel match with the PNG, due to too much highlighting.  
 - MagicScaler: The only package with a consistent behavior across formats. They are all far too white, there is something wrong with the luminescence translation.
   - The PNG is far too white, too much highlighting, the red is gone.
   - The JPG is even more white.
