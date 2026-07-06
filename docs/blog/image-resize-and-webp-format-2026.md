@@ -1,6 +1,6 @@
 # Image resize in dotNet: from JPG to Webp on Windows OS
 
-*2-4-2026  - updated 24-6-2026*
+*2-4-2026 - updated 24-6-2026*
 
 ## Introduction
 
@@ -126,7 +126,6 @@ I changed the settings for most of the libraries to do a conversion to sRGB.
 This conversion step will slow the process down, but I'd rather have a slow process than faulty colors.
 
 The picture of Wild River has an Adobe RGB profile, which has to be converted to sRGB. Because of the blue, it will show if I have the settings wrong.
-
 
 This is the original picture, notice the blue.
 ![Wild River](../assets/images/imageresize/IMG_2525.jpg "Wild River")
