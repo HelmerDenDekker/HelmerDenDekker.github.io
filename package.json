@@ -1,8 +1,8 @@
 {
   "type": "module",
   "devDependencies": {
-    "lockfile-lint": "4.14.1",
-    "vitepress": "1.6.3"
+    "lockfile-lint": "5.0.0",
+    "vitepress": "1.6.4"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
@@ -12,6 +12,11 @@
   "lavamoat": {
     "allowScripts": {
       "vitepress>vite>esbuild": false
+    }
+  },
+  "overrides": {
+    "lockfile-lint": {
+      "yargs": "17.7.2"
     }
   }
 }

@@ -277,7 +277,7 @@ I did not change these settings for this test. This is extremely noticeable in d
 | ImageFlow      |                 ![Vuurwerk2020-ImageFlow](../assets/images/imageresize2026/Vuurwerk2020-Imageflow-320.jpg "Vuurwerk2020-Imageflow") |
 
 This shows some major differences in the handling of highlights between the packages.
-- System.Drawing the highlights are a bit too bright and there is a loss od red in the picture.
+- System.Drawing the highlights are a bit too bright and there is a loss of red in the picture.
 - Magick.NET handles highlights almost perfect, they are a tiny bit too bright.
 - MagicScaler say they have the best highlighting, but in this test it reflects all the problems. The light is too bright, the color is gone. I talked about this extensively in the [2024 image format blog](./imageresizetx.md). The smaller the image size, the bigger the problem.
 - ImageSharp handles highlights spot on. It looks like the original.
@@ -301,7 +301,7 @@ Regarding resampling, the packages leave room for lots of tinkering. In the tabl
 | NetVips        | Linear             | 8 options: Nearest (nearest neighbour), Linear, Cubic, Mitchell, 2-lobe Lanczos, 3-lobe Lanczos, Magic Kernel Sharp 2013, Magic Kernel Sharp2021 |
 | SkiaSharp      | Linear             | 2 options: Nearest, Linear                                                                                                                       |
 | FreeImage      | Default            | ?                                                                                                                                                |
-| ImageFlow      | ?                  | 22 options                                                                                                                                       |
+| ImageFlow      | Default            | 22 options                                                                                                                                       |
 
 Most packages use resampling when resizing, but some of them don't. If you resize an image with Magick.Net to the same size, nothing happens. If you resample, it will change the image.
 
@@ -325,8 +325,8 @@ For more info, read the [Filter documentation of Magick.NET](https://usage.image
 | FreeImage      |                 ![IMG_2445-FreeImage](../assets/images/imageresize2026/IMG_2445-FreeImage-320.jpg "IMG_2445-FreeImage") |
 | ImageFlow      |                 ![IMG_2445-ImageFlow](../assets/images/imageresize2026/IMG_2445-Imageflow-320.jpg "IMG_2445-Imageflow") |
 
-MagicScaler and System Drawing have the sharpest images.
-SkiaSharp and FreeImage are blurry and have weird artifacts.
+MagicScaler and System Drawing have the sharpest images.  
+SkiaSharp and FreeImage are blurry and have weird artifacts.  
 In my next iteration of becoming an image processing expert, I need to try and keep these settings the same for all packages, in order to results in terms of speed and image quality that are more comparable.
 
 ### Sharpening
@@ -344,8 +344,7 @@ As far as sharpening goes, I did not change the default settings for this test.
 | FreeImage      |                 ![Vlinder1-FreeImage](../assets/images/imageresize2026/Vlinder1-FreeImage-320.jpg "Vlinder1-FreeImage") |
 | ImageFlow      |                 ![Vlinder1-ImageFlow](../assets/images/imageresize2026/Vlinder1-Imageflow-320.jpg "Vlinder1-Imageflow") |
 
-MagicScaler clearly has the sharpest picture of them all.  
-Closely followed by Magick.NET, again closely followed by NetVips on the third place.
+MagicScaler clearly has the sharpest picture of them all. Closely followed by Magick.NET, again closely followed by NetVips on the third place.
 
 #### Conclusion regarding picture quality
 
