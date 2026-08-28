@@ -57,12 +57,16 @@ Last updated 2016
 
 [WebOptimizer.Sass](https://github.com/ligershark/WebOptimizer.Sass)
 
+#### Use npm scripts
+
+If you are using npm in your solution, just use the npm scripts to generate the css, f.e. with the npm sass package.
+
 ## And TypeScript?
 
 [Compile TypeScript code (ASP.NET Core)](https://learn.microsoft.com/en-us/visualstudio/javascript/compile-typescript-code-nuget?view=visualstudio)
 [Blazor train](https://www.youtube.com/watch?v=I_zFlBKgl5s)
 
-## *Outline*
+
 
 ## Resources
 [How to add SCSS support to Blazor - Joren Thijs - 2021](https://joren-thijs.medium.com/how-to-add-scss-support-to-blazor-cd2a62995441)  

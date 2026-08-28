@@ -2,8 +2,8 @@
 
 *24-7-2024*
 
-Status: Work in progress
-Type of post: Opinion piece & Guide & Resource
+Status: Snapshot  
+Type of post: Resource
 
 ## *Rapid fire thoughts*
 
