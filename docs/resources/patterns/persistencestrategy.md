@@ -1,4 +1,4 @@
-# Persistence strategy - Resource
+# Persistence strategy
 
 *18-7-2023*
 

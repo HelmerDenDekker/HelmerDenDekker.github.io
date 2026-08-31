@@ -1,5 +1,7 @@
 # The tree of architecture knowledge
 
+*31-8-2026*
+
 ## Enterprise architecture
 
 - Enterprise
@@ -34,8 +36,11 @@ The application architect and solution architect should be developers inside the
 
 ## Tree of architecture knowledge
 
-- Architecture design
-- Application architecture
+It is more like a multidimensional venn-diagram, but I think a tree gives a better overview.
+
+- [Architecture principles](architecture-principles.md)
+- Find the correct architecture for your application or solution.
+- [Application architecture](application-architecture-tree.md)
   - Design principles and patterns
     - Layers
       - Vertical Slice
@@ -56,18 +61,24 @@ The application architect and solution architect should be developers inside the
     - Functional programming
     - SPA
 - Solution architecture
-  - Design principles and patterns
+  - Structural architecture
     - Client-Server
+    - Peer-to-Peer
     - Monolith
       - Component-based
       - Layered
     - Serverless/FaaS
     - Distributed
       - Microservices
+      - [Event-driven](eventdrivenarchitecture.md)
       - Service-oriented
       - Stream
   - Cloud solutions
+    - Message queues
+    - Event streaming
   - Working with data
+    - CAP
+    - ACID
     - Large dataset processing (Hadoop, Spark, MapReduce)
     - ETL, Datawarehouses
     - Database types
@@ -77,15 +88,18 @@ The application architect and solution architect should be developers inside the
       - Document
       - Graph
   - Integrations
-    - Integration patterns
-      - Web API
-        - REST
+    - Integration patterns[API](../backend/api.md)
+      - [Web API](../backend/standardswebapi.md)
+        - [REST](../patterns/rest.md)
+          - [HATEOS](../backend/hateos.md)
         - GraphQL
       - gRPC
       - Enterprise Service Bus
       - SOAP
       - Message Queue
       - BPM, BPEL
+      - [Kafka](../backend/kafka.md)
+      - [Azure service bus](../backend/azure-service-bus.md)
 - Standards
 - Documentation
   - Architecture Decision Records
@@ -102,6 +116,7 @@ The application architect and solution architect should be developers inside the
   - Kanban
 - Networks
   - OSI, TCP, HTTP, HTTPS
+  - [Internet](internet.md)
 - Operations
   - Cloud providers
   - CI/CD: Continuous Integration - Continuous Deployment

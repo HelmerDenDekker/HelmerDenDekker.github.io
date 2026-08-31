@@ -1,4 +1,4 @@
-# Problem types and patterns
+# Gang of four design patterns
 
 *13-11-2024*
 
