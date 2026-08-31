@@ -40,26 +40,7 @@ It is more like a multidimensional venn-diagram, but I think a tree gives a bett
 
 - [Architecture principles](architecture-principles.md)
 - Find the correct architecture for your application or solution.
-- [Application architecture](application-architecture-tree.md)
-  - Design principles and patterns
-    - Layers
-      - Vertical Slice
-      - Horizontal Slice
-      - MVVM
-      - MVC
-      - MVU
-      - MVP
-      - A-frame
-    - Object-oriented
-      - SOLID
-    - Actors
-    - ACID, CAP
-    - Domain-driven design
-    - Test-driven design
-    - CUPID
-    - Reactive programming
-    - Functional programming
-    - SPA
+- [Application architecture >](application-architecture-tree.md) 
 - Solution architecture
   - Structural architecture
     - Client-Server
@@ -73,9 +54,6 @@ It is more like a multidimensional venn-diagram, but I think a tree gives a bett
       - [Event-driven](eventdrivenarchitecture.md)
       - Service-oriented
       - Stream
-  - Cloud solutions
-    - Message queues
-    - Event streaming
   - Working with data
     - CAP
     - ACID
@@ -88,7 +66,7 @@ It is more like a multidimensional venn-diagram, but I think a tree gives a bett
       - Document
       - Graph
   - Integrations
-    - Integration patterns[API](../backend/api.md)
+    - Integration patterns [API](../backend/api.md)
       - [Web API](../backend/standardswebapi.md)
         - [REST](../patterns/rest.md)
           - [HATEOS](../backend/hateos.md)
