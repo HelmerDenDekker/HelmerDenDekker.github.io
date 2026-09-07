@@ -42,7 +42,7 @@ It is more like a multidimensional venn-diagram, but I think a tree gives a bett
 - Find the correct architecture for your application or solution.
 - [Application architecture >](application-architecture-tree.md) 
 - Solution architecture
-  - Structural architecture
+  - [Structural architecture](structural.md)
     - Client-Server
     - Peer-to-Peer
     - Monolith
@@ -54,11 +54,12 @@ It is more like a multidimensional venn-diagram, but I think a tree gives a bett
       - [Event-driven](eventdrivenarchitecture.md)
       - Service-oriented
       - Stream
-  - Working with data
+  - Data management
     - CAP
     - ACID
     - Large dataset processing (Hadoop, Spark, MapReduce)
     - ETL, Datawarehouses
+    - [Event sourcing](event-sourcing.md)
     - Database types
       - Relational
       - Key-Value
@@ -66,7 +67,8 @@ It is more like a multidimensional venn-diagram, but I think a tree gives a bett
       - Document
       - Graph
   - Integrations
-    - Integration patterns [API](../backend/api.md)
+    - API design and management [API](../backend/api.md)
+    - Integration patterns
       - [Web API](../backend/standardswebapi.md)
         - [REST](../patterns/rest.md)
           - [HATEOS](../backend/hateos.md)
@@ -105,90 +107,10 @@ It is more like a multidimensional venn-diagram, but I think a tree gives a bett
   - Team communication
   - Wiki/Documentation
   - Code Repositories
-
-
-
-Application styles and patterns are not mutually exclusive.
-- Solution
-  - Styles
-    - Client-Server
-    - Peer-to-Peer
-    - Cloud
-    - Blackboard
-    - Monolith
-    - Service-oriented
-    - Microservices
-    - Event driven
-    - Hub and spoke
-    - Stream
-- Software Application
-  - Styles
-    - Domain driven design
-    - Procedural
-    - 
-    - Component-based
-    - A-frame
-    - Layers
-      - 
-    - Microkernel
-  - Patterns
-    - Creational
-      - Factory Method
-      - Abstract Factory
-      - Builder
-      - Prototype
-      - Singleton
-    - Structural
-      - Adapter
-      - Bridge
-      - Composite
-      - Decorator
-      - Facade
-      - Flyweight
-      - Proxy
-    - Behavioral
-      - Chain of Responsibility
-      - Command
-      - Iterator
-      - Mediator
-      - Memento
-      - Observer
-      - State
-      - Strategy
-      - Template Method
-      - Visitor
-    - Other?
-      - Specification pattern (DDD)
-      - CQRS (Command Query Responsibility Segregation)
-      - Null Object pattern
-- Infrastructure
-  - Styles
-    - 
-  - System
-      - Client-Server Architecture
-      - Peer-to-Peer Architecture
-      - Cloud Architecture
-      - Edge Computing Architecture
-    - Data 
-      - Data Modeling
-      - Data Warehousing
-      - Big Data Architecture
-    - Security 
-      - Identity and Access Management (IAM)
-      - Network Security Architecture
-      - Application Security Architecture
-    - Deployment 
-      - Continuous Integration/Continuous Deployment (CI/CD)
-      - Containerization and Orchestration
-      - Infrastructure as Code (IaC)
-    - Performance 
-      - Load Balancing
-      - Caching Strategies
-      - Scalability and High Availability
-    - Integration 
-      - API Design and Management
-      - Middleware Solutions
-      - Enterprise Service Bus (ESB)
+- Security
+  - Identity and Access Management (IAM)
+  - Network Security Architecture
+  - Application Security Architecture
   
 
 

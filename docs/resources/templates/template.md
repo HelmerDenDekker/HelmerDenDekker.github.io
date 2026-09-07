@@ -1,6 +1,6 @@
 # {Title}
 
-*31-8-2026*
+*7-9-2026*
 
 _Status: {Work in progress} {Idea}_  
 _Type of post: {Opinion piece} {Guide} {Resource}_
