@@ -12,22 +12,16 @@ This is about Blazor-Server.
 
 ## Problem statement
 
-Blazor has component-based architecture.  
-Each component manages its own state.
-However, the problem is that often state is shared.
-And this is where Blazor becomes inefficient.
+Blazor has a component-based architecture.  
+Each component manages its own state.  
 
-Question:
+My problem is that the .razor files get big and messy in a hurry.  
+
+I have four questions:
 - How to organize a (more complex) Blazor app.
 - How to share state between components.
 - How to share state between tabs.
 - How and where to persist state, and how often.
-
-Basically, applications are a solution for synchronizing between the view and a persistence layer.  
-The view has a state, and after the user submits, this state is persisted and can be retrieved.
-
-So, my real question is, when to submit the view in Blazor?
-
 
 ## Problem statement thoughts.
 
@@ -47,44 +41,196 @@ With Blazor these boundaries are fading. The view and the state are mixed togeth
 I think the components-idea is great. But this is about the view, what used to be the frontend.   
 I think there is still a place for FrontEnd logic to be separated from Backend-logic for complexer applications.
 
+### More generic
+
+Basically, applications are a solution for synchronizing between the view and a persistence layer.  
+The view has a state, and after the user submits, this state is persisted and can be retrieved.
+
+![view-and-state.svg](../../assets/images/blazor/view-and-state.svg)
+
+### What about Blazor?
+
+Blazor(Server) keeps Sessions in a circuit. This is a connection between a browser tab and the server. This session is NOT persisted (unless maybe with newer Blazor??).
+
+The View is the instance of the app that the user sees in the browser tab, with the razor page and its components. The rendered component-tree.
+
+Let's focus on one component.
+Suppose it has a .razor file, with a .razor.cs backend.
+The .razor part is about the View: the markup and the behaviour. If a user clicks a button, you bind to this method in the code-behind.
+The .razor.cs code behind file is a bit like the ViewModel, it contains the properties and methods that are bound to the view. However, it also contains the state of the component (Model-part), and sometimes also the orchestration.
+
+![blazor-component-sketch.svg](../../assets/images/blazor/blazor-component-sketch.svg)
+
+What makes this difficult to follow? 
+- The component lives in a tree, and has a relation to other components. It can be manipulated or rerendered.
+- The lifecycle is bound to the circuit, or the lifetime of the component. It is tricky to use external services here the way you were used to in old-school MVC-apps.
+
+
 ### Fading boundaries
 
 In a Blazor application, these boundaries are fading. The old way of thinking about DI and services is no longer valid. A service is scoped to the lifetime of the component.
 In Blazor-server it is all mixed together in a huge cement-mixer, and scattered all over the place. Sometimes keep-it-simple is best,but what patterns to use here?
 
-### Compared to MAUI / MVVM
+### Typical Blazor architecture
 
-Suppose you have an application with a navigation tree on the left in a partial view, and a view to add some folder, or whatever to the navigation tree.  
-If you change the AddNavigationViewModel, I want the navigation tree to also change.  
+Suppose you have an application with a navigation tree on the left in a partial view, and a view to add something to the navigation tree.
 
-However, these are two different components, so they have different Models, each representing the state.
+![blazor-navigation-example.svg](../../assets/images/blazor/blazor-navigation-example.svg)
 
-In MVVM the ViewModel is the abstraction of the view, with the Model and the Commands.
+In Blazor, I think I would create something like this:
 
-The state of the object is stored in the Model. This is where the business logic is.
+![blazor-app-navigation-example.svg](../../assets/images/blazor/blazor-app-navigation-example.svg)
 
-In this case, the problem is that the state of the navigation tree and the state of the add navigation view are not shared. They are in different components, and they are not aware of each other. This is a problem, because we want them to be aware of each other.
+So, there is a NavigationsParent component, and whenever a new navigation item is added, that part of the tree will be rerendered.
+Or we can cascade the navigation state from the parent, actually keeping the state in the parent. But we maybe also want to keep state in the components itself, because that is where it actually lives. so if I just want to read, this will be fine.
+How about I want to edit?
 
-In many MAUI courses, state is moved further up for this reason. They will end up with Domain Driven Design (probably).
+I will need copies of the state, right? And if there is a change, when I save it, rerender.
 
-- ViewModel, exposes the properties and commands to the view.
-- View to bind the properties
-- Model keeps state and raises change events.
+Never mind the rant.  
+My point is, that Blazor takes care of a ot of those thing for you, without you having to implement anything. Nice, isn't it?
 
-My problem with the whole viewmodel thing is in most examples, the ViewModel and Model are mixed (in Blazor!).
+Yes and no...
 
-Using MVVM, this is the way to go. The "State" should be "stored" or kept in the model. The ViewModel is for data binding State with the View.
+Pros:
++ Framework code is far away.
++ This is perfectly vertically sliced. The logic and orchestration is close together, with minimal distance.
+
+Cons:
+- Logic is hard to follow.
+- Cascading and rerendering is expensive.
+
+This starts falling apart as soon as it becomes more complex. 
+
+Is there a better way to do this?
+
+### What about MVVM
+
+In MAUI apps, the MVVM model is used a lot. However, in MAUI apps, there is one instance of the app, whereas in Blazor we can have multiple.
+
+In MVVM (Model-View-ViewModel):
+- the View is the abstraction of the User Interface (UI). The logic is about how to present the data to the user.
+- the Model contains the business logic and the data/properties. It is the abstraction of the business logic.
+- the ViewModel binds the View and the Model together. It exposes the data and commands from the Model to the View.
+
+So, in Blazor terms, the .razor is the View, and the code-behind is the Model. Blazor itself binds the View and the Model, so the ViewModel is actually hidden.
+
+Sorry.
+
+It is a bit more complicated, because the ViewModel often acts as an orchestrator as well. Because you might want to persist data somewhere. That is why in Web there is MVC, Model-View-Controller. The Controller has the orchestration-logic, the view is about the view and the Model contains the business logic.
+
+To make matters even more complicated: In the MAUI app, the state is persisted in memory. There is always one state. 
+
+Compare this to Blazor, where the state exists in your browser on the one side (on the HTML-page), and this is synchronised with a (unreliable?) signalR connection through websockets with the server.
+
+Browser-State => SignalR => Server-State.
+
+The server-state is the state of the circuit, and it is not persisted. If the circuit is lost, the state will be lost  at a certain point ON THE SERVER. It still very much may exist in the browser. We don't know!
+
+We do not have these problems in a MAUI app, because the app does not lose connection with your computer, whereas in Blazor, your phone may lose connection with the internet.
+
+In the MVC-Web-apps, these things used to be decoupled. So, you download a form. The state in the browser is the local state. And you upload the local state to a computer, IF there is a connection. Your browser and the code on your machine take care of the rest.
+
+Blazor does not have a fallback like that. It is a single point of failure. If the circuit is lost, the state is lost. Unless you implement a mechanism to persist the state somewhere.
+
+So, MVVM is not a good fit for Blazor-Server for the web. Blazor itself already implements the MVVM-pattern.
+
+
+### What about an actor or service pattern?
+
+I like the MAUI idea of pushing the state further back.
+How can I make this work for Blazor?  
+
+What about Model-View-Service?
+
+Split the logic into three parts:
+- Model: the state and the business logic.
+- View: the razor component, with the view logic.
+- Service: the orchestration logic, like persisting the state somewhere.
+
+I keep the hidden binding of the View to the Model intact. I have no problems with that.
+
+#### Help! What about the model?
+The problem is how to think about the Model.
+
+The view represents the state in the browser, right?
+It needs to be bound to properties. 
+The properties needed for the view can differ from the properties needed for the DomainModel.
+
+It would be logical to have a View, and a ViewState.
+There needs to be some kind of service orchestrating loading/initialization of the ViewState model, and keeping the DomainModel up to date.
+
+![blazor-architecture-proposal.svg](../../assets/images/blazor/blazor-architecture-proposal.svg)
+
+It tackles the problems of:
+- Decoupling of the ViewState in Blazor with the DomainModel
+- Possibility of old-fashioned decoupled updating of the domain model and persisting a single state
+- Possibility of shared state.
+
+![blazor-app-navigation-as-actor.svg](../../assets/images/blazor/blazor-app-navigation-as-actor.svg)
+
+If this NavigationService has an Update subscription, I can just subscribe components to it, and rerender any components that subscribed, even outside the session if I want to.
+
+Or just create a UserSession, and update all tabs for this user concerning this page.
+
+Pros:
+- Testable
+- 
+
+Cons:
+- increased distance
+- 
+
+### What about event sourcing?
+
+Aren't we just working against the architecture here? What about Event sourcing? Make the most of signalR?
+
+![blazor-app-event-sourcing.svg](../../assets/images/blazor/blazor-app-event-sourcing.svg)
+
+The idea here is that any change (even keystroke) can be an event, and we can add it to a stream.
+This stream of changes is the source of truth.
+
+With a publish-subscribe mechanism it is easy to keep track, or scroll through the changes.
+
+Pros:
+- No more lost data. every keystroke is saved
+- Audit trail included (who, when, where)
+- Version picking
+- No more merging.
+
+Cons:
+- rather heavy for memory, to have constant rerendering of all instances.
+- Architecture is very different.
+
 
 ### What about MVU
 
 Another pattern is the Model-view-update.
 
-### Current way in Blazor
+The MVU pattern structures the application in three main components:
+- Model
+- View
+- Update
 
-In Blazor, all logic and the model are inside the component. It is vertical slices to the max.    
-The model is the state, and it lives in a single instances, subject to the lifetime of the circuit. There is no real persistence of this state by default. Where the state in an old html-api style app always saves the current state in the browser tab, no such mechanism reliably exists in Blazor. The state is only kept in memory, and if the circuit is lost, the state is lost.
+The model is an immutable record that holds the state.
+The view is the UI-part.
+The update is the logic that updates the model.
 
-Also, for multiple tabs in the browser, for the same page, multiple states can exist. This might be desirable, or it might not, depending on the use case. However, this is no different from a html-api style app.
+Another important part are the Messages. These are "commands" that are sent from the view to the update, to trigger an update of the model.
+
+ 
+I like this idea.
+It is all about composition. You add behaviour to the Update function.
+Any cross cutting concerns require new functions. 
+I did not yet implement this in a more complex solution. But I think this could spin out of control, when there are lots of cross-cutting concerns.
+
+
+## Resources
+
+[MVU in MAUI](https://en.ittrip.xyz/c-sharp/mvu-pattern-dotnet-maui)  
+[MVU vs MVVM in Blazor](https://amarozka.dev/mvvm-vs-mvu-blazor-enterprise-state-pattern/)
+
+
 
 ## Back to the problem.
 
