@@ -75,6 +75,6 @@ He proposed a new set of principles called CUPID, which stands for:
 - Domain-based - in language and structure
 
 ## Related
-- [architecture-tree.md](../architecture-tree.md)
+- [architecture-tree.md](architecture-tree.md)
 - [software-quality.md](../other/software-quality.md)
 - [composition-over-inheritance.md](composition-over-inheritance.md)
