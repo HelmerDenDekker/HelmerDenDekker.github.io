@@ -4,14 +4,14 @@
 
 Status: Work in progress
 
-[//]: # (	ToDo: Rewrite!)
+[//]: # (	ToDo: Rewrite! I think some of the content is outdated, and the examples have bad names. And the soap cabinet section...)
 
 ## Cupid is the new SOLID
 
 A lot of programmers can tell you about the SOLID principles when coding. Dan Norths poses "Why every element in SOLID
 is wrong", and developed something called CUPID:
 
-[Cupid, the back story by Dan North](https://dannorth.net/2021/03/16/cupid-the-back-story/)
+[Cupid, the backstory by Dan North](https://dannorth.net/2021/03/16/cupid-the-back-story/)
 
 This needs to be elaborated on a bit, but basically:
 
@@ -31,8 +31,8 @@ There are a set of rules to make sure your code applies to architecture best pra
 
 From the CUPID-idea:
 
-- Front-End should be dumb.
-- Controllers should be dumb.
+- Front-End should be dumb (contain only front-end related logic). 
+- Controllers should be dumb (contain only controller-related logic).
 - Logic should be placed in Logic-files.
 - Create vertical slices for your functionality
 - Use the domain language (business driven words, so code is recognizable for the PO)
@@ -290,11 +290,11 @@ Use string interpolation to concatenate short strings.
 string displayName = $"{nameList[n].LastName}, {nameList[n].FirstName}";
 
 Use the StringBuilder when appending strings in loops, especially with large strings.
-LINQ Queries
+
+## LINQ Queries
 
 Use meaningful names for LINQ queries
 
-string displayName = $"{nameList[n].LastName}, {nameList[n].FirstName}";
 
 ## Nesting code
 
@@ -478,7 +478,7 @@ public class HelmerService
     /// <summary>
     /// A private field should be in snakeCase (medCaps with an underscore)
     /// </summary>
-    private IHelmerLogger _HelmerLogger
+    private IHelmerLogger _helmerLogger
  
     [ThreadStatic]
     /// <summary>
@@ -489,9 +489,9 @@ public class HelmerService
     /// <summary>
     /// Constructor, injecting the logger. The parameter should be in medCaps
     /// </summary>
-    public HelmerService(IHelmerLogger HelmerLogger)
+    public HelmerService(IHelmerLogger helmerLogger)
     {
-        _HelmerLogger = HelmerLogger;
+        _helmerLogger = helmerLogger;
     }
  
     /// <summary>
@@ -503,8 +503,8 @@ public class HelmerService
 }
 ```
 
-Other naming conventions
-Namespaces
+# Other naming conventions
+### Namespaces
 
 Namespaces should use PascalCase for a single word, and a dot as a word separator. Because this is a bit cryptic, let me
 give an example:
@@ -519,32 +519,35 @@ The third name is the project name.
 In summary: Helmer.Solution.Project
 
 Project type names are:
-Data (Data access layer)
-Web (web project)
-Api (API project)
-Logic (Contains Logic)
-Client (A Client)
-Service (A service)
-Wpf (A wpf application)
-ConsoleApp (Console app) (just using 'Console' will interfere with native console functionality like Console.WriteLine)
-UnitTests (unit tests)
-IntegrationTests (integration tests)
-Folders and files
+- Data (Data access layer)
+- Web (web project)
+- Api (API project)
+- Logic (Contains Logic)
+- Client (A Client)
+- Service (A service)
+- Wpf (A wpf application)
+- ConsoleApp (Console app) (just using 'Console' will interfere with native console functionality like Console.WriteLine)
+- UnitTests (unit tests)
+- IntegrationTests (integration tests)
+
+## Folders and files
 
 A project will contain folders and files. These have naming conventions as well
 
-In old-style SOLID-like projects:
-Attributes
+In old-style SOLID-like projects:  
+### Attributes  
 
 Here you will find the attributes
-Models
+
+### Models
 
 For storing models (viewmodels, data transfer objects, models)
-Views
+
+### Views
 
 Stores the views in the mvc-model. The view-folder will contain subfolders with the controller prefix (So a folder
 called Home, which belongs to the HomeController in the Controller folder)
-Controllers
+### Controllers
 
 Stores all the controllers. The naming convention is to prefix the page-name for the controller. So the controller for
 the homepage is called HomeController. Controllers should be dumb.
@@ -555,26 +558,26 @@ controllers, files should have the page-name prefixed. So HomeLogic belongs to t
 shared logic as well, for example UserLogic, which has some user logic, and can be used by the HomeLogic to provide the
 name of the user for a Welcome message. Most of the times this is about retrieving data from a database or the
 HttpContext, so use the tablename or whatever info you retrieve as prefix.
-Helpers
+### Helpers
 
     Helpers are always static (do not change a class to be static, helpers should be static classes by themselves)
     Helpers will have a clear name, they will have the Helper suffix only when needed (EnvironmentHelper, ResultHelper, StandardResult).
 
-Extensions
+### Extensions
 
     Extensions will have the suffix Extensions, like ServiceCollectionExtensions.
     Extensions are always static
     Their first parameter (of a extension method) specifies which type the method operates on
         The parameter is preceded by the this modifier
 
-Repositories
+### Repositories
 
 For repositories in a DAL projects
-Enums
+### Enums
 
 It is also possible to store all Enums in a separate folder, if there are many. Where Logic and Controller do have a
 suffix, Enums normally do NOT have an Enum suffix.
-Tests
+### Tests
 
 There are two types of tests in the code. Unit tests will test a small piece of code (so one method). Integration tests
 will test the integration of classes, or bigger chunks, please think before creating integration tests, because most of

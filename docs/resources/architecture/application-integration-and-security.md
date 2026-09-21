@@ -1,4 +1,4 @@
-# Inter-application communication
+# Application integration and security
 
 *5-4-2024*
 

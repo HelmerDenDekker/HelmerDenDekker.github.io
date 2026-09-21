@@ -48,5 +48,12 @@ So I created a new Result class. This is just an enum.
 
 The enum test was twice as fast for the new iteration and used no memory allocation at all, compared to the 232 B for the class.
 
+## About the Result class status codes
+
+The idea was to have a clear class with an idea of:
+- what happened
+- what should be done about it
+
+So, you have an interface for clear logic implementation.
 
 ## Resources

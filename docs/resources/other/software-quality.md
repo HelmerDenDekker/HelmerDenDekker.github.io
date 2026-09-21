@@ -69,7 +69,7 @@ The higher the number, the more complex.
 
 Again, this is very OOP, and not very Cupid.
 
-The higher number means the more classes are coupled, and you class may do too much work.
+The higher number means the more classes are coupled, and your class may do too much work.
 
 The single responsibility principle is either violated OR at work here!
 1. the class does too much (too many responsibilities)
