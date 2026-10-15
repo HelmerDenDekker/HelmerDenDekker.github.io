@@ -8,23 +8,23 @@ Type of post: Resource
 
 ## Intro
 
-This sums up all I have learned in several Javascript courses. These are personal notes, saved as a resource in this repo
+This sums up all I have learned in several JavaScript courses. These are personal notes, saved as a resource in this repo
 
 ## Comparisons
 
 [W3 schools comparisons](https://www.w3schools.com/js/js_comparisons.asp)
 
-Comparing two JavaScript objects **always** returns **false**.  
+Comparing two JavaScript objects **always** returns **false**.  
 When comparing two strings, "2" will be greater than "12", because (alphabetically) 1 is less than 2.  
 
-Nullish coalescence operator: The `??` operator returns the first argument if it is not **nullish** (`null` or `undefined`).  
+Nullish coalescence operator: The `??` operator returns the first argument if it is not **nullish** (`null` or `undefined`).  
 
 There is an Optional Chaining Operator (?.) returning undefined instead of throwing an error.  
 
 ## Loop
 
-- `for/in` - loops through the properties of an object
-- `for/of` - loops through the values of an iterable object
+- `for/in` - loops through the properties of an object
+- `for/of` - loops through the values of an iterable object
 
 ## Hoisting
 
@@ -50,21 +50,21 @@ To avoid bugs, always declare all variables at the beginning of every scope.
 
 ## Queryselector 
 
-If you want to find all HTML elements that match a specified CSS selector (id, class names, types, attributes, values of attributes, etc), use the `querySelectorAll()` method.
+If you want to find all HTML elements that match a specified CSS selector (id, class names, types, attributes, values of attributes, etc), use the `querySelectorAll()` method.
 
 ## Arrays
 
 [W3Schools Array methods](https://www.w3schools.com/js/js_array_methods.asp)
 
 Pay attentions while using arrays in JavaScript. Some array functions will return, while others won't.
-- ‘slice()’ returns a piece of the original array
-- ’splice()’ overwrites the original
-- ‘.toSpliced()’ returns a spliced version of the array
+- `slice()` returns a piece of the original array
+- `splice()` overwrites the original
+- `toSpliced()` returns a spliced version of the array
 
 ## Best practices
 
 Avoid global variables
-Avoid `new` 
+Avoid `new` 
 Avoid  == 
 Avoid eval()
 

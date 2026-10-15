@@ -648,3 +648,7 @@ Here are some general layout conventions, more about layout in Code Standardizat
     Write only one statement per line
     Write one declaration per line
     Use parentheses to make clauses in an expression apparent.
+
+## Resources
+
+[C# coding conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions)
