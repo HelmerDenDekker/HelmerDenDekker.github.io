@@ -651,4 +651,4 @@ Here are some general layout conventions, more about layout in Code Standardizat
 
 ## Resources
 
-[C# coding conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions)
+[C# coding conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions)  

@@ -1,14 +1,13 @@
-# Javascript notes
+# JavaScript notes
 
 * 9-5-2024*
 
 Status: Done  
 Type of post: Resource
 
-
 ## Intro
 
-This sums up all I have learned in several JavaScript courses. These are personal notes, saved as a resource in this repo
+This sums up all I have learned in several JavaScript courses. These are personal notes, saved as a resource in this repo.
 
 ## Comparisons
 
@@ -42,7 +41,7 @@ To avoid bugs, always declare all variables at the beginning of every scope.
 
 ## Coding conventions
 
-[W3Scools Coding conventions](https://www.w3schools.com/js/js_conventions.asp)
+[W3Schools Coding conventions](https://www.w3schools.com/js/js_conventions.asp)
 
 ## Promises
 
@@ -63,9 +62,9 @@ Pay attentions while using arrays in JavaScript. Some array functions will retur
 
 ## Best practices
 
-Avoid global variables
-Avoid `new` 
-Avoid  == 
-Avoid eval()
+- Avoid global variables
+- Avoid `new` 
+- Avoid == 
+- Avoid eval()
 
-Always Declare Local Variables
+Always declare local variables.
